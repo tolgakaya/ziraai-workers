@@ -69,8 +69,31 @@ export class OpenAIProvider {
       const analysisText = response.choices[0]?.message?.content || '';
       const processingTimeMs = Date.now() - startTime;
 
+      // Validate response content
+      if (!analysisText || analysisText.trim().length === 0) {
+        throw new Error('OpenAI returned empty response');
+      }
+
+      this.logger.debug({
+        analysisId: request.AnalysisId,
+        responseLength: analysisText.length,
+        responsePreview: analysisText.substring(0, 200),
+      }, 'OpenAI raw response received');
+
       // Parse AI response
-      const analysisResult = JSON.parse(analysisText);
+      let analysisResult: any;
+      try {
+        analysisResult = JSON.parse(analysisText);
+      } catch (parseError) {
+        this.logger.error({
+          analysisId: request.AnalysisId,
+          parseError: parseError instanceof Error ? parseError.message : 'Unknown parse error',
+          responseLength: analysisText.length,
+          responseStart: analysisText.substring(0, 500),
+          responseEnd: analysisText.substring(Math.max(0, analysisText.length - 500)),
+        }, 'Failed to parse OpenAI JSON response');
+        throw new Error(`JSON parse failed: ${parseError instanceof Error ? parseError.message : 'Unknown error'}. Response length: ${analysisText.length}`);
+      }
 
       // Calculate token usage
       const tokenUsage = this.calculateTokenUsage(response);
