@@ -80,10 +80,31 @@ export class OpenAIProvider {
         responsePreview: analysisText.substring(0, 200),
       }, 'OpenAI raw response received');
 
-      // Parse AI response
+      // Parse AI response with N8N cleanup logic (lines 86-97 from parse_node.js)
       let analysisResult: any;
       try {
-        analysisResult = JSON.parse(analysisText);
+        // Clean markdown code blocks and extract JSON (matching N8N parse_node.js)
+        let cleanedOutput = analysisText;
+        cleanedOutput = cleanedOutput.replace(/```json\n?/g, '');  // Remove ```json
+        cleanedOutput = cleanedOutput.replace(/```\n?/g, '');      // Remove ```
+
+        const jsonStart = cleanedOutput.indexOf('{');
+        const jsonEnd = cleanedOutput.lastIndexOf('}') + 1;
+
+        if (jsonStart === -1 || jsonEnd === 0) {
+          throw new Error('No JSON structure found in response');
+        }
+
+        const jsonStr = cleanedOutput.substring(jsonStart, jsonEnd);
+
+        this.logger.debug({
+          analysisId: request.AnalysisId,
+          originalLength: analysisText.length,
+          cleanedLength: jsonStr.length,
+          hadMarkdown: analysisText.includes('```'),
+        }, 'JSON cleanup completed');
+
+        analysisResult = JSON.parse(jsonStr);
       } catch (parseError) {
         this.logger.error({
           analysisId: request.AnalysisId,

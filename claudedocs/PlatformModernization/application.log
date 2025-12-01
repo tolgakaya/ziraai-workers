@@ -1,87 +1,103 @@
-2025-12-01T08:31:54.722568621Z [inf]  
-2025-12-01T08:31:56.797903339Z [inf]  [35m[Region: europe-west4][0m
-2025-12-01T08:31:56.802470505Z [inf]  [35m=========================
-2025-12-01T08:31:56.802496917Z [inf]  Using Detected Dockerfile
-2025-12-01T08:31:56.802503175Z [inf]  =========================
-2025-12-01T08:31:56.802506955Z [inf]  [0m
-2025-12-01T08:31:56.802520561Z [inf]  context: wbd9-T12o
-2025-12-01T08:31:56.995217799Z [inf]  [internal] load build definition from Dockerfile
-2025-12-01T08:31:56.995264079Z [inf]  [internal] load build definition from Dockerfile
-2025-12-01T08:31:56.995285842Z [inf]  [internal] load build definition from Dockerfile
-2025-12-01T08:31:57.002778376Z [inf]  [internal] load build definition from Dockerfile
-2025-12-01T08:31:57.004082144Z [inf]  [internal] load metadata for docker.io/library/node:18-alpine
-2025-12-01T08:31:57.094655651Z [inf]  [auth] library/node:pull token for registry-1.docker.io
-2025-12-01T08:31:57.094696658Z [inf]  [auth] library/node:pull token for registry-1.docker.io
-2025-12-01T08:31:57.891136265Z [inf]  [internal] load metadata for docker.io/library/node:18-alpine
-2025-12-01T08:31:57.891415581Z [inf]  [internal] load .dockerignore
-2025-12-01T08:31:57.891427464Z [inf]  [internal] load .dockerignore
-2025-12-01T08:31:57.891437183Z [inf]  [internal] load .dockerignore
-2025-12-01T08:31:57.891525648Z [inf]  [internal] load .dockerignore
-2025-12-01T08:31:57.899565970Z [inf]  [internal] load .dockerignore
-2025-12-01T08:31:57.903529298Z [inf]  [stage-1 4/6] RUN npm ci --omit=dev && npm cache clean --force
-2025-12-01T08:31:57.903560373Z [inf]  [builder 3/7] COPY package*.json ./
-2025-12-01T08:31:57.903570897Z [inf]  [internal] load build context
-2025-12-01T08:31:57.903580341Z [inf]  [builder 2/7] WORKDIR /app
-2025-12-01T08:31:57.903589455Z [inf]  [builder 1/7] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
-2025-12-01T08:31:57.903613468Z [inf]  [stage-1 6/6] RUN addgroup -g 1001 -S nodejs &&     adduser -S nodejs -u 1001 &&     chown -R nodejs:nodejs /app
-2025-12-01T08:31:57.903619880Z [inf]  [stage-1 5/6] COPY --from=builder /app/dist ./dist
-2025-12-01T08:31:57.903625418Z [inf]  [builder 7/7] RUN npm run build
-2025-12-01T08:31:57.903635292Z [inf]  [builder 6/7] COPY src ./src
-2025-12-01T08:31:57.903644125Z [inf]  [builder 5/7] RUN npm ci
-2025-12-01T08:31:57.903653046Z [inf]  [builder 4/7] COPY tsconfig.json ./
-2025-12-01T08:31:57.903671191Z [inf]  [internal] load build context
-2025-12-01T08:31:57.903677480Z [inf]  [builder 1/7] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
-2025-12-01T08:31:57.909438241Z [inf]  [builder 1/7] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
-2025-12-01T08:31:57.909476686Z [inf]  [builder 1/7] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
-2025-12-01T08:31:57.909699340Z [inf]  [builder 1/7] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
-2025-12-01T08:31:57.909716314Z [inf]  [internal] load build context
-2025-12-01T08:31:57.929877385Z [inf]  [builder 1/7] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
-2025-12-01T08:31:57.931528599Z [inf]  [internal] load build context
-2025-12-01T08:31:57.932969573Z [inf]  [builder 1/7] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
-2025-12-01T08:31:58.561757147Z [inf]  [builder 1/7] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
-2025-12-01T08:31:59.351372939Z [inf]  [builder 2/7] WORKDIR /app
-2025-12-01T08:31:59.490438731Z [inf]  [builder 2/7] WORKDIR /app
-2025-12-01T08:31:59.491198076Z [inf]  [builder 3/7] COPY package*.json ./
-2025-12-01T08:31:59.505534860Z [inf]  [builder 3/7] COPY package*.json ./
-2025-12-01T08:31:59.506425732Z [inf]  [stage-1 4/6] RUN npm ci --omit=dev && npm cache clean --force
-2025-12-01T08:31:59.506474027Z [inf]  [builder 4/7] COPY tsconfig.json ./
-2025-12-01T08:31:59.521626731Z [inf]  [builder 4/7] COPY tsconfig.json ./
-2025-12-01T08:31:59.522424267Z [inf]  [builder 5/7] RUN npm ci
-2025-12-01T08:32:00.015524305Z [inf]  npm error code EUSAGE
-
-2025-12-01T08:32:00.015751099Z [inf]  npm error
-npm error The `npm ci` command can only install with an existing package-lock.json or
-npm error npm-shrinkwrap.json with lockfileVersion >= 1. Run an install with npm@5 or
-npm error later to generate a package-lock.json file, then try again.
-npm error
-npm error Clean install a project
-npm error
-npm error Usage:
-npm error npm ci
-npm error
-npm error Options:
-npm error [--install-strategy <hoisted|nested|shallow|linked>] [--legacy-bundling]
-npm error [--global-style] [--omit <dev|optional|peer> [--omit <dev|optional|peer> ...]]
-npm error [--include <prod|dev|optional|peer> [--include <prod|dev|optional|peer> ...]]
-npm error [--strict-peer-deps] [--foreground-scripts] [--ignore-scripts] [--no-audit]
-npm error [--no-bin-links] [--no-fund] [--dry-run]
-npm error [-w|--workspace <workspace-name> [-w|--workspace <workspace-name> ...]]
-npm error [-ws|--workspaces] [--include-workspace-root] [--install-links]
-npm error
-npm error aliases: clean-install, ic, install-clean, isntall-clean
-npm error
-npm error Run "npm help ci" for more info
-
-2025-12-01T08:32:00.017566626Z [inf]  npm error A complete log of this run can be found in: /root/.npm/_logs/2025-12-01T08_31_59_665Z-debug-0.log
-
-2025-12-01T08:32:00.116606473Z [err]  [stage-1 4/6] RUN npm ci --omit=dev && npm cache clean --force
-2025-12-01T08:32:00.146485586Z [err]  [builder 5/7] RUN npm ci
-2025-12-01T08:32:00.164013311Z [err]  Dockerfile:33
-2025-12-01T08:32:00.164048892Z [err]  -------------------
-2025-12-01T08:32:00.164053671Z [err]  31 |     # Install production dependencies only
-2025-12-01T08:32:00.164057367Z [err]  32 |     COPY package*.json ./
-2025-12-01T08:32:00.164063360Z [err]  33 | >>> RUN npm ci --omit=dev && npm cache clean --force
-2025-12-01T08:32:00.164066925Z [err]  34 |
-2025-12-01T08:32:00.164070395Z [err]  35 |     # Copy compiled JavaScript from builder
-2025-12-01T08:32:00.164073901Z [err]  -------------------
-2025-12-01T08:32:00.164079599Z [err]  ERROR: failed to build: failed to solve: process "/bin/sh -c npm ci --omit=dev && npm cache clean --force" did not complete successfully: exit code: 1
+2025-12-01T12:56:47.000000000Z [inf]  Starting Container
+2025-12-01T12:56:49.132461091Z [inf]  [2025-12-01 12:56:47.907 +0000] [32mINFO[39m: [36mProvider API keys validated[39m
+2025-12-01T12:56:49.132467744Z [inf]      providers: [
+2025-12-01T12:56:49.132473615Z [inf]        "OpenAI"
+2025-12-01T12:56:49.132480157Z [inf]      ]
+2025-12-01T12:56:49.132486699Z [inf]  [2025-12-01 12:56:47.910 +0000] [32mINFO[39m: [36mOpenAI provider initialized[39m
+2025-12-01T12:56:49.132495823Z [inf]  [2025-12-01 12:56:47.910 +0000] [32mINFO[39m: [36mAI providers initialized[39m
+2025-12-01T12:56:49.132504328Z [inf]      providers: [
+2025-12-01T12:56:49.132510699Z [inf]        "openai"
+2025-12-01T12:56:49.132516619Z [inf]      ]
+2025-12-01T12:56:49.132523268Z [inf]  [2025-12-01 12:56:47.910 +0000] [32mINFO[39m: [36mProvider selector initialized[39m
+2025-12-01T12:56:49.132531189Z [inf]      strategy: "FIXED"
+2025-12-01T12:56:49.132537355Z [inf]      availableProviders: [
+2025-12-01T12:56:49.132543256Z [inf]        "openai"
+2025-12-01T12:56:49.132550158Z [inf]      ]
+2025-12-01T12:56:49.132558928Z [inf]      fixedProvider: "openai"
+2025-12-01T12:56:49.132566518Z [inf]  [2025-12-01 12:56:47.915 +0000] [32mINFO[39m: [36mStarting multi-provider analysis worker[39m
+2025-12-01T12:56:49.132572816Z [inf]      workerId: "worker-staging-1"
+2025-12-01T12:56:49.132579658Z [inf]      availableProviders: [
+2025-12-01T12:56:49.132585675Z [inf]        "openai"
+2025-12-01T12:56:49.132592410Z [inf]      ]
+2025-12-01T12:56:49.132597424Z [inf]      selectionStrategy: "FIXED"
+2025-12-01T12:56:49.132602231Z [inf]      concurrency: 60
+2025-12-01T12:56:49.132606770Z [inf]  [2025-12-01 12:56:47.915 +0000] [32mINFO[39m: [36mConnecting to RabbitMQ[39m
+2025-12-01T12:56:49.132613999Z [inf]      url: "amqp://DIjL9Z7aGtLIG5z6:***@rabbitmq.railway.internal:5672"
+2025-12-01T12:56:49.132618934Z [inf]  [2025-12-01 12:56:48.070 +0000] [32mINFO[39m: [36mRedis connected successfully[39m
+2025-12-01T12:56:49.132815325Z [inf]  [2025-12-01 12:56:48.139 +0000] [32mINFO[39m: [36mRabbitMQ connected successfully[39m
+2025-12-01T12:56:49.132820065Z [inf]  [2025-12-01 12:56:48.139 +0000] [32mINFO[39m: [36mStarting consumer[39m
+2025-12-01T12:56:49.132824016Z [inf]      queueName: "plant-analysis-requests"
+2025-12-01T12:56:49.132827981Z [inf]  [2025-12-01 12:56:48.141 +0000] [32mINFO[39m: [36mStarted consuming from WebAPI queue[39m
+2025-12-01T12:56:49.132832053Z [inf]      queueName: "plant-analysis-requests"
+2025-12-01T12:56:49.132837094Z [inf]      availableProviders: [
+2025-12-01T12:56:49.132840890Z [inf]        "openai"
+2025-12-01T12:56:49.132845066Z [inf]      ]
+2025-12-01T12:56:49.132850146Z [inf]      selectionStrategy: "FIXED"
+2025-12-01T12:56:49.132853879Z [inf]  [2025-12-01 12:56:48.141 +0000] [32mINFO[39m: [36mWorker started successfully and consuming from queue[39m
+2025-12-01T12:56:49.132857683Z [inf]      workerId: "worker-staging-1"
+2025-12-01T12:56:49.132861311Z [inf]      queue: "plant-analysis-requests"
+2025-12-01T12:56:49.132865297Z [inf]      providerCount: 1
+2025-12-01T12:56:49.132869251Z [inf]      availableProviders: [
+2025-12-01T12:56:49.132873686Z [inf]        "openai"
+2025-12-01T12:56:49.132877861Z [inf]      ]
+2025-12-01T12:57:28.584571478Z [inf]  [2025-12-01 12:57:18.680 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-01T12:57:28.584581516Z [inf]      workerId: "worker-staging-1"
+2025-12-01T12:57:28.584589954Z [inf]      provider: "healthy"
+2025-12-01T12:57:28.584597986Z [inf]      rabbitmq: "healthy"
+2025-12-01T12:57:28.584605261Z [inf]      redis: "healthy"
+2025-12-01T12:57:28.584612967Z [inf]      overall: "healthy"
+2025-12-01T12:57:28.584619930Z [inf]      processedCount: 0
+2025-12-01T12:57:28.584628249Z [inf]      errorCount: 0
+2025-12-01T12:57:28.584636071Z [inf]      errorRate: "0%"
+2025-12-01T12:57:58.576093611Z [inf]  [2025-12-01 12:57:48.575 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-01T12:57:58.576100757Z [inf]      workerId: "worker-staging-1"
+2025-12-01T12:57:58.576109161Z [inf]      provider: "healthy"
+2025-12-01T12:57:58.576115274Z [inf]      rabbitmq: "healthy"
+2025-12-01T12:57:58.576121105Z [inf]      redis: "healthy"
+2025-12-01T12:57:58.576127153Z [inf]      overall: "healthy"
+2025-12-01T12:57:58.576132762Z [inf]      processedCount: 0
+2025-12-01T12:57:58.576138470Z [inf]      errorCount: 0
+2025-12-01T12:57:58.576144171Z [inf]      errorRate: "0%"
+2025-12-01T12:58:28.691402449Z [inf]  [2025-12-01 12:58:18.779 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-01T12:58:28.691408541Z [inf]      workerId: "worker-staging-1"
+2025-12-01T12:58:28.691415317Z [inf]      provider: "healthy"
+2025-12-01T12:58:28.691422886Z [inf]      rabbitmq: "healthy"
+2025-12-01T12:58:28.691429510Z [inf]      redis: "healthy"
+2025-12-01T12:58:28.691436287Z [inf]      overall: "healthy"
+2025-12-01T12:58:28.691443537Z [inf]      processedCount: 0
+2025-12-01T12:58:28.691451370Z [inf]      errorCount: 0
+2025-12-01T12:58:28.691469531Z [inf]      errorRate: "0%"
+2025-12-01T12:58:58.690791884Z [inf]  [2025-12-01 12:58:49.000 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-01T12:58:58.690799099Z [inf]      workerId: "worker-staging-1"
+2025-12-01T12:58:58.690805656Z [inf]      provider: "healthy"
+2025-12-01T12:58:58.690811828Z [inf]      rabbitmq: "healthy"
+2025-12-01T12:58:58.690817354Z [inf]      redis: "healthy"
+2025-12-01T12:58:58.690823170Z [inf]      overall: "healthy"
+2025-12-01T12:58:58.690829070Z [inf]      processedCount: 0
+2025-12-01T12:58:58.690836577Z [inf]      errorCount: 0
+2025-12-01T12:58:58.690842065Z [inf]      errorRate: "0%"
+2025-12-01T12:58:58.690847021Z [inf]  [2025-12-01 12:58:51.443 +0000] [32mINFO[39m: [36mProcessing analysis message[39m
+2025-12-01T12:58:58.690852749Z [inf]      analysisId: "async_analysis_20251201_125851_35dfd10c"
+2025-12-01T12:58:58.690858607Z [inf]      farmerId: "F190"
+2025-12-01T12:58:58.690864297Z [inf]      imageUrl: "https://1lik.net/plant-images/20251201_125851_230_dba7af7980a04e0c838395f1d5ce30dc_async_async_analysis_20251201_125851_35dfd10c_20251201_125851.jpg"
+2025-12-01T12:58:58.690869946Z [inf]  [2025-12-01 12:58:51.448 +0000] [32mINFO[39m: [36mStarting OpenAI analysis[39m
+2025-12-01T12:58:58.690876478Z [inf]      analysisId: "async_analysis_20251201_125851_35dfd10c"
+2025-12-01T12:58:58.690882194Z [inf]      farmerId: "F190"
+2025-12-01T12:58:58.690887897Z [inf]      imageUrl: "https://1lik.net/plant-images/20251201_125851_230_dba7af7980a04e0c838395f1d5ce30dc_async_async_analysis_20251201_125851_35dfd10c_20251201_125851.jpg"
+2025-12-01T12:58:58.690894544Z [inf]      cropType: null
+2025-12-01T12:59:28.814709246Z [inf]  [2025-12-01 12:59:18.774 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-01T12:59:28.814714512Z [inf]      workerId: "worker-staging-1"
+2025-12-01T12:59:28.814719515Z [inf]      provider: "healthy"
+2025-12-01T12:59:28.814724376Z [inf]      rabbitmq: "healthy"
+2025-12-01T12:59:28.814729663Z [inf]      redis: "healthy"
+2025-12-01T12:59:28.814735294Z [inf]      overall: "healthy"
+2025-12-01T12:59:28.814740858Z [inf]      processedCount: 0
+2025-12-01T12:59:28.814746023Z [inf]      errorCount: 0
+2025-12-01T12:59:28.814751925Z [inf]      errorRate: "0%"
+2025-12-01T12:59:28.814756826Z [inf]  [2025-12-01 12:59:21.953 +0000] [31mERROR[39m: [36mOpenAI analysis failed[39m
+2025-12-01T12:59:28.815020678Z [inf]      analysisId: "async_analysis_20251201_125851_35dfd10c"
+2025-12-01T12:59:28.815028469Z [inf]      processingTimeMs: 30505
+2025-12-01T12:59:28.815043377Z [inf]      error: "Unexpected end of JSON input"
+2025-12-01T12:59:28.815049675Z [inf]  [2025-12-01 12:59:21.955 +0000] [32mINFO[39m: [36mAnalysis completed and result published[39m
+2025-12-01T12:59:28.815055384Z [inf]      analysisId: "async_analysis_20251201_125851_35dfd10c"
+2025-12-01T12:59:28.815060995Z [inf]      processingTimeMs: 30512
