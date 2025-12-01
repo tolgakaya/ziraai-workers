@@ -49,21 +49,23 @@ export class OpenAIProvider {
       const imageContent = this.buildImageContent(request);
 
       // Call OpenAI API
-      // Note: gpt-5-mini does not support temperature parameter - only default (1) is allowed
-      // Note: N8N LangChain node does NOT use response_format - removed to match N8N behavior
+      // CRITICAL: For vision models, ALL content (text + images) must be in SINGLE user message
+      // System role doesn't support image_url content parts
       const response = await this.client.chat.completions.create({
         model: this.config.model || 'gpt-5-mini',
         messages: [
           {
-            role: 'system',
-            content: systemPrompt,
-          },
-          {
             role: 'user',
-            content: imageContent,
+            content: [
+              {
+                type: 'text',
+                text: systemPrompt,
+              },
+              ...imageContent.filter((item: any) => item.type === 'image_url'),  // Only include image_url items
+            ],
           },
         ],
-        max_completion_tokens: 2000,  // Changed from max_tokens to max_completion_tokens (OpenAI API update)
+        max_completion_tokens: 2000,
       });
 
       const analysisText = response.choices[0]?.message?.content || '';
@@ -465,14 +467,10 @@ Return ONLY a valid JSON object with this EXACT structure (no additional text):
 
   /**
    * Build image content array for OpenAI Vision API
+   * Returns only image_url items (text is added separately in main message)
    */
   private buildImageContent(request: PlantAnalysisAsyncRequestDto): any[] {
-    const content: any[] = [
-      {
-        type: 'text',
-        text: 'Analyze this plant image comprehensively',
-      },
-    ];
+    const content: any[] = [];
 
     // Add main image URL
     if (request.ImageUrl) {
