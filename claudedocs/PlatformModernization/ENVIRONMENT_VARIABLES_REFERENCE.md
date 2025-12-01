@@ -473,19 +473,27 @@ REDIS_TTL=600     # 10 minutes - very permissive
 
 #### `PROVIDER_MODEL` (Optional)
 **Purpose**: Override default model for OpenAI provider
-**Format**: String (OpenAI model name)
+**Format**: String (any valid OpenAI model name)
 **Default**: `gpt-4o-mini`
 **Applies To**: OpenAI only (Gemini and Anthropic use hardcoded models)
 
 **Examples**:
 ```bash
-PROVIDER_MODEL=gpt-4o-mini              # Default - cheapest GPT-4 class
+PROVIDER_MODEL=gpt-4o-mini              # Default - recommended for cost/performance balance
 PROVIDER_MODEL=gpt-4o                   # More capable, higher cost
-PROVIDER_MODEL=gpt-4-turbo              # Legacy model
+PROVIDER_MODEL=gpt-4-turbo              # Previous generation flagship
 PROVIDER_MODEL=gpt-3.5-turbo            # Budget option
+PROVIDER_MODEL=o1-preview               # Reasoning model (highest capability)
+PROVIDER_MODEL=o1-mini                  # Reasoning model (cost-effective)
 ```
 
-**Note**: Gemini uses `gemini-2.0-flash-exp`, Anthropic uses `claude-3-5-sonnet-20241022` (hardcoded)
+**Important**:
+- You can use **any valid OpenAI model name** - no restrictions in code
+- Model name is passed directly to OpenAI API without validation
+- Verify model availability and pricing at https://platform.openai.com/docs/models
+- Invalid model names will cause API errors (check Railway logs)
+
+**Note**: Gemini uses `gemini-2.0-flash-exp`, Anthropic uses `claude-3-5-sonnet-20241022` (hardcoded in provider files)
 
 ---
 
