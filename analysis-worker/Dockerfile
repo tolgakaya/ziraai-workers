@@ -1,6 +1,6 @@
 # ============================================
 # TypeScript Analysis Worker Dockerfile
-# Build context: Repository root (workers repo)
+# Build context: /analysis-worker (set in Railway Root Directory)
 # ============================================
 
 # Stage 1: Build
@@ -8,15 +8,15 @@ FROM node:18-alpine AS builder
 
 WORKDIR /app
 
-# Copy package files from analysis-worker directory
-COPY analysis-worker/package*.json ./
-COPY analysis-worker/tsconfig.json ./
+# Copy package files (Railway already in /analysis-worker context)
+COPY package*.json ./
+COPY tsconfig.json ./
 
 # Install ALL dependencies (including devDependencies for build)
 RUN npm ci
 
 # Copy source code
-COPY analysis-worker/src ./src
+COPY src ./src
 
 # Build TypeScript to JavaScript
 RUN npm run build
@@ -29,7 +29,7 @@ FROM node:18-alpine
 WORKDIR /app
 
 # Install production dependencies only
-COPY analysis-worker/package*.json ./
+COPY package*.json ./
 RUN npm ci --omit=dev && npm cache clean --force
 
 # Copy compiled JavaScript from builder
