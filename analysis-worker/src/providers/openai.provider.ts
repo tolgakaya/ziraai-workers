@@ -52,7 +52,7 @@ export class OpenAIProvider {
       // CRITICAL: GPT-5 mini requires /v1/responses endpoint with input_text/input_image types
       // Different from old chat/completions API
       const requestBody = {
-        model: this.config.model || 'gpt-5-mini-2025-08-07',
+        model: this.config.model,
         input: [
           {
             role: 'user',
@@ -296,7 +296,7 @@ export class OpenAIProvider {
         processing_metadata: {
           ParseSuccess: true,
           ProcessingTimestamp: new Date().toISOString(),
-          AiModel: this.config.model || 'gpt-5-mini-2025-08-07',
+          AiModel: this.config.model,
           WorkflowVersion: '2.0.0',
           ReceivedAt: receivedAt.toISOString(),
           ProcessingTimeMs: processingTimeMs,
@@ -727,7 +727,7 @@ Return ONLY a valid JSON object with this EXACT structure (no additional text):
       processing_metadata: {
         ParseSuccess: false,
         ProcessingTimestamp: new Date().toISOString(),
-        AiModel: this.config.model || 'gpt-5-mini-2025-08-07',
+        AiModel: this.config.model,
         WorkflowVersion: '2.0.0',
         ReceivedAt: receivedAt.toISOString(),
         ProcessingTimeMs: processingTimeMs,
