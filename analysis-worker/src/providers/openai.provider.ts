@@ -51,8 +51,9 @@ export class OpenAIProvider {
       // Call OpenAI API
       // CRITICAL: For vision models, ALL content (text + images) must be in SINGLE user message
       // System role doesn't support image_url content parts
+      // Model name MUST be fully qualified: 'openai/gpt-5-mini-2025-08-07'
       const response = await this.client.chat.completions.create({
-        model: this.config.model || 'gpt-5-mini',
+        model: this.config.model || 'openai/gpt-5-mini-2025-08-07',
         messages: [
           {
             role: 'user',
@@ -248,7 +249,7 @@ export class OpenAIProvider {
         processing_metadata: {
           ParseSuccess: true,
           ProcessingTimestamp: new Date().toISOString(),
-          AiModel: this.config.model || 'gpt-5-mini',
+          AiModel: this.config.model || 'openai/gpt-5-mini-2025-08-07',
           WorkflowVersion: '2.0.0',
           ReceivedAt: receivedAt.toISOString(),
           ProcessingTimeMs: processingTimeMs,
@@ -632,7 +633,7 @@ Return ONLY a valid JSON object with this EXACT structure (no additional text):
       processing_metadata: {
         ParseSuccess: false,
         ProcessingTimestamp: new Date().toISOString(),
-        AiModel: this.config.model || 'gpt-4o-mini',
+        AiModel: this.config.model || 'openai/gpt-5-mini-2025-08-07',
         WorkflowVersion: '2.0.0',
         ReceivedAt: receivedAt.toISOString(),
         ProcessingTimeMs: processingTimeMs,
