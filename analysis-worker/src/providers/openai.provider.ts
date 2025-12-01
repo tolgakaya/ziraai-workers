@@ -107,7 +107,10 @@ export class OpenAIProvider {
         responsePreview: JSON.stringify(response).substring(0, 500),
       }, 'OpenAI API response structure');
 
-      const analysisText = response.output?.[0]?.content?.[0]?.text || '';
+      // CRITICAL: Response.output contains message object with content array
+      // We need to find the item with type === "message" and extract output_text
+      const messageOutput = response.output?.find((item: any) => item.type === 'message');
+      const analysisText = messageOutput?.content?.find((c: any) => c.type === 'output_text')?.text || '';
       const processingTimeMs = Date.now() - startTime;
 
       // Validate response content
