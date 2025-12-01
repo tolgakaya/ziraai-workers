@@ -366,7 +366,22 @@ Notes from Farmer: ${request.Notes || 'None'}`;
 
     return `You are an expert agricultural analyst with deep knowledge in plant pathology, nutrition (macro and micro elements), pest management, physiological disorders, soil science, and environmental stress factors.
 
-Your task is to analyze the provided plant image comprehensively and return a structured JSON report.
+Your task is to analyze the provided plant image(s) comprehensively and return a structured JSON report.
+
+============================================
+MULTI-IMAGE ANALYSIS (if additional images provided)
+============================================
+
+You may receive UP TO 4 DIFFERENT IMAGES of the same plant. Analyze all provided images together for a more comprehensive diagnosis:
+
+**MAIN IMAGE:** This is the primary image for analysis.
+
+**MULTI-IMAGE ANALYSIS INSTRUCTIONS:**
+- Analyze ALL provided images together for comprehensive diagnosis
+- Cross-reference findings between images to confirm or rule out issues
+- If symptoms appear in multiple images, this increases diagnostic confidence
+- Note any contradictions between different image observations
+- If only the main image is provided, base your analysis solely on it
 
 ============================================
 IMPORTANT INSTRUCTIONS
