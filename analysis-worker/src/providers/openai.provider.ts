@@ -50,6 +50,7 @@ export class OpenAIProvider {
 
       // Call OpenAI API
       // Note: gpt-5-mini does not support temperature parameter - only default (1) is allowed
+      // Note: N8N LangChain node does NOT use response_format - removed to match N8N behavior
       const response = await this.client.chat.completions.create({
         model: this.config.model || 'gpt-5-mini',
         messages: [
@@ -63,7 +64,6 @@ export class OpenAIProvider {
           },
         ],
         max_completion_tokens: 2000,  // Changed from max_tokens to max_completion_tokens (OpenAI API update)
-        response_format: { type: 'json_object' },
       });
 
       const analysisText = response.choices[0]?.message?.content || '';

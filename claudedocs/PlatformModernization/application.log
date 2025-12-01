@@ -1,112 +1,94 @@
-2025-12-01T13:18:24.000000000Z [inf]  Starting Container
-2025-12-01T13:18:25.084926431Z [inf]  [2025-12-01 13:18:24.370 +0000] [32mINFO[39m: [36mProvider API keys validated[39m
-2025-12-01T13:18:25.084933034Z [inf]      providers: [
-2025-12-01T13:18:25.084940212Z [inf]        "OpenAI"
-2025-12-01T13:18:25.084946002Z [inf]      ]
-2025-12-01T13:18:25.084952198Z [inf]  [2025-12-01 13:18:24.376 +0000] [32mINFO[39m: [36mOpenAI provider initialized[39m
-2025-12-01T13:18:25.084957853Z [inf]  [2025-12-01 13:18:24.376 +0000] [32mINFO[39m: [36mAI providers initialized[39m
-2025-12-01T13:18:25.084964098Z [inf]      providers: [
-2025-12-01T13:18:25.084971311Z [inf]        "openai"
-2025-12-01T13:18:25.084977808Z [inf]      ]
-2025-12-01T13:18:25.084984528Z [inf]  [2025-12-01 13:18:24.377 +0000] [32mINFO[39m: [36mProvider selector initialized[39m
-2025-12-01T13:18:25.084990326Z [inf]      strategy: "FIXED"
-2025-12-01T13:18:25.084997040Z [inf]      availableProviders: [
-2025-12-01T13:18:25.085004362Z [inf]        "openai"
-2025-12-01T13:18:25.085009856Z [inf]      ]
-2025-12-01T13:18:25.085017663Z [inf]      fixedProvider: "openai"
-2025-12-01T13:18:25.085023955Z [inf]  [2025-12-01 13:18:24.390 +0000] [32mINFO[39m: [36mStarting multi-provider analysis worker[39m
-2025-12-01T13:18:25.085029579Z [inf]      workerId: "worker-staging-1"
-2025-12-01T13:18:25.085035566Z [inf]      availableProviders: [
-2025-12-01T13:18:25.085041695Z [inf]        "openai"
-2025-12-01T13:18:25.085046913Z [inf]      ]
-2025-12-01T13:18:25.085054199Z [inf]      selectionStrategy: "FIXED"
-2025-12-01T13:18:25.085060103Z [inf]      concurrency: 60
-2025-12-01T13:18:25.085066086Z [inf]  [2025-12-01 13:18:24.390 +0000] [32mINFO[39m: [36mConnecting to RabbitMQ[39m
-2025-12-01T13:18:25.085071712Z [inf]      url: "amqp://DIjL9Z7aGtLIG5z6:***@rabbitmq.railway.internal:5672"
-2025-12-01T13:18:25.085078086Z [inf]  [2025-12-01 13:18:24.547 +0000] [32mINFO[39m: [36mRedis connected successfully[39m
-2025-12-01T13:18:26.091419487Z [inf]  [2025-12-01 13:18:24.623 +0000] [32mINFO[39m: [36mRabbitMQ connected successfully[39m
-2025-12-01T13:18:26.091425335Z [inf]  [2025-12-01 13:18:24.623 +0000] [32mINFO[39m: [36mStarting consumer[39m
-2025-12-01T13:18:26.091431103Z [inf]      queueName: "plant-analysis-requests"
-2025-12-01T13:18:26.091437045Z [inf]  [2025-12-01 13:18:24.625 +0000] [32mINFO[39m: [36mStarted consuming from WebAPI queue[39m
-2025-12-01T13:18:26.091445933Z [inf]      queueName: "plant-analysis-requests"
-2025-12-01T13:18:26.091452171Z [inf]      availableProviders: [
-2025-12-01T13:18:26.091459671Z [inf]        "openai"
-2025-12-01T13:18:26.091466452Z [inf]      ]
-2025-12-01T13:18:26.091472325Z [inf]      selectionStrategy: "FIXED"
-2025-12-01T13:18:26.091478777Z [inf]  [2025-12-01 13:18:24.625 +0000] [32mINFO[39m: [36mWorker started successfully and consuming from queue[39m
-2025-12-01T13:18:26.091484251Z [inf]      workerId: "worker-staging-1"
-2025-12-01T13:18:26.091489225Z [inf]      queue: "plant-analysis-requests"
-2025-12-01T13:18:26.091495347Z [inf]      providerCount: 1
-2025-12-01T13:18:26.091501689Z [inf]      availableProviders: [
-2025-12-01T13:18:26.091507696Z [inf]        "openai"
-2025-12-01T13:18:26.091513610Z [inf]      ]
-2025-12-01T13:19:07.172040207Z [inf]  [2025-12-01 13:18:55.874 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-01T13:19:07.172047528Z [inf]      workerId: "worker-staging-1"
-2025-12-01T13:19:07.172055313Z [inf]      provider: "healthy"
-2025-12-01T13:19:07.172063198Z [inf]      rabbitmq: "healthy"
-2025-12-01T13:19:07.172070505Z [inf]      redis: "healthy"
-2025-12-01T13:19:07.172078510Z [inf]      overall: "healthy"
-2025-12-01T13:19:07.172085732Z [inf]      processedCount: 0
-2025-12-01T13:19:07.172093178Z [inf]      errorCount: 0
-2025-12-01T13:19:07.172100921Z [inf]      errorRate: "0%"
-2025-12-01T13:19:26.273009516Z [inf]  [2025-12-01 13:19:25.301 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-01T13:19:26.273027592Z [inf]      workerId: "worker-staging-1"
-2025-12-01T13:19:26.273035010Z [inf]      provider: "healthy"
-2025-12-01T13:19:26.273041912Z [inf]      rabbitmq: "healthy"
-2025-12-01T13:19:26.273049007Z [inf]      redis: "healthy"
-2025-12-01T13:19:26.273056541Z [inf]      overall: "healthy"
-2025-12-01T13:19:26.273063863Z [inf]      processedCount: 0
-2025-12-01T13:19:26.273071493Z [inf]      errorCount: 0
-2025-12-01T13:19:26.273084260Z [inf]      errorRate: "0%"
-2025-12-01T13:20:06.229831941Z [inf]  [2025-12-01 13:19:55.190 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-01T13:20:06.229839103Z [inf]      workerId: "worker-staging-1"
-2025-12-01T13:20:06.229846037Z [inf]      provider: "healthy"
-2025-12-01T13:20:06.229853573Z [inf]      rabbitmq: "healthy"
-2025-12-01T13:20:06.229860957Z [inf]      redis: "healthy"
-2025-12-01T13:20:06.229867539Z [inf]      overall: "healthy"
-2025-12-01T13:20:06.229874366Z [inf]      processedCount: 0
-2025-12-01T13:20:06.229891493Z [inf]      errorCount: 0
-2025-12-01T13:20:06.229898412Z [inf]      errorRate: "0%"
-2025-12-01T13:20:35.833200746Z [inf]  [2025-12-01 13:20:25.271 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-01T13:20:35.833206036Z [inf]      workerId: "worker-staging-1"
-2025-12-01T13:20:35.833211267Z [inf]      provider: "healthy"
-2025-12-01T13:20:35.833216445Z [inf]      rabbitmq: "healthy"
-2025-12-01T13:20:35.833221359Z [inf]      redis: "healthy"
-2025-12-01T13:20:35.833226293Z [inf]      overall: "healthy"
-2025-12-01T13:20:35.833230637Z [inf]      processedCount: 0
-2025-12-01T13:20:35.833235986Z [inf]      errorCount: 0
-2025-12-01T13:20:35.833240889Z [inf]      errorRate: "0%"
-2025-12-01T13:21:05.700674253Z [inf]  [2025-12-01 13:20:55.232 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-01T13:21:05.700680477Z [inf]      workerId: "worker-staging-1"
-2025-12-01T13:21:05.700686820Z [inf]      provider: "healthy"
-2025-12-01T13:21:05.700693443Z [inf]      rabbitmq: "healthy"
-2025-12-01T13:21:05.700699609Z [inf]      redis: "healthy"
-2025-12-01T13:21:05.700705924Z [inf]      overall: "healthy"
-2025-12-01T13:21:05.700711898Z [inf]      processedCount: 0
-2025-12-01T13:21:05.700718648Z [inf]      errorCount: 0
-2025-12-01T13:21:05.700725390Z [inf]      errorRate: "0%"
-2025-12-01T13:21:05.700731270Z [inf]  [2025-12-01 13:20:59.043 +0000] [32mINFO[39m: [36mProcessing analysis message[39m
-2025-12-01T13:21:05.700738586Z [inf]      analysisId: "async_analysis_20251201_132058_50a75fe5"
-2025-12-01T13:21:05.700744974Z [inf]      farmerId: "F190"
-2025-12-01T13:21:05.700751644Z [inf]      imageUrl: "https://1lik.net/plant-images/20251201_132058_852_dd61985d5b5549ae84d9bd718a7ee04e_async_async_analysis_20251201_132058_50a75fe5_20251201_132058.jpg"
-2025-12-01T13:21:05.700758509Z [inf]  [2025-12-01 13:20:59.048 +0000] [32mINFO[39m: [36mStarting OpenAI analysis[39m
-2025-12-01T13:21:05.700764689Z [inf]      analysisId: "async_analysis_20251201_132058_50a75fe5"
-2025-12-01T13:21:05.700771688Z [inf]      farmerId: "F190"
-2025-12-01T13:21:05.700777952Z [inf]      imageUrl: "https://1lik.net/plant-images/20251201_132058_852_dd61985d5b5549ae84d9bd718a7ee04e_async_async_analysis_20251201_132058_50a75fe5_20251201_132058.jpg"
-2025-12-01T13:21:05.700785268Z [inf]      cropType: null
-2025-12-01T13:21:34.888276471Z [inf]      analysisId: "async_analysis_20251201_132058_50a75fe5"
-2025-12-01T13:21:34.888285228Z [inf]      processingTimeMs: 30260
-2025-12-01T13:21:34.888304258Z [inf]  [2025-12-01 13:21:25.188 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-01T13:21:34.888313326Z [inf]      workerId: "worker-staging-1"
-2025-12-01T13:21:34.888322005Z [inf]      provider: "healthy"
-2025-12-01T13:21:34.888328585Z [inf]      rabbitmq: "healthy"
-2025-12-01T13:21:34.888335212Z [inf]      redis: "healthy"
-2025-12-01T13:21:34.888341775Z [inf]      overall: "healthy"
-2025-12-01T13:21:34.888348482Z [inf]      processedCount: 0
-2025-12-01T13:21:34.888355204Z [inf]      errorCount: 0
-2025-12-01T13:21:34.888361813Z [inf]      errorRate: "0%"
-2025-12-01T13:21:34.888368240Z [inf]  [2025-12-01 13:21:29.299 +0000] [31mERROR[39m: [36mOpenAI analysis failed[39m
-2025-12-01T13:21:34.888375292Z [inf]      analysisId: "async_analysis_20251201_132058_50a75fe5"
-2025-12-01T13:21:34.888382020Z [inf]      processingTimeMs: 30251
-2025-12-01T13:21:34.888387998Z [inf]      error: "OpenAI returned empty response"
-2025-12-01T13:21:34.888394091Z [inf]  [2025-12-01 13:21:29.303 +0000] [32mINFO[39m: [36mAnalysis completed and result published[39m
+2025-12-01T13:25:39.000000000Z [inf]  Starting Container
+2025-12-01T13:25:40.939570315Z [inf]  [2025-12-01 13:25:39.961 +0000] [32mINFO[39m: [36mOpenAI provider initialized[39m
+2025-12-01T13:25:40.939570519Z [inf]        "OpenAI"
+2025-12-01T13:25:40.939578361Z [inf]      ]
+2025-12-01T13:25:40.939579530Z [inf]  [2025-12-01 13:25:39.961 +0000] [32mINFO[39m: [36mAI providers initialized[39m
+2025-12-01T13:25:40.939589638Z [inf]      providers: [
+2025-12-01T13:25:40.939598414Z [inf]        "openai"
+2025-12-01T13:25:40.939598465Z [inf]  [2025-12-01 13:25:39.959 +0000] [32mINFO[39m: [36mProvider API keys validated[39m
+2025-12-01T13:25:40.939604114Z [inf]      providers: [
+2025-12-01T13:25:40.939607501Z [inf]  [2025-12-01 13:25:39.962 +0000] [32mINFO[39m: [36mProvider selector initialized[39m
+2025-12-01T13:25:40.939610007Z [inf]      availableProviders: [
+2025-12-01T13:25:40.939616846Z [inf]      ]
+2025-12-01T13:25:40.939617768Z [inf]      strategy: "FIXED"
+2025-12-01T13:25:40.939620545Z [inf]        "openai"
+2025-12-01T13:25:40.939627889Z [inf]      ]
+2025-12-01T13:25:40.939648203Z [inf]      fixedProvider: "openai"
+2025-12-01T13:25:40.939654599Z [inf]  [2025-12-01 13:25:39.966 +0000] [32mINFO[39m: [36mStarting multi-provider analysis worker[39m
+2025-12-01T13:25:40.939663488Z [inf]      workerId: "worker-staging-1"
+2025-12-01T13:25:40.939669714Z [inf]      availableProviders: [
+2025-12-01T13:25:40.939676207Z [inf]        "openai"
+2025-12-01T13:25:40.939682056Z [inf]      ]
+2025-12-01T13:25:40.939688024Z [inf]      selectionStrategy: "FIXED"
+2025-12-01T13:25:40.939693471Z [inf]      concurrency: 60
+2025-12-01T13:25:40.939699217Z [inf]  [2025-12-01 13:25:39.966 +0000] [32mINFO[39m: [36mConnecting to RabbitMQ[39m
+2025-12-01T13:25:40.939705128Z [inf]      url: "amqp://DIjL9Z7aGtLIG5z6:***@rabbitmq.railway.internal:5672"
+2025-12-01T13:25:40.939711228Z [inf]  [2025-12-01 13:25:40.116 +0000] [32mINFO[39m: [36mRedis connected successfully[39m
+2025-12-01T13:25:40.942668485Z [inf]  [2025-12-01 13:25:40.283 +0000] [32mINFO[39m: [36mRabbitMQ connected successfully[39m
+2025-12-01T13:25:40.942673996Z [inf]  [2025-12-01 13:25:40.284 +0000] [32mINFO[39m: [36mStarting consumer[39m
+2025-12-01T13:25:40.942677996Z [inf]      queueName: "plant-analysis-requests"
+2025-12-01T13:25:40.942681827Z [inf]  [2025-12-01 13:25:40.292 +0000] [32mINFO[39m: [36mStarted consuming from WebAPI queue[39m
+2025-12-01T13:25:40.942685737Z [inf]      queueName: "plant-analysis-requests"
+2025-12-01T13:25:40.942689839Z [inf]      availableProviders: [
+2025-12-01T13:25:40.942694331Z [inf]        "openai"
+2025-12-01T13:25:40.942698099Z [inf]      ]
+2025-12-01T13:25:40.942701868Z [inf]      selectionStrategy: "FIXED"
+2025-12-01T13:25:40.942705916Z [inf]  [2025-12-01 13:25:40.293 +0000] [32mINFO[39m: [36mWorker started successfully and consuming from queue[39m
+2025-12-01T13:25:40.942711098Z [inf]      workerId: "worker-staging-1"
+2025-12-01T13:25:40.942714747Z [inf]      queue: "plant-analysis-requests"
+2025-12-01T13:25:40.942718358Z [inf]      providerCount: 1
+2025-12-01T13:25:40.942722576Z [inf]      availableProviders: [
+2025-12-01T13:25:40.942727880Z [inf]        "openai"
+2025-12-01T13:25:40.942731903Z [inf]      ]
+2025-12-01T13:26:20.991659791Z [inf]      provider: "healthy"
+2025-12-01T13:26:20.991671159Z [inf]      rabbitmq: "healthy"
+2025-12-01T13:26:20.991677033Z [inf]      redis: "healthy"
+2025-12-01T13:26:20.991681593Z [inf]      overall: "healthy"
+2025-12-01T13:26:20.991687031Z [inf]      processedCount: 0
+2025-12-01T13:26:20.991691901Z [inf]      errorCount: 0
+2025-12-01T13:26:20.991696233Z [inf]      errorRate: "0%"
+2025-12-01T13:26:20.991746856Z [inf]  [2025-12-01 13:26:11.186 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-01T13:26:20.991750774Z [inf]      workerId: "worker-staging-1"
+2025-12-01T13:26:50.942461484Z [inf]  [2025-12-01 13:26:41.020 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-01T13:26:50.942465742Z [inf]      workerId: "worker-staging-1"
+2025-12-01T13:26:50.942469528Z [inf]      provider: "healthy"
+2025-12-01T13:26:50.942473473Z [inf]      rabbitmq: "healthy"
+2025-12-01T13:26:50.942477323Z [inf]      redis: "healthy"
+2025-12-01T13:26:50.942481188Z [inf]      overall: "healthy"
+2025-12-01T13:26:50.942484971Z [inf]      processedCount: 0
+2025-12-01T13:26:50.942489051Z [inf]      errorCount: 0
+2025-12-01T13:26:50.942492754Z [inf]      errorRate: "0%"
+2025-12-01T13:26:50.942496839Z [inf]  [2025-12-01 13:26:46.146 +0000] [32mINFO[39m: [36mProcessing analysis message[39m
+2025-12-01T13:26:50.942501096Z [inf]      analysisId: "async_analysis_20251201_132645_7a260548"
+2025-12-01T13:26:50.942505034Z [inf]      farmerId: "F190"
+2025-12-01T13:26:50.942509446Z [inf]      imageUrl: "https://1lik.net/plant-images/20251201_132645_953_94b75fe2a8694153b1d811d6d2f561d7_async_async_analysis_20251201_132645_7a260548_20251201_132645.jpg"
+2025-12-01T13:26:50.942515560Z [inf]  [2025-12-01 13:26:46.154 +0000] [32mINFO[39m: [36mStarting OpenAI analysis[39m
+2025-12-01T13:26:50.942521885Z [inf]      analysisId: "async_analysis_20251201_132645_7a260548"
+2025-12-01T13:26:50.942528421Z [inf]      farmerId: "F190"
+2025-12-01T13:26:50.942533719Z [inf]      imageUrl: "https://1lik.net/plant-images/20251201_132645_953_94b75fe2a8694153b1d811d6d2f561d7_async_async_analysis_20251201_132645_7a260548_20251201_132645.jpg"
+2025-12-01T13:26:50.942537650Z [inf]      cropType: null
+2025-12-01T13:27:20.923939066Z [inf]  [2025-12-01 13:27:16.546 +0000] [32mINFO[39m: [36mAnalysis completed and result published[39m
+2025-12-01T13:27:20.923949837Z [inf]      analysisId: "async_analysis_20251201_132645_7a260548"
+2025-12-01T13:27:20.923958291Z [inf]      processingTimeMs: 30400
+2025-12-01T13:27:20.923964529Z [inf]  [2025-12-01 13:27:10.836 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-01T13:27:20.923973416Z [inf]      workerId: "worker-staging-1"
+2025-12-01T13:27:20.923980796Z [inf]      provider: "healthy"
+2025-12-01T13:27:20.923989186Z [inf]      rabbitmq: "healthy"
+2025-12-01T13:27:20.923996963Z [inf]      redis: "healthy"
+2025-12-01T13:27:20.924003998Z [inf]      overall: "healthy"
+2025-12-01T13:27:20.924011284Z [inf]      processedCount: 0
+2025-12-01T13:27:20.924018228Z [inf]      errorCount: 0
+2025-12-01T13:27:20.924027659Z [inf]      errorRate: "0%"
+2025-12-01T13:27:20.924034748Z [inf]  [2025-12-01 13:27:16.544 +0000] [31mERROR[39m: [36mOpenAI analysis failed[39m
+2025-12-01T13:27:20.924041916Z [inf]      analysisId: "async_analysis_20251201_132645_7a260548"
+2025-12-01T13:27:20.924048746Z [inf]      processingTimeMs: 30390
+2025-12-01T13:27:20.924055568Z [inf]      error: "OpenAI returned empty response"
+2025-12-01T13:27:50.924101997Z [inf]  [2025-12-01 13:27:40.865 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-01T13:27:50.924108822Z [inf]      workerId: "worker-staging-1"
+2025-12-01T13:27:50.924115126Z [inf]      provider: "healthy"
+2025-12-01T13:27:50.924123308Z [inf]      rabbitmq: "healthy"
+2025-12-01T13:27:50.924130889Z [inf]      redis: "healthy"
+2025-12-01T13:27:50.924137722Z [inf]      overall: "healthy"
+2025-12-01T13:27:50.924144291Z [inf]      processedCount: 1
+2025-12-01T13:27:50.924153231Z [inf]      errorCount: 0
+2025-12-01T13:27:50.924160562Z [inf]      errorRate: "0.00%"
