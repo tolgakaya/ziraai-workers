@@ -1,53 +1,87 @@
-2025-12-01T08:29:30.691464927Z [inf]  
-2025-12-01T08:29:32.883493393Z [inf]  [35m[Region: europe-west4][0m
-2025-12-01T08:29:32.886753027Z [inf]  [35m=========================
-2025-12-01T08:29:32.886775620Z [inf]  Using Detected Dockerfile
-2025-12-01T08:29:32.886779369Z [inf]  =========================
-2025-12-01T08:29:32.886783034Z [inf]  [0m
-2025-12-01T08:29:32.886797042Z [inf]  context: 3pxb-kR1i
-2025-12-01T08:29:33.021030404Z [inf]  [internal] load build definition from Dockerfile
-2025-12-01T08:29:33.021077743Z [inf]  [internal] load build definition from Dockerfile
-2025-12-01T08:29:33.021099176Z [inf]  [internal] load build definition from Dockerfile
-2025-12-01T08:29:33.033400464Z [inf]  [internal] load build definition from Dockerfile
-2025-12-01T08:29:33.036060807Z [inf]  [internal] load metadata for docker.io/library/node:18-alpine
-2025-12-01T08:29:33.039499710Z [inf]  [auth] library/node:pull token for registry-1.docker.io
-2025-12-01T08:29:33.039542623Z [inf]  [auth] library/node:pull token for registry-1.docker.io
-2025-12-01T08:29:33.695908567Z [inf]  [internal] load metadata for docker.io/library/node:18-alpine
-2025-12-01T08:29:33.696146706Z [inf]  [internal] load .dockerignore
-2025-12-01T08:29:33.696182105Z [inf]  [internal] load .dockerignore
-2025-12-01T08:29:33.696199109Z [inf]  [internal] load .dockerignore
-2025-12-01T08:29:33.696316207Z [inf]  [internal] load .dockerignore
-2025-12-01T08:29:33.709734420Z [inf]  [internal] load .dockerignore
-2025-12-01T08:29:33.713705174Z [inf]  [stage-1 5/6] COPY --from=builder /app/dist ./dist
-2025-12-01T08:29:33.713734138Z [inf]  [builder 7/7] RUN npm run build
-2025-12-01T08:29:33.713742841Z [inf]  [builder 6/7] COPY analysis-worker/src ./src
-2025-12-01T08:29:33.713757626Z [inf]  [builder 5/7] RUN npm ci
-2025-12-01T08:29:33.713767760Z [inf]  [builder 4/7] COPY analysis-worker/tsconfig.json ./
-2025-12-01T08:29:33.713777919Z [inf]  [stage-1 4/6] RUN npm ci --omit=dev && npm cache clean --force
-2025-12-01T08:29:33.713787060Z [inf]  [builder 3/7] COPY analysis-worker/package*.json ./
-2025-12-01T08:29:33.713797661Z [inf]  [internal] load build context
-2025-12-01T08:29:33.713810471Z [inf]  [builder 2/7] WORKDIR /app
-2025-12-01T08:29:33.713820306Z [inf]  [builder 1/7] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
-2025-12-01T08:29:33.713838344Z [inf]  [stage-1 6/6] RUN addgroup -g 1001 -S nodejs &&     adduser -S nodejs -u 1001 &&     chown -R nodejs:nodejs /app
-2025-12-01T08:29:33.713961197Z [inf]  [builder 1/7] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
-2025-12-01T08:29:33.714785268Z [inf]  [internal] load build context
-2025-12-01T08:29:33.719417633Z [inf]  [builder 1/7] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
-2025-12-01T08:29:33.719574670Z [inf]  [builder 1/7] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
-2025-12-01T08:29:33.719603289Z [inf]  [internal] load build context
-2025-12-01T08:29:33.719616364Z [inf]  [builder 2/7] WORKDIR /app
-2025-12-01T08:29:33.731257190Z [inf]  [internal] load build context
-2025-12-01T08:29:33.734033191Z [inf]  [builder 2/7] WORKDIR /app
-2025-12-01T08:29:33.734067088Z [inf]  [builder 3/7] COPY analysis-worker/package*.json ./
-2025-12-01T08:29:33.734095321Z [err]  [builder 4/7] COPY analysis-worker/tsconfig.json ./
-2025-12-01T08:29:33.734126525Z [inf]  [builder 5/7] RUN npm ci
-2025-12-01T08:29:33.734142272Z [err]  [builder 6/7] COPY analysis-worker/src ./src
-2025-12-01T08:29:33.740047351Z [inf]  [builder 2/7] WORKDIR /app
-2025-12-01T08:29:33.759874638Z [err]  Dockerfile:13
-2025-12-01T08:29:33.759910309Z [err]  -------------------
-2025-12-01T08:29:33.759914883Z [err]  11 |     # Copy package files from analysis-worker directory
-2025-12-01T08:29:33.759919069Z [err]  12 |     COPY analysis-worker/package*.json ./
-2025-12-01T08:29:33.759923917Z [err]  13 | >>> COPY analysis-worker/tsconfig.json ./
-2025-12-01T08:29:33.759927278Z [err]  14 |
-2025-12-01T08:29:33.759931452Z [err]  15 |     # Install ALL dependencies (including devDependencies for build)
-2025-12-01T08:29:33.759934851Z [err]  -------------------
-2025-12-01T08:29:33.759939243Z [err]  ERROR: failed to build: failed to solve: failed to compute cache key: failed to calculate checksum of ref iyo79onlxq5ivm5lo9jz1q9na::r8w8fozpi39ck5wxi7r73ssta: "/analysis-worker/tsconfig.json": not found
+2025-12-01T08:31:54.722568621Z [inf]  
+2025-12-01T08:31:56.797903339Z [inf]  [35m[Region: europe-west4][0m
+2025-12-01T08:31:56.802470505Z [inf]  [35m=========================
+2025-12-01T08:31:56.802496917Z [inf]  Using Detected Dockerfile
+2025-12-01T08:31:56.802503175Z [inf]  =========================
+2025-12-01T08:31:56.802506955Z [inf]  [0m
+2025-12-01T08:31:56.802520561Z [inf]  context: wbd9-T12o
+2025-12-01T08:31:56.995217799Z [inf]  [internal] load build definition from Dockerfile
+2025-12-01T08:31:56.995264079Z [inf]  [internal] load build definition from Dockerfile
+2025-12-01T08:31:56.995285842Z [inf]  [internal] load build definition from Dockerfile
+2025-12-01T08:31:57.002778376Z [inf]  [internal] load build definition from Dockerfile
+2025-12-01T08:31:57.004082144Z [inf]  [internal] load metadata for docker.io/library/node:18-alpine
+2025-12-01T08:31:57.094655651Z [inf]  [auth] library/node:pull token for registry-1.docker.io
+2025-12-01T08:31:57.094696658Z [inf]  [auth] library/node:pull token for registry-1.docker.io
+2025-12-01T08:31:57.891136265Z [inf]  [internal] load metadata for docker.io/library/node:18-alpine
+2025-12-01T08:31:57.891415581Z [inf]  [internal] load .dockerignore
+2025-12-01T08:31:57.891427464Z [inf]  [internal] load .dockerignore
+2025-12-01T08:31:57.891437183Z [inf]  [internal] load .dockerignore
+2025-12-01T08:31:57.891525648Z [inf]  [internal] load .dockerignore
+2025-12-01T08:31:57.899565970Z [inf]  [internal] load .dockerignore
+2025-12-01T08:31:57.903529298Z [inf]  [stage-1 4/6] RUN npm ci --omit=dev && npm cache clean --force
+2025-12-01T08:31:57.903560373Z [inf]  [builder 3/7] COPY package*.json ./
+2025-12-01T08:31:57.903570897Z [inf]  [internal] load build context
+2025-12-01T08:31:57.903580341Z [inf]  [builder 2/7] WORKDIR /app
+2025-12-01T08:31:57.903589455Z [inf]  [builder 1/7] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
+2025-12-01T08:31:57.903613468Z [inf]  [stage-1 6/6] RUN addgroup -g 1001 -S nodejs &&     adduser -S nodejs -u 1001 &&     chown -R nodejs:nodejs /app
+2025-12-01T08:31:57.903619880Z [inf]  [stage-1 5/6] COPY --from=builder /app/dist ./dist
+2025-12-01T08:31:57.903625418Z [inf]  [builder 7/7] RUN npm run build
+2025-12-01T08:31:57.903635292Z [inf]  [builder 6/7] COPY src ./src
+2025-12-01T08:31:57.903644125Z [inf]  [builder 5/7] RUN npm ci
+2025-12-01T08:31:57.903653046Z [inf]  [builder 4/7] COPY tsconfig.json ./
+2025-12-01T08:31:57.903671191Z [inf]  [internal] load build context
+2025-12-01T08:31:57.903677480Z [inf]  [builder 1/7] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
+2025-12-01T08:31:57.909438241Z [inf]  [builder 1/7] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
+2025-12-01T08:31:57.909476686Z [inf]  [builder 1/7] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
+2025-12-01T08:31:57.909699340Z [inf]  [builder 1/7] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
+2025-12-01T08:31:57.909716314Z [inf]  [internal] load build context
+2025-12-01T08:31:57.929877385Z [inf]  [builder 1/7] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
+2025-12-01T08:31:57.931528599Z [inf]  [internal] load build context
+2025-12-01T08:31:57.932969573Z [inf]  [builder 1/7] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
+2025-12-01T08:31:58.561757147Z [inf]  [builder 1/7] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
+2025-12-01T08:31:59.351372939Z [inf]  [builder 2/7] WORKDIR /app
+2025-12-01T08:31:59.490438731Z [inf]  [builder 2/7] WORKDIR /app
+2025-12-01T08:31:59.491198076Z [inf]  [builder 3/7] COPY package*.json ./
+2025-12-01T08:31:59.505534860Z [inf]  [builder 3/7] COPY package*.json ./
+2025-12-01T08:31:59.506425732Z [inf]  [stage-1 4/6] RUN npm ci --omit=dev && npm cache clean --force
+2025-12-01T08:31:59.506474027Z [inf]  [builder 4/7] COPY tsconfig.json ./
+2025-12-01T08:31:59.521626731Z [inf]  [builder 4/7] COPY tsconfig.json ./
+2025-12-01T08:31:59.522424267Z [inf]  [builder 5/7] RUN npm ci
+2025-12-01T08:32:00.015524305Z [inf]  npm error code EUSAGE
+
+2025-12-01T08:32:00.015751099Z [inf]  npm error
+npm error The `npm ci` command can only install with an existing package-lock.json or
+npm error npm-shrinkwrap.json with lockfileVersion >= 1. Run an install with npm@5 or
+npm error later to generate a package-lock.json file, then try again.
+npm error
+npm error Clean install a project
+npm error
+npm error Usage:
+npm error npm ci
+npm error
+npm error Options:
+npm error [--install-strategy <hoisted|nested|shallow|linked>] [--legacy-bundling]
+npm error [--global-style] [--omit <dev|optional|peer> [--omit <dev|optional|peer> ...]]
+npm error [--include <prod|dev|optional|peer> [--include <prod|dev|optional|peer> ...]]
+npm error [--strict-peer-deps] [--foreground-scripts] [--ignore-scripts] [--no-audit]
+npm error [--no-bin-links] [--no-fund] [--dry-run]
+npm error [-w|--workspace <workspace-name> [-w|--workspace <workspace-name> ...]]
+npm error [-ws|--workspaces] [--include-workspace-root] [--install-links]
+npm error
+npm error aliases: clean-install, ic, install-clean, isntall-clean
+npm error
+npm error Run "npm help ci" for more info
+
+2025-12-01T08:32:00.017566626Z [inf]  npm error A complete log of this run can be found in: /root/.npm/_logs/2025-12-01T08_31_59_665Z-debug-0.log
+
+2025-12-01T08:32:00.116606473Z [err]  [stage-1 4/6] RUN npm ci --omit=dev && npm cache clean --force
+2025-12-01T08:32:00.146485586Z [err]  [builder 5/7] RUN npm ci
+2025-12-01T08:32:00.164013311Z [err]  Dockerfile:33
+2025-12-01T08:32:00.164048892Z [err]  -------------------
+2025-12-01T08:32:00.164053671Z [err]  31 |     # Install production dependencies only
+2025-12-01T08:32:00.164057367Z [err]  32 |     COPY package*.json ./
+2025-12-01T08:32:00.164063360Z [err]  33 | >>> RUN npm ci --omit=dev && npm cache clean --force
+2025-12-01T08:32:00.164066925Z [err]  34 |
+2025-12-01T08:32:00.164070395Z [err]  35 |     # Copy compiled JavaScript from builder
+2025-12-01T08:32:00.164073901Z [err]  -------------------
+2025-12-01T08:32:00.164079599Z [err]  ERROR: failed to build: failed to solve: process "/bin/sh -c npm ci --omit=dev && npm cache clean --force" did not complete successfully: exit code: 1

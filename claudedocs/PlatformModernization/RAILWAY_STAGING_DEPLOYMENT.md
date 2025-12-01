@@ -242,10 +242,18 @@ PROVIDER_SELECTION_STRATEGY=ROUND_ROBIN
 # PROVIDER_WEIGHTS=[{"provider":"gemini","weight":70},{"provider":"openai","weight":20},{"provider":"anthropic","weight":10}]
 ```
 
-#### Provider Metadata (Optional - Dynamic Costs/Quality)
+#### Provider Metadata (Optional - Override Default Costs/Quality)
 ```bash
-# Override default cost and quality scores
-PROVIDER_METADATA={"gemini":{"costPerMillion":1.0,"qualityScore":7},"openai":{"costPerMillion":5.0,"qualityScore":8}}
+# ⚠️ IMPORTANT: All cost estimates in this guide use DEFAULT values shown below.
+# You can override any provider's cost or quality metrics through this variable.
+#
+# Default Values (as of November 2024):
+# - Gemini: costPerMillion=1.087, qualityScore=7
+# - OpenAI: costPerMillion=5.125, qualityScore=8
+# - Anthropic: costPerMillion=48.0, qualityScore=10
+#
+# Override example (update costs based on current pricing or A/B testing results):
+PROVIDER_METADATA={"gemini":{"costPerMillion":1.2,"qualityScore":8},"openai":{"costPerMillion":4.5,"qualityScore":9}}
 ```
 
 #### RabbitMQ Configuration
@@ -283,6 +291,25 @@ TIMEOUT=60000
 
 ## 🚀 Deployment Scenarios
 
+**⚠️ CRITICAL: Cost Estimates Disclaimer**
+
+All cost calculations in this guide are based on **DEFAULT metadata values** configured in the code (as of November 2024):
+- **Gemini**: $1.087 per 1M tokens (input: $0.075, output: $0.30), quality: 7/10
+- **OpenAI**: $5.125 per 1M tokens (input: $0.25, output: $2.00), quality: 8/10
+- **Anthropic**: $48.0 per 1M tokens (input: $3.00, output: $15.00), quality: 10/10
+
+**These are NOT hardcoded limits**. You can override any cost or quality value through the `PROVIDER_METADATA` environment variable. Always verify current pricing from provider websites and update metadata accordingly.
+
+**Update Metadata Example**:
+```bash
+# Override defaults with current pricing (example values):
+PROVIDER_METADATA={"gemini":{"costPerMillion":1.5,"qualityScore":8},"openai":{"costPerMillion":6.0,"qualityScore":9}}
+```
+
+**📚 Comprehensive Guide**: See [PROVIDER_METADATA_CONFIGURATION.md](./PROVIDER_METADATA_CONFIGURATION.md) for complete documentation on dynamic cost/quality configuration, A/B testing, and runtime updates.
+
+---
+
 ### Scenario 1: Single Provider Testing (FIXED Strategy)
 
 **Use Case**: Test one provider in isolation before enabling multi-provider.
@@ -297,7 +324,7 @@ GEMINI_API_KEY=...
 **Expected Behavior**:
 - Worker consumes from all queues (openai-analysis-queue, gemini-analysis-queue, anthropic-analysis-queue)
 - ALL messages processed by Gemini only
-- Cost: ~$0.108/1K analyses (cheapest option)
+- Cost: ~$0.108/1K analyses (based on default metadata - lowest default cost)
 
 **Deployment**:
 ```bash
@@ -326,10 +353,11 @@ ANTHROPIC_API_KEY=sk-ant-...
 ```
 
 **Expected Behavior**:
-- Worker tries Gemini first (cheapest: $0.108/1K)
-- Fallback to OpenAI ($0.513/1K) if Gemini fails
-- Fallback to Anthropic ($4.80/1K) if both fail
+- Worker dynamically selects provider based on cost metadata (default: Gemini first at $0.108/1K)
+- Fallback to next cheapest (default: OpenAI at $0.513/1K) if primary fails
+- Fallback to most expensive (default: Anthropic at $4.80/1K) if both fail
 - Automatic circuit breaker and failover
+- **Note**: Rankings change automatically if you update PROVIDER_METADATA with different costs
 
 **Cost Impact** (1M analyses/day):
 ```
