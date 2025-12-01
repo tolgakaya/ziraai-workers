@@ -74,14 +74,21 @@ export class RabbitMQService {
     const queues = Object.values(this.config.queues);
 
     for (const queue of queues) {
-      await this.channel.assertQueue(queue, {
-        durable: true, // Persist queue to disk
-        arguments: {
-          'x-message-ttl': 86400000, // 24 hours message TTL
-        },
-      });
-
-      this.logger.debug({ queue }, 'Queue asserted');
+      // Use passive: true to check if queue exists without modifying it
+      // This prevents 406 errors when WebAPI already created the queue with different parameters
+      try {
+        await this.channel.checkQueue(queue);
+        this.logger.debug({ queue }, 'Queue exists, using existing configuration');
+      } catch (error) {
+        // Queue doesn't exist, create it with our parameters
+        await this.channel.assertQueue(queue, {
+          durable: true, // Persist queue to disk
+          arguments: {
+            'x-message-ttl': 86400000, // 24 hours message TTL
+          },
+        });
+        this.logger.debug({ queue }, 'Queue created with worker configuration');
+      }
     }
   }
 
