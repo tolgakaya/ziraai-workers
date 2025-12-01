@@ -1,52 +1,460 @@
 /**
  * Message types for RabbitMQ communication
- * CRITICAL: These types MUST match the n8n flow exactly for business compatibility
+ * CRITICAL: These types MUST match C# DTOs exactly for WebAPI/PlantAnalysisWorkerService compatibility
  */
+
+// ============================================
+// WEBAPI REQUEST MESSAGE (C# → TypeScript)
+// ============================================
 
 /**
- * Raw analysis message from WebAPI
- * Contains all context fields from n8n ZiraaiV3Async_MultiImage flow
+ * GPS Coordinates structure (matches C# GpsCoordinates)
+ */
+export interface GpsCoordinates {
+  Lat: number;
+  Lng: number;
+}
+
+/**
+ * Contact information structure (matches C# ContactInfo)
+ */
+export interface ContactInfo {
+  Phone?: string;
+  Email?: string;
+}
+
+/**
+ * Additional information data (matches C# AdditionalInfoData)
+ */
+export interface AdditionalInfoData {
+  [key: string]: any; // Flexible structure for additional data
+}
+
+/**
+ * Plant Analysis Request from WebAPI
+ * Source: Entities/Dtos/PlantAnalysisAsyncRequestDto.cs
+ *
+ * CRITICAL: WebAPI sends PascalCase fields (NOT snake_case)
+ * This interface MUST match C# DTO exactly for proper deserialization
+ */
+export interface PlantAnalysisAsyncRequestDto {
+  // Image (URL-based, NOT base64 anymore)
+  Image: string | null;              // NULL - WebAPI V2 doesn't send base64
+  ImageUrl: string;                  // PRIMARY: Full image URL from storage service
+
+  // User & Attribution
+  UserId?: number | null;
+  FarmerId: string;                  // Format: "F{userId}" (e.g., "F046")
+  SponsorId?: string | null;
+  SponsorUserId?: number | null;     // Actual sponsor user ID
+  SponsorshipCodeId?: number | null; // SponsorshipCode table ID
+
+  // Analysis Request
+  Location?: string | null;
+  GpsCoordinates?: GpsCoordinates | null;
+  CropType: string;
+  FieldId?: string | null;
+  UrgencyLevel?: string | null;
+  Notes?: string | null;
+
+  // RabbitMQ Metadata (top-level fields, NOT nested)
+  ResponseQueue: string;             // "plant-analysis-results"
+  CorrelationId: string;
+  AnalysisId: string;
+
+  // Additional Context
+  Altitude?: number | null;
+  PlantingDate?: string | null;      // ISO 8601 date string from C# DateTime
+  ExpectedHarvestDate?: string | null;
+  LastFertilization?: string | null;
+  LastIrrigation?: string | null;
+  PreviousTreatments?: string[] | null;
+  WeatherConditions?: string | null;
+  Temperature?: number | null;       // C# decimal serialized as number
+  Humidity?: number | null;
+  SoilType?: string | null;
+  ContactInfo?: ContactInfo | null;
+  AdditionalInfo?: AdditionalInfoData | null;
+}
+
+// ============================================
+// WORKER RESPONSE MESSAGE (TypeScript → C#)
+// ============================================
+
+/**
+ * Plant Identification Analysis Results
+ * CRITICAL: Uses snake_case (has [JsonProperty] attributes in C#)
+ */
+export interface PlantIdentification {
+  species: string;
+  variety: string;
+  growth_stage: string;
+  confidence: number;
+  identifying_features: string[];
+  visible_parts: string[];
+}
+
+/**
+ * Health Assessment Results
+ * CRITICAL: Uses snake_case (has [JsonProperty] attributes in C#)
+ */
+export interface HealthAssessment {
+  vigor_score: number;
+  leaf_color: string;
+  leaf_texture: string;
+  growth_pattern: string;
+  structural_integrity: string;
+  stress_indicators: string[];
+  disease_symptoms: string[];
+  severity: string;
+}
+
+/**
+ * Nutrient Status Analysis (All 14 elements)
+ * CRITICAL: Uses snake_case (has [JsonProperty] attributes in C#)
+ */
+export interface NutrientStatus {
+  nitrogen: string;
+  phosphorus: string;
+  potassium: string;
+  calcium: string;
+  magnesium: string;
+  sulfur: string;
+  iron: string;
+  zinc: string;
+  manganese: string;
+  boron: string;
+  copper: string;
+  molybdenum: string;
+  chlorine: string;
+  nickel: string;
+  primary_deficiency: string;
+  secondary_deficiencies: string[];
+  severity: string;
+}
+
+/**
+ * Detected Pest Information
+ */
+export interface PestDetectedDto {
+  type: string;
+  category: string;
+  severity: string;
+  affected_parts: string[];
+  confidence: number;
+}
+
+/**
+ * Detected Disease Information
+ */
+export interface DiseaseDetectedDto {
+  type: string;
+  category: string;
+  severity: string;
+  affected_parts: string[];
+  confidence: number;
+}
+
+/**
+ * Pest and Disease Analysis
+ * CRITICAL: Uses snake_case (has [JsonProperty] attributes in C#)
+ */
+export interface PestDisease {
+  pests_detected: PestDetectedDto[];
+  diseases_detected: DiseaseDetectedDto[];
+  damage_pattern: string;
+  affected_area_percentage: number;
+  spread_risk: string;
+  primary_issue: string;
+}
+
+/**
+ * Environmental Stress Analysis
+ * CRITICAL: Uses snake_case (has [JsonProperty] attributes in C#)
+ */
+export interface EnvironmentalStress {
+  water_status: string;
+  temperature_stress: string;
+  light_stress: string;
+  physical_damage: string;
+  chemical_damage: string;
+  soil_indicators: string;
+  primary_stressor: string;
+}
+
+/**
+ * Cross-Factor Insight
+ */
+export interface CrossFactorInsight {
+  insight: string;
+  confidence: number;
+  affected_aspects: string[];
+  impact_level: string;
+}
+
+/**
+ * Individual Recommendation
+ */
+export interface Recommendation {
+  action: string;
+  details: string;
+  timeline: string;
+  priority: string;
+}
+
+/**
+ * Monitoring Parameter
+ */
+export interface MonitoringParameter {
+  parameter: string;
+  frequency: string;
+  threshold: string;
+}
+
+/**
+ * Resource Estimation
+ */
+export interface ResourceEstimation {
+  water_required_liters: string;
+  fertilizer_cost_estimate_usd: string;
+  labor_hours_estimate: string;
+}
+
+/**
+ * Localized Recommendations
+ */
+export interface LocalizedRecommendations {
+  region: string;
+  preferred_practices: string[];
+  restricted_methods: string[];
+}
+
+/**
+ * Complete Recommendations Structure
+ * CRITICAL: Uses snake_case (has [JsonProperty] attributes in C#)
+ */
+export interface Recommendations {
+  immediate: Recommendation[];
+  short_term: Recommendation[];
+  preventive: Recommendation[];
+  monitoring: MonitoringParameter[];
+  resource_estimation?: ResourceEstimation;
+  localized_recommendations?: LocalizedRecommendations;
+}
+
+/**
+ * Analysis Summary
+ * CRITICAL: Uses snake_case (has [JsonProperty] attributes in C#)
+ */
+export interface AnalysisSummary {
+  overall_health_score: number;
+  primary_concern: string;
+  secondary_concerns: string[];
+  critical_issues_count: number;
+  confidence_level: number;
+  prognosis: string;
+  estimated_yield_impact: string;
+}
+
+/**
+ * Risk Assessment
+ * CRITICAL: Uses snake_case (has [JsonProperty] attributes in C#)
+ */
+export interface RiskAssessment {
+  yield_loss_probability: string;
+  timeline_to_worsen: string;
+  spread_potential: string;
+}
+
+/**
+ * Confidence Note
+ */
+export interface ConfidenceNote {
+  aspect: string;
+  confidence: number;
+  reason: string;
+}
+
+/**
+ * Image Metadata
+ * CRITICAL: Uses PascalCase (NO [JsonProperty] attributes in C#)
+ * These fields MUST be PascalCase in JSON for C# deserialization
+ */
+export interface ImageMetadata {
+  Format?: string;
+  URL?: string;                      // CRITICAL: PascalCase! Used by PlantAnalysisJobService line 231
+  SizeBytes?: number;
+  SizeKb?: number;
+  SizeMb?: number;
+  Base64Length?: number;
+  UploadTimestamp?: string;          // ISO 8601
+}
+
+/**
+ * Processing Metadata
+ * CRITICAL: Uses PascalCase (NO [JsonProperty] attributes in C#)
+ * These fields MUST be PascalCase in JSON for C# deserialization
+ */
+export interface ProcessingMetadata {
+  ParseSuccess: boolean;
+  ProcessingTimestamp: string;       // ISO 8601
+  AiModel: string;                   // e.g., "gpt-4o-mini", "gemini-2.0-flash-exp"
+  WorkflowVersion: string;           // e.g., "2.0.0"
+  ReceivedAt: string;                // ISO 8601
+  ProcessingTimeMs: number;
+  RetryCount: number;
+  Priority?: string;
+}
+
+/**
+ * Token Usage Information
+ * CRITICAL: Uses snake_case (has [JsonProperty] attributes in C#)
+ * SIMPLIFIED structure compared to N8N (flat, not nested)
+ */
+export interface TokenUsage {
+  total_tokens: number;
+  prompt_tokens: number;
+  completion_tokens: number;
+  cost_usd: number;
+  cost_try: number;
+}
+
+/**
+ * Request Metadata
+ * CRITICAL: Uses snake_case (has [JsonProperty] attributes in C#)
+ */
+export interface RequestMetadata {
+  user_agent?: string;
+  ip_address?: string;
+  request_timestamp?: string;        // ISO 8601
+  request_id?: string;
+  api_version?: string;
+}
+
+/**
+ * Plant Analysis Response to PlantAnalysisWorkerService
+ * Source: Entities/Dtos/PlantAnalysisAsyncResponseDto.cs
+ *
+ * CRITICAL CASING RULES:
+ * 1. Analysis results (plant_identification, health_assessment, etc.) → snake_case
+ * 2. Metadata fields echoed from request → snake_case (with [JsonProperty])
+ * 3. SponsorUserId, SponsorshipCodeId → PascalCase (NO [JsonProperty])
+ * 4. ProcessingMetadata fields → PascalCase (NO [JsonProperty])
+ * 5. ImageMetadata fields → PascalCase (NO [JsonProperty])
+ */
+export interface PlantAnalysisAsyncResponseDto {
+  // ============================================
+  // ANALYSIS RESULTS (snake_case)
+  // ============================================
+  plant_identification: PlantIdentification;
+  health_assessment: HealthAssessment;
+  nutrient_status: NutrientStatus;
+  pest_disease: PestDisease;
+  environmental_stress: EnvironmentalStress;
+  cross_factor_insights: CrossFactorInsight[];
+  recommendations: Recommendations;
+  summary: AnalysisSummary;
+
+  // ============================================
+  // METADATA (snake_case, echoed from request)
+  // ============================================
+  analysis_id: string;               // From request.AnalysisId
+  timestamp: string;                 // ISO 8601 datetime when analysis completed
+  user_id?: number | null;           // From request.UserId
+  farmer_id: string;                 // From request.FarmerId
+  sponsor_id?: string | null;        // From request.SponsorId
+
+  // CRITICAL: These two fields are PascalCase (NO underscore!)
+  SponsorUserId?: number | null;     // PascalCase! C# has no [JsonProperty] attribute
+  SponsorshipCodeId?: number | null; // PascalCase! C# has no [JsonProperty] attribute
+
+  location?: string | null;
+  gps_coordinates?: GpsCoordinates | null;
+  altitude?: number | null;
+  field_id?: string | null;
+  crop_type: string;
+  planting_date?: string | null;
+  expected_harvest_date?: string | null;
+  last_fertilization?: string | null;
+  last_irrigation?: string | null;
+  previous_treatments?: string[] | null;
+  weather_conditions?: string | null;
+  temperature?: number | null;
+  humidity?: number | null;
+  soil_type?: string | null;
+  urgency_level?: string | null;
+  notes?: string | null;
+  contact_info?: ContactInfo | null;
+  additional_info?: AdditionalInfoData | null;
+
+  // ============================================
+  // IMAGE URLs (snake_case)
+  // ============================================
+  image_url?: string | null;
+  image_path?: string | null;
+  leaf_top_url?: string | null;
+  leaf_bottom_url?: string | null;
+  plant_overview_url?: string | null;
+  root_url?: string | null;
+
+  // ============================================
+  // PROCESSING METADATA (PascalCase!)
+  // ============================================
+  image_metadata?: ImageMetadata;    // All fields inside are PascalCase
+  processing_metadata: ProcessingMetadata; // All fields inside are PascalCase
+  token_usage?: TokenUsage;          // Fields inside are snake_case
+  request_metadata?: RequestMetadata; // Fields inside are snake_case
+
+  // ============================================
+  // ADDITIONAL FIELDS (snake_case)
+  // ============================================
+  risk_assessment?: RiskAssessment;
+  confidence_notes?: ConfidenceNote[];
+  farmer_friendly_summary?: string;
+
+  // ============================================
+  // RESPONSE STATUS (snake_case)
+  // ============================================
+  success: boolean;                  // REQUIRED: true for successful analysis
+  message?: string;
+  error: boolean;                    // REQUIRED: false for successful analysis
+  error_message?: string | null;
+  error_type?: string | null;
+}
+
+// ============================================
+// LEGACY N8N TYPES (DEPRECATED - Keep for reference only)
+// ============================================
+
+/**
+ * @deprecated Legacy N8N message format - DO NOT USE
+ * Kept for reference only. Use PlantAnalysisAsyncRequestDto instead.
  */
 export interface RawAnalysisMessage {
-  // Core analysis fields
   analysis_id: string;
   timestamp: string;
-
-  // Multi-image support (up to 5 images)
-  image: string; // Main image (required) - URL or base64
-  leaf_top_image?: string; // Yaprağın üst yüzeyi (optional)
-  leaf_bottom_image?: string; // Yaprağın alt yüzeyi (optional)
-  plant_overview_image?: string; // Bitkinin genel görünümü (optional)
-  root_image?: string; // Kök resmi (optional)
-
-  // User identification
+  image: string;
+  leaf_top_image?: string;
+  leaf_bottom_image?: string;
+  plant_overview_image?: string;
+  root_image?: string;
   user_id?: string | number;
   farmer_id?: string | number;
   sponsor_id?: string | number;
-
-  // Location data
   location?: string;
   gps_coordinates?: string | { lat: number; lng: number };
   altitude?: number;
-
-  // Field and crop information
   field_id?: string | number;
   crop_type?: string;
   planting_date?: string;
   expected_harvest_date?: string;
-
-  // Agricultural practices
   last_fertilization?: string;
   last_irrigation?: string;
   previous_treatments?: string[];
-
-  // Environmental conditions
   weather_conditions?: string;
   temperature?: number;
   humidity?: number;
   soil_type?: string;
-
-  // Additional information
   urgency_level?: 'low' | 'normal' | 'high' | 'critical';
   notes?: string;
   contact_info?: {
@@ -58,41 +466,15 @@ export interface RawAnalysisMessage {
     greenhouse?: boolean;
     organic_certified?: boolean;
   };
-
-  // Image metadata
-  image_metadata?: {
-    format?: string;
-    size_bytes?: number;
-    size_kb?: number;
-    size_mb?: number;
-    base64_length?: number;
-    upload_timestamp?: string;
-    total_images?: number;
-    images_provided?: string[];
-    has_leaf_top?: boolean;
-    has_leaf_bottom?: boolean;
-    has_plant_overview?: boolean;
-    has_root?: boolean;
-  };
-
-  // RabbitMQ metadata
-  rabbitmq_metadata?: {
-    correlation_id?: string;
-    response_queue?: string;
-    callback_url?: string;
-    priority?: 'low' | 'normal' | 'high';
-    retry_count?: number;
-    received_at?: string;
-    message_id?: string;
-    routing_key?: string;
-  };
+  image_metadata?: any;
+  rabbitmq_metadata?: any;
 }
 
 /**
- * Analysis result message - matches n8n output structure exactly
+ * @deprecated Legacy N8N result format - DO NOT USE
+ * Kept for reference only. Use PlantAnalysisAsyncResponseDto instead.
  */
 export interface AnalysisResultMessage {
-  // All original input fields preserved
   analysis_id: string;
   timestamp: string;
   farmer_id?: string | number;
@@ -120,214 +502,33 @@ export interface AnalysisResultMessage {
   image_metadata?: any;
   request_metadata?: any;
   rabbitmq_metadata?: any;
-
-  // AI Analysis results
-  plant_identification: {
-    species: string;
-    variety: string;
-    growth_stage: 'fide' | 'vejetatif' | 'çiçeklenme' | 'meyve' | 'unknown';
-    confidence: number;
-    identifying_features: string[];
-    visible_parts: string[];
-  };
-
-  health_assessment: {
-    vigor_score: number; // 1-10
-    leaf_color: string;
-    leaf_texture: string;
-    growth_pattern: string;
-    structural_integrity: string;
-    stress_indicators: string[];
-    disease_symptoms: string[];
-    severity: 'yok' | 'düşük' | 'orta' | 'yüksek' | 'kritik' | 'unknown';
-  };
-
-  nutrient_status: {
-    nitrogen: 'normal' | 'eksik' | 'fazla' | 'unknown';
-    phosphorus: 'normal' | 'eksik' | 'fazla' | 'unknown';
-    potassium: 'normal' | 'eksik' | 'fazla' | 'unknown';
-    calcium: 'normal' | 'eksik' | 'fazla' | 'unknown';
-    magnesium: 'normal' | 'eksik' | 'fazla' | 'unknown';
-    sulfur: 'normal' | 'eksik' | 'fazla' | 'unknown';
-    iron: 'normal' | 'eksik' | 'fazla' | 'unknown';
-    zinc: 'normal' | 'eksik' | 'fazla' | 'unknown';
-    manganese: 'normal' | 'eksik' | 'fazla' | 'unknown';
-    boron: 'normal' | 'eksik' | 'fazla' | 'unknown';
-    copper: 'normal' | 'eksik' | 'fazla' | 'unknown';
-    molybdenum: 'normal' | 'eksik' | 'fazla' | 'unknown';
-    chlorine: 'normal' | 'eksik' | 'fazla' | 'unknown';
-    nickel: 'normal' | 'eksik' | 'fazla' | 'unknown';
-    primary_deficiency: string;
-    secondary_deficiencies: string[];
-    severity: 'yok' | 'düşük' | 'orta' | 'yüksek' | 'kritik' | 'unknown';
-  };
-
-  pest_disease: {
-    pests_detected: Array<{
-      type: string;
-      group: 'böcek' | 'akar' | 'nematod' | 'kemirgen' | 'diğer';
-      severity: 'düşük' | 'orta' | 'yüksek';
-      confidence: number;
-      location: string;
-    }>;
-    diseases_detected: Array<{
-      type: string;
-      category: 'fungal' | 'bakteriyel' | 'viral' | 'fizyolojik';
-      severity: 'düşük' | 'orta' | 'yüksek';
-      affected_parts: string[];
-      confidence: number;
-    }>;
-    damage_pattern: string;
-    affected_area_percentage: number;
-    spread_risk: 'yok' | 'düşük' | 'orta' | 'yüksek';
-    primary_issue: string;
-  };
-
-  environmental_stress: {
-    water_status: string;
-    temperature_stress: string;
-    light_stress: string;
-    physical_damage: string;
-    chemical_damage: string;
-    physiological_disorders?: Array<{
-      type: string;
-      severity: 'düşük' | 'orta' | 'yüksek';
-      notes: string;
-    }>;
-    soil_health_indicators?: {
-      salinity: 'yok' | 'hafif' | 'orta' | 'şiddetli';
-      pH_issue: 'asidik' | 'alkali' | 'optimal';
-      organic_matter: 'düşük' | 'orta' | 'yüksek';
-    };
-    primary_stressor: string;
-  };
-
-  cross_factor_insights?: Array<{
-    insight: string;
-    confidence: number;
-    affected_aspects: string[];
-    impact_level: 'düşük' | 'orta' | 'yüksek';
-  }>;
-
-  risk_assessment?: {
-    yield_loss_probability: 'düşük' | 'orta' | 'yüksek';
-    timeline_to_worsen: string;
-    spread_potential: string;
-  };
-
-  recommendations: {
-    immediate: Array<{
-      action: string;
-      details: string;
-      timeline: string;
-      priority: 'kritik' | 'yüksek' | 'orta' | 'düşük';
-    }>;
-    short_term: Array<{
-      action: string;
-      details: string;
-      timeline: string;
-      priority: 'yüksek' | 'orta' | 'düşük';
-    }>;
-    preventive: Array<{
-      action: string;
-      details: string;
-      timeline: string;
-      priority: 'orta' | 'düşük';
-    }>;
-    monitoring: Array<{
-      parameter: string;
-      frequency: string;
-      threshold: string;
-    }>;
-    resource_estimation?: {
-      water_required_liters: string;
-      fertilizer_cost_estimate_usd: string;
-      labor_hours_estimate: string;
-    };
-    localized_recommendations?: {
-      region: string;
-      preferred_practices: string[];
-      restricted_methods: string[];
-    };
-  };
-
-  summary: {
-    overall_health_score: number; // 1-10
-    primary_concern: string;
-    secondary_concerns: string[];
-    critical_issues_count: number;
-    confidence_level: number; // 0-100
-    prognosis: 'mükemmel' | 'iyi' | 'orta' | 'zayıf' | 'kritik' | 'unknown';
-    estimated_yield_impact: string;
-  };
-
-  confidence_notes?: Array<{
-    aspect: string;
-    confidence: number;
-    reason: string;
-  }>;
-
+  plant_identification: any;
+  health_assessment: any;
+  nutrient_status: any;
+  pest_disease: any;
+  environmental_stress: any;
+  cross_factor_insights?: any[];
+  risk_assessment?: any;
+  recommendations: any;
+  summary: any;
+  confidence_notes?: any[];
   farmer_friendly_summary?: string;
-
-  // Processing metadata
-  processing_metadata: {
-    parse_success: boolean;
-    processing_timestamp: string;
-    processing_time_ms: number;
-    ai_model: string;
-    workflow_version: string;
-    image_source: 'url' | 'base64';
-    error_details?: string;
-  };
-
-  // Token usage
-  token_usage?: {
-    summary: {
-      model: string;
-      analysis_id: string;
-      timestamp: string;
-      total_tokens: number;
-      total_cost_usd: number;
-      total_cost_try: number;
-      image_source: string;
-    };
-    token_breakdown: {
-      input: {
-        system_prompt: number;
-        context_data: number;
-        image: number;
-        image_url_text: number;
-        cached_input_tokens: number;
-        regular_input_tokens: number;
-        total: number;
-      };
-      output: {
-        response: number;
-        total: number;
-      };
-      grand_total: number;
-    };
-    cost_breakdown: {
-      input_cost_usd: number;
-      cached_input_cost_usd: number;
-      output_cost_usd: number;
-      total_cost_usd: number;
-      total_cost_try: number;
-      exchange_rate: number;
-    };
-  };
-
-  // Error fields (if analysis fails)
+  processing_metadata: any;
+  token_usage?: any;
   error?: boolean;
   error_message?: string;
   error_type?: string;
   raw_output_sample?: string;
 }
 
+// ============================================
+// INTERNAL WORKER TYPES
+// ============================================
+
 /**
- * Provider-specific analysis message (for individual provider queues)
+ * Provider-specific analysis message (for future provider-specific queues)
  */
-export interface ProviderAnalysisMessage extends RawAnalysisMessage {
+export interface ProviderAnalysisMessage extends PlantAnalysisAsyncRequestDto {
   provider: 'openai' | 'gemini' | 'anthropic';
   attemptNumber: number;
 }
@@ -336,7 +537,7 @@ export interface ProviderAnalysisMessage extends RawAnalysisMessage {
  * Dead letter queue message
  */
 export interface DeadLetterMessage {
-  originalMessage: ProviderAnalysisMessage;
+  originalMessage: PlantAnalysisAsyncRequestDto;
   error: string;
   failureTimestamp: string;
   attemptCount: number;
