@@ -1,19 +1,22 @@
 # ============================================
-# Stage 1: Build
+# TypeScript Analysis Worker Dockerfile
+# Build context: Repository root (workers repo)
 # ============================================
+
+# Stage 1: Build
 FROM node:18-alpine AS builder
 
 WORKDIR /app
 
-# Copy package files
-COPY package*.json ./
-COPY tsconfig.json ./
+# Copy package files from analysis-worker directory
+COPY analysis-worker/package*.json ./
+COPY analysis-worker/tsconfig.json ./
 
 # Install ALL dependencies (including devDependencies for build)
 RUN npm ci
 
 # Copy source code
-COPY src ./src
+COPY analysis-worker/src ./src
 
 # Build TypeScript to JavaScript
 RUN npm run build
@@ -26,7 +29,7 @@ FROM node:18-alpine
 WORKDIR /app
 
 # Install production dependencies only
-COPY package*.json ./
+COPY analysis-worker/package*.json ./
 RUN npm ci --omit=dev && npm cache clean --force
 
 # Copy compiled JavaScript from builder
@@ -42,9 +45,13 @@ USER nodejs
 # Expose port (if needed for health checks)
 EXPOSE 3000
 
-# Health check (optional - can be customized)
+# Health check
 HEALTHCHECK --interval=30s --timeout=3s --start-period=10s --retries=3 \
   CMD node -e "console.log('healthy')" || exit 1
+
+# Environment defaults (will be overridden by Railway)
+ENV NODE_ENV=production
+ENV LOG_LEVEL=info
 
 # Start the worker
 CMD ["node", "dist/index.js"]
