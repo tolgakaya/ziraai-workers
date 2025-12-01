@@ -49,21 +49,22 @@ export class OpenAIProvider {
       const imageContent = this.buildImageContent(request);
 
       // Call OpenAI API
-      // Note: gpt-5-mini does not support temperature parameter - only default (1) is allowed
-      // Note: N8N LangChain node does NOT use response_format - removed to match N8N behavior
+      // N8N Production Settings (from openai-analysis-provider.ts)
+      // CRITICAL: Must match N8N exactly - verified from working production code
       const response = await this.client.chat.completions.create({
         model: this.config.model || 'gpt-5-mini',
         messages: [
           {
-            role: 'system',
-            content: systemPrompt,
-          },
-          {
-            role: 'user',
-            content: imageContent,
+            role: 'user',  // N8N uses 'user' role, not 'system' + 'user'
+            content: [
+              { type: 'text', text: systemPrompt },
+              ...imageContent,
+            ],
           },
         ],
-        max_completion_tokens: 2000,  // Changed from max_tokens to max_completion_tokens (OpenAI API update)
+        max_tokens: 5000,  // N8N uses max_tokens (not max_completion_tokens)
+        temperature: 0.3,  // N8N uses 0.3 for consistent results
+        response_format: { type: 'json_object' },  // N8N uses json_object format
       });
 
       const analysisText = response.choices[0]?.message?.content || '';
