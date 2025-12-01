@@ -49,6 +49,7 @@ export class OpenAIProvider {
       const imageContent = this.buildImageContent(request);
 
       // Call OpenAI API
+      // Note: gpt-5-mini does not support temperature parameter - only default (1) is allowed
       const response = await this.client.chat.completions.create({
         model: this.config.model || 'gpt-4o-mini',
         messages: [
@@ -61,7 +62,6 @@ export class OpenAIProvider {
             content: imageContent,
           },
         ],
-        temperature: 0.7,
         max_completion_tokens: 2000,  // Changed from max_tokens to max_completion_tokens (OpenAI API update)
         response_format: { type: 'json_object' },
       });
