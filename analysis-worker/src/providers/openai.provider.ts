@@ -51,7 +51,7 @@ export class OpenAIProvider {
       // Call OpenAI API
       // Note: gpt-5-mini does not support temperature parameter - only default (1) is allowed
       const response = await this.client.chat.completions.create({
-        model: this.config.model || 'gpt-4o-mini',
+        model: this.config.model || 'gpt-5-mini',
         messages: [
           {
             role: 'system',
@@ -246,7 +246,7 @@ export class OpenAIProvider {
         processing_metadata: {
           ParseSuccess: true,
           ProcessingTimestamp: new Date().toISOString(),
-          AiModel: this.config.model || 'gpt-4o-mini',
+          AiModel: this.config.model || 'gpt-5-mini',
           WorkflowVersion: '2.0.0',
           ReceivedAt: receivedAt.toISOString(),
           ProcessingTimeMs: processingTimeMs,
