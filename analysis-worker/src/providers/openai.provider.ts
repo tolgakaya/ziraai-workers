@@ -87,15 +87,35 @@ export class OpenAIProvider {
 
       if (!apiResponse.ok) {
         const errorText = await apiResponse.text();
+        this.logger.error({
+          analysisId: request.AnalysisId,
+          status: apiResponse.status,
+          errorText,
+        }, 'OpenAI API HTTP error');
         throw new Error(`OpenAI API error (${apiResponse.status}): ${errorText}`);
       }
 
       const response: any = await apiResponse.json();
+
+      // CRITICAL DEBUG: Log full response structure
+      this.logger.info({
+        analysisId: request.AnalysisId,
+        responseKeys: Object.keys(response || {}),
+        hasOutput: !!response.output,
+        outputLength: response.output?.length,
+        firstOutputKeys: response.output?.[0] ? Object.keys(response.output[0]) : [],
+        responsePreview: JSON.stringify(response).substring(0, 500),
+      }, 'OpenAI API response structure');
+
       const analysisText = response.output?.[0]?.content?.[0]?.text || '';
       const processingTimeMs = Date.now() - startTime;
 
       // Validate response content
       if (!analysisText || analysisText.trim().length === 0) {
+        this.logger.error({
+          analysisId: request.AnalysisId,
+          fullResponse: JSON.stringify(response),
+        }, 'Empty response - full API response logged');
         throw new Error('OpenAI returned empty response');
       }
 
