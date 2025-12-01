@@ -67,6 +67,7 @@ export function getDefaultEnvironmentalStress() {
     light_stress: 'unknown',
     physical_damage: 'unknown',
     chemical_damage: 'unknown',
+    soil_indicators: 'unknown',
     primary_stressor: 'yok',
   };
 }

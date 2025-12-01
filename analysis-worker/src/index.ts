@@ -7,11 +7,11 @@ import { RabbitMQService } from './services/rabbitmq.service';
 import { RateLimiterService } from './services/rate-limiter.service';
 import { ProviderSelectorService, ProviderName } from './services/provider-selector.service';
 import { WorkerConfig, ProviderConfig, RabbitMQConfig, RedisConfig, EnvironmentVariables, ProviderSelectionConfig } from './types/config';
-import { ProviderAnalysisMessage, AnalysisResultMessage } from './types/messages';
+import { PlantAnalysisAsyncRequestDto, PlantAnalysisAsyncResponseDto } from './types/messages';
 
 // Provider interface for abstraction
 interface AIProvider {
-  analyzeImages(message: ProviderAnalysisMessage): Promise<AnalysisResultMessage>;
+  analyzeImages(message: PlantAnalysisAsyncRequestDto): Promise<PlantAnalysisAsyncResponseDto>;
 }
 
 // Load environment variables
@@ -236,7 +236,7 @@ class AnalysisWorker {
       // Phase 2 will add dispatcher to route to provider-specific queues
       const queueName = this.config.rabbitmq.queues.plantAnalysisRequest;
 
-      await this.rabbitmq.consumeProviderQueue(queueName, async (message) => {
+      await this.rabbitmq.consumeQueue(queueName, async (message) => {
         await this.processMessage(message);
       });
 
@@ -293,20 +293,19 @@ class AnalysisWorker {
   /**
    * Process a single analysis message
    */
-  private async processMessage(message: ProviderAnalysisMessage): Promise<void> {
+  private async processMessage(message: PlantAnalysisAsyncRequestDto): Promise<void> {
     const startTime = Date.now();
 
     try {
       this.logger.info({
-        analysisId: message.analysis_id,
-        farmerId: message.farmer_id,
-        messageProvider: message.provider,
-        attemptNumber: message.attemptNumber,
+        analysisId: message.AnalysisId,
+        farmerId: message.FarmerId,
+        imageUrl: message.ImageUrl,
       }, 'Processing analysis message');
 
-      // Get the appropriate provider using configured strategy
-      const provider = this.getProvider(message.provider);
-      const selectedProvider = this.providerSelector.selectProvider(message.provider);
+      // Get the appropriate provider using configured strategy (no provider hint in WebAPI messages)
+      const provider = this.getProvider(undefined);
+      const selectedProvider = this.providerSelector.selectProvider(undefined);
 
       // Check rate limit before processing (use selected provider for rate limiting)
       const rateLimitAllowed = await this.rateLimiter.waitForRateLimit(
@@ -317,15 +316,16 @@ class AnalysisWorker {
 
       if (!rateLimitAllowed) {
         this.logger.warn({
-          analysisId: message.analysis_id,
+          analysisId: message.AnalysisId,
           selectedProvider,
-        }, 'Rate limit exceeded, sending to DLQ');
+        }, 'Rate limit exceeded, sending error response');
 
-        await this.rabbitmq.publishToDeadLetterQueue(
+        // Send error response instead of DLQ (WebAPI expects response)
+        const errorResponse: PlantAnalysisAsyncResponseDto = this.buildErrorResponse(
           message,
-          'Rate limit exceeded after waiting',
-          message.attemptNumber
+          'Rate limit exceeded after waiting'
         );
+        await this.rabbitmq.publishResult(errorResponse);
 
         this.errorCount++;
         return;
@@ -340,10 +340,10 @@ class AnalysisWorker {
       const processingTime = Date.now() - startTime;
 
       this.logger.info({
-        analysisId: message.analysis_id,
+        analysisId: message.AnalysisId,
         processingTimeMs: processingTime,
-        totalTokens: result.token_usage?.summary.total_tokens,
-        costUsd: result.token_usage?.summary.total_cost_usd,
+        totalTokens: result.token_usage?.total_tokens,
+        costUsd: result.token_usage?.cost_usd,
       }, 'Analysis completed and result published');
 
       this.processedCount++;
@@ -353,21 +353,158 @@ class AnalysisWorker {
 
       this.logger.error({
         error,
-        analysisId: message.analysis_id,
+        analysisId: message.AnalysisId,
         processingTimeMs: processingTime,
       }, 'Failed to process analysis message');
 
-      // Send to DLQ if max retries exceeded
-      if (message.attemptNumber >= 3) {
-        await this.rabbitmq.publishToDeadLetterQueue(
-          message,
-          errorMessage,
-          message.attemptNumber
-        );
-      }
+      // Send error response (WebAPI expects response, not DLQ)
+      const errorResponse: PlantAnalysisAsyncResponseDto = this.buildErrorResponse(
+        message,
+        errorMessage
+      );
+      await this.rabbitmq.publishResult(errorResponse);
 
       this.errorCount++;
     }
+  }
+
+  /**
+   * Build error response for failed analyses
+   */
+  private buildErrorResponse(
+    request: PlantAnalysisAsyncRequestDto,
+    errorMessage: string
+  ): PlantAnalysisAsyncResponseDto {
+    // Return minimal error response with required fields
+    return {
+      // Analysis results (empty/default values with snake_case)
+      plant_identification: {
+        species: 'Belirlenemedi',
+        variety: 'Bilinmiyor',
+        growth_stage: 'Belirlenemedi',
+        confidence: 0,
+        identifying_features: [],
+        visible_parts: [],
+      },
+      health_assessment: {
+        vigor_score: 0,
+        leaf_color: 'Analiz edilemedi',
+        leaf_texture: 'Analiz edilemedi',
+        growth_pattern: 'Analiz edilemedi',
+        structural_integrity: 'Analiz edilemedi',
+        stress_indicators: [],
+        disease_symptoms: [],
+        severity: 'Bilinmiyor',
+      },
+      nutrient_status: {
+        nitrogen: 'Bilinmiyor',
+        phosphorus: 'Bilinmiyor',
+        potassium: 'Bilinmiyor',
+        calcium: 'Bilinmiyor',
+        magnesium: 'Bilinmiyor',
+        sulfur: 'Bilinmiyor',
+        iron: 'Bilinmiyor',
+        zinc: 'Bilinmiyor',
+        manganese: 'Bilinmiyor',
+        boron: 'Bilinmiyor',
+        copper: 'Bilinmiyor',
+        molybdenum: 'Bilinmiyor',
+        chlorine: 'Bilinmiyor',
+        nickel: 'Bilinmiyor',
+        primary_deficiency: 'Bilinmiyor',
+        secondary_deficiencies: [],
+        severity: 'Bilinmiyor',
+      },
+      pest_disease: {
+        pests_detected: [],
+        diseases_detected: [],
+        damage_pattern: 'Analiz edilemedi',
+        affected_area_percentage: 0,
+        spread_risk: 'Bilinmiyor',
+        primary_issue: 'Analiz başarısız',
+      },
+      environmental_stress: {
+        water_status: 'Bilinmiyor',
+        temperature_stress: 'Bilinmiyor',
+        light_stress: 'Bilinmiyor',
+        physical_damage: 'Bilinmiyor',
+        chemical_damage: 'Bilinmiyor',
+        soil_indicators: 'Bilinmiyor',
+        primary_stressor: 'Sistem hatası',
+      },
+      cross_factor_insights: [],
+      recommendations: {
+        immediate: [],
+        short_term: [],
+        preventive: [],
+        monitoring: [],
+      },
+      summary: {
+        overall_health_score: 0,
+        primary_concern: 'Analiz başarısız',
+        secondary_concerns: [errorMessage],
+        critical_issues_count: 0,
+        confidence_level: 0,
+        prognosis: 'Bilinmiyor',
+        estimated_yield_impact: 'Bilinmiyor',
+      },
+
+      // Metadata fields echoed from request (snake_case)
+      analysis_id: request.AnalysisId,
+      timestamp: new Date().toISOString(),
+      user_id: request.UserId,
+      farmer_id: request.FarmerId,
+      sponsor_id: request.SponsorId,
+
+      // CRITICAL: PascalCase (no [JsonProperty] in C#)
+      SponsorUserId: request.SponsorUserId,
+      SponsorshipCodeId: request.SponsorshipCodeId,
+
+      location: request.Location,
+      gps_coordinates: request.GpsCoordinates,
+      altitude: request.Altitude,
+      field_id: request.FieldId,
+      crop_type: request.CropType,
+      planting_date: request.PlantingDate,
+      expected_harvest_date: request.ExpectedHarvestDate,
+      last_fertilization: request.LastFertilization,
+      last_irrigation: request.LastIrrigation,
+      previous_treatments: request.PreviousTreatments,
+      weather_conditions: request.WeatherConditions,
+      temperature: request.Temperature,
+      humidity: request.Humidity,
+      soil_type: request.SoilType,
+      urgency_level: request.UrgencyLevel,
+      notes: request.Notes,
+      contact_info: request.ContactInfo,
+      additional_info: request.AdditionalInfo,
+
+      // Image URLs (snake_case)
+      image_url: request.ImageUrl,
+      image_path: request.ImageUrl,
+
+      // Processing metadata (PascalCase!)
+      processing_metadata: {
+        ParseSuccess: false,
+        ProcessingTimestamp: new Date().toISOString(),
+        AiModel: 'error',
+        WorkflowVersion: '2.0.0',
+        ReceivedAt: new Date().toISOString(),
+        ProcessingTimeMs: 0,
+        RetryCount: 0,
+      },
+
+      // Image metadata (PascalCase!)
+      image_metadata: {
+        URL: request.ImageUrl,
+      },
+
+      // Response status
+      success: false,
+      error: true,
+      error_message: errorMessage,
+      error_type: 'processing_error',
+    };
   }
 
   /**

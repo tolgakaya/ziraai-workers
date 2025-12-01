@@ -1,6 +1,6 @@
 import amqp, { Channel, Connection } from 'amqplib';
 import { RabbitMQConfig } from '../types/config';
-import { ProviderAnalysisMessage, AnalysisResultMessage, DeadLetterMessage } from '../types/messages';
+import { PlantAnalysisAsyncRequestDto, PlantAnalysisAsyncResponseDto } from '../types/messages';
 import { Logger } from 'pino';
 
 /**
@@ -93,14 +93,14 @@ export class RabbitMQService {
   }
 
   /**
-   * Consume messages from a provider-specific queue
+   * Consume messages from a queue (WebAPI plant-analysis-requests queue)
    *
-   * @param queueName - Queue to consume from (e.g., 'openai-analysis-queue')
+   * @param queueName - Queue to consume from (e.g., 'plant-analysis-requests')
    * @param handler - Message handler function
    */
-  async consumeProviderQueue(
+  async consumeQueue(
     queueName: string,
-    handler: (message: ProviderAnalysisMessage) => Promise<void>
+    handler: (message: PlantAnalysisAsyncRequestDto) => Promise<void>
   ): Promise<void> {
     if (!this.channel) {
       throw new Error('Channel not initialized');
@@ -116,13 +116,13 @@ export class RabbitMQService {
         }
 
         try {
-          const message: ProviderAnalysisMessage = JSON.parse(msg.content.toString());
+          const message: PlantAnalysisAsyncRequestDto = JSON.parse(msg.content.toString());
 
           this.logger.debug({
-            analysisId: message.analysis_id,
-            provider: message.provider,
+            analysisId: message.AnalysisId,
+            farmerId: message.FarmerId,
             queueName,
-          }, 'Message received');
+          }, 'Message received from WebAPI');
 
           // Process the message
           await handler(message);
@@ -131,7 +131,7 @@ export class RabbitMQService {
           this.channel?.ack(msg);
 
           this.logger.debug({
-            analysisId: message.analysis_id,
+            analysisId: message.AnalysisId,
             queueName,
           }, 'Message acknowledged');
         } catch (error) {
@@ -154,7 +154,7 @@ export class RabbitMQService {
   /**
    * Publish analysis result to results queue
    */
-  async publishResult(result: AnalysisResultMessage): Promise<void> {
+  async publishResult(result: PlantAnalysisAsyncResponseDto): Promise<void> {
     if (!this.channel) {
       throw new Error('Channel not initialized');
     }
@@ -183,7 +183,7 @@ export class RabbitMQService {
         this.logger.debug({
           analysisId: result.analysis_id,
           queue: this.config.queues.results,
-        }, 'Result published');
+        }, 'Result published to PlantAnalysisWorkerService');
       }
     } catch (error) {
       this.logger.error({
@@ -191,55 +191,6 @@ export class RabbitMQService {
         analysisId: result.analysis_id,
       }, 'Failed to publish result');
       throw error;
-    }
-  }
-
-  /**
-   * Publish failed message to dead letter queue
-   */
-  async publishToDeadLetterQueue(
-    originalMessage: ProviderAnalysisMessage,
-    error: string,
-    attemptCount: number
-  ): Promise<void> {
-    if (!this.channel) {
-      throw new Error('Channel not initialized');
-    }
-
-    try {
-      const dlqMessage: DeadLetterMessage = {
-        originalMessage,
-        error,
-        failureTimestamp: new Date().toISOString(),
-        attemptCount,
-        lastProvider: originalMessage.provider,
-      };
-
-      const message = JSON.stringify(dlqMessage);
-
-      this.channel.publish(
-        '',
-        this.config.queues.dlq,
-        Buffer.from(message),
-        {
-          persistent: true,
-          contentType: 'application/json',
-          timestamp: Date.now(),
-          messageId: `dlq-${originalMessage.analysis_id}-${Date.now()}`,
-        }
-      );
-
-      this.logger.warn({
-        analysisId: originalMessage.analysis_id,
-        provider: originalMessage.provider,
-        attemptCount,
-        error,
-      }, 'Message sent to DLQ');
-    } catch (error) {
-      this.logger.error({
-        error,
-        analysisId: originalMessage.analysis_id,
-      }, 'Failed to publish to DLQ');
     }
   }
 

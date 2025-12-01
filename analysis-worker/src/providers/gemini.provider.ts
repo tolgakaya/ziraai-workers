@@ -1,15 +1,15 @@
 /**
  * Gemini AI Provider Implementation
- * 
- * NEW implementation for multi-provider failover strategy
- * Uses same Turkish prompt and output structure as OpenAI for consistency
- * 
+ *
+ * C#-compatible implementation for WebAPI V2 integration
+ * Uses PlantAnalysisAsyncRequestDto/ResponseDto with correct casing
+ *
  * Model: gemini-2.0-flash-exp
  * Pricing: Input $0.075/M, Output $0.30/M
  */
 
 import { GoogleGenerativeAI, GenerativeModel } from '@google/generative-ai';
-import { ProviderAnalysisMessage, AnalysisResultMessage } from '../types/messages';
+import { PlantAnalysisAsyncRequestDto, PlantAnalysisAsyncResponseDto, TokenUsage } from '../types/messages';
 import pino from 'pino';
 import * as defaults from './defaults';
 
@@ -19,34 +19,6 @@ export class GeminiProvider {
   private modelName: string;
   private logger: pino.Logger;
 
-  /**
-   * Parse GPS coordinates from string or object format
-   */
-  private parseGpsCoordinates(gpsInput: any): { lat: number; lng: number } | undefined {
-    if (!gpsInput) return undefined;
-
-    // Already in object format
-    if (typeof gpsInput === 'object' && gpsInput !== null) {
-      return {
-        lat: parseFloat(gpsInput.lat || gpsInput.Lat || 0),
-        lng: parseFloat(gpsInput.lng || gpsInput.Lng || gpsInput.lon || gpsInput.Lon || 0),
-      };
-    }
-
-    // String format
-    if (typeof gpsInput === 'string') {
-      const match = gpsInput.match(/(-?\d+\.?\d*)[,\s]+(-?\d+\.?\d*)/);
-      if (match) {
-        return {
-          lat: parseFloat(match[1]),
-          lng: parseFloat(match[2]),
-        };
-      }
-    }
-
-    return undefined;
-  }
-
   constructor(apiKey: string, logger: pino.Logger, model?: string) {
     this.client = new GoogleGenerativeAI(apiKey);
     this.modelName = model || 'gemini-2.0-flash-exp';
@@ -55,24 +27,31 @@ export class GeminiProvider {
   }
 
   /**
-   * Main analysis method - calls Gemini API with multi-image support
+   * Main analysis method - C#-compatible response generation
    */
-  async analyzeImages(message: ProviderAnalysisMessage): Promise<AnalysisResultMessage> {
+  async analyzeImages(request: PlantAnalysisAsyncRequestDto): Promise<PlantAnalysisAsyncResponseDto> {
     const startTime = Date.now();
+    const receivedAt = new Date();
 
     try {
-      const systemPrompt = this.buildSystemPrompt(message);
-      const imageParts = await this.buildImageParts(message);
+      this.logger.info({
+        analysisId: request.AnalysisId,
+        farmerId: request.FarmerId,
+        imageUrl: request.ImageUrl,
+        cropType: request.CropType,
+      }, 'Starting Gemini analysis');
+
+      const systemPrompt = this.buildSystemPrompt(request);
+      const imagePart = await this.buildImagePart(request.ImageUrl);
 
       // Gemini uses different structure: parts array with text and inlineData
       const parts = [
         { text: systemPrompt },
-        ...imageParts,
+        imagePart,
       ];
 
       this.logger.debug({
-        analysisId: message.analysis_id,
-        imageCount: imageParts.length,
+        analysisId: request.AnalysisId,
         model: this.modelName,
       }, 'Calling Gemini API');
 
@@ -90,154 +69,169 @@ export class GeminiProvider {
       const processingTimeMs = Date.now() - startTime;
 
       this.logger.debug({
-        analysisId: message.analysis_id,
+        analysisId: request.AnalysisId,
         responseLength: analysisText.length,
         processingTimeMs,
       }, 'Gemini API response received');
 
-      const analysisResult = this.parseAnalysisResponse(analysisText, message);
-      const tokenUsage = this.calculateTokenUsage(response, message);
+      const analysisResult = JSON.parse(analysisText);
+      const tokenUsage = this.calculateTokenUsage(response);
 
+      // Return C#-compatible response with MIXED casing
       return {
-        ...analysisResult,
+        // Analysis results (snake_case - has [JsonProperty])
+        plant_identification: analysisResult.plant_identification || defaults.getDefaultPlantIdentification(),
+        health_assessment: analysisResult.health_assessment || defaults.getDefaultHealthAssessment(),
+        nutrient_status: analysisResult.nutrient_status || defaults.getDefaultNutrientStatus(),
+        pest_disease: analysisResult.pest_disease || defaults.getDefaultPestDisease(),
+        environmental_stress: analysisResult.environmental_stress || defaults.getDefaultEnvironmentalStress(),
+        cross_factor_insights: analysisResult.cross_factor_insights || [],
+        recommendations: analysisResult.recommendations || defaults.getDefaultRecommendations(),
+        summary: analysisResult.summary || defaults.getDefaultSummary(),
+
+        // Metadata (snake_case - has [JsonProperty])
+        analysis_id: request.AnalysisId,
+        timestamp: new Date().toISOString(),
+        user_id: request.UserId,
+        farmer_id: request.FarmerId,
+        sponsor_id: request.SponsorId,
+
+        // CRITICAL: PascalCase (NO [JsonProperty] in C#)
+        SponsorUserId: request.SponsorUserId,
+        SponsorshipCodeId: request.SponsorshipCodeId,
+
+        location: request.Location,
+        gps_coordinates: request.GpsCoordinates,
+        altitude: request.Altitude,
+        field_id: request.FieldId,
+        crop_type: request.CropType,
+        planting_date: request.PlantingDate,
+        expected_harvest_date: request.ExpectedHarvestDate,
+        last_fertilization: request.LastFertilization,
+        last_irrigation: request.LastIrrigation,
+        previous_treatments: request.PreviousTreatments,
+        weather_conditions: request.WeatherConditions,
+        temperature: request.Temperature,
+        humidity: request.Humidity,
+        soil_type: request.SoilType,
+        urgency_level: request.UrgencyLevel,
+        notes: request.Notes,
+        contact_info: request.ContactInfo,
+        additional_info: request.AdditionalInfo,
+
+        image_url: request.ImageUrl,
+        image_path: request.ImageUrl,
+
+        // Processing metadata (ALL PascalCase - NO [JsonProperty])
         processing_metadata: {
-          parse_success: true,
-          processing_timestamp: new Date().toISOString(),
-          processing_time_ms: processingTimeMs,
-          ai_model: this.modelName,
-          workflow_version: '2.0-typescript-worker',
-          image_source: message.image.startsWith('http') ? 'url' : 'base64',
+          ParseSuccess: true,
+          ProcessingTimestamp: new Date().toISOString(),
+          AiModel: this.modelName,
+          WorkflowVersion: '2.0.0',
+          ReceivedAt: receivedAt.toISOString(),
+          ProcessingTimeMs: processingTimeMs,
+          RetryCount: 0,
         },
+
+        // Image metadata (ALL PascalCase - NO [JsonProperty])
+        image_metadata: {
+          URL: request.ImageUrl,  // CRITICAL: PascalCase!
+          Format: 'JPEG',
+        },
+
+        // Token usage (simplified flat structure)
         token_usage: tokenUsage,
+
+        // Status flags
+        success: true,
+        error: false,
+        error_message: null,
+        error_type: null,
       };
     } catch (error: any) {
       const processingTimeMs = Date.now() - startTime;
       const errorMessage = error?.message || 'Unknown Gemini API error';
 
       this.logger.error({
-        analysisId: message.analysis_id,
+        analysisId: request.AnalysisId,
         error: errorMessage,
         processingTimeMs,
       }, 'Gemini analysis failed');
 
-      return this.buildErrorResponse(message, errorMessage, processingTimeMs);
+      return this.buildErrorResponse(request, errorMessage, processingTimeMs, receivedAt);
     }
   }
 
   /**
-   * Build system prompt - SAME as OpenAI for consistency
-   * Uses exact Turkish prompt from n8n flow
+   * Build system prompt - Turkish analysis prompt
    */
-  private buildSystemPrompt(message: ProviderAnalysisMessage): string {
-    const totalImages = message.image_metadata?.total_images || 1;
-    const imagesProvided = message.image_metadata?.images_provided?.join(', ') || 'main';
-
-    // CRITICAL: This is the EXACT prompt from n8n - DO NOT MODIFY
+  private buildSystemPrompt(request: PlantAnalysisAsyncRequestDto): string {
     let prompt = `You are an expert agricultural analyst with deep knowledge in plant pathology, nutrition (macro and micro elements), pest management, physiological disorders, soil science, and environmental stress factors.
 
-Your task is to analyze the provided plant image(s) comprehensively and return a structured JSON report.
+Your task is to analyze the provided plant image comprehensively and return a structured JSON report.
 
 ============================================
-MULTI-IMAGE ANALYSIS (if additional images provided)
-============================================
-
-You may receive UP TO 4 DIFFERENT IMAGES of the same plant. Analyze all provided images together for a more comprehensive diagnosis:
-
-**MAIN IMAGE:** Main plant image
-This is the primary image for analysis.
-`;
-
-    // Conditional multi-image instructions based on what's provided
-    if (message.leaf_top_image) {
-      prompt += `\n**LEAF TOP IMAGE (Yaprağın Üst Yüzeyi):** Leaf top image provided\nFocus on: Upper leaf surface symptoms, color variations, spots, lesions, powdery mildew, rust, insect feeding damage, nutrient deficiency patterns (interveinal chlorosis, etc.)\n`;
-    }
-
-    if (message.leaf_bottom_image) {
-      prompt += `\n**LEAF BOTTOM IMAGE (Yaprağın Alt Yüzeyi):** Leaf bottom image provided\nFocus on: Lower leaf surface, stomata conditions, fungal growth (downy mildew, rust pustules), aphids, whiteflies, spider mite webbing, nutrient deficiency symptoms on underside\n`;
-    }
-
-    if (message.plant_overview_image) {
-      prompt += `\n**PLANT OVERVIEW IMAGE (Bitkinin Genel Görünümü):** Plant overview image provided\nFocus on: Overall plant structure, growth habit, canopy health, wilting patterns, stem condition, distribution of symptoms across the plant, environmental stress indicators\n`;
-    }
-
-    if (message.root_image) {
-      prompt += `\n**ROOT IMAGE (Kök Resmi):** Root image provided\nFocus on: Root system health, root rot, discoloration, root hair development, soil-borne disease symptoms, waterlogging damage, root-knot nematode galls\n`;
-    }
-
-    prompt += `\n**Number of images provided:** ${totalImages}\n**Images included:** ${imagesProvided}\n\n`;
-
-    prompt += `============================================
 CRITICAL INSTRUCTIONS
 ============================================
 
-1. **COMPREHENSIVE MULTI-IMAGE ANALYSIS:**
-   - If multiple images are provided, analyze them TOGETHER
-   - Cross-reference symptoms across different images
-   - Provide a unified diagnosis based on all available visual information
-
-2. **ACCURATE SPECIES IDENTIFICATION:**
+1. **ACCURATE SPECIES IDENTIFICATION:**
    - Carefully identify the plant species and variety
-   - Use botanical characteristics visible in the images
+   - Use botanical characteristics visible in the image
    - If uncertain, provide your best assessment with confidence score
 
-3. **DETAILED NUTRIENT DEFICIENCY ANALYSIS:**
+2. **DETAILED NUTRIENT DEFICIENCY ANALYSIS:**
    - Assess EACH of the 14 key nutrients individually
    - Use specific visual symptoms (chlorosis patterns, necrosis, stunting, etc.)
    - Identify primary and secondary deficiencies
    - Rate severity level
 
-4. **PEST AND DISEASE DIAGNOSIS:**
+3. **PEST AND DISEASE DIAGNOSIS:**
    - Look for visible pests (insects, mites, etc.)
    - Identify disease symptoms (fungal, bacterial, viral)
    - Describe damage patterns and affected areas
    - Estimate spread risk
 
-5. **ENVIRONMENTAL STRESS ASSESSMENT:**
+4. **ENVIRONMENTAL STRESS ASSESSMENT:**
    - Identify water stress (drought or waterlogging)
    - Detect temperature stress (heat or cold damage)
    - Recognize light-related issues
    - Note physical damage
 
-6. **ACTIONABLE RECOMMENDATIONS:**
+5. **ACTIONABLE RECOMMENDATIONS:**
    - Provide SPECIFIC, PRACTICAL recommendations
    - Prioritize immediate actions
    - Include preventive measures
    - Estimate urgency and timeframe
-
 `;
 
-    // Add context information if provided
+    // Add context information
     prompt += `\n============================================\nCONTEXT INFORMATION PROVIDED\n============================================\n\n`;
-    prompt += `Analysis ID: ${message.analysis_id}\n`;
-    prompt += `Farmer ID: ${message.farmer_id || 'Not provided'}\n`;
-    prompt += `Location: ${message.location || 'Not provided'}\n`;
+    prompt += `Analysis ID: ${request.AnalysisId}\n`;
+    prompt += `Farmer ID: ${request.FarmerId || 'Not provided'}\n`;
+    prompt += `Location: ${request.Location || 'Not provided'}\n`;
 
-    if (message.gps_coordinates) {
-      const coords =
-        typeof message.gps_coordinates === 'string'
-          ? message.gps_coordinates
-          : `${message.gps_coordinates.lat}, ${message.gps_coordinates.lng}`;
-      prompt += `GPS Coordinates: ${coords}\n`;
+    if (request.GpsCoordinates) {
+      prompt += `GPS Coordinates: ${request.GpsCoordinates.Lat}, ${request.GpsCoordinates.Lng}\n`;
     }
 
-    if (message.altitude) prompt += `Altitude: ${message.altitude}m\n`;
-    if (message.crop_type) prompt += `Crop Type: ${message.crop_type}\n`;
-    if (message.soil_type) prompt += `Soil Type: ${message.soil_type}\n`;
-    if (message.weather_conditions) prompt += `Weather: ${message.weather_conditions}\n`;
-    if (message.temperature) prompt += `Temperature: ${message.temperature}°C\n`;
-    if (message.humidity) prompt += `Humidity: ${message.humidity}%\n`;
-    if (message.last_fertilization) prompt += `Last Fertilization: ${message.last_fertilization}\n`;
-    if (message.last_irrigation) prompt += `Last Irrigation: ${message.last_irrigation}\n`;
+    if (request.Altitude) prompt += `Altitude: ${request.Altitude}m\n`;
+    if (request.CropType) prompt += `Crop Type: ${request.CropType}\n`;
+    if (request.SoilType) prompt += `Soil Type: ${request.SoilType}\n`;
+    if (request.WeatherConditions) prompt += `Weather: ${request.WeatherConditions}\n`;
+    if (request.Temperature) prompt += `Temperature: ${request.Temperature}°C\n`;
+    if (request.Humidity) prompt += `Humidity: ${request.Humidity}%\n`;
+    if (request.LastFertilization) prompt += `Last Fertilization: ${request.LastFertilization}\n`;
+    if (request.LastIrrigation) prompt += `Last Irrigation: ${request.LastIrrigation}\n`;
 
-    if (message.previous_treatments && message.previous_treatments.length > 0) {
+    if (request.PreviousTreatments && request.PreviousTreatments.length > 0) {
       prompt += `Previous Treatments:\n`;
-      message.previous_treatments.forEach((treatment, index) => {
+      request.PreviousTreatments.forEach((treatment, index) => {
         prompt += `  ${index + 1}. ${treatment}\n`;
       });
     }
 
-    if (message.urgency_level) prompt += `Urgency Level: ${message.urgency_level}\n`;
-    if (message.notes) prompt += `Additional Notes: ${message.notes}\n`;
+    if (request.UrgencyLevel) prompt += `Urgency Level: ${request.UrgencyLevel}\n`;
+    if (request.Notes) prompt += `Additional Notes: ${request.Notes}\n`;
 
     // Add JSON schema
     prompt += `\n============================================\nOUTPUT FORMAT\n============================================\n\n`;
@@ -364,13 +358,13 @@ CRITICAL INSTRUCTIONS
     "prognosis": "mükemmel | iyi | orta | kötü | unknown",
     "confidence_level": 0.85
   },
-  "analysis_metadata": {
-    "analysis_timestamp": "${new Date().toISOString()}",
-    "analysis_id": "${message.analysis_id}",
-    "image_quality": "düşük | orta | yüksek",
-    "visibility_conditions": "string (görüş koşulları)",
-    "limitations": ["array", "analiz kısıtlamaları"]
-  }
+  "cross_factor_insights": [
+    {
+      "interaction": "string (etkileşim açıklaması)",
+      "combined_effect": "string (birleşik etki)",
+      "recommendation": "string (öneri)"
+    }
+  ]
 }`;
 
     prompt += `\n\n============================================\nIMPORTANT NOTES\n============================================\n\n`;
@@ -378,138 +372,39 @@ CRITICAL INSTRUCTIONS
     prompt += `- All string values should be in Turkish\n`;
     prompt += `- Use "unknown" when uncertain, but provide best assessment when possible\n`;
     prompt += `- Be specific and actionable in recommendations\n`;
-    prompt += `- If multiple images provided, integrate findings from all images\n`;
     prompt += `- Base confidence scores on image quality and symptom clarity\n\n`;
 
     return prompt;
   }
 
   /**
-   * Build image parts for Gemini API
+   * Build image part for Gemini API
    * Gemini uses inlineData format with base64 encoding
    */
-  private async buildImageParts(message: ProviderAnalysisMessage): Promise<any[]> {
-    const imageParts: any[] = [];
-
-    // Helper function to add image
-    const addImage = async (imageUrl: string, label: string) => {
-      if (!imageUrl) return;
-
-      try {
-        // If URL, fetch and convert to base64
-        if (imageUrl.startsWith('http')) {
-          const response = await fetch(imageUrl);
-          const buffer = await response.arrayBuffer();
-          const base64 = Buffer.from(buffer).toString('base64');
-          const mimeType = response.headers.get('content-type') || 'image/jpeg';
-
-          imageParts.push({
-            inlineData: {
-              mimeType,
-              data: base64,
-            },
-          });
-        } else {
-          // Already base64
-          // Remove data URL prefix if present
-          const base64Data = imageUrl.replace(/^data:image\/\w+;base64,/, '');
-          const mimeType = imageUrl.match(/^data:(image\/\w+);base64,/)
-            ? imageUrl.match(/^data:(image\/\w+);base64,/)![1]
-            : 'image/jpeg';
-
-          imageParts.push({
-            inlineData: {
-              mimeType,
-              data: base64Data,
-            },
-          });
-        }
-
-        this.logger.debug({ label }, 'Image added to analysis');
-      } catch (error: any) {
-        this.logger.warn({ label, error: error.message }, 'Failed to process image');
-      }
-    };
-
-    // Add all provided images
-    await addImage(message.image, 'main');
-    if (message.leaf_top_image) await addImage(message.leaf_top_image, 'leaf_top');
-    if (message.leaf_bottom_image) await addImage(message.leaf_bottom_image, 'leaf_bottom');
-    if (message.plant_overview_image) await addImage(message.plant_overview_image, 'plant_overview');
-    if (message.root_image) await addImage(message.root_image, 'root');
-
-    return imageParts;
-  }
-
-  /**
-   * Parse AI response - SAME logic as OpenAI for consistency
-   */
-  private parseAnalysisResponse(
-    analysisText: string,
-    originalMessage: ProviderAnalysisMessage
-  ): AnalysisResultMessage {
+  private async buildImagePart(imageUrl: string): Promise<any> {
     try {
-      const parsed = JSON.parse(analysisText);
+      // Fetch image and convert to base64
+      const response = await fetch(imageUrl);
+      const buffer = await response.arrayBuffer();
+      const base64 = Buffer.from(buffer).toString('base64');
+      const mimeType = response.headers.get('content-type') || 'image/jpeg';
 
-      // Preserve ALL input fields in the result
       return {
-        // Original input fields (ALL preserved)
-        analysis_id: originalMessage.analysis_id,
-        timestamp: originalMessage.timestamp,
-        image_url: originalMessage.image,
-        user_id: originalMessage.user_id,
-        farmer_id: originalMessage.farmer_id,
-        sponsor_id: originalMessage.sponsor_id,
-        location: originalMessage.location,
-        gps_coordinates: this.parseGpsCoordinates(originalMessage.gps_coordinates),
-        altitude: originalMessage.altitude,
-        field_id: originalMessage.field_id,
-        crop_type: originalMessage.crop_type,
-        planting_date: originalMessage.planting_date,
-        expected_harvest_date: originalMessage.expected_harvest_date,
-        last_fertilization: originalMessage.last_fertilization,
-        last_irrigation: originalMessage.last_irrigation,
-        previous_treatments: originalMessage.previous_treatments,
-        weather_conditions: originalMessage.weather_conditions,
-        temperature: originalMessage.temperature,
-        humidity: originalMessage.humidity,
-        soil_type: originalMessage.soil_type,
-        urgency_level: originalMessage.urgency_level,
-        notes: originalMessage.notes,
-        contact_info: originalMessage.contact_info,
-        additional_info: originalMessage.additional_info,
-        image_metadata: originalMessage.image_metadata,
-        rabbitmq_metadata: originalMessage.rabbitmq_metadata,
-
-        // AI Analysis results
-        plant_identification: parsed.plant_identification || defaults.getDefaultPlantIdentification(),
-        nutrient_status: parsed.nutrient_status || defaults.getDefaultNutrientStatus(),
-        health_assessment: parsed.health_assessment || defaults.getDefaultHealthAssessment(),
-        pest_disease: parsed.pest_disease || defaults.getDefaultPestDisease(),
-        environmental_stress: parsed.environmental_stress || defaults.getDefaultEnvironmentalStress(),
-        recommendations: parsed.recommendations || defaults.getDefaultRecommendations(),
-        summary: parsed.summary || defaults.getDefaultSummary(),
-
-        // Processing metadata
-        processing_metadata: {
-          parse_success: true,
-          processing_timestamp: new Date().toISOString(),
-          processing_time_ms: 0, // Will be set by caller
-          ai_model: 'gemini-2.0-flash-exp',
-          workflow_version: '2.0-typescript-worker',
-          image_source: originalMessage.image.startsWith('http') ? 'url' : 'base64',
+        inlineData: {
+          mimeType,
+          data: base64,
         },
       };
     } catch (error: any) {
-      this.logger.error({ error: error.message, analysisText }, 'Failed to parse Gemini response');
-      return this.buildParseErrorResponse(originalMessage, analysisText);
+      this.logger.error({ imageUrl, error: error.message }, 'Failed to fetch image');
+      throw new Error(`Failed to fetch image: ${error.message}`);
     }
   }
 
   /**
    * Calculate token usage and cost - Gemini specific pricing
    */
-  private calculateTokenUsage(response: any, message: ProviderAnalysisMessage): any {
+  private calculateTokenUsage(response: any): TokenUsage {
     const usage = response.usageMetadata || {};
     const inputTokens = usage.promptTokenCount || 0;
     const outputTokens = usage.candidatesTokenCount || 0;
@@ -518,7 +413,7 @@ CRITICAL INSTRUCTIONS
     // Gemini Flash 2.0 pricing (December 2024)
     const pricing = {
       input_per_million: 0.075, // $0.075 per 1M input tokens
-      output_per_million: 0.3, // $0.30 per 1M output tokens
+      output_per_million: 0.3,   // $0.30 per 1M output tokens
     };
 
     // Calculate costs
@@ -526,44 +421,15 @@ CRITICAL INSTRUCTIONS
     const outputCostUsd = (outputTokens / 1_000_000) * pricing.output_per_million;
     const totalCostUsd = inputCostUsd + outputCostUsd;
 
-    const usdToTry = 50; // Exchange rate
+    const usdToTry = 35; // Exchange rate
     const totalCostTry = totalCostUsd * usdToTry;
 
-    // Estimate breakdown (Gemini doesn't provide detailed breakdown like OpenAI)
-    const estimatedSystemPromptTokens = 4000;
-    const estimatedContextTokens = 150;
-    const estimatedImageTokens = (message.image_metadata?.total_images || 1) * 765;
-    const estimatedImageUrlTokens = (message.image_metadata?.total_images || 1) * 85;
-
     return {
-      summary: {
-        model: 'gemini-2.0-flash-exp',
-        analysis_id: message.analysis_id,
-        timestamp: new Date().toISOString(),
-        total_tokens: totalTokens,
-        total_cost_usd: parseFloat(totalCostUsd.toFixed(6)),
-        total_cost_try: parseFloat(totalCostTry.toFixed(4)),
-        image_source: message.image.startsWith('http') ? 'url' : 'base64',
-      },
-      detailed: {
-        input_tokens: inputTokens,
-        output_tokens: outputTokens,
-        input_cost_usd: parseFloat(inputCostUsd.toFixed(6)),
-        output_cost_usd: parseFloat(outputCostUsd.toFixed(6)),
-      },
-      breakdown: {
-        system_prompt_tokens: estimatedSystemPromptTokens,
-        context_tokens: estimatedContextTokens,
-        image_tokens: estimatedImageTokens,
-        image_url_tokens: estimatedImageUrlTokens,
-        output_tokens: outputTokens,
-      },
-      pricing: {
-        input_per_million: pricing.input_per_million,
-        output_per_million: pricing.output_per_million,
-        currency: 'USD',
-        usd_to_try_rate: usdToTry,
-      },
+      total_tokens: totalTokens,
+      prompt_tokens: inputTokens,
+      completion_tokens: outputTokens,
+      cost_usd: parseFloat(totalCostUsd.toFixed(6)),
+      cost_try: parseFloat(totalCostTry.toFixed(4)),
     };
   }
 
@@ -571,81 +437,105 @@ CRITICAL INSTRUCTIONS
    * Build error response when analysis fails
    */
   private buildErrorResponse(
-    message: ProviderAnalysisMessage,
+    request: PlantAnalysisAsyncRequestDto,
     errorMessage: string,
-    processingTimeMs: number
-  ): AnalysisResultMessage {
+    processingTimeMs: number,
+    receivedAt: Date
+  ): PlantAnalysisAsyncResponseDto {
     return {
-      // Preserve all input fields
-      analysis_id: message.analysis_id,
-      timestamp: message.timestamp,
-      image_url: message.image,
-      user_id: message.user_id,
-      farmer_id: message.farmer_id,
-      sponsor_id: message.sponsor_id,
-      location: message.location,
-      gps_coordinates: this.parseGpsCoordinates(message.gps_coordinates),
-      altitude: message.altitude,
-      field_id: message.field_id,
-      crop_type: message.crop_type,
-      planting_date: message.planting_date,
-      expected_harvest_date: message.expected_harvest_date,
-      last_fertilization: message.last_fertilization,
-      last_irrigation: message.last_irrigation,
-      previous_treatments: message.previous_treatments,
-      weather_conditions: message.weather_conditions,
-      temperature: message.temperature,
-      humidity: message.humidity,
-      soil_type: message.soil_type,
-      urgency_level: message.urgency_level,
-      notes: message.notes,
-      contact_info: message.contact_info,
-      additional_info: message.additional_info,
-      image_metadata: message.image_metadata,
-      rabbitmq_metadata: message.rabbitmq_metadata,
-
-      // Default analysis values
+      // Analysis results (snake_case - defaults)
       plant_identification: defaults.getDefaultPlantIdentification(),
-      nutrient_status: defaults.getDefaultNutrientStatus(),
       health_assessment: defaults.getDefaultHealthAssessment(),
+      nutrient_status: defaults.getDefaultNutrientStatus(),
       pest_disease: defaults.getDefaultPestDisease(),
       environmental_stress: defaults.getDefaultEnvironmentalStress(),
+      cross_factor_insights: [],
       recommendations: defaults.getDefaultRecommendations(),
-      summary: {
-        overall_health_score: 0,
-        primary_concern: `Gemini API hatası: ${errorMessage}`,
-        secondary_concerns: ['Analiz başarısız oldu'],
-        critical_issues_count: 0,
-        confidence_level: 0,
-        prognosis: 'unknown' as const,
-        estimated_yield_impact: 'Bilinmiyor',
+      summary: defaults.getDefaultSummary(),
+
+      // Metadata (snake_case)
+      analysis_id: request.AnalysisId,
+      timestamp: new Date().toISOString(),
+      user_id: request.UserId,
+      farmer_id: request.FarmerId,
+      sponsor_id: request.SponsorId,
+
+      // CRITICAL: PascalCase
+      SponsorUserId: request.SponsorUserId,
+      SponsorshipCodeId: request.SponsorshipCodeId,
+
+      location: request.Location,
+      gps_coordinates: request.GpsCoordinates,
+      altitude: request.Altitude,
+      field_id: request.FieldId,
+      crop_type: request.CropType,
+      planting_date: request.PlantingDate,
+      expected_harvest_date: request.ExpectedHarvestDate,
+      last_fertilization: request.LastFertilization,
+      last_irrigation: request.LastIrrigation,
+      previous_treatments: request.PreviousTreatments,
+      weather_conditions: request.WeatherConditions,
+      temperature: request.Temperature,
+      humidity: request.Humidity,
+      soil_type: request.SoilType,
+      urgency_level: request.UrgencyLevel,
+      notes: request.Notes,
+      contact_info: request.ContactInfo,
+      additional_info: request.AdditionalInfo,
+
+      image_url: request.ImageUrl,
+      image_path: request.ImageUrl,
+
+      // Processing metadata (ALL PascalCase)
+      processing_metadata: {
+        ParseSuccess: false,
+        ProcessingTimestamp: new Date().toISOString(),
+        AiModel: this.modelName,
+        WorkflowVersion: '2.0.0',
+        ReceivedAt: receivedAt.toISOString(),
+        ProcessingTimeMs: processingTimeMs,
+        RetryCount: 0,
       },
 
-      processing_metadata: {
-        parse_success: false,
-        processing_timestamp: new Date().toISOString(),
-        processing_time_ms: processingTimeMs,
-        ai_model: 'gemini-2.0-flash-exp',
-        workflow_version: '2.0-typescript-worker',
-        image_source: message.image.startsWith('http') ? 'url' : 'base64',
-        error_details: errorMessage,
+      // Image metadata (ALL PascalCase)
+      image_metadata: {
+        URL: request.ImageUrl,
+        Format: 'JPEG',
       },
+
+      // Token usage (zero values for error)
+      token_usage: {
+        total_tokens: 0,
+        prompt_tokens: 0,
+        completion_tokens: 0,
+        cost_usd: 0,
+        cost_try: 0,
+      },
+
+      // Status flags
+      success: false,
+      error: true,
+      error_message: `Gemini API error: ${errorMessage}`,
+      error_type: 'gemini_api_error',
     };
   }
 
   /**
-   * Build response when JSON parsing fails
+   * Health check
    */
-  private buildParseErrorResponse(
-    message: ProviderAnalysisMessage,
-    analysisText: string
-  ): AnalysisResultMessage {
-    return this.buildErrorResponse(
-      message,
-      `Failed to parse Gemini response as JSON. Response length: ${analysisText.length}`,
-      0
-    );
+  async healthCheck(): Promise<boolean> {
+    try {
+      // Simple generation test
+      const result = await this.model.generateContent({
+        contents: [{ role: 'user', parts: [{ text: 'Hello' }] }],
+        generationConfig: {
+          maxOutputTokens: 10,
+        },
+      });
+      return !!result.response;
+    } catch (error: any) {
+      this.logger.error({ error: error.message }, 'Gemini health check failed');
+      return false;
+    }
   }
-
-
 }
