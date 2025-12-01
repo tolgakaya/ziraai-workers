@@ -48,28 +48,50 @@ export class OpenAIProvider {
       // Build image content array
       const imageContent = this.buildImageContent(request);
 
-      // Call OpenAI API
-      // CRITICAL: For vision models, ALL content (text + images) must be in SINGLE user message
-      // System role doesn't support image_url content parts
-      // Using GPT-5 mini (2025-08-07) - faster, cost-efficient vision model
-      const response = await this.client.chat.completions.create({
+      // Call OpenAI NEW Responses API (NOT chat/completions)
+      // CRITICAL: GPT-5 mini requires /v1/responses endpoint with input_text/input_image types
+      // Different from old chat/completions API
+      const requestBody = {
         model: this.config.model || 'gpt-5-mini-2025-08-07',
-        messages: [
+        input: [
           {
             role: 'user',
             content: [
               {
-                type: 'text',
+                type: 'input_text',
                 text: systemPrompt,
               },
-              ...imageContent.filter((item: any) => item.type === 'image_url'),  // Only include image_url items
+              ...imageContent.map((item: any) => ({
+                type: 'input_image',
+                image_url: item.image_url.url,
+              })),
             ],
           },
         ],
-        max_completion_tokens: 2000,
+      };
+
+      this.logger.debug({
+        analysisId: request.AnalysisId,
+        endpoint: '/v1/responses',
+        model: requestBody.model,
+      }, 'Calling OpenAI Responses API');
+
+      const apiResponse = await fetch('https://api.openai.com/v1/responses', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${this.config.apiKey}`,
+        },
+        body: JSON.stringify(requestBody),
       });
 
-      const analysisText = response.choices[0]?.message?.content || '';
+      if (!apiResponse.ok) {
+        const errorText = await apiResponse.text();
+        throw new Error(`OpenAI API error (${apiResponse.status}): ${errorText}`);
+      }
+
+      const response: any = await apiResponse.json();
+      const analysisText = response.output?.[0]?.content?.[0]?.text || '';
       const processingTimeMs = Date.now() - startTime;
 
       // Validate response content
@@ -492,14 +514,14 @@ Return ONLY a valid JSON object with this EXACT structure (no additional text):
    */
   private calculateTokenUsage(response: any): TokenUsage {
     const usage = response.usage || {};
-    const inputTokens = usage.prompt_tokens || 0;
-    const outputTokens = usage.completion_tokens || 0;
+    const inputTokens = usage.input_tokens || usage.prompt_tokens || 0;
+    const outputTokens = usage.output_tokens || usage.completion_tokens || 0;
     const totalTokens = usage.total_tokens || inputTokens + outputTokens;
 
-    // gpt-4o-mini pricing
+    // GPT-5 mini pricing (from OpenAI docs)
     const pricing = {
-      input_per_million: 0.150,   // $0.150/M input tokens
-      output_per_million: 0.600,  // $0.600/M output tokens
+      input_per_million: 0.25,   // $0.25/M input tokens
+      output_per_million: 2.00,  // $2.00/M output tokens
     };
 
     const inputCostUsd = (inputTokens / 1_000_000) * pricing.input_per_million;
