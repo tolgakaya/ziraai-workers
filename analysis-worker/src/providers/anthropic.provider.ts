@@ -15,6 +15,7 @@ import * as defaults from './defaults';
 
 export class AnthropicProvider {
   private client: Anthropic;
+  private modelName: string;
   private logger: pino.Logger;
 
   /**
@@ -45,8 +46,9 @@ export class AnthropicProvider {
     return undefined;
   }
 
-  constructor(apiKey: string, logger: pino.Logger) {
+  constructor(apiKey: string, logger: pino.Logger, model?: string) {
     this.client = new Anthropic({ apiKey });
+    this.modelName = model || 'claude-3-5-sonnet-20241022';
     this.logger = logger;
   }
 
@@ -63,11 +65,11 @@ export class AnthropicProvider {
       this.logger.debug({
         analysisId: message.analysis_id,
         imageCount: imageContent.length,
-        model: 'claude-3-5-sonnet-20241022',
+        model: this.modelName,
       }, 'Calling Anthropic API');
 
       const response = await this.client.messages.create({
-        model: 'claude-3-5-sonnet-20241022',
+        model: this.modelName,
         max_tokens: 2000,
         temperature: 0.7,
         system: systemPrompt,
@@ -97,7 +99,7 @@ export class AnthropicProvider {
           parse_success: true,
           processing_timestamp: new Date().toISOString(),
           processing_time_ms: processingTimeMs,
-          ai_model: 'claude-3-5-sonnet-20241022',
+          ai_model: this.modelName,
           workflow_version: '2.0-typescript-worker',
           image_source: message.image.startsWith('http') ? 'url' : 'base64',
         },

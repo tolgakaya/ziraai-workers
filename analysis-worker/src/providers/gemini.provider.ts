@@ -16,6 +16,7 @@ import * as defaults from './defaults';
 export class GeminiProvider {
   private client: GoogleGenerativeAI;
   private model: GenerativeModel;
+  private modelName: string;
   private logger: pino.Logger;
 
   /**
@@ -46,9 +47,10 @@ export class GeminiProvider {
     return undefined;
   }
 
-  constructor(apiKey: string, logger: pino.Logger) {
+  constructor(apiKey: string, logger: pino.Logger, model?: string) {
     this.client = new GoogleGenerativeAI(apiKey);
-    this.model = this.client.getGenerativeModel({ model: 'gemini-2.0-flash-exp' });
+    this.modelName = model || 'gemini-2.0-flash-exp';
+    this.model = this.client.getGenerativeModel({ model: this.modelName });
     this.logger = logger;
   }
 
@@ -71,7 +73,7 @@ export class GeminiProvider {
       this.logger.debug({
         analysisId: message.analysis_id,
         imageCount: imageParts.length,
-        model: 'gemini-2.0-flash-exp',
+        model: this.modelName,
       }, 'Calling Gemini API');
 
       const result = await this.model.generateContent({
@@ -102,7 +104,7 @@ export class GeminiProvider {
           parse_success: true,
           processing_timestamp: new Date().toISOString(),
           processing_time_ms: processingTimeMs,
-          ai_model: 'gemini-2.0-flash-exp',
+          ai_model: this.modelName,
           workflow_version: '2.0-typescript-worker',
           image_source: message.image.startsWith('http') ? 'url' : 'base64',
         },

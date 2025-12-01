@@ -22,12 +22,14 @@ export interface ProviderConfig {
 export interface RabbitMQConfig {
   url: string;
   queues: {
-    raw: string; // raw-analysis-queue
-    openai: string; // openai-analysis-queue
-    gemini: string; // gemini-analysis-queue
-    anthropic: string; // anthropic-analysis-queue
+    raw: string; // raw-analysis-queue (for future dispatcher)
+    openai: string; // openai-analysis-queue (provider-specific)
+    gemini: string; // gemini-analysis-queue (provider-specific)
+    anthropic: string; // anthropic-analysis-queue (provider-specific)
     results: string; // analysis-results-queue
     dlq: string; // analysis-dlq (dead letter queue)
+    // Legacy WebAPI compatibility
+    plantAnalysisRequest: string; // plant-analysis-requests (current WebAPI queue)
   };
   prefetchCount: number; // concurrent message processing
   reconnectDelay: number; // milliseconds
@@ -127,7 +129,9 @@ export interface EnvironmentVariables {
   ANTHROPIC_API_KEY?: string;
 
   // Provider configuration
-  PROVIDER_MODEL: string;
+  PROVIDER_MODEL: string; // DEPRECATED: Now using provider-specific model variables
+  GEMINI_MODEL?: string; // Model name for Gemini provider (e.g., 'gemini-2.0-flash-exp')
+  ANTHROPIC_MODEL?: string; // Model name for Anthropic provider (e.g., 'claude-3-5-sonnet-20241022')
   RATE_LIMIT: string; // requests per minute
   TIMEOUT: string; // milliseconds
 

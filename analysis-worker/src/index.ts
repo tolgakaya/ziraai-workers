@@ -99,14 +99,16 @@ class AnalysisWorker {
 
     // Gemini provider (optional)
     if (process.env.GEMINI_API_KEY) {
-      providers.set('gemini', new GeminiProvider(process.env.GEMINI_API_KEY, this.logger));
-      this.logger.info('Gemini provider initialized');
+      const geminiModel = process.env.GEMINI_MODEL || 'gemini-2.0-flash-exp';
+      providers.set('gemini', new GeminiProvider(process.env.GEMINI_API_KEY, this.logger, geminiModel));
+      this.logger.info({ model: geminiModel }, 'Gemini provider initialized');
     }
 
     // Anthropic provider (optional)
     if (process.env.ANTHROPIC_API_KEY) {
-      providers.set('anthropic', new AnthropicProvider(process.env.ANTHROPIC_API_KEY, this.logger));
-      this.logger.info('Anthropic provider initialized');
+      const anthropicModel = process.env.ANTHROPIC_MODEL || 'claude-3-5-sonnet-20241022';
+      providers.set('anthropic', new AnthropicProvider(process.env.ANTHROPIC_API_KEY, this.logger, anthropicModel));
+      this.logger.info({ model: anthropicModel }, 'Anthropic provider initialized');
     }
 
     if (providers.size === 0) {
@@ -145,8 +147,10 @@ class AnalysisWorker {
         openai: 'openai-analysis-queue',
         gemini: 'gemini-analysis-queue',
         anthropic: 'anthropic-analysis-queue',
-        results: env.RESULT_QUEUE || 'analysis-results-queue',
+        results: env.RESULT_QUEUE || 'plant-analysis-results',
         dlq: env.DLQ_QUEUE || 'analysis-dlq',
+        // WebAPI compatibility: Use existing WebAPI queue name
+        plantAnalysisRequest: 'plant-analysis-requests',
       },
       prefetchCount: parseInt(env.PREFETCH_COUNT || '10'),
       reconnectDelay: 5000,
@@ -228,36 +232,29 @@ class AnalysisWorker {
       // Connect to RabbitMQ
       await this.rabbitmq.connect();
 
-      // Start consuming from ALL provider-specific queues
-      const queuesToConsume: string[] = [];
-      
-      if (this.providers.has('openai')) {
-        queuesToConsume.push(this.config.rabbitmq.queues.openai);
-      }
-      if (this.providers.has('gemini')) {
-        queuesToConsume.push(this.config.rabbitmq.queues.gemini);
-      }
-      if (this.providers.has('anthropic')) {
-        queuesToConsume.push(this.config.rabbitmq.queues.anthropic);
-      }
+      // PHASE 1: Consume from WebAPI's existing queue (plant-analysis-requests)
+      // Phase 2 will add dispatcher to route to provider-specific queues
+      const queueName = this.config.rabbitmq.queues.plantAnalysisRequest;
 
-      // Start consuming from each queue
-      for (const queueName of queuesToConsume) {
-        await this.rabbitmq.consumeProviderQueue(queueName, async (message) => {
-          await this.processMessage(message);
-        });
+      await this.rabbitmq.consumeProviderQueue(queueName, async (message) => {
+        await this.processMessage(message);
+      });
 
-        this.logger.info({ queueName }, 'Started consuming from queue');
-      }
+      this.logger.info({
+        queueName,
+        availableProviders: availableProviders,
+        selectionStrategy: this.config.providerSelection.strategy,
+      }, 'Started consuming from WebAPI queue')
 
       // Start health check interval
       this.startHealthCheck();
 
       this.logger.info({
         workerId: this.config.workerId,
-        queues: queuesToConsume,
+        queue: queueName,
         providerCount: availableProviders.length,
-      }, 'Worker started successfully and consuming from all provider queues');
+        availableProviders: availableProviders,
+      }, 'Worker started successfully and consuming from queue');
     } catch (error) {
       this.logger.fatal({ error }, 'Failed to start worker');
       process.exit(1);

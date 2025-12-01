@@ -28,6 +28,13 @@ OPENAI_API_KEY=sk-proj-...      # Alternative
 ANTHROPIC_API_KEY=sk-ant-...    # Alternative
 ```
 
+**Optional Model Configuration** (uses defaults if not specified):
+```bash
+GEMINI_MODEL=gemini-2.0-flash-exp              # Default Gemini model
+ANTHROPIC_MODEL=claude-3-5-sonnet-20241022     # Default Anthropic model
+PROVIDER_MODEL=gpt-4o-mini                     # Default OpenAI model (legacy)
+```
+
 ---
 
 ## 🔧 Complete Variable List
@@ -108,7 +115,7 @@ OPENAI_API_KEY=sk-proj-abcd1234efgh5678ijkl9012mnop3456qrst7890uvwx1234yz
 GEMINI_API_KEY=AIzaSyABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890
 ```
 
-**Model Used**: `gemini-2.0-flash-exp` (hardcoded in gemini.provider.ts)
+**Model Used**: `gemini-2.0-flash-exp` (configurable via GEMINI_MODEL)
 **Default Cost**: $1.087 per 1M tokens (configurable via PROVIDER_METADATA)
 **Default Quality**: 7/10 (configurable via PROVIDER_METADATA)
 
@@ -125,7 +132,7 @@ GEMINI_API_KEY=AIzaSyABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890
 ANTHROPIC_API_KEY=sk-ant-api03-abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnop
 ```
 
-**Model Used**: `claude-3-5-sonnet-20241022` (hardcoded in anthropic.provider.ts)
+**Model Used**: `claude-3-5-sonnet-20241022` (configurable via ANTHROPIC_MODEL)
 **Default Cost**: $48.0 per 1M tokens (configurable via PROVIDER_METADATA)
 **Default Quality**: 10/10 (configurable via PROVIDER_METADATA)
 
@@ -341,15 +348,17 @@ RABBITMQ_URL=amqps://admin:secretpass@rabbitmq.example.com:5671/production
 #### `RESULT_QUEUE` (Required)
 **Purpose**: Queue name for publishing completed analysis results
 **Format**: String (queue name)
-**Default**: None (must be set)
-**Recommended**: `analysis-results-queue`
+**Default**: `plant-analysis-results` (WebAPI compatible)
+**Recommended**: Use existing WebAPI queue name for compatibility
 
 **Examples**:
 ```bash
-RESULT_QUEUE=analysis-results-queue           # Standard
+RESULT_QUEUE=plant-analysis-results           # WebAPI compatible (recommended)
+RESULT_QUEUE=analysis-results-queue           # Alternative
 RESULT_QUEUE=analysis-results-staging         # Environment-specific
-RESULT_QUEUE=plant-analysis-results-v2        # Versioned
 ```
+
+**Important**: Worker defaults to `plant-analysis-results` to match existing WebAPI configuration.
 
 ---
 
@@ -471,29 +480,59 @@ REDIS_TTL=600     # 10 minutes - very permissive
 
 ### 6. Provider-Specific Settings
 
-#### `PROVIDER_MODEL` (Optional)
-**Purpose**: Override default model for OpenAI provider
+#### `PROVIDER_MODEL` (Optional - DEPRECATED)
+**Purpose**: Override default model for OpenAI provider (legacy variable)
 **Format**: String (any valid OpenAI model name)
 **Default**: `gpt-4o-mini`
-**Applies To**: OpenAI only (Gemini and Anthropic use hardcoded models)
+**Status**: Still supported for backward compatibility, but prefer provider-specific variables
+
+**Important**: This variable is DEPRECATED. Use provider-specific model variables instead:
+- Use `GEMINI_MODEL` for Gemini
+- Use `ANTHROPIC_MODEL` for Anthropic
+- OpenAI still uses this variable (for now)
+
+---
+
+#### `GEMINI_MODEL` (Optional)
+**Purpose**: Specify which Gemini model to use
+**Format**: String (any valid Gemini model name)
+**Default**: `gemini-2.0-flash-exp`
 
 **Examples**:
 ```bash
-PROVIDER_MODEL=gpt-4o-mini              # Default - recommended for cost/performance balance
-PROVIDER_MODEL=gpt-4o                   # More capable, higher cost
-PROVIDER_MODEL=gpt-4-turbo              # Previous generation flagship
-PROVIDER_MODEL=gpt-3.5-turbo            # Budget option
-PROVIDER_MODEL=o1-preview               # Reasoning model (highest capability)
-PROVIDER_MODEL=o1-mini                  # Reasoning model (cost-effective)
+GEMINI_MODEL=gemini-2.0-flash-exp       # Default - latest flash model (recommended)
+GEMINI_MODEL=gemini-1.5-pro             # Pro model - higher quality
+GEMINI_MODEL=gemini-1.5-flash           # Previous flash generation
+GEMINI_MODEL=gemini-1.0-pro             # Legacy pro model
 ```
 
 **Important**:
-- You can use **any valid OpenAI model name** - no restrictions in code
-- Model name is passed directly to OpenAI API without validation
-- Verify model availability and pricing at https://platform.openai.com/docs/models
+- You can use **any valid Gemini model name** - no restrictions in code
+- Model name is passed directly to Gemini API without validation
+- Verify model availability at https://ai.google.dev/models/gemini
 - Invalid model names will cause API errors (check Railway logs)
 
-**Note**: Gemini uses `gemini-2.0-flash-exp`, Anthropic uses `claude-3-5-sonnet-20241022` (hardcoded in provider files)
+---
+
+#### `ANTHROPIC_MODEL` (Optional)
+**Purpose**: Specify which Anthropic Claude model to use
+**Format**: String (any valid Anthropic model name)
+**Default**: `claude-3-5-sonnet-20241022`
+
+**Examples**:
+```bash
+ANTHROPIC_MODEL=claude-3-5-sonnet-20241022    # Default - latest Sonnet (recommended)
+ANTHROPIC_MODEL=claude-3-5-sonnet-20240620    # Previous Sonnet version
+ANTHROPIC_MODEL=claude-3-opus-20240229        # Opus - highest intelligence
+ANTHROPIC_MODEL=claude-3-haiku-20240307       # Haiku - fastest/cheapest
+ANTHROPIC_MODEL=claude-3-sonnet-20240229      # Previous generation Sonnet
+```
+
+**Important**:
+- You can use **any valid Anthropic model name** - no restrictions in code
+- Model name is passed directly to Anthropic API without validation
+- Verify model availability at https://docs.anthropic.com/claude/docs/models-overview
+- Invalid model names will cause API errors (check Railway logs)
 
 ---
 
@@ -677,9 +716,14 @@ ANTHROPIC_API_KEY=sk-ant-...
 # Strategy
 PROVIDER_SELECTION_STRATEGY=COST_OPTIMIZED
 
+# Model Configuration (optional - uses defaults if not specified)
+GEMINI_MODEL=gemini-2.0-flash-exp
+ANTHROPIC_MODEL=claude-3-5-sonnet-20241022
+PROVIDER_MODEL=gpt-4o-mini
+
 # RabbitMQ
 RABBITMQ_URL=${{RabbitMQ.CLOUDAMQP_URL}}
-RESULT_QUEUE=analysis-results-queue
+RESULT_QUEUE=plant-analysis-results
 DLQ_QUEUE=analysis-dlq
 PREFETCH_COUNT=10
 
@@ -718,9 +762,14 @@ ANTHROPIC_API_KEY=sk-ant-...
 # Strategy
 PROVIDER_SELECTION_STRATEGY=QUALITY_FIRST
 
+# Model Configuration (optional - customize for quality)
+GEMINI_MODEL=gemini-1.5-pro                    # Pro model for higher quality
+ANTHROPIC_MODEL=claude-3-opus-20240229         # Opus for maximum intelligence
+PROVIDER_MODEL=gpt-4o                          # GPT-4o for better results
+
 # RabbitMQ
 RABBITMQ_URL=${{RabbitMQ.CLOUDAMQP_URL}}
-RESULT_QUEUE=analysis-results-queue
+RESULT_QUEUE=plant-analysis-results
 DLQ_QUEUE=analysis-dlq
 PREFETCH_COUNT=10
 
@@ -760,9 +809,14 @@ ANTHROPIC_API_KEY=sk-ant-...
 PROVIDER_SELECTION_STRATEGY=WEIGHTED
 PROVIDER_WEIGHTS=[{"provider":"gemini","weight":70},{"provider":"openai","weight":20},{"provider":"anthropic","weight":10}]
 
+# Model Configuration (optional)
+GEMINI_MODEL=gemini-2.0-flash-exp
+ANTHROPIC_MODEL=claude-3-5-sonnet-20241022
+PROVIDER_MODEL=gpt-4o-mini
+
 # RabbitMQ
 RABBITMQ_URL=${{RabbitMQ.CLOUDAMQP_URL}}
-RESULT_QUEUE=analysis-results-queue
+RESULT_QUEUE=plant-analysis-results
 DLQ_QUEUE=analysis-dlq
 PREFETCH_COUNT=10
 
