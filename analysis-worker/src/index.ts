@@ -149,8 +149,9 @@ class AnalysisWorker {
         anthropic: 'anthropic-analysis-queue',
         results: env.RESULT_QUEUE || 'plant-analysis-results',
         dlq: env.DLQ_QUEUE || 'analysis-dlq',
-        // WebAPI compatibility: Use existing WebAPI queue name
+        // WebAPI compatibility: Use existing WebAPI queue names
         plantAnalysisRequest: 'plant-analysis-requests',
+        plantAnalysisMultiImageRequest: env.MULTI_IMAGE_QUEUE || 'plant-analysis-multi-image-requests',
       },
       prefetchCount: parseInt(env.PREFETCH_COUNT || '10'),
       reconnectDelay: 5000,
@@ -232,29 +233,37 @@ class AnalysisWorker {
       // Connect to RabbitMQ
       await this.rabbitmq.connect();
 
-      // PHASE 1: Consume from WebAPI's existing queue (plant-analysis-requests)
+      // PHASE 1: Consume from WebAPI's existing queues (single + multi-image)
       // Phase 2 will add dispatcher to route to provider-specific queues
-      const queueName = this.config.rabbitmq.queues.plantAnalysisRequest;
+      const singleImageQueue = this.config.rabbitmq.queues.plantAnalysisRequest;
+      const multiImageQueue = this.config.rabbitmq.queues.plantAnalysisMultiImageRequest;
 
-      await this.rabbitmq.consumeQueue(queueName, async (message) => {
+      // Consume single image queue
+      await this.rabbitmq.consumeQueue(singleImageQueue, async (message) => {
+        await this.processMessage(message);
+      });
+
+      // Consume multi-image queue (same processing logic)
+      await this.rabbitmq.consumeQueue(multiImageQueue, async (message) => {
         await this.processMessage(message);
       });
 
       this.logger.info({
-        queueName,
+        singleImageQueue,
+        multiImageQueue,
         availableProviders: availableProviders,
         selectionStrategy: this.config.providerSelection.strategy,
-      }, 'Started consuming from WebAPI queue')
+      }, 'Started consuming from WebAPI queues (single + multi-image)')
 
       // Start health check interval
       this.startHealthCheck();
 
       this.logger.info({
         workerId: this.config.workerId,
-        queue: queueName,
+        queues: [singleImageQueue, multiImageQueue],
         providerCount: availableProviders.length,
         availableProviders: availableProviders,
-      }, 'Worker started successfully and consuming from queue');
+      }, 'Worker started successfully and consuming from queues');
     } catch (error) {
       this.logger.fatal({ error }, 'Failed to start worker');
       process.exit(1);

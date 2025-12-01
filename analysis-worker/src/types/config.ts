@@ -30,6 +30,7 @@ export interface RabbitMQConfig {
     dlq: string; // analysis-dlq (dead letter queue)
     // Legacy WebAPI compatibility
     plantAnalysisRequest: string; // plant-analysis-requests (current WebAPI queue)
+    plantAnalysisMultiImageRequest: string; // plant-analysis-multi-image-requests (WebAPI multi-image queue)
   };
   prefetchCount: number; // concurrent message processing
   reconnectDelay: number; // milliseconds
@@ -146,6 +147,7 @@ export interface EnvironmentVariables {
   // RabbitMQ
   RABBITMQ_URL: string;
   QUEUE_NAME?: string; // DEPRECATED: Now auto-consuming all provider queues
+  MULTI_IMAGE_QUEUE?: string; // plant-analysis-multi-image-requests (WebAPI multi-image queue)
   RESULT_QUEUE: string;
   DLQ_QUEUE: string;
   PREFETCH_COUNT: string;

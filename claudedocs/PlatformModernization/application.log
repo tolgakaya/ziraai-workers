@@ -1,157 +1,140 @@
-2025-12-01T15:02:13.000000000Z [inf]  Starting Container
-2025-12-01T15:02:16.656432425Z [inf]  [2025-12-01 15:02:13.732 +0000] [32mINFO[39m: [36mProvider API keys validated[39m
-2025-12-01T15:02:16.656438176Z [inf]      providers: [
-2025-12-01T15:02:16.656443330Z [inf]        "OpenAI"
-2025-12-01T15:02:16.656451198Z [inf]      ]
-2025-12-01T15:02:16.656460157Z [inf]  [2025-12-01 15:02:13.737 +0000] [32mINFO[39m: [36mOpenAI provider initialized[39m
-2025-12-01T15:02:16.656465357Z [inf]  [2025-12-01 15:02:13.737 +0000] [32mINFO[39m: [36mAI providers initialized[39m
-2025-12-01T15:02:16.656470802Z [inf]      providers: [
-2025-12-01T15:02:16.656475793Z [inf]        "openai"
-2025-12-01T15:02:16.656482329Z [inf]      ]
-2025-12-01T15:02:16.656489167Z [inf]  [2025-12-01 15:02:13.737 +0000] [32mINFO[39m: [36mProvider selector initialized[39m
-2025-12-01T15:02:16.656493776Z [inf]      strategy: "FIXED"
-2025-12-01T15:02:16.656502498Z [inf]      availableProviders: [
-2025-12-01T15:02:16.656510036Z [inf]        "openai"
-2025-12-01T15:02:16.656515453Z [inf]      ]
-2025-12-01T15:02:16.656522609Z [inf]      fixedProvider: "openai"
-2025-12-01T15:02:16.656527268Z [inf]  [2025-12-01 15:02:13.748 +0000] [32mINFO[39m: [36mStarting multi-provider analysis worker[39m
-2025-12-01T15:02:16.656533330Z [inf]      workerId: "worker-staging-1"
-2025-12-01T15:02:16.656541267Z [inf]      availableProviders: [
-2025-12-01T15:02:16.656550630Z [inf]        "openai"
-2025-12-01T15:02:16.656555720Z [inf]      ]
-2025-12-01T15:02:16.656562743Z [inf]      selectionStrategy: "FIXED"
-2025-12-01T15:02:16.656567620Z [inf]      concurrency: 60
-2025-12-01T15:02:16.656577167Z [inf]  [2025-12-01 15:02:13.749 +0000] [32mINFO[39m: [36mConnecting to RabbitMQ[39m
-2025-12-01T15:02:16.656586431Z [inf]      url: "amqp://DIjL9Z7aGtLIG5z6:***@rabbitmq.railway.internal:5672"
-2025-12-01T15:02:16.656591331Z [inf]  [2025-12-01 15:02:13.967 +0000] [32mINFO[39m: [36mRedis connected successfully[39m
-2025-12-01T15:02:17.873209965Z [inf]      selectionStrategy: "FIXED"
-2025-12-01T15:02:17.873220182Z [inf]  [2025-12-01 15:02:14.080 +0000] [32mINFO[39m: [36mWorker started successfully and consuming from queue[39m
-2025-12-01T15:02:17.873226318Z [inf]      workerId: "worker-staging-1"
-2025-12-01T15:02:17.873231259Z [inf]      queue: "plant-analysis-requests"
-2025-12-01T15:02:17.873246731Z [inf]  [2025-12-01 15:02:14.076 +0000] [32mINFO[39m: [36mRabbitMQ connected successfully[39m
-2025-12-01T15:02:17.873250303Z [inf]      availableProviders: [
-2025-12-01T15:02:17.873258123Z [inf]        "openai"
-2025-12-01T15:02:17.873267252Z [inf]      providerCount: 1
-2025-12-01T15:02:17.873273101Z [inf]      queueName: "plant-analysis-requests"
-2025-12-01T15:02:17.873276691Z [inf]  [2025-12-01 15:02:14.076 +0000] [32mINFO[39m: [36mStarting consumer[39m
-2025-12-01T15:02:17.873281609Z [inf]      availableProviders: [
-2025-12-01T15:02:17.873283606Z [inf]      ]
-2025-12-01T15:02:17.873285743Z [inf]  [2025-12-01 15:02:14.080 +0000] [32mINFO[39m: [36mStarted consuming from WebAPI queue[39m
-2025-12-01T15:02:17.873298519Z [inf]      queueName: "plant-analysis-requests"
-2025-12-01T15:02:17.873299965Z [inf]        "openai"
-2025-12-01T15:02:17.873300049Z [inf]      ]
-2025-12-01T15:02:47.822631248Z [inf]  [2025-12-01 15:02:45.014 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-01T15:02:47.822638603Z [inf]      workerId: "worker-staging-1"
-2025-12-01T15:02:47.822645734Z [inf]      provider: "healthy"
-2025-12-01T15:02:47.822651838Z [inf]      rabbitmq: "healthy"
-2025-12-01T15:02:47.822659065Z [inf]      redis: "healthy"
-2025-12-01T15:02:47.822666072Z [inf]      overall: "healthy"
-2025-12-01T15:02:47.822671986Z [inf]      processedCount: 0
-2025-12-01T15:02:47.822678848Z [inf]      errorCount: 0
-2025-12-01T15:02:47.822685124Z [inf]      errorRate: "0%"
-2025-12-01T15:03:17.633249142Z [inf]      processedCount: 0
-2025-12-01T15:03:17.633259035Z [inf]      errorCount: 0
-2025-12-01T15:03:17.633265823Z [inf]      errorRate: "0%"
-2025-12-01T15:03:17.634803313Z [inf]  [2025-12-01 15:03:14.869 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-01T15:03:17.634808860Z [inf]      workerId: "worker-staging-1"
-2025-12-01T15:03:17.634814767Z [inf]      provider: "healthy"
-2025-12-01T15:03:17.634820925Z [inf]      rabbitmq: "healthy"
-2025-12-01T15:03:17.634826528Z [inf]      redis: "healthy"
-2025-12-01T15:03:17.634833559Z [inf]      overall: "healthy"
-2025-12-01T15:03:37.137168532Z [inf]      farmerId: "F190"
-2025-12-01T15:03:37.137223385Z [inf]      imageUrl: "https://1lik.net/plant-images/20251201_150331_096_2d415aa1981e4842ada034edbf94e813_async_async_analysis_20251201_150331_c687fa2d_20251201_150331.jpg"
-2025-12-01T15:03:37.137239049Z [inf]      imageUrl: "https://1lik.net/plant-images/20251201_150331_096_2d415aa1981e4842ada034edbf94e813_async_async_analysis_20251201_150331_c687fa2d_20251201_150331.jpg"
-2025-12-01T15:03:37.137247681Z [inf]  [2025-12-01 15:03:31.285 +0000] [32mINFO[39m: [36mStarting OpenAI analysis[39m
-2025-12-01T15:03:37.137279170Z [inf]      analysisId: "async_analysis_20251201_150331_c687fa2d"
-2025-12-01T15:03:37.137290718Z [inf]      farmerId: "F190"
-2025-12-01T15:03:37.137312315Z [inf]      cropType: null
-2025-12-01T15:03:37.137316131Z [inf]  [2025-12-01 15:03:31.280 +0000] [32mINFO[39m: [36mProcessing analysis message[39m
-2025-12-01T15:03:37.137329413Z [inf]      analysisId: "async_analysis_20251201_150331_c687fa2d"
-2025-12-01T15:03:45.462717616Z [inf]      rabbitmq: "healthy"
-2025-12-01T15:03:45.462728392Z [inf]      redis: "healthy"
-2025-12-01T15:03:45.462742333Z [inf]      processedCount: 0
-2025-12-01T15:03:45.462747573Z [inf]      overall: "healthy"
-2025-12-01T15:03:45.462753319Z [inf]      errorCount: 0
-2025-12-01T15:03:45.462761375Z [inf]      errorRate: "0%"
-2025-12-01T15:03:45.462771214Z [inf]  [2025-12-01 15:03:44.974 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-01T15:03:45.462779741Z [inf]      workerId: "worker-staging-1"
-2025-12-01T15:03:45.462787750Z [inf]      provider: "healthy"
-2025-12-01T15:04:15.854076181Z [inf]  [2025-12-01 15:04:14.839 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-01T15:04:15.854082397Z [inf]      workerId: "worker-staging-1"
-2025-12-01T15:04:15.854088212Z [inf]      provider: "healthy"
-2025-12-01T15:04:15.854093852Z [inf]      rabbitmq: "healthy"
-2025-12-01T15:04:15.854099547Z [inf]      redis: "healthy"
-2025-12-01T15:04:15.854105715Z [inf]      overall: "healthy"
-2025-12-01T15:04:15.854113565Z [inf]      processedCount: 0
-2025-12-01T15:04:15.854120157Z [inf]      errorCount: 0
-2025-12-01T15:04:15.854126347Z [inf]      errorRate: "0%"
-2025-12-01T15:04:35.451380975Z [inf]      error: "OpenAI returned empty response"
-2025-12-01T15:04:35.451381297Z [inf]  [2025-12-01 15:04:30.871 +0000] [31mERROR[39m: [36mOpenAI analysis failed[39m
-2025-12-01T15:04:35.451391785Z [inf]      analysisId: "async_analysis_20251201_150331_c687fa2d"
-2025-12-01T15:04:35.451391907Z [inf]  [2025-12-01 15:04:30.873 +0000] [32mINFO[39m: [36mAnalysis completed and result published[39m
-2025-12-01T15:04:35.451401373Z [inf]      processingTimeMs: 59593
-2025-12-01T15:04:35.451401627Z [inf]      processingTimeMs: 59586
-2025-12-01T15:04:35.451402000Z [inf]      analysisId: "async_analysis_20251201_150331_c687fa2d"
-2025-12-01T15:04:54.910241226Z [inf]      processedCount: 1
-2025-12-01T15:04:54.910255699Z [inf]      errorCount: 0
-2025-12-01T15:04:54.910264664Z [inf]      errorRate: "0.00%"
-2025-12-01T15:04:54.910714836Z [inf]  [2025-12-01 15:04:44.531 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-01T15:04:54.910722501Z [inf]      workerId: "worker-staging-1"
-2025-12-01T15:04:54.910730184Z [inf]      provider: "healthy"
-2025-12-01T15:04:54.910737258Z [inf]      rabbitmq: "healthy"
-2025-12-01T15:04:54.910746372Z [inf]      redis: "healthy"
-2025-12-01T15:04:54.910758468Z [inf]      overall: "healthy"
-2025-12-01T15:05:25.513639705Z [inf]  [2025-12-01 15:05:14.472 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-01T15:05:25.513696586Z [inf]      workerId: "worker-staging-1"
-2025-12-01T15:05:25.513704693Z [inf]      provider: "healthy"
-2025-12-01T15:05:25.513711691Z [inf]      rabbitmq: "healthy"
-2025-12-01T15:05:25.513718985Z [inf]      redis: "healthy"
-2025-12-01T15:05:25.513726605Z [inf]      overall: "healthy"
-2025-12-01T15:05:25.513733090Z [inf]      processedCount: 1
-2025-12-01T15:05:25.513741782Z [inf]      errorCount: 0
-2025-12-01T15:05:25.513749414Z [inf]      errorRate: "0.00%"
-2025-12-01T15:05:46.685240926Z [inf]      errorRate: "0.00%"
-2025-12-01T15:05:46.685283036Z [inf]      provider: "healthy"
-2025-12-01T15:05:46.685290685Z [inf]      rabbitmq: "healthy"
-2025-12-01T15:05:46.685299517Z [inf]      overall: "healthy"
-2025-12-01T15:05:46.685299808Z [inf]      redis: "healthy"
-2025-12-01T15:05:46.685309507Z [inf]      processedCount: 1
-2025-12-01T15:05:46.685312244Z [inf]  [2025-12-01 15:05:44.896 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-01T15:05:46.685318174Z [inf]      errorCount: 0
-2025-12-01T15:05:46.685321220Z [inf]      workerId: "worker-staging-1"
-2025-12-01T15:06:16.666132057Z [inf]  [2025-12-01 15:06:14.735 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-01T15:06:16.666145120Z [inf]      workerId: "worker-staging-1"
-2025-12-01T15:06:16.666152243Z [inf]      provider: "healthy"
-2025-12-01T15:06:16.666158352Z [inf]      rabbitmq: "healthy"
-2025-12-01T15:06:16.666164682Z [inf]      redis: "healthy"
-2025-12-01T15:06:16.666171691Z [inf]      overall: "healthy"
-2025-12-01T15:06:16.666178588Z [inf]      processedCount: 1
-2025-12-01T15:06:16.666185754Z [inf]      errorCount: 0
-2025-12-01T15:06:16.666192612Z [inf]      errorRate: "0.00%"
-2025-12-01T15:06:47.968253043Z [inf]  [2025-12-01 15:06:45.151 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-01T15:06:47.968261314Z [inf]      workerId: "worker-staging-1"
-2025-12-01T15:06:47.968268293Z [inf]      provider: "healthy"
-2025-12-01T15:06:47.968274659Z [inf]      rabbitmq: "healthy"
-2025-12-01T15:06:47.968281872Z [inf]      redis: "healthy"
-2025-12-01T15:06:47.968289501Z [inf]      overall: "healthy"
-2025-12-01T15:06:47.968295472Z [inf]      processedCount: 1
-2025-12-01T15:06:47.968302581Z [inf]      errorCount: 0
-2025-12-01T15:06:47.968308341Z [inf]      errorRate: "0.00%"
-2025-12-01T15:07:17.838191257Z [inf]  [2025-12-01 15:07:14.826 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-01T15:07:17.838200439Z [inf]      workerId: "worker-staging-1"
-2025-12-01T15:07:17.838207251Z [inf]      provider: "healthy"
-2025-12-01T15:07:17.838213599Z [inf]      rabbitmq: "healthy"
-2025-12-01T15:07:17.838219770Z [inf]      redis: "healthy"
-2025-12-01T15:07:17.838226474Z [inf]      overall: "healthy"
-2025-12-01T15:07:17.838235364Z [inf]      processedCount: 1
-2025-12-01T15:07:17.838242576Z [inf]      errorCount: 0
-2025-12-01T15:07:17.838248673Z [inf]      errorRate: "0.00%"
-2025-12-01T15:07:48.120647010Z [inf]  [2025-12-01 15:07:45.154 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-01T15:07:48.120652955Z [inf]      workerId: "worker-staging-1"
-2025-12-01T15:07:48.120661445Z [inf]      provider: "healthy"
-2025-12-01T15:07:48.120666575Z [inf]      rabbitmq: "healthy"
-2025-12-01T15:07:48.120671275Z [inf]      redis: "healthy"
-2025-12-01T15:07:48.120676503Z [inf]      overall: "healthy"
-2025-12-01T15:07:48.120685700Z [inf]      processedCount: 1
-2025-12-01T15:07:48.120693935Z [inf]      errorCount: 0
-2025-12-01T15:07:48.120699024Z [inf]      errorRate: "0.00%"
+2025-12-01T15:09:48.000000000Z [inf]  Starting Container
+2025-12-01T15:09:49.847673740Z [inf]      strategy: "FIXED"
+2025-12-01T15:09:49.847686093Z [inf]      availableProviders: [
+2025-12-01T15:09:49.847693314Z [inf]        "openai"
+2025-12-01T15:09:49.847699761Z [inf]      ]
+2025-12-01T15:09:49.847712899Z [inf]      fixedProvider: "openai"
+2025-12-01T15:09:49.847719821Z [inf]  [2025-12-01 15:09:48.737 +0000] [32mINFO[39m: [36mStarting multi-provider analysis worker[39m
+2025-12-01T15:09:49.847755492Z [inf]      workerId: "worker-staging-1"
+2025-12-01T15:09:49.847762770Z [inf]      availableProviders: [
+2025-12-01T15:09:49.847768666Z [inf]        "openai"
+2025-12-01T15:09:49.847774556Z [inf]      ]
+2025-12-01T15:09:49.847780512Z [inf]      selectionStrategy: "FIXED"
+2025-12-01T15:09:49.847789617Z [inf]      concurrency: 60
+2025-12-01T15:09:49.847794772Z [inf]  [2025-12-01 15:09:48.738 +0000] [32mINFO[39m: [36mConnecting to RabbitMQ[39m
+2025-12-01T15:09:49.847804335Z [inf]      url: "amqp://DIjL9Z7aGtLIG5z6:***@rabbitmq.railway.internal:5672"
+2025-12-01T15:09:49.847811803Z [inf]  [2025-12-01 15:09:48.892 +0000] [32mINFO[39m: [36mRedis connected successfully[39m
+2025-12-01T15:09:49.847851234Z [inf]  [2025-12-01 15:09:48.958 +0000] [32mINFO[39m: [36mRabbitMQ connected successfully[39m
+2025-12-01T15:09:49.847858649Z [inf]  [2025-12-01 15:09:48.959 +0000] [32mINFO[39m: [36mStarting consumer[39m
+2025-12-01T15:09:49.847865389Z [inf]      queueName: "plant-analysis-requests"
+2025-12-01T15:09:49.848033389Z [inf]  [2025-12-01 15:09:48.961 +0000] [32mINFO[39m: [36mStarted consuming from WebAPI queue[39m
+2025-12-01T15:09:49.848041705Z [inf]      queueName: "plant-analysis-requests"
+2025-12-01T15:09:49.848048882Z [inf]      availableProviders: [
+2025-12-01T15:09:49.848054151Z [inf]        "openai"
+2025-12-01T15:09:49.848060327Z [inf]      ]
+2025-12-01T15:09:49.848065865Z [inf]      selectionStrategy: "FIXED"
+2025-12-01T15:09:49.848070791Z [inf]  [2025-12-01 15:09:48.962 +0000] [32mINFO[39m: [36mWorker started successfully and consuming from queue[39m
+2025-12-01T15:09:49.848077645Z [inf]      workerId: "worker-staging-1"
+2025-12-01T15:09:49.848082377Z [inf]      queue: "plant-analysis-requests"
+2025-12-01T15:09:49.848088317Z [inf]      providerCount: 1
+2025-12-01T15:09:49.848094758Z [inf]      availableProviders: [
+2025-12-01T15:09:49.848100269Z [inf]        "openai"
+2025-12-01T15:09:49.848105185Z [inf]      ]
+2025-12-01T15:09:49.848370159Z [inf]  [2025-12-01 15:09:48.728 +0000] [32mINFO[39m: [36mProvider API keys validated[39m
+2025-12-01T15:09:49.848376175Z [inf]      providers: [
+2025-12-01T15:09:49.848381241Z [inf]        "OpenAI"
+2025-12-01T15:09:49.848386191Z [inf]      ]
+2025-12-01T15:09:49.848391191Z [inf]  [2025-12-01 15:09:48.731 +0000] [32mINFO[39m: [36mOpenAI provider initialized[39m
+2025-12-01T15:09:49.848396701Z [inf]  [2025-12-01 15:09:48.731 +0000] [32mINFO[39m: [36mAI providers initialized[39m
+2025-12-01T15:09:49.848401926Z [inf]      providers: [
+2025-12-01T15:09:49.848409314Z [inf]        "openai"
+2025-12-01T15:09:49.848415343Z [inf]      ]
+2025-12-01T15:09:49.848420316Z [inf]  [2025-12-01 15:09:48.731 +0000] [32mINFO[39m: [36mProvider selector initialized[39m
+2025-12-01T15:10:29.978809955Z [inf]      errorRate: "0%"
+2025-12-01T15:10:29.978840571Z [inf]      workerId: "worker-staging-1"
+2025-12-01T15:10:29.978846766Z [inf]      provider: "healthy"
+2025-12-01T15:10:29.978853158Z [inf]      rabbitmq: "healthy"
+2025-12-01T15:10:29.978909259Z [inf]  [2025-12-01 15:10:19.887 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-01T15:10:29.979001749Z [inf]      redis: "healthy"
+2025-12-01T15:10:29.979019620Z [inf]      overall: "healthy"
+2025-12-01T15:10:29.979029824Z [inf]      processedCount: 0
+2025-12-01T15:10:29.979037955Z [inf]      errorCount: 0
+2025-12-01T15:10:49.962714083Z [inf]      farmerId: "F190"
+2025-12-01T15:10:49.962728148Z [inf]  [2025-12-01 15:10:46.829 +0000] [32mINFO[39m: [36mProcessing analysis message[39m
+2025-12-01T15:10:49.962730462Z [inf]      imageUrl: "https://1lik.net/plant-images/20251201_151046_625_0e54be03be0f49adb2fdada1fbc4453b_async_async_analysis_20251201_151046_3987b1e8_20251201_151046.jpg"
+2025-12-01T15:10:49.962741697Z [inf]      cropType: null
+2025-12-01T15:10:49.962743369Z [inf]      analysisId: "async_analysis_20251201_151046_3987b1e8"
+2025-12-01T15:10:49.962754488Z [inf]      farmerId: "F190"
+2025-12-01T15:10:49.962761974Z [inf]      imageUrl: "https://1lik.net/plant-images/20251201_151046_625_0e54be03be0f49adb2fdada1fbc4453b_async_async_analysis_20251201_151046_3987b1e8_20251201_151046.jpg"
+2025-12-01T15:10:49.962768395Z [inf]  [2025-12-01 15:10:46.833 +0000] [32mINFO[39m: [36mStarting OpenAI analysis[39m
+2025-12-01T15:10:49.962774748Z [inf]      analysisId: "async_analysis_20251201_151046_3987b1e8"
+2025-12-01T15:10:50.798194943Z [inf]      errorCount: 0
+2025-12-01T15:10:50.798202375Z [inf]      errorRate: "0%"
+2025-12-01T15:10:50.798213152Z [inf]  [2025-12-01 15:10:49.604 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-01T15:10:50.798220827Z [inf]      workerId: "worker-staging-1"
+2025-12-01T15:10:50.798232932Z [inf]      provider: "healthy"
+2025-12-01T15:10:50.798245049Z [inf]      rabbitmq: "healthy"
+2025-12-01T15:10:50.798259111Z [inf]      redis: "healthy"
+2025-12-01T15:10:50.798267851Z [inf]      overall: "healthy"
+2025-12-01T15:10:50.798276774Z [inf]      processedCount: 0
+2025-12-01T15:11:20.330202930Z [inf]  [2025-12-01 15:11:19.586 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-01T15:11:20.330208333Z [inf]      workerId: "worker-staging-1"
+2025-12-01T15:11:20.330213043Z [inf]      provider: "healthy"
+2025-12-01T15:11:20.330217774Z [inf]      rabbitmq: "healthy"
+2025-12-01T15:11:20.330222378Z [inf]      redis: "healthy"
+2025-12-01T15:11:20.330226894Z [inf]      overall: "healthy"
+2025-12-01T15:11:20.330230738Z [inf]      processedCount: 0
+2025-12-01T15:11:20.330235167Z [inf]      errorCount: 0
+2025-12-01T15:11:20.330240267Z [inf]      errorRate: "0%"
+2025-12-01T15:11:49.677672385Z [inf]      analysisId: "async_analysis_20251201_151046_3987b1e8"
+2025-12-01T15:11:49.677686714Z [inf]      responseKeys: [
+2025-12-01T15:11:49.677695855Z [inf]        "id",
+2025-12-01T15:11:49.677752041Z [inf]  [2025-12-01 15:11:45.471 +0000] [32mINFO[39m: [36mOpenAI API response structure[39m
+2025-12-01T15:11:49.683339079Z [inf]        "object",
+2025-12-01T15:11:49.683346867Z [inf]        "created_at",
+2025-12-01T15:11:49.683353350Z [inf]        "status",
+2025-12-01T15:11:49.683358364Z [inf]        "background",
+2025-12-01T15:11:49.683362817Z [inf]        "billing",
+2025-12-01T15:11:49.683367620Z [inf]        "error",
+2025-12-01T15:11:49.683372324Z [inf]        "incomplete_details",
+2025-12-01T15:11:49.683376850Z [inf]        "instructions",
+2025-12-01T15:11:49.683381050Z [inf]        "max_output_tokens",
+2025-12-01T15:11:49.683386359Z [inf]        "max_tool_calls",
+2025-12-01T15:11:49.683391110Z [inf]        "model",
+2025-12-01T15:11:49.683394998Z [inf]        "output",
+2025-12-01T15:11:49.683399365Z [inf]        "parallel_tool_calls",
+2025-12-01T15:11:49.683403196Z [inf]        "previous_response_id",
+2025-12-01T15:11:49.683407617Z [inf]        "prompt_cache_key",
+2025-12-01T15:11:49.683415933Z [inf]        "prompt_cache_retention",
+2025-12-01T15:11:49.683421124Z [inf]        "reasoning",
+2025-12-01T15:11:49.683427182Z [inf]        "safety_identifier",
+2025-12-01T15:11:49.683431305Z [inf]        "service_tier",
+2025-12-01T15:11:49.683436118Z [inf]        "store",
+2025-12-01T15:11:49.683440621Z [inf]        "temperature",
+2025-12-01T15:11:49.683444900Z [inf]        "text",
+2025-12-01T15:11:49.683448815Z [inf]        "tool_choice",
+2025-12-01T15:11:49.683453014Z [inf]        "tools",
+2025-12-01T15:11:49.683456899Z [inf]        "top_logprobs",
+2025-12-01T15:11:49.683467037Z [inf]        "top_p",
+2025-12-01T15:11:49.683471021Z [inf]        "truncation",
+2025-12-01T15:11:49.683741843Z [inf]        "usage",
+2025-12-01T15:11:49.683753632Z [inf]        "user",
+2025-12-01T15:11:49.683759209Z [inf]        "metadata"
+2025-12-01T15:11:49.683767864Z [inf]      ]
+2025-12-01T15:11:49.683774215Z [inf]      hasOutput: true
+2025-12-01T15:11:49.683788519Z [inf]      outputLength: 2
+2025-12-01T15:11:49.683795990Z [inf]      firstOutputKeys: [
+2025-12-01T15:11:49.683802661Z [inf]        "id",
+2025-12-01T15:11:49.683809830Z [inf]        "type",
+2025-12-01T15:11:49.684319413Z [inf]        "summary"
+2025-12-01T15:11:49.684324607Z [inf]      ]
+2025-12-01T15:11:49.684329302Z [inf]      responsePreview: "{\"id\":\"resp_006117ed483f9c1a00692daff6ff8481939f04d0f0a5471b95\",\"object\":\"response\",\"created_at\":1764601847,\"status\":\"completed\",\"background\":false,\"billing\":{\"payer\":\"developer\"},\"error\":null,\"incomplete_details\":null,\"instructions\":null,\"max_output_tokens\":null,\"max_tool_calls\":null,\"model\":\"gpt-5-mini-2025-08-07\",\"output\":[{\"id\":\"rs_006117ed483f9c1a00692daff804548193aebeb350db94f29b\",\"type\":\"reasoning\",\"summary\":[]},{\"id\":\"msg_006117ed483f9c1a00692db00f3ce08193ba3674eda6326f9b\",\"type\":\"messag"
+2025-12-01T15:11:49.684333268Z [inf]  [2025-12-01 15:11:45.471 +0000] [31mERROR[39m: [36mEmpty response - full API response logged[39m
+2025-12-01T15:11:49.684337166Z [inf]      analysisId: "async_analysis_20251201_151046_3987b1e8"
+2025-12-01T15:11:49.686554415Z [inf]  [2025-12-01 15:11:45.473 +0000] [32mINFO[39m: [36mAnalysis completed and result published[39m
+2025-12-01T15:11:49.686564566Z [inf]      analysisId: "async_analysis_20251201_151046_3987b1e8"
+2025-12-01T15:11:49.686698091Z [inf]      fullResponse: "{\"id\":\"resp_006117ed483f9c1a00692daff6ff8481939f04d0f0a5471b95\",\"object\":\"response\",\"created_at\":1764601847,\"status\":\"completed\",\"background\":false,\"billing\":{\"payer\":\"developer\"},\"error\":null,\"incomplete_details\":null,\"instructions\":null,\"max_output_tokens\":null,\"max_tool_calls\":null,\"model\":\"gpt-5-mini-2025-08-07\",\"output\":[{\"id\":\"rs_006117ed483f9c1a00692daff804548193aebeb350db94f29b\",\"type\":\"reasoning\",\"summary\":[]},{\"id\":\"msg_006117ed483f9c1a00692db00f3ce08193ba3674eda6326f9b\",\"type\":\"message\",\"status\":\"completed\",\"content\":[{\"type\":\"output_text\",\"annotations\":[],\"logprobs\":[],\"text\":\"{\n  \\"plant_identification\\": {\n    \\"species\\": \\"Patlıcan (Solanum melongena)\\",\n    \\"variety\\": \\"bilinmiyor\\",\n    \\"growth_stage\\": \\"çiçeklenme\\",\n    \\"confidence\\": 90,\n    \\"identifying_features\\": [\n      \\"mor-lila çiçekler\\",\n      \\"geniş, tüylü yapraklar\\",\n      \\"odunsu gövde ve dallanma\\"\n    ],\n    \\"visible_parts\\": [\n      \\"yapraklar\\",\n      \\"çiçekler\\",\n      \\"gövde\\"\n    ]\n  },\n  \\"health_assessment\\": {\n    \\"vigor_score\\": 7,\n    \\"leaf_color\\": \\"açık-orta yeşil, genel olarak homojen fakat biraz solukluk var\\",\n    \\"leaf_texture\\": \\"tüylü (hassas kıllı), yaprak yüzeyi sağlıklı görünüyor, yumuşama veya gevreme yok\\",\n    \\"growth_pattern\\": \\"normal - genç/orta gelişim; dallanma ve çiçeklenme iyi\\",\n    \\"structural_integrity\\": \\"sağlam - gövde ve dallar sağlam, kırık/çürük yok\\",\n    \\"stress_indicators\\": [\n      \\"hafif yaprak solukluğu\\",\n      \\"yaprak kenarlarında hafif düzensizlik (fizyolojik veya gelişimsel)\\"\n    ],\n    \\"disease_symptoms\\": [],\n    \\"severity\\": \\"düşük\\"\n  },\n  \\"nutrient_status\\": {\n    \\"nitrogen\\": \\"hafif eksik\\",\n    \\"phosphorus\\": \\"normal\\",\n    \\"potassium\\": \\"normal\\",\n    \\"calcium\\": \\"normal\\",\n    \\"magnesium\\": \\"normal\\",\n    \\"sulfur\\": \\"normal\\",\n    \\"iron\\": \\"normal\\",\n    \\"zinc\\": \\"normal\\",\n    \\"manganese\\": \\"normal\\",\n    \\"boron\\": \\"normal\\",\n    \\"copper\\": \\"normal\\",\n    \\"molybdenum\\": \\"normal\\",\n    \\"chlorine\\": \\"normal\\",\n    \\"nickel\\": \\"normal\\",\n    \\"primary_deficiency\\": \\"hafif azot eksikliği olasılığı\\",\n    \\"secondary_deficiencies\\": [\n      \\"yok veya belirsiz (toprak ve doku analizi önerilir)\\"\n    ],\n    \\"severity\\": \\"düşük\\"\n  },\n  \\"pest_disease\\": {\n    \\"pests_detected\\": [],\n    \\"diseases_detected\\": [],\n    \\"damage_pattern\\": \\"Görüntüde belirgin böcek beslenmesi, mantar lezyonu veya bakteriyel çürüme yok; hafif yaprak kenarı düzensizliği dışında belirgin hasar yok\\",\n    \\"affected_area_percentage\\": 0,\n    \\"spread_risk\\": \\"yok\\",\n    \\"primary_issue\\": \\"hafif besin ve/veya su stresi (gözlemlenebilir patojen veya zararlı yok)\\"\n  },\n  \\"environmental_stress\\": {\n    \\"water_status\\": \\"hafif kurak\\",\n    \\"temperature_stress\\": \\"yok\\",\n    \\"light_stress\\": \\"yok\\",\n    \\"physical_damage\\": \\"yok\\",\n    \\"chemical_damage\\": \\"yok\\",\n    \\"soil_indicators\\": \\"Yüzey kuru; organik madde ve tuzluluk hakkında bilgi yok. Görüntü toprağı hafif kumlu-çakıllı, organik madde düşük olabilir.\\",\n    \\"primary_stressor\\": \\"hafif su stresi / yüzey kuruluğu\\"\n  },\n  \\"cross_factor_insights\\": [\n    {\n      \\"insight\\": \\"Yüzeydeki kuruluk ve hafif yaprak solukluğu birlikte değerlendirildiğinde, su stresi bitkinin azot alımını azaltmış ve yaprak rengini hafif soluklaştırmış olabilir; bu durum ilerlerse bitki daha hassas hale gelerek zararlı ve hastalık riskini artırır.\\",\n      \\"confidence\\": 0.7,\n      \\"affected_aspects\\": [\n        \\"nutrient_status\\",\n        \\"environmental_stress\\"\n      ],\n      \\"impact_level\\": \\"orta\\"\n    }\n  ],\n  \\"risk_assessment\\": {\n    \\"yield_loss_probability\\": \\"düşük\\",\n    \\"timeline_to_worsen\\": \\"hafta\\",\n    \\"spread_potential\\": \\"lokal\\"\n  },\n  \\"recommendations\\": {\n    \\"immediate\\": [\n      {\n        \\"action\\": \\"Toprak nemini kontrol et ve sulama uygula\\",\n        \\"details\\": \\"Her bitki için yaklaşık 5-8 litre su ile derin sulama yap; yüzeyin yeniden kuru kalmasına izin verme. Damla varsa nozulları kontrol et.\\",\n        \\"timeline\\": \\"24 saat içinde\\",\n        \\"priority\\": \\"kritik\\"\n      },\n      {\n        \\"action\\": \\"Gözlem yap\\",\n        \\"details\\": \\"Çiçek ve alttaki yapraklarda zararlı veya lekelenme belirtileri ara; varsa fotoğraf çek ve belgele.\\",\n        \\"timeline\\": \\"24-48 saat\\",\n        \\"priority\\": \\"yüksek\\"\n      }\n    ],\n    \\"short_term\\": [\n      {\n        \\"action\\": \\"Toprak ve yaprak doku analizi yaptır\\",\n        \\"details\\": \\"pH, EC, N-P-K ve mikro elementler için laboratuvar testi; sonuçlara göre gübreleme planı oluştur.\\",\n        \\"timeline\\": \\"3-7 gün\\",\n        \\"priority\\": \\"yüksek\\"\n      },\n      {\n        \\"action\\": \\"Hafif azot takviyesi\\",\n        \\"details\\": \\"Toprak testi olmadan başlangıç için dengeli bir NPK (ör. 10-10-10) veya düşük doz amonyum nitrat/üre ile yaprak rengi düzeltilmeye çalışılabilir; üretici dozlarına uyun.\\",\n        \\"timeline\\": \\"7-14 gün\\",\n        \\"priority\\": \\"orta\\"\n      }\n    ],\n    \\"preventive\\": [\n      {\n        \\"action\\": \\"Malçlama ve organik madde ilavesi\\",\n        \\"details\\": \\"Yüzeyde organik malç kullanarak nem korunumu sağla; sezon başında kompost uygulaması önerilir.\\",\n        \\"timeline\\": \\"sürekli\\",\n        \\"priority\\": \\"orta\\"\n      },\n      {\n        \\"action\\": \\"Düzenli saha kontrolü ve entegre zararlı yönetimi\\",\n        \\"details\\": \\"Haftalık kontroller, faydalı böcekleri koruma, gerekirse organik ilaç kullanımı (ör. neem yağı, spinosad) uygula.\\",\n        \\"timeline\\": \\"sürekli\\",\n        \\"priority\\": \\"orta\\"\n      }\n    ],\n    \\"monitoring\\": [\n      {\n        \\"parameter\\": \\"toprak nemi (yüzey ve 10-20 cm derinlik)\\",\n        \\"frequency\\": \\"günlük (sıcak dönemlerde) / haftalık\\",\n        \\"threshold\\": \\"%50 kullanılabilir su altı veya yüzey kuruysa sulama\\"\n      },\n      {\n        \\"parameter\\": \\"yaprak renk ve zarar belirtileri (lekeler, sararma, böcek)\\",\n        \\"frequency\\": \\"haftalık\\",\n        \\"threshold\\": \\"yeni sararma veya leke görüldüğünde fotoğraf ve numune ile inceleme\\"\n      }\n    ],\n    \\"resource_estimation\\": {\n      \\"water_required_liters\\": 6,\n      \\"fertilizer_cost_estimate_usd\\": 2,\n      \\"labor_hours_estimate\\": 0.5\n    },\n    \\"localized_recommendations\\": {\n      \\"region\\": \\"bilinmiyor\\",\n      \\"preferred_practices\\": [\n        \\"damla sulama ile nem düzenlemesi\\",\n        \\"toprak testi sonrası özel gübreleme\\",\n        \\"kompost/malç ile organik içerik artırma\\"\n      ],\n      \\"restricted_methods\\": [\n        \\"etiketsiz/izinlenmemiş pestisit kullanımı\\",\n        \\"aşırı fosfor veya tuzlu gübre uygulamaları\\"\n      ]\n    }\n  },\n  \\"summary\\": {\n    \\"overall_health_score\\": 7,\n    \\"primary_concern\\": \\"hafif su ve olası hafif azot stresi\\",\n    \\"secondary_concerns\\": [\n      \\"organik madde düşük olma riski\\",\n      \\"ileride artabilecek zararlı/hastalık hassasiyeti\\"\n    ],\n    \\"critical_issues_count\\": 0,\n    \\"confidence_level\\": 75,\n    \\"prognosis\\": \\"iyi\\",\n    \\"estimated_yield_impact\\": \\"minimal\\"\n  },\n  \\"confidence_notes\\": [\n    {\n      \\"aspect\\": \\"nutrient_status\\",\n      \\"confidence\\": 0.65,\n      \\"reason\\": \\"Gözleme dayalı değerlendirme; yaprak rengi ve genel görünüm hafif azot eksikliğini düşündürüyor ancak kesin teşhis için toprak ve doku analizi gereklidir.\\"\n    }\n  ],\n  \\"farmer_friendly_summary\\": \\"Bitkiler genel olarak sağlıklı görünüyor, çiçeklenme iyi. Yapraklar biraz soluk; toprağın yüzeyi kuru görünüyor. Önce toprağın nemini kontrol edip derin sulama yapın (her bitki için ~5-8 litre). 3-7 gün içinde toprak ve yaprak analizi yaptırın; gerekirse hafif azot takviyesi uygulayın. Haftalık kontrollerle zararlı veya leke olup olmadığına bakın. Organik malç ve kompostla toprağı güçlendirmek uzun vadede fayda sağlar.\\"\n}\"}],\"role\":\"assistant\"}],\"parallel_tool_calls\":true,\"previous_response_id\":null,\"prompt_cache_key\":null,\"prompt_cache_retention\":null,\"reasoning\":{\"effort\":\"medium\",\"summary\":null},\"safety_identifier\":null,\"service_tier\":\"default\",\"store\":true,\"temperature\":1,\"text\":{\"format\":{\"type\":\"text\"},\"verbosity\":\"medium\"},\"tool_choice\":\"auto\",\"tools\":[],\"top_logprobs\":0,\"top_p\":1,\"truncation\":\"disabled\",\"usage\":{\"input_tokens\":2568,\"input_tokens_details\":{\"cached_tokens\":0},\"output_tokens\":3831,\"output_tokens_details\":{\"reasoning_tokens\":1792},\"total_tokens\":6399},\"user\":null,\"metadata\":{}}"
+2025-12-01T15:11:49.686703004Z [inf]  [2025-12-01 15:11:45.471 +0000] [31mERROR[39m: [36mOpenAI analysis failed[39m
+2025-12-01T15:11:49.686712041Z [inf]      analysisId: "async_analysis_20251201_151046_3987b1e8"
+2025-12-01T15:11:49.686718011Z [inf]      processingTimeMs: 58638
+2025-12-01T15:11:49.686722999Z [inf]      error: "OpenAI returned empty response"
+2025-12-01T15:11:49.691436029Z [inf]      processingTimeMs: 58644
+2025-12-01T15:11:50.602026054Z [inf]  [2025-12-01 15:11:49.874 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-01T15:11:50.604161596Z [inf]      workerId: "worker-staging-1"
+2025-12-01T15:11:50.604173659Z [inf]      provider: "healthy"
+2025-12-01T15:11:50.604180525Z [inf]      rabbitmq: "healthy"
+2025-12-01T15:11:50.604187421Z [inf]      redis: "healthy"
+2025-12-01T15:11:50.604193092Z [inf]      overall: "healthy"
+2025-12-01T15:11:50.604206663Z [inf]      processedCount: 1
+2025-12-01T15:11:50.604214028Z [inf]      errorCount: 0
+2025-12-01T15:11:50.604219565Z [inf]      errorRate: "0.00%"
