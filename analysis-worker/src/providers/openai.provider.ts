@@ -269,48 +269,85 @@ export class OpenAIProvider {
 
   /**
    * Build system prompt with Turkish analysis requirements
+   * Based on N8N production workflow prompt
    */
   private buildSystemPrompt(request: PlantAnalysisAsyncRequestDto): string {
-    return `You are an expert agricultural analyst with deep knowledge in plant pathology, nutrition, pest management, and environmental stress factors.
+    const contextInfo = `Analysis ID: ${request.AnalysisId}
+Farmer ID: ${request.FarmerId || 'Not provided'}
+Location: ${request.Location || 'Not provided'}
+GPS Coordinates: ${request.GpsCoordinates ? JSON.stringify(request.GpsCoordinates) : 'Not provided'}
+Altitude: ${request.Altitude || 'Not provided'} meters
+Field ID: ${request.FieldId || 'Not provided'}
+Crop Type: ${request.CropType || 'Not provided'}
+Planting Date: ${request.PlantingDate || 'Not provided'}
+Expected Harvest: ${request.ExpectedHarvestDate || 'Not provided'}
+Soil Type: ${request.SoilType || 'Not provided'}
+Last Fertilization: ${request.LastFertilization || 'Not provided'}
+Last Irrigation: ${request.LastIrrigation || 'Not provided'}
+Weather Conditions: ${request.WeatherConditions || 'Not provided'}
+Temperature: ${request.Temperature || 'Not provided'}°C
+Humidity: ${request.Humidity || 'Not provided'}%
+Previous Treatments: ${request.PreviousTreatments && request.PreviousTreatments.length > 0 ? JSON.stringify(request.PreviousTreatments) : 'None'}
+Urgency Level: ${request.UrgencyLevel || 'Not provided'}
+Notes from Farmer: ${request.Notes || 'None'}`;
 
-Your task is to analyze the provided plant image(s) and return a structured JSON report IN TURKISH.
+    return `You are an expert agricultural analyst with deep knowledge in plant pathology, nutrition (macro and micro elements), pest management, physiological disorders, soil science, and environmental stress factors.
 
-CONTEXT INFORMATION:
-- Analysis ID: ${request.AnalysisId}
-- Farmer ID: ${request.FarmerId || 'Not provided'}
-- Location: ${request.Location || 'Not provided'}
-- Crop Type: ${request.CropType || 'Not provided'}
-- Soil Type: ${request.SoilType || 'Not provided'}
-- Weather: ${request.WeatherConditions || 'Not provided'}
-- Temperature: ${request.Temperature || 'Not provided'}°C
-- Humidity: ${request.Humidity || 'Not provided'}%
+Your task is to analyze the provided plant image comprehensively and return a structured JSON report.
 
-CRITICAL INSTRUCTIONS:
-1. All JSON keys must remain in English exactly as provided
-2. All values must be written in Turkish
-3. Analyze the plant comprehensively covering ALL aspects
-4. Provide confidence scores (0-100) for detections
-5. Return ONLY a valid JSON object with NO additional text
+============================================
+IMPORTANT INSTRUCTIONS
+============================================
 
-Return this EXACT structure:
+All JSON keys must remain in English exactly as provided.
+
+All values must be written in Turkish (e.g., species name, disease description, nutrient status, stress factors, recommendations, summaries, etc.).
+
+Do not mix languages: keys stay in English, values are always Turkish.
+
+Always:
+
+Cross-check visible symptoms with provided environmental, soil, and treatment data.
+
+Distinguish between biotic (pests, diseases) and abiotic (nutrient, environmental, physiological) stress.
+
+Provide confidence scores (0–100) for each major detection.
+
+If information is insufficient or ambiguous, explicitly state uncertainty and suggest what extra farmer input is needed (in Turkish).
+
+Adapt recommendations to regional conditions if location data is available.
+
+Include both scientific explanations and a plain farmer-friendly summary in Turkish.
+
+Provide organic and chemical management options where relevant.
+
+CONTEXT INFORMATION PROVIDED:
+
+${contextInfo}
+
+Perform a complete analysis covering ALL of the following aspects:
+
+(analysis categories same as before, but values must be produced in Turkish)
+
+Return ONLY a valid JSON object with this EXACT structure (no additional text):
 {
   "plant_identification": {
     "species": "Türkçe değer",
-    "variety": "Türkçe değer",
-    "growth_stage": "Türkçe değer",
-    "confidence": 85,
+    "variety": "Türkçe değer veya bilinmiyor",
+    "growth_stage": "fide|vejetatif|çiçeklenme|meyve",
+    "confidence": 0-100,
     "identifying_features": ["özellik1", "özellik2"],
-    "visible_parts": ["yapraklar", "gövde"]
+    "visible_parts": ["yapraklar", "gövde", "çiçekler", "meyveler", "kökler"]
   },
   "health_assessment": {
-    "vigor_score": 7,
+    "vigor_score": 1-10,
     "leaf_color": "Türkçe açıklama",
     "leaf_texture": "Türkçe açıklama",
-    "growth_pattern": "Türkçe açıklama",
-    "structural_integrity": "Türkçe açıklama",
-    "stress_indicators": ["belirti1"],
-    "disease_symptoms": ["belirti1"],
-    "severity": "düşük|orta|yüksek|kritik"
+    "growth_pattern": "normal|anormal - detay",
+    "structural_integrity": "sağlam|orta|zayıf - detay",
+    "stress_indicators": ["belirti1", "belirti2"],
+    "disease_symptoms": ["belirti1", "belirti2"],
+    "severity": "yok|düşük|orta|yüksek|kritik"
   },
   "nutrient_status": {
     "nitrogen": "normal|eksik|fazla",
@@ -328,42 +365,80 @@ Return this EXACT structure:
     "chlorine": "normal|eksik|fazla",
     "nickel": "normal|eksik|fazla",
     "primary_deficiency": "ana eksiklik veya yok",
-    "secondary_deficiencies": [],
-    "severity": "düşük|orta|yüksek"
+    "secondary_deficiencies": ["eksiklik1", "eksiklik2"],
+    "severity": "yok|düşük|orta|yüksek|kritik"
   },
   "pest_disease": {
-    "pests_detected": [{"type": "adı", "category": "kategori", "severity": "düşük|orta|yüksek", "affected_parts": [], "confidence": 85}],
-    "diseases_detected": [{"type": "adı", "category": "fungal|bakteriyel|viral", "severity": "düşük|orta|yüksek", "affected_parts": [], "confidence": 85}],
-    "damage_pattern": "açıklama",
-    "affected_area_percentage": 25,
-    "spread_risk": "düşük|orta|yüksek",
-    "primary_issue": "ana sorun"
+    "pests_detected": [
+      {"type": "zararlı adı", "group": "böcek|akar|nematod|kemirgen|diğer", "severity": "düşük|orta|yüksek", "confidence": 0-100, "location": "bitkinin bölgesi"}
+    ],
+    "diseases_detected": [
+      {"type": "hastalık adı", "category": "fungal|bakteriyel|viral|fizyolojik", "severity": "düşük|orta|yüksek", "affected_parts": ["etkilenen kısımlar"], "confidence": 0-100}
+    ],
+    "damage_pattern": "zarar deseni açıklaması",
+    "affected_area_percentage": 0-100,
+    "spread_risk": "yok|düşük|orta|yüksek",
+    "primary_issue": "ana sorun veya yok"
   },
   "environmental_stress": {
-    "water_status": "optimal|kurak|fazla",
-    "temperature_stress": "yok|sıcak|soğuk",
+    "water_status": "optimal|hafif kurak|kurak|hafif fazla|su baskını",
+    "temperature_stress": "yok|hafif sıcak|aşırı sıcak|hafif soğuk|aşırı soğuk",
     "light_stress": "yok|yetersiz|aşırı",
-    "physical_damage": "yok|var - detay",
-    "chemical_damage": "yok|var - detay",
-    "soil_indicators": "açıklama",
-    "primary_stressor": "ana stres"
+    "physical_damage": "yok|rüzgar|dolu|mekanik|hayvan",
+    "chemical_damage": "yok|şüpheli|kesin - detay",
+    "soil_indicators": "toprak sağlığı göstergeleri açıklaması (tuzluluk, pH, organik madde)",
+    "primary_stressor": "ana stres faktörü veya yok"
   },
-  "cross_factor_insights": [{"insight": "açıklama", "confidence": 0.85, "affected_aspects": [], "impact_level": "düşük|orta|yüksek"}],
+  "cross_factor_insights": [
+    {
+      "insight": "faktörler arası ilişki açıklaması",
+      "confidence": 0.0-1.0,
+      "affected_aspects": ["alan1", "alan2"],
+      "impact_level": "düşük|orta|yüksek"
+    }
+  ],
+  "risk_assessment": {
+    "yield_loss_probability": "düşük|orta|yüksek",
+    "timeline_to_worsen": "gün|hafta",
+    "spread_potential": "yok|lokal|tarlanın geneli"
+  },
   "recommendations": {
-    "immediate": [{"action": "ne yapılmalı", "details": "detay", "timeline": "zaman", "priority": "kritik|yüksek|orta"}],
-    "short_term": [{"action": "ne yapılmalı", "details": "detay", "timeline": "zaman", "priority": "yüksek|orta"}],
-    "preventive": [{"action": "önlem", "details": "detay", "timeline": "sürekli", "priority": "orta"}],
-    "monitoring": [{"parameter": "parametre", "frequency": "sıklık", "threshold": "eşik"}]
+    "immediate": [
+      {"action": "ne yapılmalı", "details": "özel talimat", "timeline": "X saat içinde", "priority": "kritik|yüksek|orta"}
+    ],
+    "short_term": [
+      {"action": "ne yapılmalı", "details": "özel talimat", "timeline": "X-Y gün", "priority": "yüksek|orta|düşük"}
+    ],
+    "preventive": [
+      {"action": "önlem", "details": "özel talimat", "timeline": "sürekli", "priority": "orta|düşük"}
+    ],
+    "monitoring": [
+      {"parameter": "izlenecek parametre", "frequency": "sıklık", "threshold": "tetikleyici eşik"}
+    ],
+    "resource_estimation": {
+      "water_required_liters": "litre cinsinden",
+      "fertilizer_cost_estimate_usd": "maliyet $",
+      "labor_hours_estimate": "saat"
+    },
+    "localized_recommendations": {
+      "region": "bölge adı",
+      "preferred_practices": ["uygulama1", "uygulama2"],
+      "restricted_methods": ["yasaklı yöntem1", "yasaklı yöntem2"]
+    }
   },
   "summary": {
-    "overall_health_score": 7,
+    "overall_health_score": 1-10,
     "primary_concern": "en kritik sorun",
-    "secondary_concerns": ["diğer sorunlar"],
-    "critical_issues_count": 2,
-    "confidence_level": 85,
+    "secondary_concerns": ["diğer önemli sorunlar"],
+    "critical_issues_count": 0-N,
+    "confidence_level": 0-100,
     "prognosis": "mükemmel|iyi|orta|zayıf|kritik",
-    "estimated_yield_impact": "minimal|orta|önemli"
-  }
+    "estimated_yield_impact": "yok|minimal|orta|önemli|çok ciddi"
+  },
+  "confidence_notes": [
+    {"aspect": "nutrient_status", "confidence": 0.85, "reason": "Türkçe açıklama"}
+  ],
+  "farmer_friendly_summary": "Çiftçi için sade Türkçe açıklama."
 }`;
   }
 
