@@ -345,25 +345,7 @@ export class OpenAIProvider {
    * Based on N8N production workflow prompt
    */
   private buildSystemPrompt(request: PlantAnalysisAsyncRequestDto): string {
-    const contextInfo = `Analysis ID: ${request.AnalysisId}
-Farmer ID: ${request.FarmerId || 'Not provided'}
-Location: ${request.Location || 'Not provided'}
-GPS Coordinates: ${request.GpsCoordinates ? JSON.stringify(request.GpsCoordinates) : 'Not provided'}
-Altitude: ${request.Altitude || 'Not provided'} meters
-Field ID: ${request.FieldId || 'Not provided'}
-Crop Type: ${request.CropType || 'Not provided'}
-Planting Date: ${request.PlantingDate || 'Not provided'}
-Expected Harvest: ${request.ExpectedHarvestDate || 'Not provided'}
-Soil Type: ${request.SoilType || 'Not provided'}
-Last Fertilization: ${request.LastFertilization || 'Not provided'}
-Last Irrigation: ${request.LastIrrigation || 'Not provided'}
-Weather Conditions: ${request.WeatherConditions || 'Not provided'}
-Temperature: ${request.Temperature || 'Not provided'}°C
-Humidity: ${request.Humidity || 'Not provided'}%
-Previous Treatments: ${request.PreviousTreatments && request.PreviousTreatments.length > 0 ? JSON.stringify(request.PreviousTreatments) : 'None'}
-Urgency Level: ${request.UrgencyLevel || 'Not provided'}
-Notes from Farmer: ${request.Notes || 'None'}`;
-
+    // EXACT COPY FROM N8N prompt_n8n.txt - NO MODIFICATIONS
     return `You are an expert agricultural analyst with deep knowledge in plant pathology, nutrition (macro and micro elements), pest management, physiological disorders, soil science, and environmental stress factors.
 
 Your task is to analyze the provided plant image(s) comprehensively and return a structured JSON report.
@@ -374,7 +356,10 @@ MULTI-IMAGE ANALYSIS (if additional images provided)
 
 You may receive UP TO 4 DIFFERENT IMAGES of the same plant. Analyze all provided images together for a more comprehensive diagnosis:
 
-**MAIN IMAGE:** This is the primary image for analysis.
+**MAIN IMAGE:** ${request.ImageUrl}
+This is the primary image for analysis.
+
+${(request as any).LeafTopImage ? `**LEAF TOP IMAGE (Yaprağın Üst Yüzeyi):** ${(request as any).LeafTopImage}\nFocus on: Upper leaf surface symptoms, color variations, spots, lesions, powdery mildew, rust, insect feeding damage, nutrient deficiency patterns (interveinal chlorosis, etc.)\n` : ''}${(request as any).LeafBottomImage ? `**LEAF BOTTOM IMAGE (Yaprağın Alt Yüzeyi):** ${(request as any).LeafBottomImage}\nFocus on: Aphid colonies, whiteflies and eggs, spider mites and webs, downy mildew spores, rust pustules, scale insects, stomatal abnormalities\n` : ''}${(request as any).PlantOverviewImage ? `**PLANT OVERVIEW IMAGE (Bitkinin Genel Görünümü):** ${(request as any).PlantOverviewImage}\nFocus on: Overall plant vigor, stunting, wilting patterns, vascular wilt symptoms (one-sided wilting), stem structure, branching pattern, fruit/flower status\n` : ''}${(request as any).RootImage ? `**ROOT IMAGE (Kök Resmi):** ${(request as any).RootImage}\nFocus on: Root color (healthy white vs brown/black rotted), root-knot nematode galling, root rot lesions, root development, fibrous root density, soil-borne disease symptoms\n` : ''}
 
 **MULTI-IMAGE ANALYSIS INSTRUCTIONS:**
 - Analyze ALL provided images together for comprehensive diagnosis
@@ -382,6 +367,8 @@ You may receive UP TO 4 DIFFERENT IMAGES of the same plant. Analyze all provided
 - If symptoms appear in multiple images, this increases diagnostic confidence
 - Note any contradictions between different image observations
 - If only the main image is provided, base your analysis solely on it
+- Total images provided: ${(request as any).ImageMetadata?.TotalImages || 1}
+- Available images: ${(request as any).ImageMetadata?.ImagesProvided?.join(', ') || 'main image'}
 
 ============================================
 IMPORTANT INSTRUCTIONS
@@ -411,11 +398,47 @@ Provide organic and chemical management options where relevant.
 
 CONTEXT INFORMATION PROVIDED:
 
-${contextInfo}
+Analysis ID: ${request.AnalysisId}
+
+Farmer ID: ${request.FarmerId || 'Not provided'}
+
+Location: ${request.Location || 'Not provided'}
+
+GPS Coordinates: ${request.GpsCoordinates ? JSON.stringify(request.GpsCoordinates) : 'Not provided'}
+
+Altitude: ${request.Altitude || 'Not provided'} meters
+
+Field ID: ${request.FieldId || 'Not provided'}
+
+Crop Type: ${request.CropType || 'Not provided'}
+
+Planting Date: ${request.PlantingDate || 'Not provided'}
+
+Expected Harvest: ${request.ExpectedHarvestDate || 'Not provided'}
+
+Soil Type: ${request.SoilType || 'Not provided'}
+
+Last Fertilization: ${request.LastFertilization || 'Not provided'}
+
+Last Irrigation: ${request.LastIrrigation || 'Not provided'}
+
+Weather Conditions: ${request.WeatherConditions || 'Not provided'}
+
+Temperature: ${request.Temperature || 'Not provided'}°C
+
+Humidity: ${request.Humidity || 'Not provided'}%
+
+Previous Treatments: ${request.PreviousTreatments && request.PreviousTreatments.length > 0 ? JSON.stringify(request.PreviousTreatments) : 'None'}
+
+Urgency Level: ${request.UrgencyLevel}
+
+Notes from Farmer: ${request.Notes || 'None'}
 
 Perform a complete analysis covering ALL of the following aspects:
 
 (analysis categories same as before, but values must be produced in Turkish)
+
+Analyze this image: ${request.ImageUrl}
 
 Return ONLY a valid JSON object with this EXACT structure (no additional text):
 {
@@ -474,7 +497,14 @@ Return ONLY a valid JSON object with this EXACT structure (no additional text):
     "light_stress": "yok|yetersiz|aşırı",
     "physical_damage": "yok|rüzgar|dolu|mekanik|hayvan",
     "chemical_damage": "yok|şüpheli|kesin - detay",
-    "soil_indicators": "toprak sağlığı göstergeleri açıklaması (tuzluluk, pH, organik madde)",
+    "physiological_disorders": [
+      {"type": "güneş yanığı|tuz zararı|don zararı|herbisit zararı|besin toksisitesi", "severity": "düşük|orta|yüksek", "notes": "detaylar"}
+    ],
+    "soil_health_indicators": {
+      "salinity": "yok|hafif|orta|şiddetli",
+      "pH_issue": "asidik|alkali|optimal",
+      "organic_matter": "düşük|orta|yüksek"
+    },
     "primary_stressor": "ana stres faktörü veya yok"
   },
   "cross_factor_insights": [
