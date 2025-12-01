@@ -174,11 +174,13 @@ export class OpenAIProvider {
         costUsd: tokenUsage.cost_usd,
       }, 'OpenAI analysis completed successfully');
 
-      // Return C#-compatible response with MIXED casing
-      return {
-        // ============================================
-        // ANALYSIS RESULTS (snake_case - has [JsonProperty])
-        // ============================================
+      // N8N MATCH: Merge ALL AI fields (lines 112-115 from parse_node.js)
+      // This preserves ALL fields from AI response (including risk_assessment, confidence_notes, farmer_friendly_summary)
+      const result = {
+        // FIRST: Spread ALL AI analysis results (this gets everything: risk_assessment, confidence_notes, farmer_friendly_summary, etc.)
+        ...analysisResult,
+
+        // THEN: Add/override with defaults ONLY if sections are missing
         plant_identification: analysisResult.plant_identification || {
           species: 'Belirlenemedi',
           variety: 'Bilinmiyor',
@@ -322,6 +324,8 @@ export class OpenAIProvider {
         error_message: null,
         error_type: null,
       };
+
+      return result;
     } catch (error) {
       const processingTimeMs = Date.now() - startTime;
       const errorMessage = error instanceof Error ? error.message : 'Unknown error';
