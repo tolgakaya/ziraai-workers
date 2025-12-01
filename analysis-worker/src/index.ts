@@ -93,8 +93,9 @@ class AnalysisWorker {
 
     // OpenAI provider (always available)
     if (process.env.OPENAI_API_KEY) {
-      providers.set('openai', new OpenAIProvider(this.config.provider, this.logger));
-      this.logger.info('OpenAI provider initialized');
+      const openaiModel = process.env.PROVIDER_MODEL || 'gpt-4o-mini';
+      providers.set('openai', new OpenAIProvider(process.env.OPENAI_API_KEY, this.logger, openaiModel));
+      this.logger.info({ model: openaiModel }, 'OpenAI provider initialized');
     }
 
     // Gemini provider (optional)

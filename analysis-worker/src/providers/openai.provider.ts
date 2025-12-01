@@ -13,16 +13,18 @@ import { Logger } from 'pino';
  */
 export class OpenAIProvider {
   private client: OpenAI;
-  private config: ProviderConfig;
+  private apiKey: string;
+  private model: string;
   private logger: Logger;
 
-  constructor(config: ProviderConfig, logger: Logger) {
-    this.config = config;
+  constructor(apiKey: string, logger: Logger, model: string) {
+    this.apiKey = apiKey;
+    this.model = model;
     this.logger = logger;
     this.client = new OpenAI({
-      apiKey: config.apiKey,
-      timeout: config.timeout,
-      maxRetries: config.retryAttempts,
+      apiKey: apiKey,
+      timeout: 60000,
+      maxRetries: 3,
     });
   }
 
@@ -52,7 +54,7 @@ export class OpenAIProvider {
       // CRITICAL: GPT-5 mini requires /v1/responses endpoint with input_text/input_image types
       // Different from old chat/completions API
       const requestBody = {
-        model: this.config.model,
+        model: this.model,
         input: [
           {
             role: 'user',
@@ -80,7 +82,7 @@ export class OpenAIProvider {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${this.config.apiKey}`,
+          'Authorization': `Bearer ${this.apiKey}`,
         },
         body: JSON.stringify(requestBody),
       });
@@ -296,7 +298,7 @@ export class OpenAIProvider {
         processing_metadata: {
           ParseSuccess: true,
           ProcessingTimestamp: new Date().toISOString(),
-          AiModel: this.config.model,
+          AiModel: this.model,
           WorkflowVersion: '2.0.0',
           ReceivedAt: receivedAt.toISOString(),
           ProcessingTimeMs: processingTimeMs,
@@ -727,7 +729,7 @@ Return ONLY a valid JSON object with this EXACT structure (no additional text):
       processing_metadata: {
         ParseSuccess: false,
         ProcessingTimestamp: new Date().toISOString(),
-        AiModel: this.config.model,
+        AiModel: this.model,
         WorkflowVersion: '2.0.0',
         ReceivedAt: receivedAt.toISOString(),
         ProcessingTimeMs: processingTimeMs,
