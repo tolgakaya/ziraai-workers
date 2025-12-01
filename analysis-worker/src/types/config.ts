@@ -129,7 +129,7 @@ export interface EnvironmentVariables {
   ANTHROPIC_API_KEY?: string;
 
   // Provider configuration
-  PROVIDER_MODEL: string; // DEPRECATED: Now using provider-specific model variables
+  PROVIDER_MODEL: string; // OpenAI model name (e.g., 'gpt-4o-mini', 'gpt-4o', 'o1-preview')
   GEMINI_MODEL?: string; // Model name for Gemini provider (e.g., 'gemini-2.0-flash-exp')
   ANTHROPIC_MODEL?: string; // Model name for Anthropic provider (e.g., 'claude-3-5-sonnet-20241022')
   RATE_LIMIT: string; // requests per minute

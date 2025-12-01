@@ -32,7 +32,7 @@ ANTHROPIC_API_KEY=sk-ant-...    # Alternative
 ```bash
 GEMINI_MODEL=gemini-2.0-flash-exp              # Default Gemini model
 ANTHROPIC_MODEL=claude-3-5-sonnet-20241022     # Default Anthropic model
-PROVIDER_MODEL=gpt-4o-mini                     # Default OpenAI model (legacy)
+PROVIDER_MODEL=gpt-4o-mini                     # Default OpenAI model
 ```
 
 ---
@@ -480,16 +480,25 @@ REDIS_TTL=600     # 10 minutes - very permissive
 
 ### 6. Provider-Specific Settings
 
-#### `PROVIDER_MODEL` (Optional - DEPRECATED)
-**Purpose**: Override default model for OpenAI provider (legacy variable)
+#### `PROVIDER_MODEL` (Optional)
+**Purpose**: Specify which OpenAI model to use
 **Format**: String (any valid OpenAI model name)
 **Default**: `gpt-4o-mini`
-**Status**: Still supported for backward compatibility, but prefer provider-specific variables
 
-**Important**: This variable is DEPRECATED. Use provider-specific model variables instead:
-- Use `GEMINI_MODEL` for Gemini
-- Use `ANTHROPIC_MODEL` for Anthropic
-- OpenAI still uses this variable (for now)
+**Examples**:
+```bash
+PROVIDER_MODEL=gpt-4o-mini     # Default - recommended for cost/performance balance
+PROVIDER_MODEL=gpt-4o          # More capable, higher cost
+PROVIDER_MODEL=o1-preview      # Reasoning model
+PROVIDER_MODEL=gpt-4-turbo     # Legacy turbo model
+```
+
+**Important**:
+- This is the **active variable for OpenAI** model configuration
+- You can use **any valid OpenAI model name** - no restrictions in code
+- Model name is passed directly to OpenAI API without validation
+- For Gemini models, use `GEMINI_MODEL`
+- For Anthropic models, use `ANTHROPIC_MODEL`
 
 ---
 
