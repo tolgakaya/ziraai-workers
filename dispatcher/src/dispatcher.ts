@@ -27,12 +27,17 @@ export class Dispatcher {
       const ch = await (conn as any).createChannel() as Channel;
       this.channel = ch;
 
-      // Assert all queues exist
-      await ch.assertQueue(this.config.rabbitmq.queues.rawAnalysis, { durable: true });
-      await ch.assertQueue(this.config.rabbitmq.queues.openai, { durable: true });
-      await ch.assertQueue(this.config.rabbitmq.queues.gemini, { durable: true });
-      await ch.assertQueue(this.config.rabbitmq.queues.anthropic, { durable: true });
-      await ch.assertQueue(this.config.rabbitmq.queues.dlq, { durable: true });
+      // Assert all queues exist with TTL (24 hours = 86400000ms)
+      const queueOptions = {
+        durable: true,
+        arguments: { 'x-message-ttl': 86400000 } // 24 hours message TTL
+      };
+
+      await ch.assertQueue(this.config.rabbitmq.queues.rawAnalysis, queueOptions);
+      await ch.assertQueue(this.config.rabbitmq.queues.openai, queueOptions);
+      await ch.assertQueue(this.config.rabbitmq.queues.gemini, queueOptions);
+      await ch.assertQueue(this.config.rabbitmq.queues.anthropic, queueOptions);
+      await ch.assertQueue(this.config.rabbitmq.queues.dlq, queueOptions);
 
       console.log(`[Dispatcher ${this.config.dispatcher.id}] Connected to RabbitMQ`);
       console.log(`[Dispatcher ${this.config.dispatcher.id}] Strategy: ${this.config.dispatcher.strategy}`);
