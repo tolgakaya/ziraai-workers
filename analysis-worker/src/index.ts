@@ -222,7 +222,7 @@ class AnalysisWorker {
    */
   async start(): Promise<void> {
     const availableProviders = Array.from(this.providers.keys());
-    
+
     this.logger.info({
       workerId: this.config.workerId,
       availableProviders,
@@ -234,36 +234,73 @@ class AnalysisWorker {
       // Connect to RabbitMQ
       await this.rabbitmq.connect();
 
-      // PHASE 1: Consume from WebAPI's existing queues (single + multi-image)
-      // Phase 2 will add dispatcher to route to provider-specific queues
-      const singleImageQueue = this.config.rabbitmq.queues.plantAnalysisRequest;
-      const multiImageQueue = this.config.rabbitmq.queues.plantAnalysisMultiImageRequest;
+      // Feature flag: Decide which queues to consume from
+      // USE_PROVIDER_QUEUES=true: NEW system (Dispatcher → provider-specific queues)
+      // USE_PROVIDER_QUEUES=false: OLD system (WebAPI → direct worker queues)
+      const useProviderQueues = process.env.USE_PROVIDER_QUEUES === 'true';
 
-      // Consume single image queue
-      await this.rabbitmq.consumeQueue(singleImageQueue, async (message) => {
-        await this.processMessage(message);
-      });
+      if (useProviderQueues) {
+        // NEW SYSTEM (Phase 1 Day 5+): Consume from provider-specific queues
+        // Dispatcher routes from raw-analysis-queue to these queues
+        this.logger.info('Using NEW queue system: Provider-specific queues');
 
-      // Consume multi-image queue (same processing logic)
-      await this.rabbitmq.consumeQueue(multiImageQueue, async (message) => {
-        await this.processMessage(message);
-      });
+        const providerQueues = [
+          this.config.rabbitmq.queues.openai,
+          this.config.rabbitmq.queues.gemini,
+          this.config.rabbitmq.queues.anthropic,
+        ];
 
-      this.logger.info({
-        singleImageQueue,
-        multiImageQueue,
-        availableProviders: availableProviders,
-        selectionStrategy: this.config.providerSelection.strategy,
-      }, 'Started consuming from WebAPI queues (single + multi-image)')
+        for (const queue of providerQueues) {
+          await this.rabbitmq.consumeQueue(queue, async (message) => {
+            await this.processMessage(message);
+          });
+          this.logger.info({ queue }, 'Consuming from provider queue');
+        }
+
+        this.logger.info({
+          providerQueues,
+          availableProviders,
+          selectionStrategy: this.config.providerSelection.strategy,
+        }, 'Started consuming from provider-specific queues');
+
+      } else {
+        // OLD SYSTEM (Legacy): Consume from WebAPI's direct queues
+        this.logger.info('Using OLD queue system: WebAPI direct queues');
+
+        const singleImageQueue = this.config.rabbitmq.queues.plantAnalysisRequest;
+        const multiImageQueue = this.config.rabbitmq.queues.plantAnalysisMultiImageRequest;
+
+        // Consume single image queue
+        await this.rabbitmq.consumeQueue(singleImageQueue, async (message) => {
+          await this.processMessage(message);
+        });
+
+        // Consume multi-image queue (same processing logic)
+        await this.rabbitmq.consumeQueue(multiImageQueue, async (message) => {
+          await this.processMessage(message);
+        });
+
+        this.logger.info({
+          singleImageQueue,
+          multiImageQueue,
+          availableProviders,
+          selectionStrategy: this.config.providerSelection.strategy,
+        }, 'Started consuming from WebAPI queues (single + multi-image)');
+      }
 
       // Start health check interval
       this.startHealthCheck();
 
+      const queueInfo = useProviderQueues
+        ? ['openai-analysis-queue', 'gemini-analysis-queue', 'anthropic-analysis-queue']
+        : ['plant-analysis-requests', 'plant-analysis-multi-image-requests'];
+
       this.logger.info({
         workerId: this.config.workerId,
-        queues: [singleImageQueue, multiImageQueue],
+        system: useProviderQueues ? 'NEW (Provider Queues)' : 'OLD (WebAPI Direct)',
+        queues: queueInfo,
         providerCount: availableProviders.length,
-        availableProviders: availableProviders,
+        availableProviders,
       }, 'Worker started successfully and consuming from queues');
     } catch (error) {
       this.logger.fatal({ error }, 'Failed to start worker');
