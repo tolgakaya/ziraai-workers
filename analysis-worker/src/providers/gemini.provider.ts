@@ -55,7 +55,7 @@ export class GeminiProvider {
         model: this.modelName,
       }, 'Calling Gemini API');
 
-      const result = await this.model.generateContent({
+      const geminiResult = await this.model.generateContent({
         contents: [{ role: 'user', parts }],
         generationConfig: {
           temperature: 0.7,
@@ -64,7 +64,7 @@ export class GeminiProvider {
         },
       });
 
-      const response = await result.response;
+      const response = await geminiResult.response;
       const analysisText = response.text();
       const processingTimeMs = Date.now() - startTime;
 
@@ -129,7 +129,7 @@ export class GeminiProvider {
 
       // N8N MATCH: Merge ALL AI fields (matching OpenAI provider logic)
       // This preserves ALL fields from AI response (including risk_assessment, confidence_notes, farmer_friendly_summary)
-      const result = {
+      const responseDto = {
         // FIRST: Spread ALL AI analysis results (this gets everything: risk_assessment, confidence_notes, farmer_friendly_summary, etc.)
         ...analysisResult,
 
@@ -283,7 +283,7 @@ export class GeminiProvider {
         response_queue: request.ResponseQueue,
       };
 
-      return result;
+      return responseDto;
     } catch (error: any) {
       const processingTimeMs = Date.now() - startTime;
       const errorMessage = error?.message || 'Unknown Gemini API error';
