@@ -147,6 +147,9 @@ export class GeminiProvider {
         error: false,
         error_message: null,
         error_type: null,
+
+        // Routing metadata (from request)
+        response_queue: request.ResponseQueue,
       };
     } catch (error: any) {
       const processingTimeMs = Date.now() - startTime;
@@ -517,6 +520,9 @@ CRITICAL INSTRUCTIONS
       error: true,
       error_message: `Gemini API error: ${errorMessage}`,
       error_type: 'gemini_api_error',
+
+      // Routing metadata (from request)
+      response_queue: request.ResponseQueue,
     };
   }
 

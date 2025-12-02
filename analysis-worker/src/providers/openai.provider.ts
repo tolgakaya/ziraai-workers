@@ -325,6 +325,11 @@ export class OpenAIProvider {
         error: false,
         error_message: null,
         error_type: null,
+
+        // ============================================
+        // ROUTING METADATA (from request)
+        // ============================================
+        response_queue: request.ResponseQueue,
       };
 
       return result;
@@ -746,6 +751,9 @@ Return ONLY a valid JSON object with this EXACT structure (no additional text):
       error: true,
       error_message: errorMessage,
       error_type: 'openai_error',
+
+      // Routing metadata (from request)
+      response_queue: request.ResponseQueue,
     };
   }
 

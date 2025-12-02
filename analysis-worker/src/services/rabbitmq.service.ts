@@ -153,6 +153,7 @@ export class RabbitMQService {
 
   /**
    * Publish analysis result to results queue
+   * Uses response_queue from result if available, otherwise falls back to default
    */
   async publishResult(result: PlantAnalysisAsyncResponseDto): Promise<void> {
     if (!this.channel) {
@@ -160,11 +161,15 @@ export class RabbitMQService {
     }
 
     try {
+      // CRITICAL: Use response_queue from result if available (for multi-image support)
+      // Otherwise fall back to default results queue
+      const targetQueue = result.response_queue || this.config.queues.results;
+
       const message = JSON.stringify(result);
 
       const published = this.channel.publish(
         '', // Default exchange
-        this.config.queues.results,
+        targetQueue,
         Buffer.from(message),
         {
           persistent: true, // Persist message to disk
@@ -177,18 +182,22 @@ export class RabbitMQService {
       if (!published) {
         this.logger.warn({
           analysisId: result.analysis_id,
-          queue: this.config.queues.results,
+          queue: targetQueue,
+          responseQueue: result.response_queue,
         }, 'Message buffered (channel full)');
       } else {
-        this.logger.debug({
+        this.logger.info({
           analysisId: result.analysis_id,
-          queue: this.config.queues.results,
+          queue: targetQueue,
+          responseQueue: result.response_queue,
+          usedFallback: !result.response_queue,
         }, 'Result published to PlantAnalysisWorkerService');
       }
     } catch (error) {
       this.logger.error({
         error,
         analysisId: result.analysis_id,
+        responseQueue: result.response_queue,
       }, 'Failed to publish result');
       throw error;
     }

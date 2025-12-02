@@ -420,6 +420,12 @@ export interface PlantAnalysisAsyncResponseDto {
   error: boolean;                    // REQUIRED: false for successful analysis
   error_message?: string | null;
   error_type?: string | null;
+
+  // ============================================
+  // ROUTING METADATA (snake_case)
+  // ============================================
+  response_queue?: string;           // Target queue for result (from request.ResponseQueue)
+                                     // Examples: "plant-analysis-results", "plant-analysis-multi-image-results"
 }
 
 // ============================================
