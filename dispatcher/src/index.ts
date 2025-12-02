@@ -16,11 +16,29 @@ dotenv.config();
  * Build configuration from environment variables
  */
 function buildConfig(): DispatcherConfig {
+  // Parse available providers (comma-separated)
+  const availableProviders = process.env.AVAILABLE_PROVIDERS
+    ? process.env.AVAILABLE_PROVIDERS.split(',').map(p => p.trim() as any)
+    : undefined;
+
+  // Parse weights (JSON format: [{"provider":"openai","weight":50},{"provider":"gemini","weight":30}])
+  let weights = undefined;
+  if (process.env.PROVIDER_WEIGHTS) {
+    try {
+      weights = JSON.parse(process.env.PROVIDER_WEIGHTS);
+    } catch (error) {
+      console.error('Failed to parse PROVIDER_WEIGHTS:', error);
+      console.log('Expected format: [{"provider":"openai","weight":50},{"provider":"gemini","weight":30}]');
+    }
+  }
+
   return {
     dispatcher: {
       id: process.env.DISPATCHER_ID || 'dispatcher-001',
       strategy: (process.env.PROVIDER_SELECTION_STRATEGY as any) || 'FIXED',
-      fixedProvider: (process.env.PROVIDER_FIXED as any) || 'openai'
+      fixedProvider: (process.env.PROVIDER_FIXED as any) || 'openai',
+      availableProviders,
+      weights
     },
     rabbitmq: {
       url: process.env.RABBITMQ_URL || 'amqp://dev:devpass@localhost:5672/',
@@ -53,7 +71,18 @@ async function main() {
   console.log('\nConfiguration:');
   console.log(`  Dispatcher ID: ${config.dispatcher.id}`);
   console.log(`  Strategy: ${config.dispatcher.strategy}`);
-  console.log(`  Fixed Provider: ${config.dispatcher.fixedProvider || 'N/A'}`);
+
+  // Strategy-specific configuration
+  if (config.dispatcher.strategy === 'FIXED') {
+    console.log(`  Fixed Provider: ${config.dispatcher.fixedProvider || 'openai'}`);
+  } else if (config.dispatcher.strategy === 'ROUND_ROBIN' || config.dispatcher.strategy === 'COST_OPTIMIZED' || config.dispatcher.strategy === 'QUALITY_FIRST') {
+    console.log(`  Available Providers: ${config.dispatcher.availableProviders?.join(', ') || 'openai, gemini, anthropic'}`);
+  } else if (config.dispatcher.strategy === 'WEIGHTED') {
+    console.log(`  Weights: ${JSON.stringify(config.dispatcher.weights || [])}`);
+  } else if (config.dispatcher.strategy === 'MESSAGE_BASED') {
+    console.log(`  Mode: Read provider from request message`);
+  }
+
   console.log(`  RabbitMQ URL: ${config.rabbitmq.url}`);
   console.log(`  Raw Analysis Queue: ${config.rabbitmq.queues.rawAnalysis}`);
   console.log(`  OpenAI Queue: ${config.rabbitmq.queues.openai}`);

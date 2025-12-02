@@ -1,140 +1,1001 @@
-2025-12-01T15:09:48.000000000Z [inf]  Starting Container
-2025-12-01T15:09:49.847673740Z [inf]      strategy: "FIXED"
-2025-12-01T15:09:49.847686093Z [inf]      availableProviders: [
-2025-12-01T15:09:49.847693314Z [inf]        "openai"
-2025-12-01T15:09:49.847699761Z [inf]      ]
-2025-12-01T15:09:49.847712899Z [inf]      fixedProvider: "openai"
-2025-12-01T15:09:49.847719821Z [inf]  [2025-12-01 15:09:48.737 +0000] [32mINFO[39m: [36mStarting multi-provider analysis worker[39m
-2025-12-01T15:09:49.847755492Z [inf]      workerId: "worker-staging-1"
-2025-12-01T15:09:49.847762770Z [inf]      availableProviders: [
-2025-12-01T15:09:49.847768666Z [inf]        "openai"
-2025-12-01T15:09:49.847774556Z [inf]      ]
-2025-12-01T15:09:49.847780512Z [inf]      selectionStrategy: "FIXED"
-2025-12-01T15:09:49.847789617Z [inf]      concurrency: 60
-2025-12-01T15:09:49.847794772Z [inf]  [2025-12-01 15:09:48.738 +0000] [32mINFO[39m: [36mConnecting to RabbitMQ[39m
-2025-12-01T15:09:49.847804335Z [inf]      url: "amqp://DIjL9Z7aGtLIG5z6:***@rabbitmq.railway.internal:5672"
-2025-12-01T15:09:49.847811803Z [inf]  [2025-12-01 15:09:48.892 +0000] [32mINFO[39m: [36mRedis connected successfully[39m
-2025-12-01T15:09:49.847851234Z [inf]  [2025-12-01 15:09:48.958 +0000] [32mINFO[39m: [36mRabbitMQ connected successfully[39m
-2025-12-01T15:09:49.847858649Z [inf]  [2025-12-01 15:09:48.959 +0000] [32mINFO[39m: [36mStarting consumer[39m
-2025-12-01T15:09:49.847865389Z [inf]      queueName: "plant-analysis-requests"
-2025-12-01T15:09:49.848033389Z [inf]  [2025-12-01 15:09:48.961 +0000] [32mINFO[39m: [36mStarted consuming from WebAPI queue[39m
-2025-12-01T15:09:49.848041705Z [inf]      queueName: "plant-analysis-requests"
-2025-12-01T15:09:49.848048882Z [inf]      availableProviders: [
-2025-12-01T15:09:49.848054151Z [inf]        "openai"
-2025-12-01T15:09:49.848060327Z [inf]      ]
-2025-12-01T15:09:49.848065865Z [inf]      selectionStrategy: "FIXED"
-2025-12-01T15:09:49.848070791Z [inf]  [2025-12-01 15:09:48.962 +0000] [32mINFO[39m: [36mWorker started successfully and consuming from queue[39m
-2025-12-01T15:09:49.848077645Z [inf]      workerId: "worker-staging-1"
-2025-12-01T15:09:49.848082377Z [inf]      queue: "plant-analysis-requests"
-2025-12-01T15:09:49.848088317Z [inf]      providerCount: 1
-2025-12-01T15:09:49.848094758Z [inf]      availableProviders: [
-2025-12-01T15:09:49.848100269Z [inf]        "openai"
-2025-12-01T15:09:49.848105185Z [inf]      ]
-2025-12-01T15:09:49.848370159Z [inf]  [2025-12-01 15:09:48.728 +0000] [32mINFO[39m: [36mProvider API keys validated[39m
-2025-12-01T15:09:49.848376175Z [inf]      providers: [
-2025-12-01T15:09:49.848381241Z [inf]        "OpenAI"
-2025-12-01T15:09:49.848386191Z [inf]      ]
-2025-12-01T15:09:49.848391191Z [inf]  [2025-12-01 15:09:48.731 +0000] [32mINFO[39m: [36mOpenAI provider initialized[39m
-2025-12-01T15:09:49.848396701Z [inf]  [2025-12-01 15:09:48.731 +0000] [32mINFO[39m: [36mAI providers initialized[39m
-2025-12-01T15:09:49.848401926Z [inf]      providers: [
-2025-12-01T15:09:49.848409314Z [inf]        "openai"
-2025-12-01T15:09:49.848415343Z [inf]      ]
-2025-12-01T15:09:49.848420316Z [inf]  [2025-12-01 15:09:48.731 +0000] [32mINFO[39m: [36mProvider selector initialized[39m
-2025-12-01T15:10:29.978809955Z [inf]      errorRate: "0%"
-2025-12-01T15:10:29.978840571Z [inf]      workerId: "worker-staging-1"
-2025-12-01T15:10:29.978846766Z [inf]      provider: "healthy"
-2025-12-01T15:10:29.978853158Z [inf]      rabbitmq: "healthy"
-2025-12-01T15:10:29.978909259Z [inf]  [2025-12-01 15:10:19.887 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-01T15:10:29.979001749Z [inf]      redis: "healthy"
-2025-12-01T15:10:29.979019620Z [inf]      overall: "healthy"
-2025-12-01T15:10:29.979029824Z [inf]      processedCount: 0
-2025-12-01T15:10:29.979037955Z [inf]      errorCount: 0
-2025-12-01T15:10:49.962714083Z [inf]      farmerId: "F190"
-2025-12-01T15:10:49.962728148Z [inf]  [2025-12-01 15:10:46.829 +0000] [32mINFO[39m: [36mProcessing analysis message[39m
-2025-12-01T15:10:49.962730462Z [inf]      imageUrl: "https://1lik.net/plant-images/20251201_151046_625_0e54be03be0f49adb2fdada1fbc4453b_async_async_analysis_20251201_151046_3987b1e8_20251201_151046.jpg"
-2025-12-01T15:10:49.962741697Z [inf]      cropType: null
-2025-12-01T15:10:49.962743369Z [inf]      analysisId: "async_analysis_20251201_151046_3987b1e8"
-2025-12-01T15:10:49.962754488Z [inf]      farmerId: "F190"
-2025-12-01T15:10:49.962761974Z [inf]      imageUrl: "https://1lik.net/plant-images/20251201_151046_625_0e54be03be0f49adb2fdada1fbc4453b_async_async_analysis_20251201_151046_3987b1e8_20251201_151046.jpg"
-2025-12-01T15:10:49.962768395Z [inf]  [2025-12-01 15:10:46.833 +0000] [32mINFO[39m: [36mStarting OpenAI analysis[39m
-2025-12-01T15:10:49.962774748Z [inf]      analysisId: "async_analysis_20251201_151046_3987b1e8"
-2025-12-01T15:10:50.798194943Z [inf]      errorCount: 0
-2025-12-01T15:10:50.798202375Z [inf]      errorRate: "0%"
-2025-12-01T15:10:50.798213152Z [inf]  [2025-12-01 15:10:49.604 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-01T15:10:50.798220827Z [inf]      workerId: "worker-staging-1"
-2025-12-01T15:10:50.798232932Z [inf]      provider: "healthy"
-2025-12-01T15:10:50.798245049Z [inf]      rabbitmq: "healthy"
-2025-12-01T15:10:50.798259111Z [inf]      redis: "healthy"
-2025-12-01T15:10:50.798267851Z [inf]      overall: "healthy"
-2025-12-01T15:10:50.798276774Z [inf]      processedCount: 0
-2025-12-01T15:11:20.330202930Z [inf]  [2025-12-01 15:11:19.586 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-01T15:11:20.330208333Z [inf]      workerId: "worker-staging-1"
-2025-12-01T15:11:20.330213043Z [inf]      provider: "healthy"
-2025-12-01T15:11:20.330217774Z [inf]      rabbitmq: "healthy"
-2025-12-01T15:11:20.330222378Z [inf]      redis: "healthy"
-2025-12-01T15:11:20.330226894Z [inf]      overall: "healthy"
-2025-12-01T15:11:20.330230738Z [inf]      processedCount: 0
-2025-12-01T15:11:20.330235167Z [inf]      errorCount: 0
-2025-12-01T15:11:20.330240267Z [inf]      errorRate: "0%"
-2025-12-01T15:11:49.677672385Z [inf]      analysisId: "async_analysis_20251201_151046_3987b1e8"
-2025-12-01T15:11:49.677686714Z [inf]      responseKeys: [
-2025-12-01T15:11:49.677695855Z [inf]        "id",
-2025-12-01T15:11:49.677752041Z [inf]  [2025-12-01 15:11:45.471 +0000] [32mINFO[39m: [36mOpenAI API response structure[39m
-2025-12-01T15:11:49.683339079Z [inf]        "object",
-2025-12-01T15:11:49.683346867Z [inf]        "created_at",
-2025-12-01T15:11:49.683353350Z [inf]        "status",
-2025-12-01T15:11:49.683358364Z [inf]        "background",
-2025-12-01T15:11:49.683362817Z [inf]        "billing",
-2025-12-01T15:11:49.683367620Z [inf]        "error",
-2025-12-01T15:11:49.683372324Z [inf]        "incomplete_details",
-2025-12-01T15:11:49.683376850Z [inf]        "instructions",
-2025-12-01T15:11:49.683381050Z [inf]        "max_output_tokens",
-2025-12-01T15:11:49.683386359Z [inf]        "max_tool_calls",
-2025-12-01T15:11:49.683391110Z [inf]        "model",
-2025-12-01T15:11:49.683394998Z [inf]        "output",
-2025-12-01T15:11:49.683399365Z [inf]        "parallel_tool_calls",
-2025-12-01T15:11:49.683403196Z [inf]        "previous_response_id",
-2025-12-01T15:11:49.683407617Z [inf]        "prompt_cache_key",
-2025-12-01T15:11:49.683415933Z [inf]        "prompt_cache_retention",
-2025-12-01T15:11:49.683421124Z [inf]        "reasoning",
-2025-12-01T15:11:49.683427182Z [inf]        "safety_identifier",
-2025-12-01T15:11:49.683431305Z [inf]        "service_tier",
-2025-12-01T15:11:49.683436118Z [inf]        "store",
-2025-12-01T15:11:49.683440621Z [inf]        "temperature",
-2025-12-01T15:11:49.683444900Z [inf]        "text",
-2025-12-01T15:11:49.683448815Z [inf]        "tool_choice",
-2025-12-01T15:11:49.683453014Z [inf]        "tools",
-2025-12-01T15:11:49.683456899Z [inf]        "top_logprobs",
-2025-12-01T15:11:49.683467037Z [inf]        "top_p",
-2025-12-01T15:11:49.683471021Z [inf]        "truncation",
-2025-12-01T15:11:49.683741843Z [inf]        "usage",
-2025-12-01T15:11:49.683753632Z [inf]        "user",
-2025-12-01T15:11:49.683759209Z [inf]        "metadata"
-2025-12-01T15:11:49.683767864Z [inf]      ]
-2025-12-01T15:11:49.683774215Z [inf]      hasOutput: true
-2025-12-01T15:11:49.683788519Z [inf]      outputLength: 2
-2025-12-01T15:11:49.683795990Z [inf]      firstOutputKeys: [
-2025-12-01T15:11:49.683802661Z [inf]        "id",
-2025-12-01T15:11:49.683809830Z [inf]        "type",
-2025-12-01T15:11:49.684319413Z [inf]        "summary"
-2025-12-01T15:11:49.684324607Z [inf]      ]
-2025-12-01T15:11:49.684329302Z [inf]      responsePreview: "{\"id\":\"resp_006117ed483f9c1a00692daff6ff8481939f04d0f0a5471b95\",\"object\":\"response\",\"created_at\":1764601847,\"status\":\"completed\",\"background\":false,\"billing\":{\"payer\":\"developer\"},\"error\":null,\"incomplete_details\":null,\"instructions\":null,\"max_output_tokens\":null,\"max_tool_calls\":null,\"model\":\"gpt-5-mini-2025-08-07\",\"output\":[{\"id\":\"rs_006117ed483f9c1a00692daff804548193aebeb350db94f29b\",\"type\":\"reasoning\",\"summary\":[]},{\"id\":\"msg_006117ed483f9c1a00692db00f3ce08193ba3674eda6326f9b\",\"type\":\"messag"
-2025-12-01T15:11:49.684333268Z [inf]  [2025-12-01 15:11:45.471 +0000] [31mERROR[39m: [36mEmpty response - full API response logged[39m
-2025-12-01T15:11:49.684337166Z [inf]      analysisId: "async_analysis_20251201_151046_3987b1e8"
-2025-12-01T15:11:49.686554415Z [inf]  [2025-12-01 15:11:45.473 +0000] [32mINFO[39m: [36mAnalysis completed and result published[39m
-2025-12-01T15:11:49.686564566Z [inf]      analysisId: "async_analysis_20251201_151046_3987b1e8"
-2025-12-01T15:11:49.686698091Z [inf]      fullResponse: "{\"id\":\"resp_006117ed483f9c1a00692daff6ff8481939f04d0f0a5471b95\",\"object\":\"response\",\"created_at\":1764601847,\"status\":\"completed\",\"background\":false,\"billing\":{\"payer\":\"developer\"},\"error\":null,\"incomplete_details\":null,\"instructions\":null,\"max_output_tokens\":null,\"max_tool_calls\":null,\"model\":\"gpt-5-mini-2025-08-07\",\"output\":[{\"id\":\"rs_006117ed483f9c1a00692daff804548193aebeb350db94f29b\",\"type\":\"reasoning\",\"summary\":[]},{\"id\":\"msg_006117ed483f9c1a00692db00f3ce08193ba3674eda6326f9b\",\"type\":\"message\",\"status\":\"completed\",\"content\":[{\"type\":\"output_text\",\"annotations\":[],\"logprobs\":[],\"text\":\"{\n  \\"plant_identification\\": {\n    \\"species\\": \\"Patlıcan (Solanum melongena)\\",\n    \\"variety\\": \\"bilinmiyor\\",\n    \\"growth_stage\\": \\"çiçeklenme\\",\n    \\"confidence\\": 90,\n    \\"identifying_features\\": [\n      \\"mor-lila çiçekler\\",\n      \\"geniş, tüylü yapraklar\\",\n      \\"odunsu gövde ve dallanma\\"\n    ],\n    \\"visible_parts\\": [\n      \\"yapraklar\\",\n      \\"çiçekler\\",\n      \\"gövde\\"\n    ]\n  },\n  \\"health_assessment\\": {\n    \\"vigor_score\\": 7,\n    \\"leaf_color\\": \\"açık-orta yeşil, genel olarak homojen fakat biraz solukluk var\\",\n    \\"leaf_texture\\": \\"tüylü (hassas kıllı), yaprak yüzeyi sağlıklı görünüyor, yumuşama veya gevreme yok\\",\n    \\"growth_pattern\\": \\"normal - genç/orta gelişim; dallanma ve çiçeklenme iyi\\",\n    \\"structural_integrity\\": \\"sağlam - gövde ve dallar sağlam, kırık/çürük yok\\",\n    \\"stress_indicators\\": [\n      \\"hafif yaprak solukluğu\\",\n      \\"yaprak kenarlarında hafif düzensizlik (fizyolojik veya gelişimsel)\\"\n    ],\n    \\"disease_symptoms\\": [],\n    \\"severity\\": \\"düşük\\"\n  },\n  \\"nutrient_status\\": {\n    \\"nitrogen\\": \\"hafif eksik\\",\n    \\"phosphorus\\": \\"normal\\",\n    \\"potassium\\": \\"normal\\",\n    \\"calcium\\": \\"normal\\",\n    \\"magnesium\\": \\"normal\\",\n    \\"sulfur\\": \\"normal\\",\n    \\"iron\\": \\"normal\\",\n    \\"zinc\\": \\"normal\\",\n    \\"manganese\\": \\"normal\\",\n    \\"boron\\": \\"normal\\",\n    \\"copper\\": \\"normal\\",\n    \\"molybdenum\\": \\"normal\\",\n    \\"chlorine\\": \\"normal\\",\n    \\"nickel\\": \\"normal\\",\n    \\"primary_deficiency\\": \\"hafif azot eksikliği olasılığı\\",\n    \\"secondary_deficiencies\\": [\n      \\"yok veya belirsiz (toprak ve doku analizi önerilir)\\"\n    ],\n    \\"severity\\": \\"düşük\\"\n  },\n  \\"pest_disease\\": {\n    \\"pests_detected\\": [],\n    \\"diseases_detected\\": [],\n    \\"damage_pattern\\": \\"Görüntüde belirgin böcek beslenmesi, mantar lezyonu veya bakteriyel çürüme yok; hafif yaprak kenarı düzensizliği dışında belirgin hasar yok\\",\n    \\"affected_area_percentage\\": 0,\n    \\"spread_risk\\": \\"yok\\",\n    \\"primary_issue\\": \\"hafif besin ve/veya su stresi (gözlemlenebilir patojen veya zararlı yok)\\"\n  },\n  \\"environmental_stress\\": {\n    \\"water_status\\": \\"hafif kurak\\",\n    \\"temperature_stress\\": \\"yok\\",\n    \\"light_stress\\": \\"yok\\",\n    \\"physical_damage\\": \\"yok\\",\n    \\"chemical_damage\\": \\"yok\\",\n    \\"soil_indicators\\": \\"Yüzey kuru; organik madde ve tuzluluk hakkında bilgi yok. Görüntü toprağı hafif kumlu-çakıllı, organik madde düşük olabilir.\\",\n    \\"primary_stressor\\": \\"hafif su stresi / yüzey kuruluğu\\"\n  },\n  \\"cross_factor_insights\\": [\n    {\n      \\"insight\\": \\"Yüzeydeki kuruluk ve hafif yaprak solukluğu birlikte değerlendirildiğinde, su stresi bitkinin azot alımını azaltmış ve yaprak rengini hafif soluklaştırmış olabilir; bu durum ilerlerse bitki daha hassas hale gelerek zararlı ve hastalık riskini artırır.\\",\n      \\"confidence\\": 0.7,\n      \\"affected_aspects\\": [\n        \\"nutrient_status\\",\n        \\"environmental_stress\\"\n      ],\n      \\"impact_level\\": \\"orta\\"\n    }\n  ],\n  \\"risk_assessment\\": {\n    \\"yield_loss_probability\\": \\"düşük\\",\n    \\"timeline_to_worsen\\": \\"hafta\\",\n    \\"spread_potential\\": \\"lokal\\"\n  },\n  \\"recommendations\\": {\n    \\"immediate\\": [\n      {\n        \\"action\\": \\"Toprak nemini kontrol et ve sulama uygula\\",\n        \\"details\\": \\"Her bitki için yaklaşık 5-8 litre su ile derin sulama yap; yüzeyin yeniden kuru kalmasına izin verme. Damla varsa nozulları kontrol et.\\",\n        \\"timeline\\": \\"24 saat içinde\\",\n        \\"priority\\": \\"kritik\\"\n      },\n      {\n        \\"action\\": \\"Gözlem yap\\",\n        \\"details\\": \\"Çiçek ve alttaki yapraklarda zararlı veya lekelenme belirtileri ara; varsa fotoğraf çek ve belgele.\\",\n        \\"timeline\\": \\"24-48 saat\\",\n        \\"priority\\": \\"yüksek\\"\n      }\n    ],\n    \\"short_term\\": [\n      {\n        \\"action\\": \\"Toprak ve yaprak doku analizi yaptır\\",\n        \\"details\\": \\"pH, EC, N-P-K ve mikro elementler için laboratuvar testi; sonuçlara göre gübreleme planı oluştur.\\",\n        \\"timeline\\": \\"3-7 gün\\",\n        \\"priority\\": \\"yüksek\\"\n      },\n      {\n        \\"action\\": \\"Hafif azot takviyesi\\",\n        \\"details\\": \\"Toprak testi olmadan başlangıç için dengeli bir NPK (ör. 10-10-10) veya düşük doz amonyum nitrat/üre ile yaprak rengi düzeltilmeye çalışılabilir; üretici dozlarına uyun.\\",\n        \\"timeline\\": \\"7-14 gün\\",\n        \\"priority\\": \\"orta\\"\n      }\n    ],\n    \\"preventive\\": [\n      {\n        \\"action\\": \\"Malçlama ve organik madde ilavesi\\",\n        \\"details\\": \\"Yüzeyde organik malç kullanarak nem korunumu sağla; sezon başında kompost uygulaması önerilir.\\",\n        \\"timeline\\": \\"sürekli\\",\n        \\"priority\\": \\"orta\\"\n      },\n      {\n        \\"action\\": \\"Düzenli saha kontrolü ve entegre zararlı yönetimi\\",\n        \\"details\\": \\"Haftalık kontroller, faydalı böcekleri koruma, gerekirse organik ilaç kullanımı (ör. neem yağı, spinosad) uygula.\\",\n        \\"timeline\\": \\"sürekli\\",\n        \\"priority\\": \\"orta\\"\n      }\n    ],\n    \\"monitoring\\": [\n      {\n        \\"parameter\\": \\"toprak nemi (yüzey ve 10-20 cm derinlik)\\",\n        \\"frequency\\": \\"günlük (sıcak dönemlerde) / haftalık\\",\n        \\"threshold\\": \\"%50 kullanılabilir su altı veya yüzey kuruysa sulama\\"\n      },\n      {\n        \\"parameter\\": \\"yaprak renk ve zarar belirtileri (lekeler, sararma, böcek)\\",\n        \\"frequency\\": \\"haftalık\\",\n        \\"threshold\\": \\"yeni sararma veya leke görüldüğünde fotoğraf ve numune ile inceleme\\"\n      }\n    ],\n    \\"resource_estimation\\": {\n      \\"water_required_liters\\": 6,\n      \\"fertilizer_cost_estimate_usd\\": 2,\n      \\"labor_hours_estimate\\": 0.5\n    },\n    \\"localized_recommendations\\": {\n      \\"region\\": \\"bilinmiyor\\",\n      \\"preferred_practices\\": [\n        \\"damla sulama ile nem düzenlemesi\\",\n        \\"toprak testi sonrası özel gübreleme\\",\n        \\"kompost/malç ile organik içerik artırma\\"\n      ],\n      \\"restricted_methods\\": [\n        \\"etiketsiz/izinlenmemiş pestisit kullanımı\\",\n        \\"aşırı fosfor veya tuzlu gübre uygulamaları\\"\n      ]\n    }\n  },\n  \\"summary\\": {\n    \\"overall_health_score\\": 7,\n    \\"primary_concern\\": \\"hafif su ve olası hafif azot stresi\\",\n    \\"secondary_concerns\\": [\n      \\"organik madde düşük olma riski\\",\n      \\"ileride artabilecek zararlı/hastalık hassasiyeti\\"\n    ],\n    \\"critical_issues_count\\": 0,\n    \\"confidence_level\\": 75,\n    \\"prognosis\\": \\"iyi\\",\n    \\"estimated_yield_impact\\": \\"minimal\\"\n  },\n  \\"confidence_notes\\": [\n    {\n      \\"aspect\\": \\"nutrient_status\\",\n      \\"confidence\\": 0.65,\n      \\"reason\\": \\"Gözleme dayalı değerlendirme; yaprak rengi ve genel görünüm hafif azot eksikliğini düşündürüyor ancak kesin teşhis için toprak ve doku analizi gereklidir.\\"\n    }\n  ],\n  \\"farmer_friendly_summary\\": \\"Bitkiler genel olarak sağlıklı görünüyor, çiçeklenme iyi. Yapraklar biraz soluk; toprağın yüzeyi kuru görünüyor. Önce toprağın nemini kontrol edip derin sulama yapın (her bitki için ~5-8 litre). 3-7 gün içinde toprak ve yaprak analizi yaptırın; gerekirse hafif azot takviyesi uygulayın. Haftalık kontrollerle zararlı veya leke olup olmadığına bakın. Organik malç ve kompostla toprağı güçlendirmek uzun vadede fayda sağlar.\\"\n}\"}],\"role\":\"assistant\"}],\"parallel_tool_calls\":true,\"previous_response_id\":null,\"prompt_cache_key\":null,\"prompt_cache_retention\":null,\"reasoning\":{\"effort\":\"medium\",\"summary\":null},\"safety_identifier\":null,\"service_tier\":\"default\",\"store\":true,\"temperature\":1,\"text\":{\"format\":{\"type\":\"text\"},\"verbosity\":\"medium\"},\"tool_choice\":\"auto\",\"tools\":[],\"top_logprobs\":0,\"top_p\":1,\"truncation\":\"disabled\",\"usage\":{\"input_tokens\":2568,\"input_tokens_details\":{\"cached_tokens\":0},\"output_tokens\":3831,\"output_tokens_details\":{\"reasoning_tokens\":1792},\"total_tokens\":6399},\"user\":null,\"metadata\":{}}"
-2025-12-01T15:11:49.686703004Z [inf]  [2025-12-01 15:11:45.471 +0000] [31mERROR[39m: [36mOpenAI analysis failed[39m
-2025-12-01T15:11:49.686712041Z [inf]      analysisId: "async_analysis_20251201_151046_3987b1e8"
-2025-12-01T15:11:49.686718011Z [inf]      processingTimeMs: 58638
-2025-12-01T15:11:49.686722999Z [inf]      error: "OpenAI returned empty response"
-2025-12-01T15:11:49.691436029Z [inf]      processingTimeMs: 58644
-2025-12-01T15:11:50.602026054Z [inf]  [2025-12-01 15:11:49.874 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-01T15:11:50.604161596Z [inf]      workerId: "worker-staging-1"
-2025-12-01T15:11:50.604173659Z [inf]      provider: "healthy"
-2025-12-01T15:11:50.604180525Z [inf]      rabbitmq: "healthy"
-2025-12-01T15:11:50.604187421Z [inf]      redis: "healthy"
-2025-12-01T15:11:50.604193092Z [inf]      overall: "healthy"
-2025-12-01T15:11:50.604206663Z [inf]      processedCount: 1
-2025-12-01T15:11:50.604214028Z [inf]      errorCount: 0
-2025-12-01T15:11:50.604219565Z [inf]      errorRate: "0.00%"
+2025-12-02T10:15:34.047758031Z [inf]  [2025-12-02 10:15:30.328 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:15:34.047766743Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:15:34.047777899Z [inf]      provider: "healthy"
+2025-12-02T10:15:34.047786902Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:15:34.047794038Z [inf]      redis: "healthy"
+2025-12-02T10:15:34.047802931Z [inf]      overall: "healthy"
+2025-12-02T10:15:34.047813820Z [inf]      processedCount: 0
+2025-12-02T10:15:34.047822015Z [inf]      errorCount: 0
+2025-12-02T10:15:34.047829543Z [inf]      errorRate: "0%"
+2025-12-02T10:16:04.605213586Z [inf]  [2025-12-02 10:16:00.246 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:16:04.605220772Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:16:04.605227993Z [inf]      provider: "healthy"
+2025-12-02T10:16:04.605234514Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:16:04.605240906Z [inf]      redis: "healthy"
+2025-12-02T10:16:04.605248760Z [inf]      overall: "healthy"
+2025-12-02T10:16:04.605255635Z [inf]      processedCount: 0
+2025-12-02T10:16:04.605262086Z [inf]      errorCount: 0
+2025-12-02T10:16:04.605270514Z [inf]      errorRate: "0%"
+2025-12-02T10:16:36.061838775Z [inf]      overall: "healthy"
+2025-12-02T10:16:36.061848910Z [inf]      processedCount: 0
+2025-12-02T10:16:36.061855992Z [inf]      errorCount: 0
+2025-12-02T10:16:36.061861633Z [inf]      errorRate: "0%"
+2025-12-02T10:16:36.061928318Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:16:36.061936621Z [inf]      provider: "healthy"
+2025-12-02T10:16:36.061944283Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:16:36.061948983Z [inf]  [2025-12-02 10:16:30.068 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:16:36.061952857Z [inf]      redis: "healthy"
+2025-12-02T10:17:06.759058234Z [inf]  [2025-12-02 10:17:00.486 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:17:06.759065242Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:17:06.759069935Z [inf]      provider: "healthy"
+2025-12-02T10:17:06.759074680Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:17:06.759079416Z [inf]      redis: "healthy"
+2025-12-02T10:17:06.759087664Z [inf]      overall: "healthy"
+2025-12-02T10:17:06.759094691Z [inf]      processedCount: 0
+2025-12-02T10:17:06.759101244Z [inf]      errorCount: 0
+2025-12-02T10:17:06.759107805Z [inf]      errorRate: "0%"
+2025-12-02T10:17:37.323026379Z [inf]  [2025-12-02 10:17:30.200 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:17:37.323035041Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:17:37.323042223Z [inf]      provider: "healthy"
+2025-12-02T10:17:37.323049742Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:17:37.323056569Z [inf]      redis: "healthy"
+2025-12-02T10:17:37.323064334Z [inf]      overall: "healthy"
+2025-12-02T10:17:37.323070492Z [inf]      processedCount: 0
+2025-12-02T10:17:37.323077459Z [inf]      errorCount: 0
+2025-12-02T10:17:37.323084430Z [inf]      errorRate: "0%"
+2025-12-02T10:18:08.160949173Z [inf]      processedCount: 0
+2025-12-02T10:18:08.160967015Z [inf]      errorCount: 0
+2025-12-02T10:18:08.160976218Z [inf]      errorRate: "0%"
+2025-12-02T10:18:08.164447491Z [inf]  [2025-12-02 10:18:00.441 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:18:08.164453180Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:18:08.164459350Z [inf]      provider: "healthy"
+2025-12-02T10:18:08.164464376Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:18:08.164469450Z [inf]      redis: "healthy"
+2025-12-02T10:18:08.164475293Z [inf]      overall: "healthy"
+2025-12-02T10:18:38.541820492Z [inf]  [2025-12-02 10:18:30.104 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:18:38.541829627Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:18:38.541841382Z [inf]      provider: "healthy"
+2025-12-02T10:18:38.541853262Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:18:38.541860849Z [inf]      redis: "healthy"
+2025-12-02T10:18:38.541867283Z [inf]      overall: "healthy"
+2025-12-02T10:18:38.541874614Z [inf]      processedCount: 0
+2025-12-02T10:18:38.541883777Z [inf]      errorCount: 0
+2025-12-02T10:18:38.541892052Z [inf]      errorRate: "0%"
+2025-12-02T10:19:09.847894491Z [inf]  [2025-12-02 10:19:00.437 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:19:09.847902312Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:19:09.847910588Z [inf]      provider: "healthy"
+2025-12-02T10:19:09.847919097Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:19:09.847927050Z [inf]      redis: "healthy"
+2025-12-02T10:19:09.847935224Z [inf]      overall: "healthy"
+2025-12-02T10:19:09.847945791Z [inf]      processedCount: 0
+2025-12-02T10:19:09.847952895Z [inf]      errorCount: 0
+2025-12-02T10:19:09.847959346Z [inf]      errorRate: "0%"
+2025-12-02T10:19:39.874238134Z [inf]  [2025-12-02 10:19:30.101 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:19:39.874248607Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:19:39.874258555Z [inf]      provider: "healthy"
+2025-12-02T10:19:39.874268564Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:19:39.874277892Z [inf]      redis: "healthy"
+2025-12-02T10:19:39.874287132Z [inf]      overall: "healthy"
+2025-12-02T10:19:39.874295881Z [inf]      processedCount: 0
+2025-12-02T10:19:39.874306822Z [inf]      errorCount: 0
+2025-12-02T10:19:39.874316742Z [inf]      errorRate: "0%"
+2025-12-02T10:20:10.850752322Z [inf]  [2025-12-02 10:20:00.678 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:20:10.850758132Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:20:10.850764022Z [inf]      provider: "healthy"
+2025-12-02T10:20:10.850774097Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:20:10.850779417Z [inf]      redis: "healthy"
+2025-12-02T10:20:10.850784476Z [inf]      overall: "healthy"
+2025-12-02T10:20:10.850790313Z [inf]      processedCount: 0
+2025-12-02T10:20:10.850795122Z [inf]      errorCount: 0
+2025-12-02T10:20:10.850800123Z [inf]      errorRate: "0%"
+2025-12-02T10:20:40.417841393Z [inf]  [2025-12-02 10:20:30.505 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:20:40.417848554Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:20:40.417856259Z [inf]      provider: "healthy"
+2025-12-02T10:20:40.417864130Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:20:40.417871571Z [inf]      redis: "healthy"
+2025-12-02T10:20:40.417879199Z [inf]      overall: "healthy"
+2025-12-02T10:20:40.417886283Z [inf]      processedCount: 0
+2025-12-02T10:20:40.417894256Z [inf]      errorCount: 0
+2025-12-02T10:20:40.417901097Z [inf]      errorRate: "0%"
+2025-12-02T10:21:10.536838339Z [inf]  [2025-12-02 10:21:00.331 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:21:10.536853869Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:21:10.536860978Z [inf]      provider: "healthy"
+2025-12-02T10:21:10.536871388Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:21:10.536877739Z [inf]      redis: "healthy"
+2025-12-02T10:21:10.536883177Z [inf]      overall: "healthy"
+2025-12-02T10:21:10.536905171Z [inf]      processedCount: 0
+2025-12-02T10:21:10.536910701Z [inf]      errorCount: 0
+2025-12-02T10:21:10.536915916Z [inf]      errorRate: "0%"
+2025-12-02T10:21:40.321725770Z [inf]  [2025-12-02 10:21:30.236 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:21:40.321749639Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:21:40.321756492Z [inf]      provider: "healthy"
+2025-12-02T10:21:40.321763310Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:21:40.321772518Z [inf]      redis: "healthy"
+2025-12-02T10:21:40.321780170Z [inf]      overall: "healthy"
+2025-12-02T10:21:40.321790837Z [inf]      processedCount: 0
+2025-12-02T10:21:40.321797577Z [inf]      errorCount: 0
+2025-12-02T10:21:40.321844825Z [inf]      errorRate: "0%"
+2025-12-02T10:22:10.639246250Z [inf]      errorCount: 0
+2025-12-02T10:22:10.639251320Z [inf]      errorRate: "0%"
+2025-12-02T10:22:10.639335090Z [inf]  [2025-12-02 10:22:00.453 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:22:10.639339849Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:22:10.639344676Z [inf]      provider: "healthy"
+2025-12-02T10:22:10.639349314Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:22:10.639354636Z [inf]      redis: "healthy"
+2025-12-02T10:22:10.639360484Z [inf]      overall: "healthy"
+2025-12-02T10:22:10.639366475Z [inf]      processedCount: 0
+2025-12-02T10:22:31.051245523Z [inf]  [2025-12-02 10:22:30.360 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:22:31.051254106Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:22:31.051269180Z [inf]      overall: "healthy"
+2025-12-02T10:22:31.051276368Z [inf]      processedCount: 0
+2025-12-02T10:22:31.051283801Z [inf]      errorCount: 0
+2025-12-02T10:22:31.051290441Z [inf]      errorRate: "0%"
+2025-12-02T10:22:31.051305870Z [inf]      provider: "healthy"
+2025-12-02T10:22:31.051544660Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:22:31.051551740Z [inf]      redis: "healthy"
+2025-12-02T10:23:03.284010933Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:23:03.284023352Z [inf]      redis: "healthy"
+2025-12-02T10:23:03.284030713Z [inf]      overall: "healthy"
+2025-12-02T10:23:03.284037972Z [inf]      processedCount: 0
+2025-12-02T10:23:03.284045469Z [inf]      errorCount: 0
+2025-12-02T10:23:03.284052715Z [inf]      errorRate: "0%"
+2025-12-02T10:23:03.284584326Z [inf]  [2025-12-02 10:23:00.183 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:23:03.284588933Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:23:03.284593639Z [inf]      provider: "healthy"
+2025-12-02T10:23:32.707911660Z [inf]  [2025-12-02 10:23:30.351 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:23:32.707962743Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:23:32.707975207Z [inf]      provider: "healthy"
+2025-12-02T10:23:32.708072199Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:23:32.708087304Z [inf]      redis: "healthy"
+2025-12-02T10:23:32.708096363Z [inf]      overall: "healthy"
+2025-12-02T10:23:32.708104652Z [inf]      processedCount: 0
+2025-12-02T10:23:32.708112212Z [inf]      errorCount: 0
+2025-12-02T10:23:32.708122891Z [inf]      errorRate: "0%"
+2025-12-02T10:24:02.984067276Z [inf]  [2025-12-02 10:24:00.529 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:24:02.984074967Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:24:02.984080491Z [inf]      provider: "healthy"
+2025-12-02T10:24:02.984086265Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:24:02.984092455Z [inf]      redis: "healthy"
+2025-12-02T10:24:02.984098819Z [inf]      overall: "healthy"
+2025-12-02T10:24:02.984511739Z [inf]      processedCount: 0
+2025-12-02T10:24:02.984521725Z [inf]      errorCount: 0
+2025-12-02T10:24:02.984528377Z [inf]      errorRate: "0%"
+2025-12-02T10:24:33.862906329Z [inf]  [2025-12-02 10:24:30.365 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:24:33.862913842Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:24:33.862919952Z [inf]      provider: "healthy"
+2025-12-02T10:24:33.862925821Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:24:33.862931858Z [inf]      redis: "healthy"
+2025-12-02T10:24:33.862939325Z [inf]      overall: "healthy"
+2025-12-02T10:24:33.862944910Z [inf]      processedCount: 0
+2025-12-02T10:24:33.862950699Z [inf]      errorCount: 0
+2025-12-02T10:24:33.862957147Z [inf]      errorRate: "0%"
+2025-12-02T10:25:04.796586992Z [inf]  [2025-12-02 10:25:00.379 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:25:04.796594041Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:25:04.796602676Z [inf]      provider: "healthy"
+2025-12-02T10:25:04.796610119Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:25:04.796616265Z [inf]      redis: "healthy"
+2025-12-02T10:25:04.796623085Z [inf]      overall: "healthy"
+2025-12-02T10:25:04.796629898Z [inf]      processedCount: 0
+2025-12-02T10:25:04.796635523Z [inf]      errorCount: 0
+2025-12-02T10:25:04.796642100Z [inf]      errorRate: "0%"
+2025-12-02T10:25:35.325614118Z [inf]  [2025-12-02 10:25:30.307 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:25:35.325633119Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:25:35.325642317Z [inf]      provider: "healthy"
+2025-12-02T10:25:35.325649512Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:25:35.325656094Z [inf]      redis: "healthy"
+2025-12-02T10:25:35.325663859Z [inf]      overall: "healthy"
+2025-12-02T10:25:35.325675374Z [inf]      processedCount: 0
+2025-12-02T10:25:35.329033941Z [inf]      errorCount: 0
+2025-12-02T10:25:35.329044261Z [inf]      errorRate: "0%"
+2025-12-02T10:26:06.109792743Z [inf]      redis: "healthy"
+2025-12-02T10:26:06.109805525Z [inf]      overall: "healthy"
+2025-12-02T10:26:06.109814451Z [inf]      processedCount: 0
+2025-12-02T10:26:06.109973982Z [inf]  [2025-12-02 10:26:00.526 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:26:06.109981858Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:26:06.109991153Z [inf]      provider: "healthy"
+2025-12-02T10:26:06.109991947Z [inf]      errorCount: 0
+2025-12-02T10:26:06.110000475Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:26:06.110003302Z [inf]      errorRate: "0%"
+2025-12-02T10:26:36.154549019Z [inf]  [2025-12-02 10:26:30.503 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:26:36.154558901Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:26:36.154566803Z [inf]      provider: "healthy"
+2025-12-02T10:26:36.154575213Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:26:36.154582926Z [inf]      redis: "healthy"
+2025-12-02T10:26:36.154590570Z [inf]      overall: "healthy"
+2025-12-02T10:26:36.154598871Z [inf]      processedCount: 0
+2025-12-02T10:26:36.154607889Z [inf]      errorCount: 0
+2025-12-02T10:26:36.154621288Z [inf]      errorRate: "0%"
+2025-12-02T10:27:07.420825909Z [inf]  [2025-12-02 10:27:00.579 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:27:07.420832013Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:27:07.420838233Z [inf]      provider: "healthy"
+2025-12-02T10:27:07.420861766Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:27:07.420870242Z [inf]      redis: "healthy"
+2025-12-02T10:27:07.420878837Z [inf]      overall: "healthy"
+2025-12-02T10:27:07.420885375Z [inf]      processedCount: 0
+2025-12-02T10:27:07.420892340Z [inf]      errorCount: 0
+2025-12-02T10:27:07.420898622Z [inf]      errorRate: "0%"
+2025-12-02T10:27:38.694427781Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:27:38.694441123Z [inf]      processedCount: 0
+2025-12-02T10:27:38.694441398Z [inf]      redis: "healthy"
+2025-12-02T10:27:38.694449470Z [inf]      errorCount: 0
+2025-12-02T10:27:38.694450975Z [inf]      overall: "healthy"
+2025-12-02T10:27:38.694456736Z [inf]      errorRate: "0%"
+2025-12-02T10:27:38.694496141Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:27:38.694505926Z [inf]      provider: "healthy"
+2025-12-02T10:27:38.694508686Z [inf]  [2025-12-02 10:27:30.568 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:28:08.401835688Z [inf]  [2025-12-02 10:28:00.324 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:28:08.401841347Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:28:08.401845521Z [inf]      provider: "healthy"
+2025-12-02T10:28:08.401849720Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:28:08.401854267Z [inf]      redis: "healthy"
+2025-12-02T10:28:08.401857999Z [inf]      overall: "healthy"
+2025-12-02T10:28:08.401862525Z [inf]      processedCount: 0
+2025-12-02T10:28:08.401866848Z [inf]      errorCount: 0
+2025-12-02T10:28:08.401877334Z [inf]      errorRate: "0%"
+2025-12-02T10:28:39.049763835Z [inf]  [2025-12-02 10:28:30.370 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:28:39.049772931Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:28:39.049780425Z [inf]      provider: "healthy"
+2025-12-02T10:28:39.049788982Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:28:39.049796489Z [inf]      redis: "healthy"
+2025-12-02T10:28:39.049804733Z [inf]      overall: "healthy"
+2025-12-02T10:28:39.049811474Z [inf]      processedCount: 0
+2025-12-02T10:28:39.049822662Z [inf]      errorCount: 0
+2025-12-02T10:28:39.049830597Z [inf]      errorRate: "0%"
+2025-12-02T10:29:10.910655394Z [inf]  [2025-12-02 10:29:00.361 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:29:10.910690405Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:29:10.910700160Z [inf]      provider: "healthy"
+2025-12-02T10:29:10.910708600Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:29:10.910716535Z [inf]      redis: "healthy"
+2025-12-02T10:29:10.910724634Z [inf]      overall: "healthy"
+2025-12-02T10:29:10.910732918Z [inf]      processedCount: 0
+2025-12-02T10:29:10.910739997Z [inf]      errorCount: 0
+2025-12-02T10:29:10.910747794Z [inf]      errorRate: "0%"
+2025-12-02T10:29:32.226859281Z [inf]  [2025-12-02 10:29:30.336 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:29:32.226864396Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:29:32.226870467Z [inf]      provider: "healthy"
+2025-12-02T10:29:32.226876859Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:29:32.226881609Z [inf]      redis: "healthy"
+2025-12-02T10:29:32.226886998Z [inf]      overall: "healthy"
+2025-12-02T10:29:32.226892324Z [inf]      processedCount: 0
+2025-12-02T10:29:32.226898578Z [inf]      errorCount: 0
+2025-12-02T10:29:32.226905349Z [inf]      errorRate: "0%"
+2025-12-02T10:30:04.627147303Z [inf]  [2025-12-02 10:30:00.511 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:30:04.627154015Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:30:04.627161834Z [inf]      provider: "healthy"
+2025-12-02T10:30:04.627170638Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:30:04.627177178Z [inf]      redis: "healthy"
+2025-12-02T10:30:04.627184515Z [inf]      overall: "healthy"
+2025-12-02T10:30:04.627192175Z [inf]      processedCount: 0
+2025-12-02T10:30:04.627198573Z [inf]      errorCount: 0
+2025-12-02T10:30:04.627205618Z [inf]      errorRate: "0%"
+2025-12-02T10:30:33.190507631Z [inf]      errorRate: "0%"
+2025-12-02T10:30:33.190588189Z [inf]  [2025-12-02 10:30:31.045 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:30:33.190598349Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:30:33.190605131Z [inf]      provider: "healthy"
+2025-12-02T10:30:33.190613607Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:30:33.190621222Z [inf]      redis: "healthy"
+2025-12-02T10:30:33.190629418Z [inf]      overall: "healthy"
+2025-12-02T10:30:33.190637123Z [inf]      processedCount: 0
+2025-12-02T10:30:33.190643524Z [inf]      errorCount: 0
+2025-12-02T10:31:03.965924386Z [inf]  [2025-12-02 10:31:00.622 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:31:03.965934696Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:31:03.965944722Z [inf]      provider: "healthy"
+2025-12-02T10:31:03.965953597Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:31:03.965961833Z [inf]      redis: "healthy"
+2025-12-02T10:31:03.965970998Z [inf]      overall: "healthy"
+2025-12-02T10:31:03.965978438Z [inf]      processedCount: 0
+2025-12-02T10:31:03.965986102Z [inf]      errorCount: 0
+2025-12-02T10:31:03.965993737Z [inf]      errorRate: "0%"
+2025-12-02T10:31:34.300868379Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:31:34.300889816Z [inf]  [2025-12-02 10:31:30.548 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:31:34.300893774Z [inf]      processedCount: 0
+2025-12-02T10:31:34.300906301Z [inf]      errorCount: 0
+2025-12-02T10:31:34.300915922Z [inf]      errorRate: "0%"
+2025-12-02T10:31:34.300934543Z [inf]      provider: "healthy"
+2025-12-02T10:31:34.300945710Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:31:34.300955962Z [inf]      redis: "healthy"
+2025-12-02T10:31:34.300965056Z [inf]      overall: "healthy"
+2025-12-02T10:32:03.896289776Z [inf]  [2025-12-02 10:32:00.448 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:32:03.896303547Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:32:03.896310023Z [inf]      provider: "healthy"
+2025-12-02T10:32:03.896316097Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:32:03.896334202Z [inf]      redis: "healthy"
+2025-12-02T10:32:03.896341162Z [inf]      overall: "healthy"
+2025-12-02T10:32:03.896346155Z [inf]      processedCount: 0
+2025-12-02T10:32:03.896351967Z [inf]      errorCount: 0
+2025-12-02T10:32:03.896359356Z [inf]      errorRate: "0%"
+2025-12-02T10:32:34.116267061Z [inf]  [2025-12-02 10:32:30.422 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:32:34.116277081Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:32:34.116286503Z [inf]      provider: "healthy"
+2025-12-02T10:32:34.116295543Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:32:34.116304581Z [inf]      redis: "healthy"
+2025-12-02T10:32:34.116313875Z [inf]      overall: "healthy"
+2025-12-02T10:32:34.116322163Z [inf]      processedCount: 0
+2025-12-02T10:32:34.116334064Z [inf]      errorCount: 0
+2025-12-02T10:32:34.116342953Z [inf]      errorRate: "0%"
+2025-12-02T10:33:04.572050090Z [inf]  [2025-12-02 10:33:01.346 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:33:04.572059631Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:33:04.572065999Z [inf]      provider: "healthy"
+2025-12-02T10:33:04.572073542Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:33:04.572080710Z [inf]      redis: "healthy"
+2025-12-02T10:33:04.572087744Z [inf]      overall: "healthy"
+2025-12-02T10:33:04.572096113Z [inf]      processedCount: 0
+2025-12-02T10:33:04.572104362Z [inf]      errorCount: 0
+2025-12-02T10:33:04.572112684Z [inf]      errorRate: "0%"
+2025-12-02T10:33:34.712714963Z [inf]  [2025-12-02 10:33:30.433 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:33:34.712723357Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:33:34.712730814Z [inf]      provider: "healthy"
+2025-12-02T10:33:34.712738216Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:33:34.712746303Z [inf]      redis: "healthy"
+2025-12-02T10:33:34.712753591Z [inf]      overall: "healthy"
+2025-12-02T10:33:34.712762008Z [inf]      processedCount: 0
+2025-12-02T10:33:34.712771501Z [inf]      errorCount: 0
+2025-12-02T10:33:34.712779656Z [inf]      errorRate: "0%"
+2025-12-02T10:34:05.960319898Z [inf]  [2025-12-02 10:34:00.761 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:34:05.960328547Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:34:05.960334617Z [inf]      provider: "healthy"
+2025-12-02T10:34:05.960343949Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:34:05.960350475Z [inf]      redis: "healthy"
+2025-12-02T10:34:05.960357901Z [inf]      overall: "healthy"
+2025-12-02T10:34:05.960365138Z [inf]      processedCount: 0
+2025-12-02T10:34:05.960373506Z [inf]      errorCount: 0
+2025-12-02T10:34:05.960383049Z [inf]      errorRate: "0%"
+2025-12-02T10:34:37.110400408Z [inf]  [2025-12-02 10:34:30.934 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:34:37.110409269Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:34:37.110416257Z [inf]      provider: "healthy"
+2025-12-02T10:34:37.110422541Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:34:37.110435491Z [inf]      redis: "healthy"
+2025-12-02T10:34:37.110442231Z [inf]      overall: "healthy"
+2025-12-02T10:34:37.110450096Z [inf]      processedCount: 0
+2025-12-02T10:34:37.110458590Z [inf]      errorCount: 0
+2025-12-02T10:34:37.110467456Z [inf]      errorRate: "0%"
+2025-12-02T10:35:09.017078864Z [inf]      errorRate: "0%"
+2025-12-02T10:35:09.017097639Z [inf]      errorCount: 0
+2025-12-02T10:35:09.018752157Z [inf]  [2025-12-02 10:35:00.941 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:35:09.018759698Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:35:09.018898246Z [inf]      provider: "healthy"
+2025-12-02T10:35:09.018904856Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:35:09.018913324Z [inf]      redis: "healthy"
+2025-12-02T10:35:09.018920531Z [inf]      overall: "healthy"
+2025-12-02T10:35:09.018927642Z [inf]      processedCount: 0
+2025-12-02T10:35:39.093782601Z [inf]  [2025-12-02 10:35:30.699 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:35:39.093791968Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:35:39.093800107Z [inf]      provider: "healthy"
+2025-12-02T10:35:39.093807388Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:35:39.093815156Z [inf]      redis: "healthy"
+2025-12-02T10:35:39.093829963Z [inf]      overall: "healthy"
+2025-12-02T10:35:39.093838481Z [inf]      processedCount: 0
+2025-12-02T10:35:39.093845866Z [inf]      errorCount: 0
+2025-12-02T10:35:39.093854379Z [inf]      errorRate: "0%"
+2025-12-02T10:36:08.981164580Z [inf]  [2025-12-02 10:36:00.635 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:36:08.981172813Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:36:08.981180722Z [inf]      provider: "healthy"
+2025-12-02T10:36:08.981189596Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:36:08.981196368Z [inf]      redis: "healthy"
+2025-12-02T10:36:08.981203198Z [inf]      overall: "healthy"
+2025-12-02T10:36:08.981210757Z [inf]      processedCount: 0
+2025-12-02T10:36:08.988021661Z [inf]      errorCount: 0
+2025-12-02T10:36:08.988042862Z [inf]      errorRate: "0%"
+2025-12-02T10:36:39.492717803Z [inf]  [2025-12-02 10:36:30.683 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:36:39.492724157Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:36:39.492729605Z [inf]      provider: "healthy"
+2025-12-02T10:36:39.492736538Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:36:39.492744811Z [inf]      redis: "healthy"
+2025-12-02T10:36:39.492751386Z [inf]      overall: "healthy"
+2025-12-02T10:36:39.492758808Z [inf]      processedCount: 0
+2025-12-02T10:36:39.492766096Z [inf]      errorCount: 0
+2025-12-02T10:36:39.492773698Z [inf]      errorRate: "0%"
+2025-12-02T10:37:09.679330501Z [inf]      errorCount: 0
+2025-12-02T10:37:09.679344191Z [inf]      errorRate: "0%"
+2025-12-02T10:37:09.679394926Z [inf]      redis: "healthy"
+2025-12-02T10:37:09.679410486Z [inf]      overall: "healthy"
+2025-12-02T10:37:09.679419646Z [inf]      processedCount: 0
+2025-12-02T10:37:09.679452661Z [inf]  [2025-12-02 10:37:01.010 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:37:09.679460493Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:37:09.679466981Z [inf]      provider: "healthy"
+2025-12-02T10:37:09.679472734Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:37:41.094618497Z [inf]  [2025-12-02 10:37:31.097 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:37:41.094701678Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:37:41.094709513Z [inf]      provider: "healthy"
+2025-12-02T10:37:41.094718495Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:37:41.094725505Z [inf]      redis: "healthy"
+2025-12-02T10:37:41.094732703Z [inf]      overall: "healthy"
+2025-12-02T10:37:41.094739723Z [inf]      processedCount: 0
+2025-12-02T10:37:41.098730960Z [inf]      errorCount: 0
+2025-12-02T10:37:41.098744599Z [inf]      errorRate: "0%"
+2025-12-02T10:38:01.281649559Z [inf]  [2025-12-02 10:38:00.554 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:38:01.281658611Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:38:01.281667419Z [inf]      provider: "healthy"
+2025-12-02T10:38:01.281676174Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:38:01.281684852Z [inf]      redis: "healthy"
+2025-12-02T10:38:01.281693580Z [inf]      overall: "healthy"
+2025-12-02T10:38:01.281701472Z [inf]      processedCount: 0
+2025-12-02T10:38:01.281710493Z [inf]      errorCount: 0
+2025-12-02T10:38:01.281719892Z [inf]      errorRate: "0%"
+2025-12-02T10:38:31.876450678Z [inf]  [2025-12-02 10:38:30.483 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:38:31.876455640Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:38:31.876461765Z [inf]      provider: "healthy"
+2025-12-02T10:38:31.876466798Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:38:31.876473111Z [inf]      redis: "healthy"
+2025-12-02T10:38:31.876478380Z [inf]      overall: "healthy"
+2025-12-02T10:38:31.876484261Z [inf]      processedCount: 0
+2025-12-02T10:38:31.876490766Z [inf]      errorCount: 0
+2025-12-02T10:38:31.876496084Z [inf]      errorRate: "0%"
+2025-12-02T10:39:02.607228040Z [inf]  [2025-12-02 10:39:00.800 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:39:02.607234579Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:39:02.607239676Z [inf]      provider: "healthy"
+2025-12-02T10:39:02.607245415Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:39:02.607253107Z [inf]      redis: "healthy"
+2025-12-02T10:39:02.607259843Z [inf]      overall: "healthy"
+2025-12-02T10:39:02.607266122Z [inf]      processedCount: 0
+2025-12-02T10:39:02.607272299Z [inf]      errorCount: 0
+2025-12-02T10:39:02.607278004Z [inf]      errorRate: "0%"
+2025-12-02T10:39:33.627786589Z [inf]  [2025-12-02 10:39:30.865 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:39:33.627794047Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:39:33.627801916Z [inf]      provider: "healthy"
+2025-12-02T10:39:33.627810298Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:39:33.627817740Z [inf]      redis: "healthy"
+2025-12-02T10:39:33.627824418Z [inf]      overall: "healthy"
+2025-12-02T10:39:33.627832184Z [inf]      processedCount: 0
+2025-12-02T10:39:33.627839858Z [inf]      errorCount: 0
+2025-12-02T10:39:33.627846652Z [inf]      errorRate: "0%"
+2025-12-02T10:40:03.526703942Z [inf]  [2025-12-02 10:40:00.840 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:40:03.526710602Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:40:03.526716662Z [inf]      provider: "healthy"
+2025-12-02T10:40:03.526722871Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:40:03.526730073Z [inf]      redis: "healthy"
+2025-12-02T10:40:03.526737468Z [inf]      overall: "healthy"
+2025-12-02T10:40:03.526744305Z [inf]      processedCount: 0
+2025-12-02T10:40:03.526751086Z [inf]      errorCount: 0
+2025-12-02T10:40:03.526756956Z [inf]      errorRate: "0%"
+2025-12-02T10:40:34.971495917Z [inf]  [2025-12-02 10:40:30.751 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:40:34.971503285Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:40:34.971509902Z [inf]      provider: "healthy"
+2025-12-02T10:40:34.971516462Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:40:34.971522846Z [inf]      redis: "healthy"
+2025-12-02T10:40:34.971529138Z [inf]      overall: "healthy"
+2025-12-02T10:40:34.971536760Z [inf]      processedCount: 0
+2025-12-02T10:40:34.971543224Z [inf]      errorCount: 0
+2025-12-02T10:40:34.971549549Z [inf]      errorRate: "0%"
+2025-12-02T10:41:04.362050196Z [inf]  [2025-12-02 10:41:01.167 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:41:04.362058002Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:41:04.362070706Z [inf]      provider: "healthy"
+2025-12-02T10:41:04.362147438Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:41:04.362159536Z [inf]      redis: "healthy"
+2025-12-02T10:41:04.362168224Z [inf]      overall: "healthy"
+2025-12-02T10:41:04.362181032Z [inf]      processedCount: 0
+2025-12-02T10:41:04.362189194Z [inf]      errorCount: 0
+2025-12-02T10:41:04.362196647Z [inf]      errorRate: "0%"
+2025-12-02T10:41:35.150752109Z [inf]  [2025-12-02 10:41:31.242 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:41:35.150759666Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:41:35.150768457Z [inf]      provider: "healthy"
+2025-12-02T10:41:35.150777119Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:41:35.150784898Z [inf]      redis: "healthy"
+2025-12-02T10:41:35.150791835Z [inf]      overall: "healthy"
+2025-12-02T10:41:35.150800366Z [inf]      processedCount: 0
+2025-12-02T10:41:35.150806757Z [inf]      errorCount: 0
+2025-12-02T10:41:35.150813679Z [inf]      errorRate: "0%"
+2025-12-02T10:42:06.291049474Z [inf]  [2025-12-02 10:42:00.675 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:42:06.291074586Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:42:06.291085615Z [inf]      provider: "healthy"
+2025-12-02T10:42:06.291098692Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:42:06.291109631Z [inf]      redis: "healthy"
+2025-12-02T10:42:06.291121457Z [inf]      overall: "healthy"
+2025-12-02T10:42:06.291131847Z [inf]      processedCount: 0
+2025-12-02T10:42:06.291143693Z [inf]      errorCount: 0
+2025-12-02T10:42:06.291180826Z [inf]      errorRate: "0%"
+2025-12-02T10:42:36.294019416Z [inf]  [2025-12-02 10:42:30.566 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:42:36.294028399Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:42:36.294035886Z [inf]      provider: "healthy"
+2025-12-02T10:42:36.294045793Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:42:36.294071376Z [inf]      redis: "healthy"
+2025-12-02T10:42:36.294076889Z [inf]      overall: "healthy"
+2025-12-02T10:42:36.294083081Z [inf]      processedCount: 0
+2025-12-02T10:42:36.294097198Z [inf]      errorCount: 0
+2025-12-02T10:42:36.294104623Z [inf]      errorRate: "0%"
+2025-12-02T10:43:06.209003326Z [inf]  [2025-12-02 10:43:01.033 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:43:06.209010543Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:43:06.209016402Z [inf]      provider: "healthy"
+2025-12-02T10:43:06.209023195Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:43:06.209029850Z [inf]      redis: "healthy"
+2025-12-02T10:43:06.209042724Z [inf]      overall: "healthy"
+2025-12-02T10:43:06.209048689Z [inf]      processedCount: 0
+2025-12-02T10:43:06.209054540Z [inf]      errorCount: 0
+2025-12-02T10:43:06.209063743Z [inf]      errorRate: "0%"
+2025-12-02T10:43:37.612182839Z [inf]  [2025-12-02 10:43:32.004 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:43:37.612191524Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:43:37.612200420Z [inf]      provider: "healthy"
+2025-12-02T10:43:37.612207685Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:43:37.612214834Z [inf]      redis: "healthy"
+2025-12-02T10:43:37.612221315Z [inf]      overall: "healthy"
+2025-12-02T10:43:37.612228105Z [inf]      processedCount: 0
+2025-12-02T10:43:37.612234298Z [inf]      errorCount: 0
+2025-12-02T10:43:37.612241187Z [inf]      errorRate: "0%"
+2025-12-02T10:44:06.863074822Z [inf]      errorCount: 0
+2025-12-02T10:44:06.863092417Z [inf]      errorRate: "0%"
+2025-12-02T10:44:06.865027402Z [inf]  [2025-12-02 10:44:00.879 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:44:06.865034258Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:44:06.865041083Z [inf]      provider: "healthy"
+2025-12-02T10:44:06.865048963Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:44:06.865060385Z [inf]      redis: "healthy"
+2025-12-02T10:44:06.865067734Z [inf]      overall: "healthy"
+2025-12-02T10:44:06.865075092Z [inf]      processedCount: 0
+2025-12-02T10:44:36.742861509Z [inf]  [2025-12-02 10:44:30.908 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:44:36.742870407Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:44:36.742878321Z [inf]      provider: "healthy"
+2025-12-02T10:44:36.742886270Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:44:36.742894678Z [inf]      redis: "healthy"
+2025-12-02T10:44:36.742904522Z [inf]      overall: "healthy"
+2025-12-02T10:44:36.742911635Z [inf]      processedCount: 0
+2025-12-02T10:44:36.742917758Z [inf]      errorCount: 0
+2025-12-02T10:44:36.742925153Z [inf]      errorRate: "0%"
+2025-12-02T10:45:06.950425218Z [inf]      redis: "healthy"
+2025-12-02T10:45:06.950521730Z [inf]      overall: "healthy"
+2025-12-02T10:45:06.950529946Z [inf]      processedCount: 0
+2025-12-02T10:45:06.950536954Z [inf]      errorCount: 0
+2025-12-02T10:45:06.950544267Z [inf]      errorRate: "0%"
+2025-12-02T10:45:06.951154071Z [inf]  [2025-12-02 10:45:01.218 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:45:06.951158905Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:45:06.951165439Z [inf]      provider: "healthy"
+2025-12-02T10:45:06.951170967Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:45:36.856642798Z [inf]  [2025-12-02 10:45:30.761 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:45:36.856648545Z [inf]      provider: "healthy"
+2025-12-02T10:45:36.856652074Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:45:36.856668102Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:45:36.856679472Z [inf]      redis: "healthy"
+2025-12-02T10:45:36.856687211Z [inf]      overall: "healthy"
+2025-12-02T10:45:36.856694013Z [inf]      processedCount: 0
+2025-12-02T10:45:36.856705867Z [inf]      errorCount: 0
+2025-12-02T10:45:36.856714151Z [inf]      errorRate: "0%"
+2025-12-02T10:46:07.673829268Z [inf]  [2025-12-02 10:46:00.772 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:46:07.673924920Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:46:07.673932974Z [inf]      provider: "healthy"
+2025-12-02T10:46:07.673943274Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:46:07.673951755Z [inf]      redis: "healthy"
+2025-12-02T10:46:07.673959379Z [inf]      overall: "healthy"
+2025-12-02T10:46:07.673965421Z [inf]      processedCount: 0
+2025-12-02T10:46:07.673972164Z [inf]      errorCount: 0
+2025-12-02T10:46:07.673978436Z [inf]      errorRate: "0%"
+2025-12-02T10:46:38.193302822Z [inf]  [2025-12-02 10:46:30.944 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:46:38.193309741Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:46:38.193329690Z [inf]      provider: "healthy"
+2025-12-02T10:46:38.193338770Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:46:38.193345961Z [inf]      redis: "healthy"
+2025-12-02T10:46:38.193353034Z [inf]      overall: "healthy"
+2025-12-02T10:46:38.193360194Z [inf]      processedCount: 0
+2025-12-02T10:46:38.193368427Z [inf]      errorCount: 0
+2025-12-02T10:46:38.193398527Z [inf]      errorRate: "0%"
+2025-12-02T10:47:08.318046663Z [inf]  [2025-12-02 10:47:01.482 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:47:08.318054570Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:47:08.318061483Z [inf]      provider: "healthy"
+2025-12-02T10:47:08.318070095Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:47:08.318078076Z [inf]      redis: "healthy"
+2025-12-02T10:47:08.318085024Z [inf]      overall: "healthy"
+2025-12-02T10:47:08.318092464Z [inf]      processedCount: 0
+2025-12-02T10:47:08.318099627Z [inf]      errorCount: 0
+2025-12-02T10:47:08.318105922Z [inf]      errorRate: "0%"
+2025-12-02T10:47:38.156581885Z [inf]  [2025-12-02 10:47:30.962 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:47:38.156594534Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:47:38.156605635Z [inf]      provider: "healthy"
+2025-12-02T10:47:38.156622791Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:47:38.156634271Z [inf]      redis: "healthy"
+2025-12-02T10:47:38.156643465Z [inf]      overall: "healthy"
+2025-12-02T10:47:38.156653638Z [inf]      processedCount: 0
+2025-12-02T10:47:38.156667096Z [inf]      errorCount: 0
+2025-12-02T10:47:38.156675614Z [inf]      errorRate: "0%"
+2025-12-02T10:48:08.823889670Z [inf]      overall: "healthy"
+2025-12-02T10:48:08.823900239Z [inf]      processedCount: 0
+2025-12-02T10:48:08.823909949Z [inf]      errorCount: 0
+2025-12-02T10:48:08.823916774Z [inf]      errorRate: "0%"
+2025-12-02T10:48:08.824577971Z [inf]  [2025-12-02 10:48:01.008 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:48:08.824584072Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:48:08.824591024Z [inf]      provider: "healthy"
+2025-12-02T10:48:08.824602762Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:48:08.824608974Z [inf]      redis: "healthy"
+2025-12-02T10:48:39.558420640Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:48:39.558427982Z [inf]      provider: "healthy"
+2025-12-02T10:48:39.558434680Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:48:39.558441340Z [inf]      redis: "healthy"
+2025-12-02T10:48:39.558447595Z [inf]      overall: "healthy"
+2025-12-02T10:48:39.558454188Z [inf]      processedCount: 0
+2025-12-02T10:48:39.558464809Z [inf]      errorCount: 0
+2025-12-02T10:48:39.558464996Z [inf]  [2025-12-02 10:48:31.275 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:48:39.558473153Z [inf]      errorRate: "0%"
+2025-12-02T10:49:10.325603520Z [inf]  [2025-12-02 10:49:01.676 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:49:10.325617411Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:49:10.325625970Z [inf]      provider: "healthy"
+2025-12-02T10:49:10.325676122Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:49:10.325686991Z [inf]      redis: "healthy"
+2025-12-02T10:49:10.325694860Z [inf]      overall: "healthy"
+2025-12-02T10:49:10.325702939Z [inf]      processedCount: 0
+2025-12-02T10:49:10.325710780Z [inf]      errorCount: 0
+2025-12-02T10:49:10.325720262Z [inf]      errorRate: "0%"
+2025-12-02T10:49:40.861051783Z [inf]  [2025-12-02 10:49:30.996 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:49:40.861059383Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:49:40.861066340Z [inf]      provider: "healthy"
+2025-12-02T10:49:40.861073887Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:49:40.861081104Z [inf]      redis: "healthy"
+2025-12-02T10:49:40.861087617Z [inf]      overall: "healthy"
+2025-12-02T10:49:40.861095092Z [inf]      processedCount: 0
+2025-12-02T10:49:40.861103549Z [inf]      errorCount: 0
+2025-12-02T10:49:40.861109759Z [inf]      errorRate: "0%"
+2025-12-02T10:50:12.282866633Z [inf]  [2025-12-02 10:50:01.394 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:50:12.282874694Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:50:12.282881159Z [inf]      provider: "healthy"
+2025-12-02T10:50:12.282891752Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:50:12.282898739Z [inf]      redis: "healthy"
+2025-12-02T10:50:12.282905384Z [inf]      overall: "healthy"
+2025-12-02T10:50:12.282912367Z [inf]      processedCount: 0
+2025-12-02T10:50:12.282919939Z [inf]      errorCount: 0
+2025-12-02T10:50:12.282928689Z [inf]      errorRate: "0%"
+2025-12-02T10:50:32.671962074Z [inf]  [2025-12-02 10:50:31.202 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:50:32.671969016Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:50:32.671975877Z [inf]      provider: "healthy"
+2025-12-02T10:50:32.671986077Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:50:32.671992710Z [inf]      redis: "healthy"
+2025-12-02T10:50:32.671999207Z [inf]      overall: "healthy"
+2025-12-02T10:50:32.672005514Z [inf]      processedCount: 0
+2025-12-02T10:50:32.672012018Z [inf]      errorCount: 0
+2025-12-02T10:50:32.672018623Z [inf]      errorRate: "0%"
+2025-12-02T10:51:02.233558788Z [inf]  [2025-12-02 10:51:01.005 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:51:02.233566932Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:51:02.233574890Z [inf]      provider: "healthy"
+2025-12-02T10:51:02.233582728Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:51:02.233590592Z [inf]      redis: "healthy"
+2025-12-02T10:51:02.233597891Z [inf]      overall: "healthy"
+2025-12-02T10:51:02.233606270Z [inf]      processedCount: 0
+2025-12-02T10:51:02.233614534Z [inf]      errorCount: 0
+2025-12-02T10:51:02.233623454Z [inf]      errorRate: "0%"
+2025-12-02T10:51:44.037346200Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:51:44.037355350Z [inf]      provider: "healthy"
+2025-12-02T10:51:44.037365320Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:51:44.037394098Z [inf]      redis: "healthy"
+2025-12-02T10:51:44.037403970Z [inf]      overall: "healthy"
+2025-12-02T10:51:44.037412601Z [inf]      processedCount: 0
+2025-12-02T10:51:44.037420016Z [inf]      errorCount: 0
+2025-12-02T10:51:44.037429463Z [inf]      errorRate: "0%"
+2025-12-02T10:51:44.037688234Z [inf]  [2025-12-02 10:51:32.804 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:52:04.166140111Z [inf]  [2025-12-02 10:52:01.132 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:52:04.166149949Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:52:04.166158542Z [inf]      provider: "healthy"
+2025-12-02T10:52:04.166167025Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:52:04.166181428Z [inf]      redis: "healthy"
+2025-12-02T10:52:04.166191739Z [inf]      overall: "healthy"
+2025-12-02T10:52:04.166199547Z [inf]      processedCount: 0
+2025-12-02T10:52:04.166211130Z [inf]      errorCount: 0
+2025-12-02T10:52:04.166219456Z [inf]      errorRate: "0%"
+2025-12-02T10:52:34.687112170Z [inf]  [2025-12-02 10:52:31.140 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:52:34.687395676Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:52:34.687403361Z [inf]      provider: "healthy"
+2025-12-02T10:52:34.687410432Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:52:34.687416838Z [inf]      redis: "healthy"
+2025-12-02T10:52:34.687423317Z [inf]      overall: "healthy"
+2025-12-02T10:52:34.687430127Z [inf]      processedCount: 0
+2025-12-02T10:52:34.687436309Z [inf]      errorCount: 0
+2025-12-02T10:52:34.687444029Z [inf]      errorRate: "0%"
+2025-12-02T10:53:03.935082067Z [inf]  [2025-12-02 10:53:01.345 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:53:03.935091945Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:53:03.935100383Z [inf]      provider: "healthy"
+2025-12-02T10:53:03.935108768Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:53:03.935117098Z [inf]      redis: "healthy"
+2025-12-02T10:53:03.935126372Z [inf]      overall: "healthy"
+2025-12-02T10:53:03.935134435Z [inf]      processedCount: 0
+2025-12-02T10:53:03.935142559Z [inf]      errorCount: 0
+2025-12-02T10:53:03.935150948Z [inf]      errorRate: "0%"
+2025-12-02T10:53:33.129365014Z [inf]  [2025-12-02 10:53:31.340 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:53:33.129398421Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:53:33.129409419Z [inf]      provider: "healthy"
+2025-12-02T10:53:33.129435921Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:53:33.129444932Z [inf]      redis: "healthy"
+2025-12-02T10:53:33.129451721Z [inf]      overall: "healthy"
+2025-12-02T10:53:33.129477299Z [inf]      processedCount: 0
+2025-12-02T10:53:33.129489360Z [inf]      errorCount: 0
+2025-12-02T10:53:33.129498486Z [inf]      errorRate: "0%"
+2025-12-02T10:54:03.625760877Z [inf]      redis: "healthy"
+2025-12-02T10:54:03.625784922Z [inf]      overall: "healthy"
+2025-12-02T10:54:03.625797115Z [inf]      processedCount: 0
+2025-12-02T10:54:03.625806966Z [inf]      errorCount: 0
+2025-12-02T10:54:03.625869632Z [inf]      errorRate: "0%"
+2025-12-02T10:54:03.626557959Z [inf]  [2025-12-02 10:54:01.164 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:54:03.626565961Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:54:03.626573145Z [inf]      provider: "healthy"
+2025-12-02T10:54:03.626580751Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:54:33.193722512Z [inf]  [2025-12-02 10:54:31.214 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:54:33.193729264Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:54:33.193735703Z [inf]      provider: "healthy"
+2025-12-02T10:54:33.193742184Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:54:33.193749027Z [inf]      redis: "healthy"
+2025-12-02T10:54:33.193755380Z [inf]      overall: "healthy"
+2025-12-02T10:54:33.193766040Z [inf]      processedCount: 0
+2025-12-02T10:54:33.193773610Z [inf]      errorCount: 0
+2025-12-02T10:54:33.193779806Z [inf]      errorRate: "0%"
+2025-12-02T10:55:04.289564598Z [inf]      processedCount: 0
+2025-12-02T10:55:04.289577446Z [inf]      errorCount: 0
+2025-12-02T10:55:04.289596517Z [inf]      errorRate: "0%"
+2025-12-02T10:55:04.290102497Z [inf]  [2025-12-02 10:55:01.124 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:55:04.290109529Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:55:04.290115933Z [inf]      provider: "healthy"
+2025-12-02T10:55:04.290123318Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:55:04.290132776Z [inf]      redis: "healthy"
+2025-12-02T10:55:04.290139421Z [inf]      overall: "healthy"
+2025-12-02T10:55:34.942230155Z [inf]      processedCount: 0
+2025-12-02T10:55:34.942238313Z [inf]      errorCount: 0
+2025-12-02T10:55:34.942245554Z [inf]      errorRate: "0%"
+2025-12-02T10:55:34.942290388Z [inf]  [2025-12-02 10:55:31.317 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:55:34.942296972Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:55:34.942307352Z [inf]      provider: "healthy"
+2025-12-02T10:55:34.942314098Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:55:34.942320149Z [inf]      redis: "healthy"
+2025-12-02T10:55:34.942327071Z [inf]      overall: "healthy"
+2025-12-02T10:56:06.710274797Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:56:06.710286496Z [inf]      redis: "healthy"
+2025-12-02T10:56:06.710303580Z [inf]      overall: "healthy"
+2025-12-02T10:56:06.710309670Z [inf]      processedCount: 0
+2025-12-02T10:56:06.710318322Z [inf]      errorCount: 0
+2025-12-02T10:56:06.710326199Z [inf]      errorRate: "0%"
+2025-12-02T10:56:06.710786433Z [inf]  [2025-12-02 10:56:01.398 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:56:06.710798612Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:56:06.710805765Z [inf]      provider: "healthy"
+2025-12-02T10:56:37.220953852Z [inf]  [2025-12-02 10:56:31.182 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:56:37.220961996Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:56:37.220968286Z [inf]      provider: "healthy"
+2025-12-02T10:56:37.220979358Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:56:37.220988083Z [inf]      redis: "healthy"
+2025-12-02T10:56:37.220995676Z [inf]      overall: "healthy"
+2025-12-02T10:56:37.221003422Z [inf]      processedCount: 0
+2025-12-02T10:56:37.221011579Z [inf]      errorCount: 0
+2025-12-02T10:56:37.221019971Z [inf]      errorRate: "0%"
+2025-12-02T10:57:07.325688879Z [inf]  [2025-12-02 10:57:01.039 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:57:07.325693084Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:57:07.325697588Z [inf]      provider: "healthy"
+2025-12-02T10:57:07.325702002Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:57:07.325707101Z [inf]      redis: "healthy"
+2025-12-02T10:57:07.325711523Z [inf]      overall: "healthy"
+2025-12-02T10:57:07.325717322Z [inf]      processedCount: 0
+2025-12-02T10:57:07.325723229Z [inf]      errorCount: 0
+2025-12-02T10:57:07.325727848Z [inf]      errorRate: "0%"
+2025-12-02T10:57:37.597050779Z [inf]  [2025-12-02 10:57:30.923 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:57:37.597056823Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:57:37.597063090Z [inf]      provider: "healthy"
+2025-12-02T10:57:37.597068677Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:57:37.597075375Z [inf]      redis: "healthy"
+2025-12-02T10:57:37.597081847Z [inf]      overall: "healthy"
+2025-12-02T10:57:37.597087998Z [inf]      processedCount: 0
+2025-12-02T10:57:37.597095136Z [inf]      errorCount: 0
+2025-12-02T10:57:37.597102297Z [inf]      errorRate: "0%"
+2025-12-02T10:58:08.132124915Z [inf]      errorCount: 0
+2025-12-02T10:58:08.132138839Z [inf]      errorRate: "0%"
+2025-12-02T10:58:08.132166598Z [inf]  [2025-12-02 10:58:01.206 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:58:08.132178953Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:58:08.132187339Z [inf]      provider: "healthy"
+2025-12-02T10:58:08.132195188Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:58:08.132206147Z [inf]      redis: "healthy"
+2025-12-02T10:58:08.132214410Z [inf]      overall: "healthy"
+2025-12-02T10:58:08.132222616Z [inf]      processedCount: 0
+2025-12-02T10:58:38.620253283Z [inf]  [2025-12-02 10:58:31.257 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:58:38.620260216Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:58:38.620267090Z [inf]      provider: "healthy"
+2025-12-02T10:58:38.620275349Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:58:38.620282257Z [inf]      redis: "healthy"
+2025-12-02T10:58:38.620288405Z [inf]      overall: "healthy"
+2025-12-02T10:58:38.620295617Z [inf]      processedCount: 0
+2025-12-02T10:58:38.620301838Z [inf]      errorCount: 0
+2025-12-02T10:58:38.620309297Z [inf]      errorRate: "0%"
+2025-12-02T10:59:08.675644684Z [inf]  [2025-12-02 10:59:01.430 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:59:08.675652596Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:59:08.675657903Z [inf]      provider: "healthy"
+2025-12-02T10:59:08.675663865Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:59:08.675669375Z [inf]      redis: "healthy"
+2025-12-02T10:59:08.675674230Z [inf]      overall: "healthy"
+2025-12-02T10:59:08.675680471Z [inf]      processedCount: 0
+2025-12-02T10:59:08.675688666Z [inf]      errorCount: 0
+2025-12-02T10:59:08.675694949Z [inf]      errorRate: "0%"
+2025-12-02T10:59:39.542003357Z [inf]  [2025-12-02 10:59:31.513 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T10:59:39.542011140Z [inf]      workerId: "worker-staging-1"
+2025-12-02T10:59:39.542018295Z [inf]      provider: "healthy"
+2025-12-02T10:59:39.542025965Z [inf]      rabbitmq: "healthy"
+2025-12-02T10:59:39.542034356Z [inf]      redis: "healthy"
+2025-12-02T10:59:39.542042147Z [inf]      overall: "healthy"
+2025-12-02T10:59:39.542050349Z [inf]      processedCount: 0
+2025-12-02T10:59:39.542057429Z [inf]      errorCount: 0
+2025-12-02T10:59:39.542064348Z [inf]      errorRate: "0%"
+2025-12-02T11:00:11.284418564Z [inf]  [2025-12-02 11:00:01.140 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T11:00:11.284427782Z [inf]      workerId: "worker-staging-1"
+2025-12-02T11:00:11.284500288Z [inf]  [2025-12-02 11:00:04.326 +0000] [32mINFO[39m: [36mProcessing analysis message[39m
+2025-12-02T11:00:11.284509434Z [inf]      analysisId: "async_multi_analysis_20251202_101524_68eb5373"
+2025-12-02T11:00:11.284522686Z [inf]      provider: "healthy"
+2025-12-02T11:00:11.284530945Z [inf]      rabbitmq: "healthy"
+2025-12-02T11:00:11.284538057Z [inf]      redis: "healthy"
+2025-12-02T11:00:11.284548620Z [inf]      overall: "healthy"
+2025-12-02T11:00:11.284559840Z [inf]      processedCount: 0
+2025-12-02T11:00:11.284568546Z [inf]      errorCount: 0
+2025-12-02T11:00:11.284575016Z [inf]      errorRate: "0%"
+2025-12-02T11:00:11.284588167Z [inf]      farmerId: "F190"
+2025-12-02T11:00:11.284588881Z [inf]  [2025-12-02 11:00:04.328 +0000] [32mINFO[39m: [36mProcessing analysis message[39m
+2025-12-02T11:00:11.284598217Z [inf]      analysisId: "async_multi_analysis_20251202_102218_c38cefdd"
+2025-12-02T11:00:11.284598688Z [inf]      imageUrl: "https://1lik.net/plant-images/20251202_101524_060_4f2eefb1d2314fc2ac9e4cb4c9659816_async_multi_analysis_20251202_101524_68eb5373_main.jpg"
+2025-12-02T11:00:11.284605450Z [inf]      farmerId: "F190"
+2025-12-02T11:00:11.287457835Z [inf]      imageUrl: "https://1lik.net/plant-images/20251202_102218_266_9a000f5027884e02948dea0a6a92026c_async_multi_analysis_20251202_102218_c38cefdd_main.jpg"
+2025-12-02T11:00:11.287471616Z [inf]  [2025-12-02 11:00:04.329 +0000] [32mINFO[39m: [36mProcessing analysis message[39m
+2025-12-02T11:00:11.287492442Z [inf]      analysisId: "async_analysis_20251202_105440_b2489ba5"
+2025-12-02T11:00:11.287499463Z [inf]      farmerId: "F190"
+2025-12-02T11:00:11.291781058Z [inf]      imageUrl: "https://1lik.net/plant-images/20251202_105442_261_c72dd6c757764c9eab49c7b481d7f272_async_analysis_20251202_105440_b2489ba5.jpg"
+2025-12-02T11:00:12.864842235Z [inf]  [2025-12-02 11:00:04.329 +0000] [32mINFO[39m: [36mProcessing analysis message[39m
+2025-12-02T11:00:12.864848851Z [inf]      analysisId: "async_analysis_20251202_105659_ed646ac8"
+2025-12-02T11:00:12.864856569Z [inf]      farmerId: "F190"
+2025-12-02T11:00:12.864863623Z [inf]      imageUrl: "https://1lik.net/plant-images/20251202_105659_473_54aec77423d04c2cbdd10e0cb8dbb282_async_analysis_20251202_105659_ed646ac8.jpg"
+2025-12-02T11:00:12.864870293Z [inf]  [2025-12-02 11:00:04.331 +0000] [32mINFO[39m: [36mStarting OpenAI analysis[39m
+2025-12-02T11:00:12.864877850Z [inf]      analysisId: "async_multi_analysis_20251202_101524_68eb5373"
+2025-12-02T11:00:12.864884766Z [inf]      farmerId: "F190"
+2025-12-02T11:00:12.864893721Z [inf]      imageUrl: "https://1lik.net/plant-images/20251202_101524_060_4f2eefb1d2314fc2ac9e4cb4c9659816_async_multi_analysis_20251202_101524_68eb5373_main.jpg"
+2025-12-02T11:00:12.864899837Z [inf]      cropType: "Tomato"
+2025-12-02T11:00:12.864906139Z [inf]  [2025-12-02 11:00:04.382 +0000] [32mINFO[39m: [36mStarting OpenAI analysis[39m
+2025-12-02T11:00:12.864913621Z [inf]      analysisId: "async_multi_analysis_20251202_102218_c38cefdd"
+2025-12-02T11:00:12.864919611Z [inf]      farmerId: "F190"
+2025-12-02T11:00:12.864925738Z [inf]      imageUrl: "https://1lik.net/plant-images/20251202_102218_266_9a000f5027884e02948dea0a6a92026c_async_multi_analysis_20251202_102218_c38cefdd_main.jpg"
+2025-12-02T11:00:12.864931676Z [inf]      cropType: "Tomato"
+2025-12-02T11:00:12.864937325Z [inf]  [2025-12-02 11:00:04.384 +0000] [32mINFO[39m: [36mStarting OpenAI analysis[39m
+2025-12-02T11:00:12.864943317Z [inf]      analysisId: "async_analysis_20251202_105440_b2489ba5"
+2025-12-02T11:00:12.864950145Z [inf]      farmerId: "F190"
+2025-12-02T11:00:12.865507217Z [inf]      imageUrl: "https://1lik.net/plant-images/20251202_105442_261_c72dd6c757764c9eab49c7b481d7f272_async_analysis_20251202_105440_b2489ba5.jpg"
+2025-12-02T11:00:14.577099700Z [inf]      cropType: "Domates"
+2025-12-02T11:00:14.577108139Z [inf]  [2025-12-02 11:00:04.384 +0000] [32mINFO[39m: [36mStarting OpenAI analysis[39m
+2025-12-02T11:00:14.577115070Z [inf]      analysisId: "async_analysis_20251202_105659_ed646ac8"
+2025-12-02T11:00:14.577121934Z [inf]      farmerId: "F190"
+2025-12-02T11:00:14.577128639Z [inf]      imageUrl: "https://1lik.net/plant-images/20251202_105659_473_54aec77423d04c2cbdd10e0cb8dbb282_async_analysis_20251202_105659_ed646ac8.jpg"
+2025-12-02T11:00:14.577136701Z [inf]      cropType: null
+2025-12-02T11:00:14.577144034Z [inf]  [2025-12-02 11:00:05.450 +0000] [31mERROR[39m: [36mOpenAI API HTTP error[39m
+2025-12-02T11:00:14.577149789Z [inf]      analysisId: "async_multi_analysis_20251202_102218_c38cefdd"
+2025-12-02T11:00:14.577156596Z [inf]      status: 400
+2025-12-02T11:00:14.577166967Z [inf]      errorText: "{\n  \"error\": {\n    \"message\": \"The image data you provided does not represent a valid image. Please check your input and try again.\",\n    \"type\": \"invalid_request_error\",\n    \"param\": \"input\",\n    \"code\": \"invalid_value\"\n  }\n}"
+2025-12-02T11:00:14.577176981Z [inf]  [2025-12-02 11:00:05.450 +0000] [31mERROR[39m: [36mOpenAI analysis failed[39m
+2025-12-02T11:00:14.577183692Z [inf]      analysisId: "async_multi_analysis_20251202_102218_c38cefdd"
+2025-12-02T11:00:14.577191723Z [inf]      processingTimeMs: 1068
+2025-12-02T11:00:14.577198580Z [inf]      error: "OpenAI API error (400): {\n  \"error\": {\n    \"message\": \"The image data you provided does not represent a valid image. Please check your input and try again.\",\n    \"type\": \"invalid_request_error\",\n    \"param\": \"input\",\n    \"code\": \"invalid_value\"\n  }\n}"
+2025-12-02T11:00:14.577205436Z [inf]  [2025-12-02 11:00:05.453 +0000] [32mINFO[39m: [36mAnalysis completed and result published[39m
+2025-12-02T11:00:14.577213125Z [inf]      analysisId: "async_multi_analysis_20251202_102218_c38cefdd"
+2025-12-02T11:00:16.114875797Z [inf]      analysisId: "async_multi_analysis_20251202_101524_68eb5373"
+2025-12-02T11:00:16.115124391Z [inf]      analysisId: "async_multi_analysis_20251202_101524_68eb5373"
+2025-12-02T11:00:16.115131740Z [inf]      status: 400
+2025-12-02T11:00:16.115137957Z [inf]      errorText: "{\n  \"error\": {\n    \"message\": \"The image data you provided does not represent a valid image. Please check your input and try again.\",\n    \"type\": \"invalid_request_error\",\n    \"param\": \"input\",\n    \"code\": \"invalid_value\"\n  }\n}"
+2025-12-02T11:00:16.115144067Z [inf]  [2025-12-02 11:00:05.523 +0000] [31mERROR[39m: [36mOpenAI analysis failed[39m
+2025-12-02T11:00:16.115149632Z [inf]      analysisId: "async_multi_analysis_20251202_101524_68eb5373"
+2025-12-02T11:00:16.115156645Z [inf]      processingTimeMs: 1192
+2025-12-02T11:00:16.115163240Z [inf]      error: "OpenAI API error (400): {\n  \"error\": {\n    \"message\": \"The image data you provided does not represent a valid image. Please check your input and try again.\",\n    \"type\": \"invalid_request_error\",\n    \"param\": \"input\",\n    \"code\": \"invalid_value\"\n  }\n}"
+2025-12-02T11:00:16.115169290Z [inf]  [2025-12-02 11:00:05.523 +0000] [32mINFO[39m: [36mAnalysis completed and result published[39m
+2025-12-02T11:00:16.115336069Z [inf]      processingTimeMs: 1125
+2025-12-02T11:00:16.115342258Z [inf]  [2025-12-02 11:00:05.523 +0000] [31mERROR[39m: [36mOpenAI API HTTP error[39m
+2025-12-02T11:00:16.133801954Z [inf]      processingTimeMs: 1197
+2025-12-02T11:00:36.582578884Z [inf]  [2025-12-02 11:00:31.206 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T11:00:36.582587559Z [inf]      workerId: "worker-staging-1"
+2025-12-02T11:00:36.582594471Z [inf]      provider: "healthy"
+2025-12-02T11:00:36.582609180Z [inf]      rabbitmq: "healthy"
+2025-12-02T11:00:36.582619383Z [inf]      redis: "healthy"
+2025-12-02T11:00:36.582627564Z [inf]      overall: "healthy"
+2025-12-02T11:00:36.582633859Z [inf]      processedCount: 2
+2025-12-02T11:00:36.582642358Z [inf]      errorCount: 0
+2025-12-02T11:00:36.582649648Z [inf]      errorRate: "0.00%"
+2025-12-02T11:00:57.015757502Z [inf]        "output",
+2025-12-02T11:00:57.015770602Z [inf]        "parallel_tool_calls",
+2025-12-02T11:00:57.015934975Z [inf]        "id",
+2025-12-02T11:00:57.015951142Z [inf]        "error",
+2025-12-02T11:00:57.015959864Z [inf]        "incomplete_details",
+2025-12-02T11:00:57.015967687Z [inf]        "instructions",
+2025-12-02T11:00:57.015973917Z [inf]        "object",
+2025-12-02T11:00:57.015982579Z [inf]        "created_at",
+2025-12-02T11:00:57.015990723Z [inf]        "status",
+2025-12-02T11:00:57.016001583Z [inf]        "background",
+2025-12-02T11:00:57.016007103Z [inf]        "max_output_tokens",
+2025-12-02T11:00:57.016019920Z [inf]        "max_tool_calls",
+2025-12-02T11:00:57.016028121Z [inf]        "model",
+2025-12-02T11:00:57.016043000Z [inf]  [2025-12-02 11:00:51.117 +0000] [32mINFO[39m: [36mOpenAI API response structure[39m
+2025-12-02T11:00:57.016050506Z [inf]      analysisId: "async_analysis_20251202_105659_ed646ac8"
+2025-12-02T11:00:57.016058189Z [inf]      responseKeys: [
+2025-12-02T11:00:57.016345789Z [inf]        "billing",
+2025-12-02T11:00:57.025531789Z [inf]        "previous_response_id",
+2025-12-02T11:00:57.025546659Z [inf]        "prompt_cache_key",
+2025-12-02T11:00:57.025554627Z [inf]        "prompt_cache_retention",
+2025-12-02T11:00:57.025567306Z [inf]        "reasoning",
+2025-12-02T11:00:57.025575511Z [inf]        "safety_identifier",
+2025-12-02T11:00:57.025585570Z [inf]        "service_tier",
+2025-12-02T11:00:57.025593322Z [inf]        "store",
+2025-12-02T11:00:57.025601518Z [inf]        "temperature",
+2025-12-02T11:00:57.025608872Z [inf]        "text",
+2025-12-02T11:00:57.025806249Z [inf]        "tool_choice",
+2025-12-02T11:00:57.025820205Z [inf]        "tools",
+2025-12-02T11:00:57.025827954Z [inf]        "top_logprobs",
+2025-12-02T11:00:57.025838560Z [inf]        "top_p",
+2025-12-02T11:00:57.025846599Z [inf]        "truncation",
+2025-12-02T11:00:58.782747827Z [inf]        "usage",
+2025-12-02T11:00:58.782755746Z [inf]        "user",
+2025-12-02T11:00:58.782763002Z [inf]        "metadata"
+2025-12-02T11:00:58.782770603Z [inf]      ]
+2025-12-02T11:00:58.782780135Z [inf]      hasOutput: true
+2025-12-02T11:00:58.782787099Z [inf]      outputLength: 2
+2025-12-02T11:00:58.782794474Z [inf]      firstOutputKeys: [
+2025-12-02T11:00:58.782801369Z [inf]        "id",
+2025-12-02T11:00:58.782808563Z [inf]        "type",
+2025-12-02T11:00:58.782816453Z [inf]        "summary"
+2025-12-02T11:00:58.782822832Z [inf]      ]
+2025-12-02T11:00:58.782827824Z [inf]      responsePreview: "{\"id\":\"resp_099543d696fbc06000692ec6b5e3c4819798a449fbfdfc2865\",\"object\":\"response\",\"created_at\":1764673206,\"status\":\"completed\",\"background\":false,\"billing\":{\"payer\":\"developer\"},\"error\":null,\"incomplete_details\":null,\"instructions\":null,\"max_output_tokens\":null,\"max_tool_calls\":null,\"model\":\"gpt-5-mini-2025-08-07\",\"output\":[{\"id\":\"rs_099543d696fbc06000692ec6b6eaec819794c744786133607c\",\"type\":\"reasoning\",\"summary\":[]},{\"id\":\"msg_099543d696fbc06000692ec6c67b0c8197b3bda087ddf7dd59\",\"type\":\"messag"
+2025-12-02T11:00:58.782835912Z [inf]  [2025-12-02 11:00:51.119 +0000] [32mINFO[39m: [36mOpenAI analysis completed successfully[39m
+2025-12-02T11:00:58.782843193Z [inf]      analysisId: "async_analysis_20251202_105659_ed646ac8"
+2025-12-02T11:00:58.782950227Z [inf]      processingTimeMs: 46734
+2025-12-02T11:00:58.782961594Z [inf]      totalTokens: 6195
+2025-12-02T11:00:58.782990257Z [inf]      costUsd: 0.007299
+2025-12-02T11:00:58.782998326Z [inf]  [2025-12-02 11:00:51.121 +0000] [32mINFO[39m: [36mAnalysis completed and result published[39m
+2025-12-02T11:00:58.783005368Z [inf]      analysisId: "async_analysis_20251202_105659_ed646ac8"
+2025-12-02T11:00:58.783015630Z [inf]      processingTimeMs: 46792
+2025-12-02T11:00:58.783024032Z [inf]      totalTokens: 6195
+2025-12-02T11:01:00.351126708Z [inf]      costUsd: 0.007299
+2025-12-02T11:01:02.522450153Z [inf]  [2025-12-02 11:01:01.312 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T11:01:02.522457069Z [inf]      workerId: "worker-staging-1"
+2025-12-02T11:01:02.522465241Z [inf]      provider: "healthy"
+2025-12-02T11:01:02.522473567Z [inf]      rabbitmq: "healthy"
+2025-12-02T11:01:02.522481000Z [inf]      redis: "healthy"
+2025-12-02T11:01:02.522488846Z [inf]      overall: "healthy"
+2025-12-02T11:01:02.522495753Z [inf]      processedCount: 3
+2025-12-02T11:01:02.522503815Z [inf]      errorCount: 0
+2025-12-02T11:01:02.522519664Z [inf]      errorRate: "0.00%"
+2025-12-02T11:01:04.631454514Z [inf]  [2025-12-02 11:01:02.619 +0000] [32mINFO[39m: [36mOpenAI API response structure[39m
+2025-12-02T11:01:04.631461253Z [inf]      analysisId: "async_analysis_20251202_105440_b2489ba5"
+2025-12-02T11:01:04.631488408Z [inf]      responseKeys: [
+2025-12-02T11:01:04.631495121Z [inf]        "id",
+2025-12-02T11:01:04.631501696Z [inf]        "object",
+2025-12-02T11:01:04.631508268Z [inf]        "created_at",
+2025-12-02T11:01:04.631514122Z [inf]        "status",
+2025-12-02T11:01:04.631520999Z [inf]        "background",
+2025-12-02T11:01:04.631527343Z [inf]        "billing",
+2025-12-02T11:01:04.631533902Z [inf]        "error",
+2025-12-02T11:01:04.631540172Z [inf]        "incomplete_details",
+2025-12-02T11:01:04.631546105Z [inf]        "instructions",
+2025-12-02T11:01:04.631552473Z [inf]        "max_output_tokens",
+2025-12-02T11:01:04.631558964Z [inf]        "max_tool_calls",
+2025-12-02T11:01:04.631566255Z [inf]        "model",
+2025-12-02T11:01:04.631572185Z [inf]        "output",
+2025-12-02T11:01:04.631577803Z [inf]        "parallel_tool_calls",
+2025-12-02T11:01:04.631583634Z [inf]        "previous_response_id",
+2025-12-02T11:01:04.631589440Z [inf]        "prompt_cache_key",
+2025-12-02T11:01:04.631595535Z [inf]        "prompt_cache_retention",
+2025-12-02T11:01:04.631601727Z [inf]        "reasoning",
+2025-12-02T11:01:04.631607812Z [inf]        "safety_identifier",
+2025-12-02T11:01:04.631614280Z [inf]        "service_tier",
+2025-12-02T11:01:04.631620663Z [inf]        "store",
+2025-12-02T11:01:04.631627599Z [inf]        "temperature",
+2025-12-02T11:01:04.631633780Z [inf]        "text",
+2025-12-02T11:01:04.631639576Z [inf]        "tool_choice",
+2025-12-02T11:01:04.631644982Z [inf]        "tools",
+2025-12-02T11:01:04.631656679Z [inf]        "top_logprobs",
+2025-12-02T11:01:04.631663295Z [inf]        "top_p",
+2025-12-02T11:01:04.631669048Z [inf]        "truncation",
+2025-12-02T11:01:05.980991433Z [inf]        "usage",
+2025-12-02T11:01:05.980998792Z [inf]        "user",
+2025-12-02T11:01:05.981005451Z [inf]        "metadata"
+2025-12-02T11:01:05.981011391Z [inf]      ]
+2025-12-02T11:01:05.981018951Z [inf]      hasOutput: true
+2025-12-02T11:01:05.981025888Z [inf]      outputLength: 2
+2025-12-02T11:01:05.981032679Z [inf]      firstOutputKeys: [
+2025-12-02T11:01:05.981039561Z [inf]        "id",
+2025-12-02T11:01:05.981045398Z [inf]        "type",
+2025-12-02T11:01:05.981051568Z [inf]        "summary"
+2025-12-02T11:01:05.981061185Z [inf]      ]
+2025-12-02T11:01:05.981067691Z [inf]      responsePreview: "{\"id\":\"resp_05275621be7cea1d00692ec6b4d4808194b699104817d011b1\",\"object\":\"response\",\"created_at\":1764673205,\"status\":\"completed\",\"background\":false,\"billing\":{\"payer\":\"developer\"},\"error\":null,\"incomplete_details\":null,\"instructions\":null,\"max_output_tokens\":null,\"max_tool_calls\":null,\"model\":\"gpt-5-mini-2025-08-07\",\"output\":[{\"id\":\"rs_05275621be7cea1d00692ec6b677ec8194a7bd56292ab0595a\",\"type\":\"reasoning\",\"summary\":[]},{\"id\":\"msg_05275621be7cea1d00692ec6c9ba04819499d4971e82081ddb\",\"type\":\"messag"
+2025-12-02T11:01:05.981074083Z [inf]  [2025-12-02 11:01:02.619 +0000] [32mINFO[39m: [36mOpenAI analysis completed successfully[39m
+2025-12-02T11:01:05.981082985Z [inf]      analysisId: "async_analysis_20251202_105440_b2489ba5"
+2025-12-02T11:01:05.981090200Z [inf]      processingTimeMs: 58235
+2025-12-02T11:01:05.981097458Z [inf]      totalTokens: 6086
+2025-12-02T11:01:05.981104614Z [inf]      costUsd: 0.007694
+2025-12-02T11:01:05.981116032Z [inf]  [2025-12-02 11:01:02.622 +0000] [32mINFO[39m: [36mAnalysis completed and result published[39m
+2025-12-02T11:01:05.981123947Z [inf]      analysisId: "async_analysis_20251202_105440_b2489ba5"
+2025-12-02T11:01:05.981131436Z [inf]      processingTimeMs: 58293
+2025-12-02T11:01:05.981139588Z [inf]      totalTokens: 6086
+2025-12-02T11:01:07.419294352Z [inf]      costUsd: 0.007694
+2025-12-02T11:01:37.056303525Z [inf]  [2025-12-02 11:01:31.121 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-02T11:01:37.056312319Z [inf]      workerId: "worker-staging-1"
+2025-12-02T11:01:37.056320597Z [inf]      provider: "healthy"
+2025-12-02T11:01:37.056329215Z [inf]      rabbitmq: "healthy"
+2025-12-02T11:01:37.056338001Z [inf]      redis: "healthy"
+2025-12-02T11:01:37.056347852Z [inf]      overall: "healthy"
+2025-12-02T11:01:37.056356415Z [inf]      processedCount: 4
+2025-12-02T11:01:37.056365539Z [inf]      errorCount: 0
+2025-12-02T11:01:37.056374869Z [inf]      errorRate: "0.00%"

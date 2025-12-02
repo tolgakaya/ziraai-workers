@@ -4,15 +4,22 @@
  */
 
 import amqp, { Channel, Connection } from 'amqplib';
-import { DispatcherConfig, AnalysisRequest } from './types/config';
+import { DispatcherConfig, AnalysisRequest, ProviderType } from './types/config';
 
 export class Dispatcher {
   private connection: Connection | null = null;
   private channel: Channel | null = null;
   private config: DispatcherConfig;
+  private roundRobinIndex: number = 0;
+  private availableProviders: ProviderType[];
 
   constructor(config: DispatcherConfig) {
     this.config = config;
+
+    // Initialize available providers list
+    this.availableProviders = config.dispatcher.availableProviders || ['openai', 'gemini', 'anthropic'];
+
+    console.log(`[Dispatcher ${this.config.dispatcher.id}] Available providers:`, this.availableProviders);
   }
 
   /**
@@ -104,35 +111,167 @@ export class Dispatcher {
 
   /**
    * Select provider queue based on strategy
-   * Phase 1: FIXED strategy (always route to configured provider)
    */
   private selectProviderQueue(request: AnalysisRequest): string {
     switch (this.config.dispatcher.strategy) {
       case 'FIXED':
-        // FIXED strategy: Always route to the configured provider
-        const provider = this.config.dispatcher.fixedProvider || 'openai';
-
-        switch (provider) {
-          case 'openai':
-            return this.config.rabbitmq.queues.openai;
-          case 'gemini':
-            return this.config.rabbitmq.queues.gemini;
-          case 'anthropic':
-            return this.config.rabbitmq.queues.anthropic;
-          default:
-            console.warn(`[Dispatcher ${this.config.dispatcher.id}] Unknown provider ${provider}, defaulting to openai`);
-            return this.config.rabbitmq.queues.openai;
-        }
+        return this.selectProviderQueue_Fixed();
 
       case 'ROUND_ROBIN':
+        return this.selectProviderQueue_RoundRobin();
+
       case 'COST_OPTIMIZED':
-      case 'LATENCY_OPTIMIZED':
-        // Future implementation
-        console.log(`[Dispatcher ${this.config.dispatcher.id}] Strategy ${this.config.dispatcher.strategy} not implemented yet, using FIXED`);
-        return this.config.rabbitmq.queues.openai;
+        return this.selectProviderQueue_CostOptimized();
+
+      case 'QUALITY_FIRST':
+        return this.selectProviderQueue_QualityFirst();
+
+      case 'WEIGHTED':
+        return this.selectProviderQueue_Weighted();
+
+      case 'MESSAGE_BASED':
+        return this.selectProviderQueue_MessageBased(request);
 
       default:
         console.warn(`[Dispatcher ${this.config.dispatcher.id}] Unknown strategy ${this.config.dispatcher.strategy}, defaulting to openai`);
+        return this.config.rabbitmq.queues.openai;
+    }
+  }
+
+  /**
+   * FIXED Strategy: Always route to the configured provider
+   */
+  private selectProviderQueue_Fixed(): string {
+    const provider = this.config.dispatcher.fixedProvider || 'openai';
+    return this.getQueueForProvider(provider);
+  }
+
+  /**
+   * ROUND_ROBIN Strategy: Distribute evenly across all available providers
+   */
+  private selectProviderQueue_RoundRobin(): string {
+    if (this.availableProviders.length === 0) {
+      console.warn(`[Dispatcher ${this.config.dispatcher.id}] No available providers, defaulting to openai`);
+      return this.config.rabbitmq.queues.openai;
+    }
+
+    const provider = this.availableProviders[this.roundRobinIndex];
+    this.roundRobinIndex = (this.roundRobinIndex + 1) % this.availableProviders.length;
+
+    console.log(`[Dispatcher ${this.config.dispatcher.id}] ROUND_ROBIN selected: ${provider} (next index: ${this.roundRobinIndex})`);
+    return this.getQueueForProvider(provider);
+  }
+
+  /**
+   * COST_OPTIMIZED Strategy: Always prefer cheapest provider
+   * Cost ranking: Gemini ($1,087/1M) > OpenAI ($5,125/1M) > Anthropic ($48,000/1M)
+   */
+  private selectProviderQueue_CostOptimized(): string {
+    const costRanking: ProviderType[] = ['gemini', 'openai', 'anthropic'];
+
+    for (const provider of costRanking) {
+      if (this.availableProviders.includes(provider)) {
+        console.log(`[Dispatcher ${this.config.dispatcher.id}] COST_OPTIMIZED selected: ${provider}`);
+        return this.getQueueForProvider(provider);
+      }
+    }
+
+    console.warn(`[Dispatcher ${this.config.dispatcher.id}] No available providers in cost ranking, defaulting to openai`);
+    return this.config.rabbitmq.queues.openai;
+  }
+
+  /**
+   * QUALITY_FIRST Strategy: Always prefer best quality provider
+   * Quality ranking: Anthropic > OpenAI > Gemini
+   */
+  private selectProviderQueue_QualityFirst(): string {
+    const qualityRanking: ProviderType[] = ['anthropic', 'openai', 'gemini'];
+
+    for (const provider of qualityRanking) {
+      if (this.availableProviders.includes(provider)) {
+        console.log(`[Dispatcher ${this.config.dispatcher.id}] QUALITY_FIRST selected: ${provider}`);
+        return this.getQueueForProvider(provider);
+      }
+    }
+
+    console.warn(`[Dispatcher ${this.config.dispatcher.id}] No available providers in quality ranking, defaulting to openai`);
+    return this.config.rabbitmq.queues.openai;
+  }
+
+  /**
+   * WEIGHTED Strategy: Distribute based on configured percentage weights
+   * Example: { openai: 50%, gemini: 30%, anthropic: 20% }
+   */
+  private selectProviderQueue_Weighted(): string {
+    const weights = this.config.dispatcher.weights;
+
+    if (!weights || weights.length === 0) {
+      console.warn(`[Dispatcher ${this.config.dispatcher.id}] No weights configured for WEIGHTED strategy, defaulting to openai`);
+      return this.config.rabbitmq.queues.openai;
+    }
+
+    // Calculate total weight
+    const totalWeight = weights.reduce((sum, w) => sum + w.weight, 0);
+
+    if (totalWeight === 0) {
+      console.warn(`[Dispatcher ${this.config.dispatcher.id}] Total weight is 0, defaulting to openai`);
+      return this.config.rabbitmq.queues.openai;
+    }
+
+    // Generate random number between 0 and totalWeight
+    const random = Math.random() * totalWeight;
+
+    // Select provider based on weighted random selection
+    let cumulative = 0;
+    for (const weightConfig of weights) {
+      cumulative += weightConfig.weight;
+      if (random <= cumulative) {
+        console.log(`[Dispatcher ${this.config.dispatcher.id}] WEIGHTED selected: ${weightConfig.provider} (random: ${random.toFixed(2)}, cumulative: ${cumulative})`);
+        return this.getQueueForProvider(weightConfig.provider);
+      }
+    }
+
+    // Fallback (should never reach here)
+    console.warn(`[Dispatcher ${this.config.dispatcher.id}] WEIGHTED selection failed, defaulting to first weight`);
+    return this.getQueueForProvider(weights[0].provider);
+  }
+
+  /**
+   * MESSAGE_BASED Strategy: Use provider specified in request message
+   * Legacy n8n compatibility - reads 'provider' field from request
+   */
+  private selectProviderQueue_MessageBased(request: AnalysisRequest): string {
+    const requestedProvider = request.provider?.toLowerCase();
+
+    if (!requestedProvider) {
+      console.warn(`[Dispatcher ${this.config.dispatcher.id}] MESSAGE_BASED: No provider in request, defaulting to openai`);
+      return this.config.rabbitmq.queues.openai;
+    }
+
+    // Validate provider
+    const validProviders: ProviderType[] = ['openai', 'gemini', 'anthropic'];
+    if (!validProviders.includes(requestedProvider as ProviderType)) {
+      console.warn(`[Dispatcher ${this.config.dispatcher.id}] MESSAGE_BASED: Invalid provider '${requestedProvider}', defaulting to openai`);
+      return this.config.rabbitmq.queues.openai;
+    }
+
+    console.log(`[Dispatcher ${this.config.dispatcher.id}] MESSAGE_BASED selected: ${requestedProvider} (from request)`);
+    return this.getQueueForProvider(requestedProvider as ProviderType);
+  }
+
+  /**
+   * Helper: Get queue name for a given provider
+   */
+  private getQueueForProvider(provider: ProviderType): string {
+    switch (provider) {
+      case 'openai':
+        return this.config.rabbitmq.queues.openai;
+      case 'gemini':
+        return this.config.rabbitmq.queues.gemini;
+      case 'anthropic':
+        return this.config.rabbitmq.queues.anthropic;
+      default:
+        console.warn(`[Dispatcher ${this.config.dispatcher.id}] Unknown provider ${provider}, defaulting to openai`);
         return this.config.rabbitmq.queues.openai;
     }
   }

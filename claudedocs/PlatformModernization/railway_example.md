@@ -157,7 +157,7 @@ Dispatcher Service (NEW)
  DISPATCHER_ID="ziraai-dispatcher-staging-1"
  PROVIDER_SELECTION_STRATEGY="FIXED"
  PROVIDER_FIXED="openai"
- RABBITMQ_URL=""
+ RABBITMQ_URL="amqp://DIjL9Z7auxVvnQTYnO9mY0@rabbitmq.railway.internal:5672"
  RAW_ANALYSIS_QUEUE="raw-analysis-queue"
  OPENAI_QUEUE="openai-analysis-queue"
  GEMINI_QUEUE="gemini-analysis-queue"

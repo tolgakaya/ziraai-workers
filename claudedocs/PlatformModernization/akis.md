@@ -137,3 +137,35 @@ if (cheapest_provider === 'gemini') {
   route_to('gemini-analysis-queue');
 }
 Şu an Day 5 tamamlandı - FIXED strategy çalışıyor. Phase 2'de ROUND_ROBIN, COST_OPTIMIZED gibi gelişmiş stratejiler eklenecek. Ama altyapı hazır! 🚀
+
+
+
+
+🎯 ASIL ODAKLANMAMIZ GEREKEN:
+Dispatcher Service'i geliştirmek ve diğer 5 stratejiyi implement etmek!
+Stratejiler Öncelik Sırasına Göre:
+1. ROUND_ROBIN (Yük Dağılımı)
+Use Case: Yükü eşit dağıt, tüm provider'ları kullan
+Implementation: Round-robin counter ekle, her mesajda artır
+Complexity: ⭐ (Kolay)
+Value: ⭐⭐⭐⭐⭐ (Çok değerli - failover için kritik)
+2. COST_OPTIMIZED (Maliyet Minimizasyonu)
+Use Case: En ucuz provider'ı tercih et (Gemini > OpenAI > Anthropic)
+Implementation: Provider ranking listesi
+Complexity: ⭐ (Kolay)
+Value: ⭐⭐⭐⭐⭐ (Çok değerli - maliyet tasarrufu)
+3. QUALITY_FIRST (Kalite Öncelikli)
+Use Case: En kaliteli provider'ı tercih et (Anthropic > OpenAI > Gemini)
+Implementation: Provider ranking listesi (ters sıra)
+Complexity: ⭐ (Kolay)
+Value: ⭐⭐⭐ (Özel durumlarda kullanışlı)
+4. WEIGHTED (Ağırlıklı Dağıtım)
+Use Case: Özel ağırlıklı dağıtım (örn: 70% Gemini, 20% OpenAI, 10% Anthropic)
+Implementation: Weighted random selection
+Complexity: ⭐⭐⭐ (Orta)
+Value: ⭐⭐⭐⭐⭐ (En flexible strateji)
+5. MESSAGE_BASED (Legacy N8N Compatibility)
+Use Case: message.provider field'ına göre seç
+Implementation: Request'ten provider oku
+Complexity: ⭐ (Kolay)
+Value: ⭐⭐ (Sadece backward compatibility)
