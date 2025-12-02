@@ -59,7 +59,7 @@ export class GeminiProvider {
         contents: [{ role: 'user', parts }],
         generationConfig: {
           temperature: 0.7,
-          maxOutputTokens: 2000,
+          maxOutputTokens: 16000, // Increased from 2000 to allow complete JSON response
           responseMimeType: 'application/json',
         },
       });
