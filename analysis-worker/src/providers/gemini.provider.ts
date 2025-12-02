@@ -68,28 +68,146 @@ export class GeminiProvider {
       const analysisText = response.text();
       const processingTimeMs = Date.now() - startTime;
 
+      // CRITICAL: Validate response content
+      if (!analysisText || analysisText.trim().length === 0) {
+        this.logger.error({
+          analysisId: request.AnalysisId,
+          fullResponse: JSON.stringify(response),
+        }, 'Empty response - full API response logged');
+        throw new Error('Gemini returned empty response');
+      }
+
       this.logger.debug({
         analysisId: request.AnalysisId,
         responseLength: analysisText.length,
-        processingTimeMs,
-      }, 'Gemini API response received');
+        responsePreview: analysisText.substring(0, 200),
+      }, 'Gemini raw response received');
 
-      const analysisResult = JSON.parse(analysisText);
+      // Parse AI response with N8N cleanup logic (matching OpenAI provider)
+      let analysisResult: any;
+      try {
+        // Clean markdown code blocks and extract JSON (matching OpenAI provider)
+        let cleanedOutput = analysisText;
+        cleanedOutput = cleanedOutput.replace(/```json\n?/g, '');  // Remove ```json
+        cleanedOutput = cleanedOutput.replace(/```\n?/g, '');      // Remove ```
+
+        const jsonStart = cleanedOutput.indexOf('{');
+        const jsonEnd = cleanedOutput.lastIndexOf('}') + 1;
+
+        if (jsonStart === -1 || jsonEnd === 0) {
+          throw new Error('No JSON structure found in response');
+        }
+
+        const jsonStr = cleanedOutput.substring(jsonStart, jsonEnd);
+
+        this.logger.debug({
+          analysisId: request.AnalysisId,
+          originalLength: analysisText.length,
+          cleanedLength: jsonStr.length,
+          hadMarkdown: analysisText.includes('```'),
+        }, 'JSON cleanup completed');
+
+        analysisResult = JSON.parse(jsonStr);
+      } catch (parseError) {
+        this.logger.error({
+          analysisId: request.AnalysisId,
+          parseError: parseError instanceof Error ? parseError.message : 'Unknown parse error',
+          responseLength: analysisText.length,
+          responseStart: analysisText.substring(0, 500),
+          responseEnd: analysisText.substring(Math.max(0, analysisText.length - 500)),
+        }, 'Failed to parse Gemini JSON response');
+        throw new Error(`JSON parse failed: ${parseError instanceof Error ? parseError.message : 'Unknown error'}. Response length: ${analysisText.length}`);
+      }
       const tokenUsage = this.calculateTokenUsage(response);
 
-      // Return C#-compatible response with MIXED casing
-      return {
-        // Analysis results (snake_case - has [JsonProperty])
-        plant_identification: analysisResult.plant_identification || defaults.getDefaultPlantIdentification(),
-        health_assessment: analysisResult.health_assessment || defaults.getDefaultHealthAssessment(),
-        nutrient_status: analysisResult.nutrient_status || defaults.getDefaultNutrientStatus(),
-        pest_disease: analysisResult.pest_disease || defaults.getDefaultPestDisease(),
-        environmental_stress: analysisResult.environmental_stress || defaults.getDefaultEnvironmentalStress(),
-        cross_factor_insights: analysisResult.cross_factor_insights || [],
-        recommendations: analysisResult.recommendations || defaults.getDefaultRecommendations(),
-        summary: analysisResult.summary || defaults.getDefaultSummary(),
+      this.logger.info({
+        analysisId: request.AnalysisId,
+        processingTimeMs,
+        totalTokens: tokenUsage.total_tokens,
+        costUsd: tokenUsage.cost_usd,
+      }, 'Gemini analysis completed successfully');
 
-        // Metadata (snake_case - has [JsonProperty])
+      // N8N MATCH: Merge ALL AI fields (matching OpenAI provider logic)
+      // This preserves ALL fields from AI response (including risk_assessment, confidence_notes, farmer_friendly_summary)
+      const result = {
+        // FIRST: Spread ALL AI analysis results (this gets everything: risk_assessment, confidence_notes, farmer_friendly_summary, etc.)
+        ...analysisResult,
+
+        // THEN: Add/override with defaults ONLY if sections are missing
+        plant_identification: analysisResult.plant_identification || {
+          species: 'Belirlenemedi',
+          variety: 'Bilinmiyor',
+          growth_stage: 'Belirlenemedi',
+          confidence: 0,
+          identifying_features: [],
+          visible_parts: [],
+        },
+        health_assessment: analysisResult.health_assessment || {
+          vigor_score: 5,
+          leaf_color: 'Analiz edilemedi',
+          leaf_texture: 'Analiz edilemedi',
+          growth_pattern: 'Analiz edilemedi',
+          structural_integrity: 'Analiz edilemedi',
+          stress_indicators: [],
+          disease_symptoms: [],
+          severity: 'Bilinmiyor',
+        },
+        nutrient_status: analysisResult.nutrient_status || {
+          nitrogen: 'Bilinmiyor',
+          phosphorus: 'Bilinmiyor',
+          potassium: 'Bilinmiyor',
+          calcium: 'Bilinmiyor',
+          magnesium: 'Bilinmiyor',
+          sulfur: 'Bilinmiyor',
+          iron: 'Bilinmiyor',
+          zinc: 'Bilinmiyor',
+          manganese: 'Bilinmiyor',
+          boron: 'Bilinmiyor',
+          copper: 'Bilinmiyor',
+          molybdenum: 'Bilinmiyor',
+          chlorine: 'Bilinmiyor',
+          nickel: 'Bilinmiyor',
+          primary_deficiency: 'Bilinmiyor',
+          secondary_deficiencies: [],
+          severity: 'Bilinmiyor',
+        },
+        pest_disease: analysisResult.pest_disease || {
+          pests_detected: [],
+          diseases_detected: [],
+          damage_pattern: 'Analiz edilemedi',
+          affected_area_percentage: 0,
+          spread_risk: 'Bilinmiyor',
+          primary_issue: 'Yok',
+        },
+        environmental_stress: analysisResult.environmental_stress || {
+          water_status: 'Bilinmiyor',
+          temperature_stress: 'Bilinmiyor',
+          light_stress: 'Bilinmiyor',
+          physical_damage: 'Bilinmiyor',
+          chemical_damage: 'Bilinmiyor',
+          soil_indicators: 'Bilinmiyor',
+          primary_stressor: 'Yok',
+        },
+        cross_factor_insights: analysisResult.cross_factor_insights || [],
+        recommendations: analysisResult.recommendations || {
+          immediate: [],
+          short_term: [],
+          preventive: [],
+          monitoring: [],
+        },
+        summary: analysisResult.summary || {
+          overall_health_score: 5,
+          primary_concern: 'Analiz tamamlanamadı',
+          secondary_concerns: [],
+          critical_issues_count: 0,
+          confidence_level: 0,
+          prognosis: 'Bilinmiyor',
+          estimated_yield_impact: 'Bilinmiyor',
+        },
+
+        // ============================================
+        // METADATA (snake_case - has [JsonProperty])
+        // ============================================
         analysis_id: request.AnalysisId,
         timestamp: new Date().toISOString(),
         user_id: request.UserId,
@@ -119,10 +237,15 @@ export class GeminiProvider {
         contact_info: request.ContactInfo,
         additional_info: request.AdditionalInfo,
 
+        // ============================================
+        // IMAGE URLs (snake_case - has [JsonProperty])
+        // ============================================
         image_url: request.ImageUrl,
         image_path: request.ImageUrl,
 
-        // Processing metadata (ALL PascalCase - NO [JsonProperty])
+        // ============================================
+        // PROCESSING METADATA (PascalCase! NO [JsonProperty])
+        // ============================================
         processing_metadata: {
           ParseSuccess: true,
           ProcessingTimestamp: new Date().toISOString(),
@@ -133,24 +256,34 @@ export class GeminiProvider {
           RetryCount: 0,
         },
 
-        // Image metadata (ALL PascalCase - NO [JsonProperty])
+        // ============================================
+        // IMAGE METADATA (PascalCase! NO [JsonProperty])
+        // ============================================
         image_metadata: {
           URL: request.ImageUrl,  // CRITICAL: PascalCase!
           Format: 'JPEG',
         },
 
-        // Token usage (simplified flat structure)
+        // ============================================
+        // TOKEN USAGE (snake_case - has [JsonProperty])
+        // ============================================
         token_usage: tokenUsage,
 
-        // Status flags
+        // ============================================
+        // RESPONSE STATUS (snake_case - has [JsonProperty])
+        // ============================================
         success: true,
         error: false,
         error_message: null,
         error_type: null,
 
-        // Routing metadata (from request)
+        // ============================================
+        // ROUTING METADATA (from request)
+        // ============================================
         response_queue: request.ResponseQueue,
       };
+
+      return result;
     } catch (error: any) {
       const processingTimeMs = Date.now() - startTime;
       const errorMessage = error?.message || 'Unknown Gemini API error';
@@ -166,218 +299,223 @@ export class GeminiProvider {
   }
 
   /**
-   * Build system prompt - Turkish analysis prompt
+   * Build system prompt with Turkish analysis requirements
+   * EXACT COPY FROM OpenAI provider - MUST STAY IDENTICAL
    */
   private buildSystemPrompt(request: PlantAnalysisAsyncRequestDto): string {
-    let prompt = `You are an expert agricultural analyst with deep knowledge in plant pathology, nutrition (macro and micro elements), pest management, physiological disorders, soil science, and environmental stress factors.
+    // EXACT COPY FROM OpenAI provider (openai.provider.ts buildSystemPrompt)
+    return `You are an expert agricultural analyst with deep knowledge in plant pathology, nutrition (macro and micro elements), pest management, physiological disorders, soil science, and environmental stress factors.
 
-Your task is to analyze the provided plant image comprehensively and return a structured JSON report.
+Your task is to analyze the provided plant image(s) comprehensively and return a structured JSON report.
 
 ============================================
-CRITICAL INSTRUCTIONS
+MULTI-IMAGE ANALYSIS (if additional images provided)
 ============================================
 
-1. **ACCURATE SPECIES IDENTIFICATION:**
-   - Carefully identify the plant species and variety
-   - Use botanical characteristics visible in the image
-   - If uncertain, provide your best assessment with confidence score
+You may receive UP TO 4 DIFFERENT IMAGES of the same plant. Analyze all provided images together for a more comprehensive diagnosis:
 
-2. **DETAILED NUTRIENT DEFICIENCY ANALYSIS:**
-   - Assess EACH of the 14 key nutrients individually
-   - Use specific visual symptoms (chlorosis patterns, necrosis, stunting, etc.)
-   - Identify primary and secondary deficiencies
-   - Rate severity level
+**MAIN IMAGE:** ${request.ImageUrl}
+This is the primary image for analysis.
 
-3. **PEST AND DISEASE DIAGNOSIS:**
-   - Look for visible pests (insects, mites, etc.)
-   - Identify disease symptoms (fungal, bacterial, viral)
-   - Describe damage patterns and affected areas
-   - Estimate spread risk
+${(request as any).LeafTopImage ? `**LEAF TOP IMAGE (Yaprağın Üst Yüzeyi):** ${(request as any).LeafTopImage}\nFocus on: Upper leaf surface symptoms, color variations, spots, lesions, powdery mildew, rust, insect feeding damage, nutrient deficiency patterns (interveinal chlorosis, etc.)\n` : ''}${(request as any).LeafBottomImage ? `**LEAF BOTTOM IMAGE (Yaprağın Alt Yüzeyi):** ${(request as any).LeafBottomImage}\nFocus on: Aphid colonies, whiteflies and eggs, spider mites and webs, downy mildew spores, rust pustules, scale insects, stomatal abnormalities\n` : ''}${(request as any).PlantOverviewImage ? `**PLANT OVERVIEW IMAGE (Bitkinin Genel Görünümü):** ${(request as any).PlantOverviewImage}\nFocus on: Overall plant vigor, stunting, wilting patterns, vascular wilt symptoms (one-sided wilting), stem structure, branching pattern, fruit/flower status\n` : ''}${(request as any).RootImage ? `**ROOT IMAGE (Kök Resmi):** ${(request as any).RootImage}\nFocus on: Root color (healthy white vs brown/black rotted), root-knot nematode galling, root rot lesions, root development, fibrous root density, soil-borne disease symptoms\n` : ''}
 
-4. **ENVIRONMENTAL STRESS ASSESSMENT:**
-   - Identify water stress (drought or waterlogging)
-   - Detect temperature stress (heat or cold damage)
-   - Recognize light-related issues
-   - Note physical damage
+**MULTI-IMAGE ANALYSIS INSTRUCTIONS:**
+- Analyze ALL provided images together for comprehensive diagnosis
+- Cross-reference findings between images to confirm or rule out issues
+- If symptoms appear in multiple images, this increases diagnostic confidence
+- Note any contradictions between different image observations
+- If only the main image is provided, base your analysis solely on it
+- Total images provided: ${(request as any).ImageMetadata?.TotalImages || 1}
+- Available images: ${(request as any).ImageMetadata?.ImagesProvided?.join(', ') || 'main image'}
 
-5. **ACTIONABLE RECOMMENDATIONS:**
-   - Provide SPECIFIC, PRACTICAL recommendations
-   - Prioritize immediate actions
-   - Include preventive measures
-   - Estimate urgency and timeframe
-`;
+============================================
+IMPORTANT INSTRUCTIONS
+============================================
 
-    // Add context information
-    prompt += `\n============================================\nCONTEXT INFORMATION PROVIDED\n============================================\n\n`;
-    prompt += `Analysis ID: ${request.AnalysisId}\n`;
-    prompt += `Farmer ID: ${request.FarmerId || 'Not provided'}\n`;
-    prompt += `Location: ${request.Location || 'Not provided'}\n`;
+All JSON keys must remain in English exactly as provided.
 
-    if (request.GpsCoordinates) {
-      prompt += `GPS Coordinates: ${request.GpsCoordinates.Lat}, ${request.GpsCoordinates.Lng}\n`;
-    }
+All values must be written in Turkish (e.g., species name, disease description, nutrient status, stress factors, recommendations, summaries, etc.).
 
-    if (request.Altitude) prompt += `Altitude: ${request.Altitude}m\n`;
-    if (request.CropType) prompt += `Crop Type: ${request.CropType}\n`;
-    if (request.SoilType) prompt += `Soil Type: ${request.SoilType}\n`;
-    if (request.WeatherConditions) prompt += `Weather: ${request.WeatherConditions}\n`;
-    if (request.Temperature) prompt += `Temperature: ${request.Temperature}°C\n`;
-    if (request.Humidity) prompt += `Humidity: ${request.Humidity}%\n`;
-    if (request.LastFertilization) prompt += `Last Fertilization: ${request.LastFertilization}\n`;
-    if (request.LastIrrigation) prompt += `Last Irrigation: ${request.LastIrrigation}\n`;
+Do not mix languages: keys stay in English, values are always Turkish.
 
-    if (request.PreviousTreatments && request.PreviousTreatments.length > 0) {
-      prompt += `Previous Treatments:\n`;
-      request.PreviousTreatments.forEach((treatment, index) => {
-        prompt += `  ${index + 1}. ${treatment}\n`;
-      });
-    }
+Always:
 
-    if (request.UrgencyLevel) prompt += `Urgency Level: ${request.UrgencyLevel}\n`;
-    if (request.Notes) prompt += `Additional Notes: ${request.Notes}\n`;
+Cross-check visible symptoms with provided environmental, soil, and treatment data.
 
-    // Add JSON schema
-    prompt += `\n============================================\nOUTPUT FORMAT\n============================================\n\n`;
-    prompt += `Return ONLY a valid JSON object with this EXACT structure (no additional text):\n\n`;
+Distinguish between biotic (pests, diseases) and abiotic (nutrient, environmental, physiological) stress.
 
-    prompt += `{
+Provide confidence scores (0–100) for each major detection.
+
+If information is insufficient or ambiguous, explicitly state uncertainty and suggest what extra farmer input is needed (in Turkish).
+
+Adapt recommendations to regional conditions if location data is available.
+
+Include both scientific explanations and a plain farmer-friendly summary in Turkish.
+
+Provide organic and chemical management options where relevant.
+
+CONTEXT INFORMATION PROVIDED:
+
+Analysis ID: ${request.AnalysisId}
+
+Farmer ID: ${request.FarmerId || 'Not provided'}
+
+Location: ${request.Location || 'Not provided'}
+
+GPS Coordinates: ${request.GpsCoordinates ? JSON.stringify(request.GpsCoordinates) : 'Not provided'}
+
+Altitude: ${request.Altitude || 'Not provided'} meters
+
+Field ID: ${request.FieldId || 'Not provided'}
+
+Crop Type: ${request.CropType || 'Not provided'}
+
+Planting Date: ${request.PlantingDate || 'Not provided'}
+
+Expected Harvest: ${request.ExpectedHarvestDate || 'Not provided'}
+
+Soil Type: ${request.SoilType || 'Not provided'}
+
+Last Fertilization: ${request.LastFertilization || 'Not provided'}
+
+Last Irrigation: ${request.LastIrrigation || 'Not provided'}
+
+Weather Conditions: ${request.WeatherConditions || 'Not provided'}
+
+Temperature: ${request.Temperature || 'Not provided'}°C
+
+Humidity: ${request.Humidity || 'Not provided'}%
+
+Previous Treatments: ${request.PreviousTreatments && request.PreviousTreatments.length > 0 ? JSON.stringify(request.PreviousTreatments) : 'None'}
+
+Urgency Level: ${request.UrgencyLevel}
+
+Notes from Farmer: ${request.Notes || 'None'}
+
+Perform a complete analysis covering ALL of the following aspects:
+
+(analysis categories same as before, but values must be produced in Turkish)
+
+Analyze this image: ${request.ImageUrl}
+
+Return ONLY a valid JSON object with this EXACT structure (no additional text):
+{
   "plant_identification": {
-    "species": "string (bitki türü, örn: Domates, Buğday)",
-    "variety": "string (çeşit, örn: Rio Grande, emin değilseniz 'Bilinmiyor')",
-    "growth_stage": "fide | vejetatif | çiçeklenme | meyve | unknown",
-    "confidence": 0.85,
-    "identifying_features": ["array of strings", "belirgin özellikler"],
-    "visible_parts": ["array of strings", "görünen bitki kısımları"]
-  },
-  "nutrient_status": {
-    "nitrogen": "normal | eksik | fazla | unknown",
-    "phosphorus": "normal | eksik | fazla | unknown",
-    "potassium": "normal | eksik | fazla | unknown",
-    "calcium": "normal | eksik | fazla | unknown",
-    "magnesium": "normal | eksik | fazla | unknown",
-    "sulfur": "normal | eksik | fazla | unknown",
-    "iron": "normal | eksik | fazla | unknown",
-    "manganese": "normal | eksik | fazla | unknown",
-    "zinc": "normal | eksik | fazla | unknown",
-    "copper": "normal | eksik | fazla | unknown",
-    "boron": "normal | eksik | fazla | unknown",
-    "molybdenum": "normal | eksik | fazla | unknown",
-    "chlorine": "normal | eksik | fazla | unknown",
-    "nickel": "normal | eksik | fazla | unknown",
-    "primary_deficiency": "string (en önemli eksiklik veya 'Yok')",
-    "secondary_deficiencies": ["array", "diğer eksiklikler"],
-    "severity": "yok | düşük | orta | yüksek | kritik | unknown",
-    "visual_symptoms": "string (görsel belirtiler detaylı açıklama)"
+    "species": "Türkçe değer",
+    "variety": "Türkçe değer veya bilinmiyor",
+    "growth_stage": "fide|vejetatif|çiçeklenme|meyve",
+    "confidence": 0-100,
+    "identifying_features": ["özellik1", "özellik2"],
+    "visible_parts": ["yapraklar", "gövde", "çiçekler", "meyveler", "kökler"]
   },
   "health_assessment": {
-    "overall_health": "sağlıklı | hafif sorunlu | orta sorunlu | ciddi sorunlu | kritik | unknown",
-    "vigor": "zayıf | orta | iyi | mükemmel | unknown",
-    "leaf_condition": "string (yaprak durumu açıklaması)",
-    "stem_condition": "string (gövde durumu açıklaması)",
-    "root_condition": "string (kök durumu, görünüyorsa)",
-    "color_assessment": "string (renk değerlendirmesi)",
-    "abnormalities": ["array", "anormallikler listesi"]
+    "vigor_score": 1-10,
+    "leaf_color": "Türkçe açıklama",
+    "leaf_texture": "Türkçe açıklama",
+    "growth_pattern": "normal|anormal - detay",
+    "structural_integrity": "sağlam|orta|zayıf - detay",
+    "stress_indicators": ["belirti1", "belirti2"],
+    "disease_symptoms": ["belirti1", "belirti2"],
+    "severity": "yok|düşük|orta|yüksek|kritik"
+  },
+  "nutrient_status": {
+    "nitrogen": "normal|eksik|fazla",
+    "phosphorus": "normal|eksik|fazla",
+    "potassium": "normal|eksik|fazla",
+    "calcium": "normal|eksik|fazla",
+    "magnesium": "normal|eksik|fazla",
+    "sulfur": "normal|eksik|fazla",
+    "iron": "normal|eksik|fazla",
+    "zinc": "normal|eksik|fazla",
+    "manganese": "normal|eksik|fazla",
+    "boron": "normal|eksik|fazla",
+    "copper": "normal|eksik|fazla",
+    "molybdenum": "normal|eksik|fazla",
+    "chlorine": "normal|eksik|fazla",
+    "nickel": "normal|eksik|fazla",
+    "primary_deficiency": "ana eksiklik veya yok",
+    "secondary_deficiencies": ["eksiklik1", "eksiklik2"],
+    "severity": "yok|düşük|orta|yüksek|kritik"
   },
   "pest_disease": {
     "pests_detected": [
-      {
-        "pest_name": "string (zararlı adı)",
-        "scientific_name": "string (bilimsel adı)",
-        "severity": "düşük | orta | yüksek | kritik",
-        "visible_damage": "string (görünen hasar açıklaması)",
-        "lifecycle_stage": "string (yaşam döngüsü evresi)"
-      }
+      {"type": "zararlı adı", "group": "böcek|akar|nematod|kemirgen|diğer", "severity": "düşük|orta|yüksek", "confidence": 0-100, "location": "bitkinin bölgesi"}
     ],
     "diseases_detected": [
-      {
-        "disease_name": "string (hastalık adı)",
-        "pathogen_type": "fungal | bacterial | viral | unknown",
-        "severity": "düşük | orta | yüksek | kritik",
-        "symptoms": "string (semptom açıklaması)",
-        "affected_parts": ["array", "etkilenen kısımlar"]
-      }
+      {"type": "hastalık adı", "category": "fungal|bakteriyel|viral|fizyolojik", "severity": "düşük|orta|yüksek", "affected_parts": ["etkilenen kısımlar"], "confidence": 0-100}
     ],
-    "damage_pattern": "string (hasar pattern açıklaması)",
-    "affected_area_percentage": 25,
-    "spread_risk": "yok | düşük | orta | yüksek",
-    "primary_issue": "string (ana sorun)"
+    "damage_pattern": "zarar deseni açıklaması",
+    "affected_area_percentage": 0-100,
+    "spread_risk": "yok|düşük|orta|yüksek",
+    "primary_issue": "ana sorun veya yok"
   },
   "environmental_stress": {
-    "water_stress": {
-      "type": "none | drought | waterlogging | unknown",
-      "severity": "yok | düşük | orta | yüksek | unknown",
-      "indicators": ["array", "göstergeler"]
-    },
-    "temperature_stress": {
-      "type": "none | heat | cold | unknown",
-      "severity": "yok | düşük | orta | yüksek | unknown",
-      "indicators": ["array", "göstergeler"]
-    },
-    "light_stress": {
-      "type": "none | insufficient | excessive | unknown",
-      "severity": "yok | düşük | orta | yüksek | unknown",
-      "indicators": ["array", "göstergeler"]
-    },
-    "physical_damage": {
-      "present": true,
-      "type": "string (hasar tipi)",
-      "severity": "yok | düşük | orta | yüksek | unknown"
-    }
-  },
-  "recommendations": {
-    "immediate_actions": [
-      {
-        "action": "string (yapılacak iş)",
-        "priority": "düşük | orta | yüksek | kritik",
-        "timeframe": "string (zaman dilimi)",
-        "expected_outcome": "string (beklenen sonuç)"
-      }
+    "water_status": "optimal|hafif kurak|kurak|hafif fazla|su baskını",
+    "temperature_stress": "yok|hafif sıcak|aşırı sıcak|hafif soğuk|aşırı soğuk",
+    "light_stress": "yok|yetersiz|aşırı",
+    "physical_damage": "yok|rüzgar|dolu|mekanik|hayvan",
+    "chemical_damage": "yok|şüpheli|kesin - detay",
+    "physiological_disorders": [
+      {"type": "güneş yanığı|tuz zararı|don zararı|herbisit zararı|besin toksisitesi", "severity": "düşük|orta|yüksek", "notes": "detaylar"}
     ],
-    "fertilization": {
-      "needed": true,
-      "nutrients_to_apply": ["array", "uygulanacak besinler"],
-      "application_method": "string (uygulama yöntemi)",
-      "timing": "string (zamanlama)"
+    "soil_health_indicators": {
+      "salinity": "yok|hafif|orta|şiddetli",
+      "pH_issue": "asidik|alkali|optimal",
+      "organic_matter": "düşük|orta|yüksek"
     },
-    "pest_disease_management": {
-      "treatment_needed": true,
-      "recommended_products": ["array", "önerilen ürünler (genel kategoriler)"],
-      "application_timing": "string (uygulama zamanı)",
-      "precautions": ["array", "önlemler"]
-    },
-    "irrigation": {
-      "adjustment_needed": true,
-      "recommendation": "string (sulama önerisi)",
-      "frequency": "string (sıklık)"
-    },
-    "preventive_measures": ["array", "önleyici tedbirler"],
-    "monitoring": "string (izleme önerileri)"
-  },
-  "summary": {
-    "main_findings": "string (ana bulgular özeti - 2-3 cümle)",
-    "diagnosis": "string (teşhis - 2-3 cümle)",
-    "action_summary": "string (yapılacaklar özeti - 2-3 cümle)",
-    "urgency": "düşük | orta | yüksek | kritik",
-    "prognosis": "mükemmel | iyi | orta | kötü | unknown",
-    "confidence_level": 0.85
+    "primary_stressor": "ana stres faktörü veya yok"
   },
   "cross_factor_insights": [
     {
-      "interaction": "string (etkileşim açıklaması)",
-      "combined_effect": "string (birleşik etki)",
-      "recommendation": "string (öneri)"
+      "insight": "faktörler arası ilişki açıklaması",
+      "confidence": 0.0-1.0,
+      "affected_aspects": ["alan1", "alan2"],
+      "impact_level": "düşük|orta|yüksek"
     }
-  ]
+  ],
+  "risk_assessment": {
+    "yield_loss_probability": "düşük|orta|yüksek",
+    "timeline_to_worsen": "gün|hafta",
+    "spread_potential": "yok|lokal|tarlanın geneli"
+  },
+  "recommendations": {
+    "immediate": [
+      {"action": "ne yapılmalı", "details": "özel talimat", "timeline": "X saat içinde", "priority": "kritik|yüksek|orta"}
+    ],
+    "short_term": [
+      {"action": "ne yapılmalı", "details": "özel talimat", "timeline": "X-Y gün", "priority": "yüksek|orta|düşük"}
+    ],
+    "preventive": [
+      {"action": "önlem", "details": "özel talimat", "timeline": "sürekli", "priority": "orta|düşük"}
+    ],
+    "monitoring": [
+      {"parameter": "izlenecek parametre", "frequency": "sıklık", "threshold": "tetikleyici eşik"}
+    ],
+    "resource_estimation": {
+      "water_required_liters": "litre cinsinden",
+      "fertilizer_cost_estimate_usd": "maliyet $",
+      "labor_hours_estimate": "saat"
+    },
+    "localized_recommendations": {
+      "region": "bölge adı",
+      "preferred_practices": ["uygulama1", "uygulama2"],
+      "restricted_methods": ["yasaklı yöntem1", "yasaklı yöntem2"]
+    }
+  },
+  "summary": {
+    "overall_health_score": 1-10,
+    "primary_concern": "en kritik sorun",
+    "secondary_concerns": ["diğer önemli sorunlar"],
+    "critical_issues_count": 0-N,
+    "confidence_level": 0-100,
+    "prognosis": "mükemmel|iyi|orta|zayıf|kritik",
+    "estimated_yield_impact": "yok|minimal|orta|önemli|çok ciddi"
+  },
+  "confidence_notes": [
+    {"aspect": "nutrient_status", "confidence": 0.85, "reason": "Türkçe açıklama"}
+  ],
+  "farmer_friendly_summary": "Çiftçi için sade Türkçe açıklama."
 }`;
-
-    prompt += `\n\n============================================\nIMPORTANT NOTES\n============================================\n\n`;
-    prompt += `- Return ONLY the JSON object, no additional text\n`;
-    prompt += `- All string values should be in Turkish\n`;
-    prompt += `- Use "unknown" when uncertain, but provide best assessment when possible\n`;
-    prompt += `- Be specific and actionable in recommendations\n`;
-    prompt += `- Base confidence scores on image quality and symptom clarity\n\n`;
-
-    return prompt;
   }
 
   /**
