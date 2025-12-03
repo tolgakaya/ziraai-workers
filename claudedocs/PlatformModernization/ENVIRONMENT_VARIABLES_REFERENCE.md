@@ -140,63 +140,58 @@ ANTHROPIC_API_KEY=sk-ant-api03-abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLM
 
 ### 3. Provider Selection Strategy
 
-#### `PROVIDER_SELECTION_STRATEGY` (Optional)
+#### `PROVIDER_SELECTION_STRATEGY` (Required)
 **Purpose**: Algorithm for selecting which AI provider processes each message
-**Format**: `FIXED` | `ROUND_ROBIN` | `COST_OPTIMIZED` | `QUALITY_FIRST` | `MESSAGE_BASED` | `WEIGHTED`
-**Default**: `ROUND_ROBIN`
+**Format**: `FIXED` (**REQUIRED for workers**)
+**Default**: None (must be explicitly set)
 
-**Examples**:
+**⚠️ CRITICAL REQUIREMENT**: Workers MUST use `FIXED` strategy when `USE_PROVIDER_QUEUES=true`
+- Each worker instance is specialized for ONE provider
+- Worker consumes from SINGLE provider-specific queue only
+- Dispatcher handles routing strategies (ROUND_ROBIN, COST_OPTIMIZED, etc.)
+- This enables independent scaling of worker replicas per provider
 
-**FIXED** - Always use one specific provider:
+**Worker Configuration (FIXED strategy - REQUIRED)**:
 ```bash
+# Worker MUST use FIXED strategy
 PROVIDER_SELECTION_STRATEGY=FIXED
-PROVIDER_FIXED=gemini    # Must specify which provider
+PROVIDER_FIXED=gemini    # Specify which provider: openai | gemini | anthropic
+
+# Example: OpenAI worker
+PROVIDER_SELECTION_STRATEGY=FIXED
+PROVIDER_FIXED=openai
+OPENAI_API_KEY=sk-proj-...
+
+# Example: Gemini worker
+PROVIDER_SELECTION_STRATEGY=FIXED
+PROVIDER_FIXED=gemini
+GEMINI_API_KEY=AIza...
+
+# Example: Anthropic worker
+PROVIDER_SELECTION_STRATEGY=FIXED
+PROVIDER_FIXED=anthropic
+ANTHROPIC_API_KEY=sk-ant-...
 ```
 
-**ROUND_ROBIN** - Distribute evenly across all providers:
-```bash
-PROVIDER_SELECTION_STRATEGY=ROUND_ROBIN
-# No additional config needed
-# Result: OpenAI → Gemini → Anthropic → OpenAI → ...
-```
-
-**COST_OPTIMIZED** - Prefer cheapest provider based on metadata:
-```bash
-PROVIDER_SELECTION_STRATEGY=COST_OPTIMIZED
-# No additional config needed
-# Default result: Gemini ($1.087) → OpenAI ($5.125) → Anthropic ($48.0)
-# Rankings change if you update PROVIDER_METADATA
-```
-
-**QUALITY_FIRST** - Prefer highest quality provider:
-```bash
-PROVIDER_SELECTION_STRATEGY=QUALITY_FIRST
-# No additional config needed
-# Default result: Anthropic (10) → OpenAI (8) → Gemini (7)
-# Rankings change if you update PROVIDER_METADATA
-```
-
-**MESSAGE_BASED** - Use provider specified in message (legacy n8n behavior):
-```bash
-PROVIDER_SELECTION_STRATEGY=MESSAGE_BASED
-# Worker reads message.provider field
-# Fallback to first available if not specified
-```
-
-**WEIGHTED** - Custom distribution percentages:
-```bash
-PROVIDER_SELECTION_STRATEGY=WEIGHTED
-PROVIDER_WEIGHTS=[{"provider":"gemini","weight":70},{"provider":"openai","weight":20},{"provider":"anthropic","weight":10}]
-# Result: 70% Gemini, 20% OpenAI, 10% Anthropic
-```
+**Dispatcher Configuration (All strategies supported)**:
+- Dispatcher can use any strategy: ROUND_ROBIN, COST_OPTIMIZED, QUALITY_FIRST, WEIGHTED, MESSAGE_BASED, FIXED
+- See Dispatcher documentation for strategy details
+- Dispatcher routes messages to appropriate provider queues
+- Workers consume from their specialized queue only
 
 ---
 
-#### `PROVIDER_FIXED` (Optional - required for FIXED strategy)
-**Purpose**: Specify which provider to use with FIXED strategy
+#### `PROVIDER_FIXED` (Required)
+**Purpose**: Specify which provider this worker is specialized for
 **Format**: `openai` | `gemini` | `anthropic`
-**Default**: None
-**Required When**: `PROVIDER_SELECTION_STRATEGY=FIXED`
+**Default**: None (must be explicitly set)
+**Required**: Always (workers MUST be specialized for one provider)
+
+**Behavior**:
+- Worker consumes from single provider-specific queue only
+- Worker uses only this provider's API key for processing
+- Enables independent scaling: deploy multiple replicas per provider based on load
+- Queue mapping: openai→openai-analysis-queue, gemini→gemini-analysis-queue, anthropic→anthropic-analysis-queue
 
 **Examples**:
 ```bash
@@ -218,11 +213,11 @@ ANTHROPIC_API_KEY=sk-ant-...
 
 ---
 
-#### `PROVIDER_WEIGHTS` (Optional - required for WEIGHTED strategy)
-**Purpose**: Custom distribution percentages for each provider
+#### `PROVIDER_WEIGHTS` (Not Used in Workers)
+**Purpose**: Custom distribution percentages for dispatcher WEIGHTED strategy
 **Format**: JSON array of `{"provider":"name","weight":number}`
-**Default**: None
-**Required When**: `PROVIDER_SELECTION_STRATEGY=WEIGHTED`
+**Worker Usage**: ⚠️ NOT APPLICABLE - Workers always use FIXED strategy
+**Dispatcher Usage**: Required when dispatcher uses WEIGHTED strategy
 
 **Examples**:
 
@@ -965,3 +960,29 @@ railway logs | grep -i "rate limit\|timeout"
 **Last Updated**: 1 Aralık 2025
 **Maintainer**: Platform Team
 **Related**: [Phase 1 Implementation](./README.md)
+
+
+FOR DISPATCHER
+
+# FIXED Strategy
+PROVIDER_SELECTION_STRATEGY=FIXED
+PROVIDER_FIXED=openai
+
+# ROUND_ROBIN Strategy
+PROVIDER_SELECTION_STRATEGY=ROUND_ROBIN
+AVAILABLE_PROVIDERS=openai,gemini,anthropic
+
+# COST_OPTIMIZED Strategy
+PROVIDER_SELECTION_STRATEGY=COST_OPTIMIZED
+AVAILABLE_PROVIDERS=openai,gemini,anthropic
+
+# QUALITY_FIRST Strategy
+PROVIDER_SELECTION_STRATEGY=QUALITY_FIRST
+AVAILABLE_PROVIDERS=openai,gemini,anthropic
+
+# WEIGHTED Strategy
+PROVIDER_SELECTION_STRATEGY=WEIGHTED
+PROVIDER_WEIGHTS=[{"provider":"openai","weight":50},{"provider":"gemini","weight":30},{"provider":"anthropic","weight":20}]
+
+# MESSAGE_BASED Strategy
+PROVIDER_SELECTION_STRATEGY=MESSAGE_BASED

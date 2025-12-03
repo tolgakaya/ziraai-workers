@@ -244,24 +244,64 @@ class AnalysisWorker {
         // Dispatcher routes from raw-analysis-queue to these queues
         this.logger.info('Using NEW queue system: Provider-specific queues');
 
-        const providerQueues = [
-          this.config.rabbitmq.queues.openai,
-          this.config.rabbitmq.queues.gemini,
-          this.config.rabbitmq.queues.anthropic,
-        ];
+        // ============================================
+        // CRITICAL: FIXED Strategy for Queue Consumption
+        // ============================================
+        // Worker MUST use FIXED strategy to consume from single queue only
+        // Dispatcher handles routing strategy (ROUND_ROBIN, COST_OPTIMIZED, etc.)
+        // Worker handles processing with fixed provider
 
-        for (const queue of providerQueues) {
-          await this.rabbitmq.consumeQueue(queue, async (message) => {
-            await this.processMessage(message);
-          });
-          this.logger.info({ queue }, 'Consuming from provider queue');
+        if (this.config.providerSelection.strategy !== 'FIXED') {
+          this.logger.error({
+            currentStrategy: this.config.providerSelection.strategy,
+            requiredStrategy: 'FIXED',
+          }, 'Worker MUST use FIXED strategy for provider-specific queues');
+          throw new Error(
+            `Worker strategy must be FIXED when USE_PROVIDER_QUEUES=true. ` +
+            `Current strategy: ${this.config.providerSelection.strategy}. ` +
+            `Set PROVIDER_SELECTION_STRATEGY=FIXED and PROVIDER_FIXED=<provider>`
+          );
         }
 
+        if (!this.config.providerSelection.fixedProvider) {
+          this.logger.error('PROVIDER_FIXED not configured');
+          throw new Error(
+            'PROVIDER_FIXED must be set when PROVIDER_SELECTION_STRATEGY=FIXED. ' +
+            'Set PROVIDER_FIXED to one of: openai, gemini, anthropic'
+          );
+        }
+
+        // Get queue name for fixed provider
+        const queueMap: Record<string, string> = {
+          'openai': this.config.rabbitmq.queues.openai,
+          'gemini': this.config.rabbitmq.queues.gemini,
+          'anthropic': this.config.rabbitmq.queues.anthropic,
+        };
+
+        const fixedQueue = queueMap[this.config.providerSelection.fixedProvider];
+
+        if (!fixedQueue) {
+          this.logger.error({
+            fixedProvider: this.config.providerSelection.fixedProvider,
+            validProviders: Object.keys(queueMap),
+          }, 'Invalid PROVIDER_FIXED value');
+          throw new Error(
+            `Invalid PROVIDER_FIXED value: ${this.config.providerSelection.fixedProvider}. ` +
+            `Must be one of: ${Object.keys(queueMap).join(', ')}`
+          );
+        }
+
+        // Consume from single queue only
+        await this.rabbitmq.consumeQueue(fixedQueue, async (message) => {
+          await this.processMessage(message);
+        });
+
         this.logger.info({
-          providerQueues,
+          strategy: 'FIXED',
+          fixedProvider: this.config.providerSelection.fixedProvider,
+          queue: fixedQueue,
           availableProviders,
-          selectionStrategy: this.config.providerSelection.strategy,
-        }, 'Started consuming from provider-specific queues');
+        }, 'Started consuming from provider-specific queue (FIXED strategy)');
 
       } else {
         // OLD SYSTEM (Legacy): Consume from WebAPI's direct queues
