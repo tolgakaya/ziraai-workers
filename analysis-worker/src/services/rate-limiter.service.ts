@@ -45,34 +45,19 @@ export class RateLimiterService {
     const windowStart = now - 60000; // 60 seconds window
 
     try {
-      // Use Redis pipeline for atomic operations
-      const pipeline = this.redis.pipeline();
-
-      // Remove old entries outside the sliding window
-      pipeline.zremrangebyscore(key, '-inf', windowStart);
-
-      // Count current entries in the window
-      pipeline.zcard(key);
-
-      // Add current request timestamp
-      pipeline.zadd(key, now, `${now}-${Math.random()}`);
-
-      // Set expiration (cleanup)
-      pipeline.expire(key, this.config.ttl);
-
-      const results = await pipeline.exec();
-
-      if (!results) {
-        this.logger.error({ provider }, 'Redis pipeline execution failed');
-        return false;
-      }
-
-      // Get count from zcard result (index 1)
-      const currentCount = results[1][1] as number;
+      // First, check current count without modifying
+      await this.redis.zremrangebyscore(key, '-inf', windowStart);
+      const currentCount = await this.redis.zcard(key);
 
       const allowed = currentCount < limit;
 
-      if (!allowed) {
+      if (allowed) {
+        // Only add to Redis if allowed
+        const pipeline = this.redis.pipeline();
+        pipeline.zadd(key, now, `${now}-${Math.random()}`);
+        pipeline.expire(key, this.config.ttl);
+        await pipeline.exec();
+      } else {
         this.logger.warn({
           provider,
           currentCount,

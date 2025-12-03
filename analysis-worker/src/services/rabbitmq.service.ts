@@ -135,14 +135,33 @@ export class RabbitMQService {
             queueName,
           }, 'Message acknowledged');
         } catch (error) {
-          this.logger.error({
-            error,
-            queueName,
-            messageId: msg.properties.messageId,
-          }, 'Message processing failed');
+          const errorMessage = error instanceof Error ? error.message : 'Unknown error';
 
-          // Reject message and send to DLQ
-          this.channel?.nack(msg, false, false);
+          // ============================================
+          // SMART NACK STRATEGY
+          // ============================================
+          // Rate limit errors: NACK with requeue=true (automatic redelivery)
+          // Other errors: NACK with requeue=false (send to DLQ)
+
+          if (errorMessage === 'RATE_LIMIT_EXCEEDED_AT_WORKER') {
+            // Rate limit exceeded - requeue for automatic retry
+            this.logger.warn({
+              analysisId: (JSON.parse(msg.content.toString()) as PlantAnalysisAsyncRequestDto).AnalysisId,
+              queueName,
+              messageId: msg.properties.messageId,
+            }, 'Rate limit exceeded - requeuing message');
+
+            this.channel?.nack(msg, false, true); // requeue=true
+          } else {
+            // Other errors - send to DLQ
+            this.logger.error({
+              error,
+              queueName,
+              messageId: msg.properties.messageId,
+            }, 'Message processing failed - sending to DLQ');
+
+            this.channel?.nack(msg, false, false); // requeue=false (DLQ)
+          }
         }
       },
       {

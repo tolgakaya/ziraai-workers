@@ -1,1001 +1,691 @@
-2025-12-02T10:15:34.047758031Z [inf]  [2025-12-02 10:15:30.328 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:15:34.047766743Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:15:34.047777899Z [inf]      provider: "healthy"
-2025-12-02T10:15:34.047786902Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:15:34.047794038Z [inf]      redis: "healthy"
-2025-12-02T10:15:34.047802931Z [inf]      overall: "healthy"
-2025-12-02T10:15:34.047813820Z [inf]      processedCount: 0
-2025-12-02T10:15:34.047822015Z [inf]      errorCount: 0
-2025-12-02T10:15:34.047829543Z [inf]      errorRate: "0%"
-2025-12-02T10:16:04.605213586Z [inf]  [2025-12-02 10:16:00.246 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:16:04.605220772Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:16:04.605227993Z [inf]      provider: "healthy"
-2025-12-02T10:16:04.605234514Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:16:04.605240906Z [inf]      redis: "healthy"
-2025-12-02T10:16:04.605248760Z [inf]      overall: "healthy"
-2025-12-02T10:16:04.605255635Z [inf]      processedCount: 0
-2025-12-02T10:16:04.605262086Z [inf]      errorCount: 0
-2025-12-02T10:16:04.605270514Z [inf]      errorRate: "0%"
-2025-12-02T10:16:36.061838775Z [inf]      overall: "healthy"
-2025-12-02T10:16:36.061848910Z [inf]      processedCount: 0
-2025-12-02T10:16:36.061855992Z [inf]      errorCount: 0
-2025-12-02T10:16:36.061861633Z [inf]      errorRate: "0%"
-2025-12-02T10:16:36.061928318Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:16:36.061936621Z [inf]      provider: "healthy"
-2025-12-02T10:16:36.061944283Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:16:36.061948983Z [inf]  [2025-12-02 10:16:30.068 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:16:36.061952857Z [inf]      redis: "healthy"
-2025-12-02T10:17:06.759058234Z [inf]  [2025-12-02 10:17:00.486 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:17:06.759065242Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:17:06.759069935Z [inf]      provider: "healthy"
-2025-12-02T10:17:06.759074680Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:17:06.759079416Z [inf]      redis: "healthy"
-2025-12-02T10:17:06.759087664Z [inf]      overall: "healthy"
-2025-12-02T10:17:06.759094691Z [inf]      processedCount: 0
-2025-12-02T10:17:06.759101244Z [inf]      errorCount: 0
-2025-12-02T10:17:06.759107805Z [inf]      errorRate: "0%"
-2025-12-02T10:17:37.323026379Z [inf]  [2025-12-02 10:17:30.200 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:17:37.323035041Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:17:37.323042223Z [inf]      provider: "healthy"
-2025-12-02T10:17:37.323049742Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:17:37.323056569Z [inf]      redis: "healthy"
-2025-12-02T10:17:37.323064334Z [inf]      overall: "healthy"
-2025-12-02T10:17:37.323070492Z [inf]      processedCount: 0
-2025-12-02T10:17:37.323077459Z [inf]      errorCount: 0
-2025-12-02T10:17:37.323084430Z [inf]      errorRate: "0%"
-2025-12-02T10:18:08.160949173Z [inf]      processedCount: 0
-2025-12-02T10:18:08.160967015Z [inf]      errorCount: 0
-2025-12-02T10:18:08.160976218Z [inf]      errorRate: "0%"
-2025-12-02T10:18:08.164447491Z [inf]  [2025-12-02 10:18:00.441 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:18:08.164453180Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:18:08.164459350Z [inf]      provider: "healthy"
-2025-12-02T10:18:08.164464376Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:18:08.164469450Z [inf]      redis: "healthy"
-2025-12-02T10:18:08.164475293Z [inf]      overall: "healthy"
-2025-12-02T10:18:38.541820492Z [inf]  [2025-12-02 10:18:30.104 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:18:38.541829627Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:18:38.541841382Z [inf]      provider: "healthy"
-2025-12-02T10:18:38.541853262Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:18:38.541860849Z [inf]      redis: "healthy"
-2025-12-02T10:18:38.541867283Z [inf]      overall: "healthy"
-2025-12-02T10:18:38.541874614Z [inf]      processedCount: 0
-2025-12-02T10:18:38.541883777Z [inf]      errorCount: 0
-2025-12-02T10:18:38.541892052Z [inf]      errorRate: "0%"
-2025-12-02T10:19:09.847894491Z [inf]  [2025-12-02 10:19:00.437 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:19:09.847902312Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:19:09.847910588Z [inf]      provider: "healthy"
-2025-12-02T10:19:09.847919097Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:19:09.847927050Z [inf]      redis: "healthy"
-2025-12-02T10:19:09.847935224Z [inf]      overall: "healthy"
-2025-12-02T10:19:09.847945791Z [inf]      processedCount: 0
-2025-12-02T10:19:09.847952895Z [inf]      errorCount: 0
-2025-12-02T10:19:09.847959346Z [inf]      errorRate: "0%"
-2025-12-02T10:19:39.874238134Z [inf]  [2025-12-02 10:19:30.101 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:19:39.874248607Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:19:39.874258555Z [inf]      provider: "healthy"
-2025-12-02T10:19:39.874268564Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:19:39.874277892Z [inf]      redis: "healthy"
-2025-12-02T10:19:39.874287132Z [inf]      overall: "healthy"
-2025-12-02T10:19:39.874295881Z [inf]      processedCount: 0
-2025-12-02T10:19:39.874306822Z [inf]      errorCount: 0
-2025-12-02T10:19:39.874316742Z [inf]      errorRate: "0%"
-2025-12-02T10:20:10.850752322Z [inf]  [2025-12-02 10:20:00.678 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:20:10.850758132Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:20:10.850764022Z [inf]      provider: "healthy"
-2025-12-02T10:20:10.850774097Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:20:10.850779417Z [inf]      redis: "healthy"
-2025-12-02T10:20:10.850784476Z [inf]      overall: "healthy"
-2025-12-02T10:20:10.850790313Z [inf]      processedCount: 0
-2025-12-02T10:20:10.850795122Z [inf]      errorCount: 0
-2025-12-02T10:20:10.850800123Z [inf]      errorRate: "0%"
-2025-12-02T10:20:40.417841393Z [inf]  [2025-12-02 10:20:30.505 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:20:40.417848554Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:20:40.417856259Z [inf]      provider: "healthy"
-2025-12-02T10:20:40.417864130Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:20:40.417871571Z [inf]      redis: "healthy"
-2025-12-02T10:20:40.417879199Z [inf]      overall: "healthy"
-2025-12-02T10:20:40.417886283Z [inf]      processedCount: 0
-2025-12-02T10:20:40.417894256Z [inf]      errorCount: 0
-2025-12-02T10:20:40.417901097Z [inf]      errorRate: "0%"
-2025-12-02T10:21:10.536838339Z [inf]  [2025-12-02 10:21:00.331 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:21:10.536853869Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:21:10.536860978Z [inf]      provider: "healthy"
-2025-12-02T10:21:10.536871388Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:21:10.536877739Z [inf]      redis: "healthy"
-2025-12-02T10:21:10.536883177Z [inf]      overall: "healthy"
-2025-12-02T10:21:10.536905171Z [inf]      processedCount: 0
-2025-12-02T10:21:10.536910701Z [inf]      errorCount: 0
-2025-12-02T10:21:10.536915916Z [inf]      errorRate: "0%"
-2025-12-02T10:21:40.321725770Z [inf]  [2025-12-02 10:21:30.236 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:21:40.321749639Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:21:40.321756492Z [inf]      provider: "healthy"
-2025-12-02T10:21:40.321763310Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:21:40.321772518Z [inf]      redis: "healthy"
-2025-12-02T10:21:40.321780170Z [inf]      overall: "healthy"
-2025-12-02T10:21:40.321790837Z [inf]      processedCount: 0
-2025-12-02T10:21:40.321797577Z [inf]      errorCount: 0
-2025-12-02T10:21:40.321844825Z [inf]      errorRate: "0%"
-2025-12-02T10:22:10.639246250Z [inf]      errorCount: 0
-2025-12-02T10:22:10.639251320Z [inf]      errorRate: "0%"
-2025-12-02T10:22:10.639335090Z [inf]  [2025-12-02 10:22:00.453 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:22:10.639339849Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:22:10.639344676Z [inf]      provider: "healthy"
-2025-12-02T10:22:10.639349314Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:22:10.639354636Z [inf]      redis: "healthy"
-2025-12-02T10:22:10.639360484Z [inf]      overall: "healthy"
-2025-12-02T10:22:10.639366475Z [inf]      processedCount: 0
-2025-12-02T10:22:31.051245523Z [inf]  [2025-12-02 10:22:30.360 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:22:31.051254106Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:22:31.051269180Z [inf]      overall: "healthy"
-2025-12-02T10:22:31.051276368Z [inf]      processedCount: 0
-2025-12-02T10:22:31.051283801Z [inf]      errorCount: 0
-2025-12-02T10:22:31.051290441Z [inf]      errorRate: "0%"
-2025-12-02T10:22:31.051305870Z [inf]      provider: "healthy"
-2025-12-02T10:22:31.051544660Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:22:31.051551740Z [inf]      redis: "healthy"
-2025-12-02T10:23:03.284010933Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:23:03.284023352Z [inf]      redis: "healthy"
-2025-12-02T10:23:03.284030713Z [inf]      overall: "healthy"
-2025-12-02T10:23:03.284037972Z [inf]      processedCount: 0
-2025-12-02T10:23:03.284045469Z [inf]      errorCount: 0
-2025-12-02T10:23:03.284052715Z [inf]      errorRate: "0%"
-2025-12-02T10:23:03.284584326Z [inf]  [2025-12-02 10:23:00.183 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:23:03.284588933Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:23:03.284593639Z [inf]      provider: "healthy"
-2025-12-02T10:23:32.707911660Z [inf]  [2025-12-02 10:23:30.351 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:23:32.707962743Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:23:32.707975207Z [inf]      provider: "healthy"
-2025-12-02T10:23:32.708072199Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:23:32.708087304Z [inf]      redis: "healthy"
-2025-12-02T10:23:32.708096363Z [inf]      overall: "healthy"
-2025-12-02T10:23:32.708104652Z [inf]      processedCount: 0
-2025-12-02T10:23:32.708112212Z [inf]      errorCount: 0
-2025-12-02T10:23:32.708122891Z [inf]      errorRate: "0%"
-2025-12-02T10:24:02.984067276Z [inf]  [2025-12-02 10:24:00.529 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:24:02.984074967Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:24:02.984080491Z [inf]      provider: "healthy"
-2025-12-02T10:24:02.984086265Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:24:02.984092455Z [inf]      redis: "healthy"
-2025-12-02T10:24:02.984098819Z [inf]      overall: "healthy"
-2025-12-02T10:24:02.984511739Z [inf]      processedCount: 0
-2025-12-02T10:24:02.984521725Z [inf]      errorCount: 0
-2025-12-02T10:24:02.984528377Z [inf]      errorRate: "0%"
-2025-12-02T10:24:33.862906329Z [inf]  [2025-12-02 10:24:30.365 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:24:33.862913842Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:24:33.862919952Z [inf]      provider: "healthy"
-2025-12-02T10:24:33.862925821Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:24:33.862931858Z [inf]      redis: "healthy"
-2025-12-02T10:24:33.862939325Z [inf]      overall: "healthy"
-2025-12-02T10:24:33.862944910Z [inf]      processedCount: 0
-2025-12-02T10:24:33.862950699Z [inf]      errorCount: 0
-2025-12-02T10:24:33.862957147Z [inf]      errorRate: "0%"
-2025-12-02T10:25:04.796586992Z [inf]  [2025-12-02 10:25:00.379 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:25:04.796594041Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:25:04.796602676Z [inf]      provider: "healthy"
-2025-12-02T10:25:04.796610119Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:25:04.796616265Z [inf]      redis: "healthy"
-2025-12-02T10:25:04.796623085Z [inf]      overall: "healthy"
-2025-12-02T10:25:04.796629898Z [inf]      processedCount: 0
-2025-12-02T10:25:04.796635523Z [inf]      errorCount: 0
-2025-12-02T10:25:04.796642100Z [inf]      errorRate: "0%"
-2025-12-02T10:25:35.325614118Z [inf]  [2025-12-02 10:25:30.307 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:25:35.325633119Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:25:35.325642317Z [inf]      provider: "healthy"
-2025-12-02T10:25:35.325649512Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:25:35.325656094Z [inf]      redis: "healthy"
-2025-12-02T10:25:35.325663859Z [inf]      overall: "healthy"
-2025-12-02T10:25:35.325675374Z [inf]      processedCount: 0
-2025-12-02T10:25:35.329033941Z [inf]      errorCount: 0
-2025-12-02T10:25:35.329044261Z [inf]      errorRate: "0%"
-2025-12-02T10:26:06.109792743Z [inf]      redis: "healthy"
-2025-12-02T10:26:06.109805525Z [inf]      overall: "healthy"
-2025-12-02T10:26:06.109814451Z [inf]      processedCount: 0
-2025-12-02T10:26:06.109973982Z [inf]  [2025-12-02 10:26:00.526 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:26:06.109981858Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:26:06.109991153Z [inf]      provider: "healthy"
-2025-12-02T10:26:06.109991947Z [inf]      errorCount: 0
-2025-12-02T10:26:06.110000475Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:26:06.110003302Z [inf]      errorRate: "0%"
-2025-12-02T10:26:36.154549019Z [inf]  [2025-12-02 10:26:30.503 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:26:36.154558901Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:26:36.154566803Z [inf]      provider: "healthy"
-2025-12-02T10:26:36.154575213Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:26:36.154582926Z [inf]      redis: "healthy"
-2025-12-02T10:26:36.154590570Z [inf]      overall: "healthy"
-2025-12-02T10:26:36.154598871Z [inf]      processedCount: 0
-2025-12-02T10:26:36.154607889Z [inf]      errorCount: 0
-2025-12-02T10:26:36.154621288Z [inf]      errorRate: "0%"
-2025-12-02T10:27:07.420825909Z [inf]  [2025-12-02 10:27:00.579 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:27:07.420832013Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:27:07.420838233Z [inf]      provider: "healthy"
-2025-12-02T10:27:07.420861766Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:27:07.420870242Z [inf]      redis: "healthy"
-2025-12-02T10:27:07.420878837Z [inf]      overall: "healthy"
-2025-12-02T10:27:07.420885375Z [inf]      processedCount: 0
-2025-12-02T10:27:07.420892340Z [inf]      errorCount: 0
-2025-12-02T10:27:07.420898622Z [inf]      errorRate: "0%"
-2025-12-02T10:27:38.694427781Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:27:38.694441123Z [inf]      processedCount: 0
-2025-12-02T10:27:38.694441398Z [inf]      redis: "healthy"
-2025-12-02T10:27:38.694449470Z [inf]      errorCount: 0
-2025-12-02T10:27:38.694450975Z [inf]      overall: "healthy"
-2025-12-02T10:27:38.694456736Z [inf]      errorRate: "0%"
-2025-12-02T10:27:38.694496141Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:27:38.694505926Z [inf]      provider: "healthy"
-2025-12-02T10:27:38.694508686Z [inf]  [2025-12-02 10:27:30.568 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:28:08.401835688Z [inf]  [2025-12-02 10:28:00.324 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:28:08.401841347Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:28:08.401845521Z [inf]      provider: "healthy"
-2025-12-02T10:28:08.401849720Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:28:08.401854267Z [inf]      redis: "healthy"
-2025-12-02T10:28:08.401857999Z [inf]      overall: "healthy"
-2025-12-02T10:28:08.401862525Z [inf]      processedCount: 0
-2025-12-02T10:28:08.401866848Z [inf]      errorCount: 0
-2025-12-02T10:28:08.401877334Z [inf]      errorRate: "0%"
-2025-12-02T10:28:39.049763835Z [inf]  [2025-12-02 10:28:30.370 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:28:39.049772931Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:28:39.049780425Z [inf]      provider: "healthy"
-2025-12-02T10:28:39.049788982Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:28:39.049796489Z [inf]      redis: "healthy"
-2025-12-02T10:28:39.049804733Z [inf]      overall: "healthy"
-2025-12-02T10:28:39.049811474Z [inf]      processedCount: 0
-2025-12-02T10:28:39.049822662Z [inf]      errorCount: 0
-2025-12-02T10:28:39.049830597Z [inf]      errorRate: "0%"
-2025-12-02T10:29:10.910655394Z [inf]  [2025-12-02 10:29:00.361 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:29:10.910690405Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:29:10.910700160Z [inf]      provider: "healthy"
-2025-12-02T10:29:10.910708600Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:29:10.910716535Z [inf]      redis: "healthy"
-2025-12-02T10:29:10.910724634Z [inf]      overall: "healthy"
-2025-12-02T10:29:10.910732918Z [inf]      processedCount: 0
-2025-12-02T10:29:10.910739997Z [inf]      errorCount: 0
-2025-12-02T10:29:10.910747794Z [inf]      errorRate: "0%"
-2025-12-02T10:29:32.226859281Z [inf]  [2025-12-02 10:29:30.336 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:29:32.226864396Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:29:32.226870467Z [inf]      provider: "healthy"
-2025-12-02T10:29:32.226876859Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:29:32.226881609Z [inf]      redis: "healthy"
-2025-12-02T10:29:32.226886998Z [inf]      overall: "healthy"
-2025-12-02T10:29:32.226892324Z [inf]      processedCount: 0
-2025-12-02T10:29:32.226898578Z [inf]      errorCount: 0
-2025-12-02T10:29:32.226905349Z [inf]      errorRate: "0%"
-2025-12-02T10:30:04.627147303Z [inf]  [2025-12-02 10:30:00.511 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:30:04.627154015Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:30:04.627161834Z [inf]      provider: "healthy"
-2025-12-02T10:30:04.627170638Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:30:04.627177178Z [inf]      redis: "healthy"
-2025-12-02T10:30:04.627184515Z [inf]      overall: "healthy"
-2025-12-02T10:30:04.627192175Z [inf]      processedCount: 0
-2025-12-02T10:30:04.627198573Z [inf]      errorCount: 0
-2025-12-02T10:30:04.627205618Z [inf]      errorRate: "0%"
-2025-12-02T10:30:33.190507631Z [inf]      errorRate: "0%"
-2025-12-02T10:30:33.190588189Z [inf]  [2025-12-02 10:30:31.045 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:30:33.190598349Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:30:33.190605131Z [inf]      provider: "healthy"
-2025-12-02T10:30:33.190613607Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:30:33.190621222Z [inf]      redis: "healthy"
-2025-12-02T10:30:33.190629418Z [inf]      overall: "healthy"
-2025-12-02T10:30:33.190637123Z [inf]      processedCount: 0
-2025-12-02T10:30:33.190643524Z [inf]      errorCount: 0
-2025-12-02T10:31:03.965924386Z [inf]  [2025-12-02 10:31:00.622 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:31:03.965934696Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:31:03.965944722Z [inf]      provider: "healthy"
-2025-12-02T10:31:03.965953597Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:31:03.965961833Z [inf]      redis: "healthy"
-2025-12-02T10:31:03.965970998Z [inf]      overall: "healthy"
-2025-12-02T10:31:03.965978438Z [inf]      processedCount: 0
-2025-12-02T10:31:03.965986102Z [inf]      errorCount: 0
-2025-12-02T10:31:03.965993737Z [inf]      errorRate: "0%"
-2025-12-02T10:31:34.300868379Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:31:34.300889816Z [inf]  [2025-12-02 10:31:30.548 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:31:34.300893774Z [inf]      processedCount: 0
-2025-12-02T10:31:34.300906301Z [inf]      errorCount: 0
-2025-12-02T10:31:34.300915922Z [inf]      errorRate: "0%"
-2025-12-02T10:31:34.300934543Z [inf]      provider: "healthy"
-2025-12-02T10:31:34.300945710Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:31:34.300955962Z [inf]      redis: "healthy"
-2025-12-02T10:31:34.300965056Z [inf]      overall: "healthy"
-2025-12-02T10:32:03.896289776Z [inf]  [2025-12-02 10:32:00.448 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:32:03.896303547Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:32:03.896310023Z [inf]      provider: "healthy"
-2025-12-02T10:32:03.896316097Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:32:03.896334202Z [inf]      redis: "healthy"
-2025-12-02T10:32:03.896341162Z [inf]      overall: "healthy"
-2025-12-02T10:32:03.896346155Z [inf]      processedCount: 0
-2025-12-02T10:32:03.896351967Z [inf]      errorCount: 0
-2025-12-02T10:32:03.896359356Z [inf]      errorRate: "0%"
-2025-12-02T10:32:34.116267061Z [inf]  [2025-12-02 10:32:30.422 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:32:34.116277081Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:32:34.116286503Z [inf]      provider: "healthy"
-2025-12-02T10:32:34.116295543Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:32:34.116304581Z [inf]      redis: "healthy"
-2025-12-02T10:32:34.116313875Z [inf]      overall: "healthy"
-2025-12-02T10:32:34.116322163Z [inf]      processedCount: 0
-2025-12-02T10:32:34.116334064Z [inf]      errorCount: 0
-2025-12-02T10:32:34.116342953Z [inf]      errorRate: "0%"
-2025-12-02T10:33:04.572050090Z [inf]  [2025-12-02 10:33:01.346 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:33:04.572059631Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:33:04.572065999Z [inf]      provider: "healthy"
-2025-12-02T10:33:04.572073542Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:33:04.572080710Z [inf]      redis: "healthy"
-2025-12-02T10:33:04.572087744Z [inf]      overall: "healthy"
-2025-12-02T10:33:04.572096113Z [inf]      processedCount: 0
-2025-12-02T10:33:04.572104362Z [inf]      errorCount: 0
-2025-12-02T10:33:04.572112684Z [inf]      errorRate: "0%"
-2025-12-02T10:33:34.712714963Z [inf]  [2025-12-02 10:33:30.433 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:33:34.712723357Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:33:34.712730814Z [inf]      provider: "healthy"
-2025-12-02T10:33:34.712738216Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:33:34.712746303Z [inf]      redis: "healthy"
-2025-12-02T10:33:34.712753591Z [inf]      overall: "healthy"
-2025-12-02T10:33:34.712762008Z [inf]      processedCount: 0
-2025-12-02T10:33:34.712771501Z [inf]      errorCount: 0
-2025-12-02T10:33:34.712779656Z [inf]      errorRate: "0%"
-2025-12-02T10:34:05.960319898Z [inf]  [2025-12-02 10:34:00.761 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:34:05.960328547Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:34:05.960334617Z [inf]      provider: "healthy"
-2025-12-02T10:34:05.960343949Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:34:05.960350475Z [inf]      redis: "healthy"
-2025-12-02T10:34:05.960357901Z [inf]      overall: "healthy"
-2025-12-02T10:34:05.960365138Z [inf]      processedCount: 0
-2025-12-02T10:34:05.960373506Z [inf]      errorCount: 0
-2025-12-02T10:34:05.960383049Z [inf]      errorRate: "0%"
-2025-12-02T10:34:37.110400408Z [inf]  [2025-12-02 10:34:30.934 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:34:37.110409269Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:34:37.110416257Z [inf]      provider: "healthy"
-2025-12-02T10:34:37.110422541Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:34:37.110435491Z [inf]      redis: "healthy"
-2025-12-02T10:34:37.110442231Z [inf]      overall: "healthy"
-2025-12-02T10:34:37.110450096Z [inf]      processedCount: 0
-2025-12-02T10:34:37.110458590Z [inf]      errorCount: 0
-2025-12-02T10:34:37.110467456Z [inf]      errorRate: "0%"
-2025-12-02T10:35:09.017078864Z [inf]      errorRate: "0%"
-2025-12-02T10:35:09.017097639Z [inf]      errorCount: 0
-2025-12-02T10:35:09.018752157Z [inf]  [2025-12-02 10:35:00.941 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:35:09.018759698Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:35:09.018898246Z [inf]      provider: "healthy"
-2025-12-02T10:35:09.018904856Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:35:09.018913324Z [inf]      redis: "healthy"
-2025-12-02T10:35:09.018920531Z [inf]      overall: "healthy"
-2025-12-02T10:35:09.018927642Z [inf]      processedCount: 0
-2025-12-02T10:35:39.093782601Z [inf]  [2025-12-02 10:35:30.699 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:35:39.093791968Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:35:39.093800107Z [inf]      provider: "healthy"
-2025-12-02T10:35:39.093807388Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:35:39.093815156Z [inf]      redis: "healthy"
-2025-12-02T10:35:39.093829963Z [inf]      overall: "healthy"
-2025-12-02T10:35:39.093838481Z [inf]      processedCount: 0
-2025-12-02T10:35:39.093845866Z [inf]      errorCount: 0
-2025-12-02T10:35:39.093854379Z [inf]      errorRate: "0%"
-2025-12-02T10:36:08.981164580Z [inf]  [2025-12-02 10:36:00.635 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:36:08.981172813Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:36:08.981180722Z [inf]      provider: "healthy"
-2025-12-02T10:36:08.981189596Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:36:08.981196368Z [inf]      redis: "healthy"
-2025-12-02T10:36:08.981203198Z [inf]      overall: "healthy"
-2025-12-02T10:36:08.981210757Z [inf]      processedCount: 0
-2025-12-02T10:36:08.988021661Z [inf]      errorCount: 0
-2025-12-02T10:36:08.988042862Z [inf]      errorRate: "0%"
-2025-12-02T10:36:39.492717803Z [inf]  [2025-12-02 10:36:30.683 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:36:39.492724157Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:36:39.492729605Z [inf]      provider: "healthy"
-2025-12-02T10:36:39.492736538Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:36:39.492744811Z [inf]      redis: "healthy"
-2025-12-02T10:36:39.492751386Z [inf]      overall: "healthy"
-2025-12-02T10:36:39.492758808Z [inf]      processedCount: 0
-2025-12-02T10:36:39.492766096Z [inf]      errorCount: 0
-2025-12-02T10:36:39.492773698Z [inf]      errorRate: "0%"
-2025-12-02T10:37:09.679330501Z [inf]      errorCount: 0
-2025-12-02T10:37:09.679344191Z [inf]      errorRate: "0%"
-2025-12-02T10:37:09.679394926Z [inf]      redis: "healthy"
-2025-12-02T10:37:09.679410486Z [inf]      overall: "healthy"
-2025-12-02T10:37:09.679419646Z [inf]      processedCount: 0
-2025-12-02T10:37:09.679452661Z [inf]  [2025-12-02 10:37:01.010 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:37:09.679460493Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:37:09.679466981Z [inf]      provider: "healthy"
-2025-12-02T10:37:09.679472734Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:37:41.094618497Z [inf]  [2025-12-02 10:37:31.097 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:37:41.094701678Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:37:41.094709513Z [inf]      provider: "healthy"
-2025-12-02T10:37:41.094718495Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:37:41.094725505Z [inf]      redis: "healthy"
-2025-12-02T10:37:41.094732703Z [inf]      overall: "healthy"
-2025-12-02T10:37:41.094739723Z [inf]      processedCount: 0
-2025-12-02T10:37:41.098730960Z [inf]      errorCount: 0
-2025-12-02T10:37:41.098744599Z [inf]      errorRate: "0%"
-2025-12-02T10:38:01.281649559Z [inf]  [2025-12-02 10:38:00.554 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:38:01.281658611Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:38:01.281667419Z [inf]      provider: "healthy"
-2025-12-02T10:38:01.281676174Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:38:01.281684852Z [inf]      redis: "healthy"
-2025-12-02T10:38:01.281693580Z [inf]      overall: "healthy"
-2025-12-02T10:38:01.281701472Z [inf]      processedCount: 0
-2025-12-02T10:38:01.281710493Z [inf]      errorCount: 0
-2025-12-02T10:38:01.281719892Z [inf]      errorRate: "0%"
-2025-12-02T10:38:31.876450678Z [inf]  [2025-12-02 10:38:30.483 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:38:31.876455640Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:38:31.876461765Z [inf]      provider: "healthy"
-2025-12-02T10:38:31.876466798Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:38:31.876473111Z [inf]      redis: "healthy"
-2025-12-02T10:38:31.876478380Z [inf]      overall: "healthy"
-2025-12-02T10:38:31.876484261Z [inf]      processedCount: 0
-2025-12-02T10:38:31.876490766Z [inf]      errorCount: 0
-2025-12-02T10:38:31.876496084Z [inf]      errorRate: "0%"
-2025-12-02T10:39:02.607228040Z [inf]  [2025-12-02 10:39:00.800 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:39:02.607234579Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:39:02.607239676Z [inf]      provider: "healthy"
-2025-12-02T10:39:02.607245415Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:39:02.607253107Z [inf]      redis: "healthy"
-2025-12-02T10:39:02.607259843Z [inf]      overall: "healthy"
-2025-12-02T10:39:02.607266122Z [inf]      processedCount: 0
-2025-12-02T10:39:02.607272299Z [inf]      errorCount: 0
-2025-12-02T10:39:02.607278004Z [inf]      errorRate: "0%"
-2025-12-02T10:39:33.627786589Z [inf]  [2025-12-02 10:39:30.865 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:39:33.627794047Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:39:33.627801916Z [inf]      provider: "healthy"
-2025-12-02T10:39:33.627810298Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:39:33.627817740Z [inf]      redis: "healthy"
-2025-12-02T10:39:33.627824418Z [inf]      overall: "healthy"
-2025-12-02T10:39:33.627832184Z [inf]      processedCount: 0
-2025-12-02T10:39:33.627839858Z [inf]      errorCount: 0
-2025-12-02T10:39:33.627846652Z [inf]      errorRate: "0%"
-2025-12-02T10:40:03.526703942Z [inf]  [2025-12-02 10:40:00.840 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:40:03.526710602Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:40:03.526716662Z [inf]      provider: "healthy"
-2025-12-02T10:40:03.526722871Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:40:03.526730073Z [inf]      redis: "healthy"
-2025-12-02T10:40:03.526737468Z [inf]      overall: "healthy"
-2025-12-02T10:40:03.526744305Z [inf]      processedCount: 0
-2025-12-02T10:40:03.526751086Z [inf]      errorCount: 0
-2025-12-02T10:40:03.526756956Z [inf]      errorRate: "0%"
-2025-12-02T10:40:34.971495917Z [inf]  [2025-12-02 10:40:30.751 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:40:34.971503285Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:40:34.971509902Z [inf]      provider: "healthy"
-2025-12-02T10:40:34.971516462Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:40:34.971522846Z [inf]      redis: "healthy"
-2025-12-02T10:40:34.971529138Z [inf]      overall: "healthy"
-2025-12-02T10:40:34.971536760Z [inf]      processedCount: 0
-2025-12-02T10:40:34.971543224Z [inf]      errorCount: 0
-2025-12-02T10:40:34.971549549Z [inf]      errorRate: "0%"
-2025-12-02T10:41:04.362050196Z [inf]  [2025-12-02 10:41:01.167 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:41:04.362058002Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:41:04.362070706Z [inf]      provider: "healthy"
-2025-12-02T10:41:04.362147438Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:41:04.362159536Z [inf]      redis: "healthy"
-2025-12-02T10:41:04.362168224Z [inf]      overall: "healthy"
-2025-12-02T10:41:04.362181032Z [inf]      processedCount: 0
-2025-12-02T10:41:04.362189194Z [inf]      errorCount: 0
-2025-12-02T10:41:04.362196647Z [inf]      errorRate: "0%"
-2025-12-02T10:41:35.150752109Z [inf]  [2025-12-02 10:41:31.242 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:41:35.150759666Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:41:35.150768457Z [inf]      provider: "healthy"
-2025-12-02T10:41:35.150777119Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:41:35.150784898Z [inf]      redis: "healthy"
-2025-12-02T10:41:35.150791835Z [inf]      overall: "healthy"
-2025-12-02T10:41:35.150800366Z [inf]      processedCount: 0
-2025-12-02T10:41:35.150806757Z [inf]      errorCount: 0
-2025-12-02T10:41:35.150813679Z [inf]      errorRate: "0%"
-2025-12-02T10:42:06.291049474Z [inf]  [2025-12-02 10:42:00.675 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:42:06.291074586Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:42:06.291085615Z [inf]      provider: "healthy"
-2025-12-02T10:42:06.291098692Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:42:06.291109631Z [inf]      redis: "healthy"
-2025-12-02T10:42:06.291121457Z [inf]      overall: "healthy"
-2025-12-02T10:42:06.291131847Z [inf]      processedCount: 0
-2025-12-02T10:42:06.291143693Z [inf]      errorCount: 0
-2025-12-02T10:42:06.291180826Z [inf]      errorRate: "0%"
-2025-12-02T10:42:36.294019416Z [inf]  [2025-12-02 10:42:30.566 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:42:36.294028399Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:42:36.294035886Z [inf]      provider: "healthy"
-2025-12-02T10:42:36.294045793Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:42:36.294071376Z [inf]      redis: "healthy"
-2025-12-02T10:42:36.294076889Z [inf]      overall: "healthy"
-2025-12-02T10:42:36.294083081Z [inf]      processedCount: 0
-2025-12-02T10:42:36.294097198Z [inf]      errorCount: 0
-2025-12-02T10:42:36.294104623Z [inf]      errorRate: "0%"
-2025-12-02T10:43:06.209003326Z [inf]  [2025-12-02 10:43:01.033 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:43:06.209010543Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:43:06.209016402Z [inf]      provider: "healthy"
-2025-12-02T10:43:06.209023195Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:43:06.209029850Z [inf]      redis: "healthy"
-2025-12-02T10:43:06.209042724Z [inf]      overall: "healthy"
-2025-12-02T10:43:06.209048689Z [inf]      processedCount: 0
-2025-12-02T10:43:06.209054540Z [inf]      errorCount: 0
-2025-12-02T10:43:06.209063743Z [inf]      errorRate: "0%"
-2025-12-02T10:43:37.612182839Z [inf]  [2025-12-02 10:43:32.004 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:43:37.612191524Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:43:37.612200420Z [inf]      provider: "healthy"
-2025-12-02T10:43:37.612207685Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:43:37.612214834Z [inf]      redis: "healthy"
-2025-12-02T10:43:37.612221315Z [inf]      overall: "healthy"
-2025-12-02T10:43:37.612228105Z [inf]      processedCount: 0
-2025-12-02T10:43:37.612234298Z [inf]      errorCount: 0
-2025-12-02T10:43:37.612241187Z [inf]      errorRate: "0%"
-2025-12-02T10:44:06.863074822Z [inf]      errorCount: 0
-2025-12-02T10:44:06.863092417Z [inf]      errorRate: "0%"
-2025-12-02T10:44:06.865027402Z [inf]  [2025-12-02 10:44:00.879 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:44:06.865034258Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:44:06.865041083Z [inf]      provider: "healthy"
-2025-12-02T10:44:06.865048963Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:44:06.865060385Z [inf]      redis: "healthy"
-2025-12-02T10:44:06.865067734Z [inf]      overall: "healthy"
-2025-12-02T10:44:06.865075092Z [inf]      processedCount: 0
-2025-12-02T10:44:36.742861509Z [inf]  [2025-12-02 10:44:30.908 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:44:36.742870407Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:44:36.742878321Z [inf]      provider: "healthy"
-2025-12-02T10:44:36.742886270Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:44:36.742894678Z [inf]      redis: "healthy"
-2025-12-02T10:44:36.742904522Z [inf]      overall: "healthy"
-2025-12-02T10:44:36.742911635Z [inf]      processedCount: 0
-2025-12-02T10:44:36.742917758Z [inf]      errorCount: 0
-2025-12-02T10:44:36.742925153Z [inf]      errorRate: "0%"
-2025-12-02T10:45:06.950425218Z [inf]      redis: "healthy"
-2025-12-02T10:45:06.950521730Z [inf]      overall: "healthy"
-2025-12-02T10:45:06.950529946Z [inf]      processedCount: 0
-2025-12-02T10:45:06.950536954Z [inf]      errorCount: 0
-2025-12-02T10:45:06.950544267Z [inf]      errorRate: "0%"
-2025-12-02T10:45:06.951154071Z [inf]  [2025-12-02 10:45:01.218 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:45:06.951158905Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:45:06.951165439Z [inf]      provider: "healthy"
-2025-12-02T10:45:06.951170967Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:45:36.856642798Z [inf]  [2025-12-02 10:45:30.761 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:45:36.856648545Z [inf]      provider: "healthy"
-2025-12-02T10:45:36.856652074Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:45:36.856668102Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:45:36.856679472Z [inf]      redis: "healthy"
-2025-12-02T10:45:36.856687211Z [inf]      overall: "healthy"
-2025-12-02T10:45:36.856694013Z [inf]      processedCount: 0
-2025-12-02T10:45:36.856705867Z [inf]      errorCount: 0
-2025-12-02T10:45:36.856714151Z [inf]      errorRate: "0%"
-2025-12-02T10:46:07.673829268Z [inf]  [2025-12-02 10:46:00.772 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:46:07.673924920Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:46:07.673932974Z [inf]      provider: "healthy"
-2025-12-02T10:46:07.673943274Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:46:07.673951755Z [inf]      redis: "healthy"
-2025-12-02T10:46:07.673959379Z [inf]      overall: "healthy"
-2025-12-02T10:46:07.673965421Z [inf]      processedCount: 0
-2025-12-02T10:46:07.673972164Z [inf]      errorCount: 0
-2025-12-02T10:46:07.673978436Z [inf]      errorRate: "0%"
-2025-12-02T10:46:38.193302822Z [inf]  [2025-12-02 10:46:30.944 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:46:38.193309741Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:46:38.193329690Z [inf]      provider: "healthy"
-2025-12-02T10:46:38.193338770Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:46:38.193345961Z [inf]      redis: "healthy"
-2025-12-02T10:46:38.193353034Z [inf]      overall: "healthy"
-2025-12-02T10:46:38.193360194Z [inf]      processedCount: 0
-2025-12-02T10:46:38.193368427Z [inf]      errorCount: 0
-2025-12-02T10:46:38.193398527Z [inf]      errorRate: "0%"
-2025-12-02T10:47:08.318046663Z [inf]  [2025-12-02 10:47:01.482 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:47:08.318054570Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:47:08.318061483Z [inf]      provider: "healthy"
-2025-12-02T10:47:08.318070095Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:47:08.318078076Z [inf]      redis: "healthy"
-2025-12-02T10:47:08.318085024Z [inf]      overall: "healthy"
-2025-12-02T10:47:08.318092464Z [inf]      processedCount: 0
-2025-12-02T10:47:08.318099627Z [inf]      errorCount: 0
-2025-12-02T10:47:08.318105922Z [inf]      errorRate: "0%"
-2025-12-02T10:47:38.156581885Z [inf]  [2025-12-02 10:47:30.962 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:47:38.156594534Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:47:38.156605635Z [inf]      provider: "healthy"
-2025-12-02T10:47:38.156622791Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:47:38.156634271Z [inf]      redis: "healthy"
-2025-12-02T10:47:38.156643465Z [inf]      overall: "healthy"
-2025-12-02T10:47:38.156653638Z [inf]      processedCount: 0
-2025-12-02T10:47:38.156667096Z [inf]      errorCount: 0
-2025-12-02T10:47:38.156675614Z [inf]      errorRate: "0%"
-2025-12-02T10:48:08.823889670Z [inf]      overall: "healthy"
-2025-12-02T10:48:08.823900239Z [inf]      processedCount: 0
-2025-12-02T10:48:08.823909949Z [inf]      errorCount: 0
-2025-12-02T10:48:08.823916774Z [inf]      errorRate: "0%"
-2025-12-02T10:48:08.824577971Z [inf]  [2025-12-02 10:48:01.008 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:48:08.824584072Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:48:08.824591024Z [inf]      provider: "healthy"
-2025-12-02T10:48:08.824602762Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:48:08.824608974Z [inf]      redis: "healthy"
-2025-12-02T10:48:39.558420640Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:48:39.558427982Z [inf]      provider: "healthy"
-2025-12-02T10:48:39.558434680Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:48:39.558441340Z [inf]      redis: "healthy"
-2025-12-02T10:48:39.558447595Z [inf]      overall: "healthy"
-2025-12-02T10:48:39.558454188Z [inf]      processedCount: 0
-2025-12-02T10:48:39.558464809Z [inf]      errorCount: 0
-2025-12-02T10:48:39.558464996Z [inf]  [2025-12-02 10:48:31.275 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:48:39.558473153Z [inf]      errorRate: "0%"
-2025-12-02T10:49:10.325603520Z [inf]  [2025-12-02 10:49:01.676 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:49:10.325617411Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:49:10.325625970Z [inf]      provider: "healthy"
-2025-12-02T10:49:10.325676122Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:49:10.325686991Z [inf]      redis: "healthy"
-2025-12-02T10:49:10.325694860Z [inf]      overall: "healthy"
-2025-12-02T10:49:10.325702939Z [inf]      processedCount: 0
-2025-12-02T10:49:10.325710780Z [inf]      errorCount: 0
-2025-12-02T10:49:10.325720262Z [inf]      errorRate: "0%"
-2025-12-02T10:49:40.861051783Z [inf]  [2025-12-02 10:49:30.996 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:49:40.861059383Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:49:40.861066340Z [inf]      provider: "healthy"
-2025-12-02T10:49:40.861073887Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:49:40.861081104Z [inf]      redis: "healthy"
-2025-12-02T10:49:40.861087617Z [inf]      overall: "healthy"
-2025-12-02T10:49:40.861095092Z [inf]      processedCount: 0
-2025-12-02T10:49:40.861103549Z [inf]      errorCount: 0
-2025-12-02T10:49:40.861109759Z [inf]      errorRate: "0%"
-2025-12-02T10:50:12.282866633Z [inf]  [2025-12-02 10:50:01.394 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:50:12.282874694Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:50:12.282881159Z [inf]      provider: "healthy"
-2025-12-02T10:50:12.282891752Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:50:12.282898739Z [inf]      redis: "healthy"
-2025-12-02T10:50:12.282905384Z [inf]      overall: "healthy"
-2025-12-02T10:50:12.282912367Z [inf]      processedCount: 0
-2025-12-02T10:50:12.282919939Z [inf]      errorCount: 0
-2025-12-02T10:50:12.282928689Z [inf]      errorRate: "0%"
-2025-12-02T10:50:32.671962074Z [inf]  [2025-12-02 10:50:31.202 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:50:32.671969016Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:50:32.671975877Z [inf]      provider: "healthy"
-2025-12-02T10:50:32.671986077Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:50:32.671992710Z [inf]      redis: "healthy"
-2025-12-02T10:50:32.671999207Z [inf]      overall: "healthy"
-2025-12-02T10:50:32.672005514Z [inf]      processedCount: 0
-2025-12-02T10:50:32.672012018Z [inf]      errorCount: 0
-2025-12-02T10:50:32.672018623Z [inf]      errorRate: "0%"
-2025-12-02T10:51:02.233558788Z [inf]  [2025-12-02 10:51:01.005 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:51:02.233566932Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:51:02.233574890Z [inf]      provider: "healthy"
-2025-12-02T10:51:02.233582728Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:51:02.233590592Z [inf]      redis: "healthy"
-2025-12-02T10:51:02.233597891Z [inf]      overall: "healthy"
-2025-12-02T10:51:02.233606270Z [inf]      processedCount: 0
-2025-12-02T10:51:02.233614534Z [inf]      errorCount: 0
-2025-12-02T10:51:02.233623454Z [inf]      errorRate: "0%"
-2025-12-02T10:51:44.037346200Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:51:44.037355350Z [inf]      provider: "healthy"
-2025-12-02T10:51:44.037365320Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:51:44.037394098Z [inf]      redis: "healthy"
-2025-12-02T10:51:44.037403970Z [inf]      overall: "healthy"
-2025-12-02T10:51:44.037412601Z [inf]      processedCount: 0
-2025-12-02T10:51:44.037420016Z [inf]      errorCount: 0
-2025-12-02T10:51:44.037429463Z [inf]      errorRate: "0%"
-2025-12-02T10:51:44.037688234Z [inf]  [2025-12-02 10:51:32.804 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:52:04.166140111Z [inf]  [2025-12-02 10:52:01.132 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:52:04.166149949Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:52:04.166158542Z [inf]      provider: "healthy"
-2025-12-02T10:52:04.166167025Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:52:04.166181428Z [inf]      redis: "healthy"
-2025-12-02T10:52:04.166191739Z [inf]      overall: "healthy"
-2025-12-02T10:52:04.166199547Z [inf]      processedCount: 0
-2025-12-02T10:52:04.166211130Z [inf]      errorCount: 0
-2025-12-02T10:52:04.166219456Z [inf]      errorRate: "0%"
-2025-12-02T10:52:34.687112170Z [inf]  [2025-12-02 10:52:31.140 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:52:34.687395676Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:52:34.687403361Z [inf]      provider: "healthy"
-2025-12-02T10:52:34.687410432Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:52:34.687416838Z [inf]      redis: "healthy"
-2025-12-02T10:52:34.687423317Z [inf]      overall: "healthy"
-2025-12-02T10:52:34.687430127Z [inf]      processedCount: 0
-2025-12-02T10:52:34.687436309Z [inf]      errorCount: 0
-2025-12-02T10:52:34.687444029Z [inf]      errorRate: "0%"
-2025-12-02T10:53:03.935082067Z [inf]  [2025-12-02 10:53:01.345 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:53:03.935091945Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:53:03.935100383Z [inf]      provider: "healthy"
-2025-12-02T10:53:03.935108768Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:53:03.935117098Z [inf]      redis: "healthy"
-2025-12-02T10:53:03.935126372Z [inf]      overall: "healthy"
-2025-12-02T10:53:03.935134435Z [inf]      processedCount: 0
-2025-12-02T10:53:03.935142559Z [inf]      errorCount: 0
-2025-12-02T10:53:03.935150948Z [inf]      errorRate: "0%"
-2025-12-02T10:53:33.129365014Z [inf]  [2025-12-02 10:53:31.340 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:53:33.129398421Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:53:33.129409419Z [inf]      provider: "healthy"
-2025-12-02T10:53:33.129435921Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:53:33.129444932Z [inf]      redis: "healthy"
-2025-12-02T10:53:33.129451721Z [inf]      overall: "healthy"
-2025-12-02T10:53:33.129477299Z [inf]      processedCount: 0
-2025-12-02T10:53:33.129489360Z [inf]      errorCount: 0
-2025-12-02T10:53:33.129498486Z [inf]      errorRate: "0%"
-2025-12-02T10:54:03.625760877Z [inf]      redis: "healthy"
-2025-12-02T10:54:03.625784922Z [inf]      overall: "healthy"
-2025-12-02T10:54:03.625797115Z [inf]      processedCount: 0
-2025-12-02T10:54:03.625806966Z [inf]      errorCount: 0
-2025-12-02T10:54:03.625869632Z [inf]      errorRate: "0%"
-2025-12-02T10:54:03.626557959Z [inf]  [2025-12-02 10:54:01.164 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:54:03.626565961Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:54:03.626573145Z [inf]      provider: "healthy"
-2025-12-02T10:54:03.626580751Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:54:33.193722512Z [inf]  [2025-12-02 10:54:31.214 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:54:33.193729264Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:54:33.193735703Z [inf]      provider: "healthy"
-2025-12-02T10:54:33.193742184Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:54:33.193749027Z [inf]      redis: "healthy"
-2025-12-02T10:54:33.193755380Z [inf]      overall: "healthy"
-2025-12-02T10:54:33.193766040Z [inf]      processedCount: 0
-2025-12-02T10:54:33.193773610Z [inf]      errorCount: 0
-2025-12-02T10:54:33.193779806Z [inf]      errorRate: "0%"
-2025-12-02T10:55:04.289564598Z [inf]      processedCount: 0
-2025-12-02T10:55:04.289577446Z [inf]      errorCount: 0
-2025-12-02T10:55:04.289596517Z [inf]      errorRate: "0%"
-2025-12-02T10:55:04.290102497Z [inf]  [2025-12-02 10:55:01.124 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:55:04.290109529Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:55:04.290115933Z [inf]      provider: "healthy"
-2025-12-02T10:55:04.290123318Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:55:04.290132776Z [inf]      redis: "healthy"
-2025-12-02T10:55:04.290139421Z [inf]      overall: "healthy"
-2025-12-02T10:55:34.942230155Z [inf]      processedCount: 0
-2025-12-02T10:55:34.942238313Z [inf]      errorCount: 0
-2025-12-02T10:55:34.942245554Z [inf]      errorRate: "0%"
-2025-12-02T10:55:34.942290388Z [inf]  [2025-12-02 10:55:31.317 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:55:34.942296972Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:55:34.942307352Z [inf]      provider: "healthy"
-2025-12-02T10:55:34.942314098Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:55:34.942320149Z [inf]      redis: "healthy"
-2025-12-02T10:55:34.942327071Z [inf]      overall: "healthy"
-2025-12-02T10:56:06.710274797Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:56:06.710286496Z [inf]      redis: "healthy"
-2025-12-02T10:56:06.710303580Z [inf]      overall: "healthy"
-2025-12-02T10:56:06.710309670Z [inf]      processedCount: 0
-2025-12-02T10:56:06.710318322Z [inf]      errorCount: 0
-2025-12-02T10:56:06.710326199Z [inf]      errorRate: "0%"
-2025-12-02T10:56:06.710786433Z [inf]  [2025-12-02 10:56:01.398 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:56:06.710798612Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:56:06.710805765Z [inf]      provider: "healthy"
-2025-12-02T10:56:37.220953852Z [inf]  [2025-12-02 10:56:31.182 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:56:37.220961996Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:56:37.220968286Z [inf]      provider: "healthy"
-2025-12-02T10:56:37.220979358Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:56:37.220988083Z [inf]      redis: "healthy"
-2025-12-02T10:56:37.220995676Z [inf]      overall: "healthy"
-2025-12-02T10:56:37.221003422Z [inf]      processedCount: 0
-2025-12-02T10:56:37.221011579Z [inf]      errorCount: 0
-2025-12-02T10:56:37.221019971Z [inf]      errorRate: "0%"
-2025-12-02T10:57:07.325688879Z [inf]  [2025-12-02 10:57:01.039 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:57:07.325693084Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:57:07.325697588Z [inf]      provider: "healthy"
-2025-12-02T10:57:07.325702002Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:57:07.325707101Z [inf]      redis: "healthy"
-2025-12-02T10:57:07.325711523Z [inf]      overall: "healthy"
-2025-12-02T10:57:07.325717322Z [inf]      processedCount: 0
-2025-12-02T10:57:07.325723229Z [inf]      errorCount: 0
-2025-12-02T10:57:07.325727848Z [inf]      errorRate: "0%"
-2025-12-02T10:57:37.597050779Z [inf]  [2025-12-02 10:57:30.923 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:57:37.597056823Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:57:37.597063090Z [inf]      provider: "healthy"
-2025-12-02T10:57:37.597068677Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:57:37.597075375Z [inf]      redis: "healthy"
-2025-12-02T10:57:37.597081847Z [inf]      overall: "healthy"
-2025-12-02T10:57:37.597087998Z [inf]      processedCount: 0
-2025-12-02T10:57:37.597095136Z [inf]      errorCount: 0
-2025-12-02T10:57:37.597102297Z [inf]      errorRate: "0%"
-2025-12-02T10:58:08.132124915Z [inf]      errorCount: 0
-2025-12-02T10:58:08.132138839Z [inf]      errorRate: "0%"
-2025-12-02T10:58:08.132166598Z [inf]  [2025-12-02 10:58:01.206 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:58:08.132178953Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:58:08.132187339Z [inf]      provider: "healthy"
-2025-12-02T10:58:08.132195188Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:58:08.132206147Z [inf]      redis: "healthy"
-2025-12-02T10:58:08.132214410Z [inf]      overall: "healthy"
-2025-12-02T10:58:08.132222616Z [inf]      processedCount: 0
-2025-12-02T10:58:38.620253283Z [inf]  [2025-12-02 10:58:31.257 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:58:38.620260216Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:58:38.620267090Z [inf]      provider: "healthy"
-2025-12-02T10:58:38.620275349Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:58:38.620282257Z [inf]      redis: "healthy"
-2025-12-02T10:58:38.620288405Z [inf]      overall: "healthy"
-2025-12-02T10:58:38.620295617Z [inf]      processedCount: 0
-2025-12-02T10:58:38.620301838Z [inf]      errorCount: 0
-2025-12-02T10:58:38.620309297Z [inf]      errorRate: "0%"
-2025-12-02T10:59:08.675644684Z [inf]  [2025-12-02 10:59:01.430 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:59:08.675652596Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:59:08.675657903Z [inf]      provider: "healthy"
-2025-12-02T10:59:08.675663865Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:59:08.675669375Z [inf]      redis: "healthy"
-2025-12-02T10:59:08.675674230Z [inf]      overall: "healthy"
-2025-12-02T10:59:08.675680471Z [inf]      processedCount: 0
-2025-12-02T10:59:08.675688666Z [inf]      errorCount: 0
-2025-12-02T10:59:08.675694949Z [inf]      errorRate: "0%"
-2025-12-02T10:59:39.542003357Z [inf]  [2025-12-02 10:59:31.513 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T10:59:39.542011140Z [inf]      workerId: "worker-staging-1"
-2025-12-02T10:59:39.542018295Z [inf]      provider: "healthy"
-2025-12-02T10:59:39.542025965Z [inf]      rabbitmq: "healthy"
-2025-12-02T10:59:39.542034356Z [inf]      redis: "healthy"
-2025-12-02T10:59:39.542042147Z [inf]      overall: "healthy"
-2025-12-02T10:59:39.542050349Z [inf]      processedCount: 0
-2025-12-02T10:59:39.542057429Z [inf]      errorCount: 0
-2025-12-02T10:59:39.542064348Z [inf]      errorRate: "0%"
-2025-12-02T11:00:11.284418564Z [inf]  [2025-12-02 11:00:01.140 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T11:00:11.284427782Z [inf]      workerId: "worker-staging-1"
-2025-12-02T11:00:11.284500288Z [inf]  [2025-12-02 11:00:04.326 +0000] [32mINFO[39m: [36mProcessing analysis message[39m
-2025-12-02T11:00:11.284509434Z [inf]      analysisId: "async_multi_analysis_20251202_101524_68eb5373"
-2025-12-02T11:00:11.284522686Z [inf]      provider: "healthy"
-2025-12-02T11:00:11.284530945Z [inf]      rabbitmq: "healthy"
-2025-12-02T11:00:11.284538057Z [inf]      redis: "healthy"
-2025-12-02T11:00:11.284548620Z [inf]      overall: "healthy"
-2025-12-02T11:00:11.284559840Z [inf]      processedCount: 0
-2025-12-02T11:00:11.284568546Z [inf]      errorCount: 0
-2025-12-02T11:00:11.284575016Z [inf]      errorRate: "0%"
-2025-12-02T11:00:11.284588167Z [inf]      farmerId: "F190"
-2025-12-02T11:00:11.284588881Z [inf]  [2025-12-02 11:00:04.328 +0000] [32mINFO[39m: [36mProcessing analysis message[39m
-2025-12-02T11:00:11.284598217Z [inf]      analysisId: "async_multi_analysis_20251202_102218_c38cefdd"
-2025-12-02T11:00:11.284598688Z [inf]      imageUrl: "https://1lik.net/plant-images/20251202_101524_060_4f2eefb1d2314fc2ac9e4cb4c9659816_async_multi_analysis_20251202_101524_68eb5373_main.jpg"
-2025-12-02T11:00:11.284605450Z [inf]      farmerId: "F190"
-2025-12-02T11:00:11.287457835Z [inf]      imageUrl: "https://1lik.net/plant-images/20251202_102218_266_9a000f5027884e02948dea0a6a92026c_async_multi_analysis_20251202_102218_c38cefdd_main.jpg"
-2025-12-02T11:00:11.287471616Z [inf]  [2025-12-02 11:00:04.329 +0000] [32mINFO[39m: [36mProcessing analysis message[39m
-2025-12-02T11:00:11.287492442Z [inf]      analysisId: "async_analysis_20251202_105440_b2489ba5"
-2025-12-02T11:00:11.287499463Z [inf]      farmerId: "F190"
-2025-12-02T11:00:11.291781058Z [inf]      imageUrl: "https://1lik.net/plant-images/20251202_105442_261_c72dd6c757764c9eab49c7b481d7f272_async_analysis_20251202_105440_b2489ba5.jpg"
-2025-12-02T11:00:12.864842235Z [inf]  [2025-12-02 11:00:04.329 +0000] [32mINFO[39m: [36mProcessing analysis message[39m
-2025-12-02T11:00:12.864848851Z [inf]      analysisId: "async_analysis_20251202_105659_ed646ac8"
-2025-12-02T11:00:12.864856569Z [inf]      farmerId: "F190"
-2025-12-02T11:00:12.864863623Z [inf]      imageUrl: "https://1lik.net/plant-images/20251202_105659_473_54aec77423d04c2cbdd10e0cb8dbb282_async_analysis_20251202_105659_ed646ac8.jpg"
-2025-12-02T11:00:12.864870293Z [inf]  [2025-12-02 11:00:04.331 +0000] [32mINFO[39m: [36mStarting OpenAI analysis[39m
-2025-12-02T11:00:12.864877850Z [inf]      analysisId: "async_multi_analysis_20251202_101524_68eb5373"
-2025-12-02T11:00:12.864884766Z [inf]      farmerId: "F190"
-2025-12-02T11:00:12.864893721Z [inf]      imageUrl: "https://1lik.net/plant-images/20251202_101524_060_4f2eefb1d2314fc2ac9e4cb4c9659816_async_multi_analysis_20251202_101524_68eb5373_main.jpg"
-2025-12-02T11:00:12.864899837Z [inf]      cropType: "Tomato"
-2025-12-02T11:00:12.864906139Z [inf]  [2025-12-02 11:00:04.382 +0000] [32mINFO[39m: [36mStarting OpenAI analysis[39m
-2025-12-02T11:00:12.864913621Z [inf]      analysisId: "async_multi_analysis_20251202_102218_c38cefdd"
-2025-12-02T11:00:12.864919611Z [inf]      farmerId: "F190"
-2025-12-02T11:00:12.864925738Z [inf]      imageUrl: "https://1lik.net/plant-images/20251202_102218_266_9a000f5027884e02948dea0a6a92026c_async_multi_analysis_20251202_102218_c38cefdd_main.jpg"
-2025-12-02T11:00:12.864931676Z [inf]      cropType: "Tomato"
-2025-12-02T11:00:12.864937325Z [inf]  [2025-12-02 11:00:04.384 +0000] [32mINFO[39m: [36mStarting OpenAI analysis[39m
-2025-12-02T11:00:12.864943317Z [inf]      analysisId: "async_analysis_20251202_105440_b2489ba5"
-2025-12-02T11:00:12.864950145Z [inf]      farmerId: "F190"
-2025-12-02T11:00:12.865507217Z [inf]      imageUrl: "https://1lik.net/plant-images/20251202_105442_261_c72dd6c757764c9eab49c7b481d7f272_async_analysis_20251202_105440_b2489ba5.jpg"
-2025-12-02T11:00:14.577099700Z [inf]      cropType: "Domates"
-2025-12-02T11:00:14.577108139Z [inf]  [2025-12-02 11:00:04.384 +0000] [32mINFO[39m: [36mStarting OpenAI analysis[39m
-2025-12-02T11:00:14.577115070Z [inf]      analysisId: "async_analysis_20251202_105659_ed646ac8"
-2025-12-02T11:00:14.577121934Z [inf]      farmerId: "F190"
-2025-12-02T11:00:14.577128639Z [inf]      imageUrl: "https://1lik.net/plant-images/20251202_105659_473_54aec77423d04c2cbdd10e0cb8dbb282_async_analysis_20251202_105659_ed646ac8.jpg"
-2025-12-02T11:00:14.577136701Z [inf]      cropType: null
-2025-12-02T11:00:14.577144034Z [inf]  [2025-12-02 11:00:05.450 +0000] [31mERROR[39m: [36mOpenAI API HTTP error[39m
-2025-12-02T11:00:14.577149789Z [inf]      analysisId: "async_multi_analysis_20251202_102218_c38cefdd"
-2025-12-02T11:00:14.577156596Z [inf]      status: 400
-2025-12-02T11:00:14.577166967Z [inf]      errorText: "{\n  \"error\": {\n    \"message\": \"The image data you provided does not represent a valid image. Please check your input and try again.\",\n    \"type\": \"invalid_request_error\",\n    \"param\": \"input\",\n    \"code\": \"invalid_value\"\n  }\n}"
-2025-12-02T11:00:14.577176981Z [inf]  [2025-12-02 11:00:05.450 +0000] [31mERROR[39m: [36mOpenAI analysis failed[39m
-2025-12-02T11:00:14.577183692Z [inf]      analysisId: "async_multi_analysis_20251202_102218_c38cefdd"
-2025-12-02T11:00:14.577191723Z [inf]      processingTimeMs: 1068
-2025-12-02T11:00:14.577198580Z [inf]      error: "OpenAI API error (400): {\n  \"error\": {\n    \"message\": \"The image data you provided does not represent a valid image. Please check your input and try again.\",\n    \"type\": \"invalid_request_error\",\n    \"param\": \"input\",\n    \"code\": \"invalid_value\"\n  }\n}"
-2025-12-02T11:00:14.577205436Z [inf]  [2025-12-02 11:00:05.453 +0000] [32mINFO[39m: [36mAnalysis completed and result published[39m
-2025-12-02T11:00:14.577213125Z [inf]      analysisId: "async_multi_analysis_20251202_102218_c38cefdd"
-2025-12-02T11:00:16.114875797Z [inf]      analysisId: "async_multi_analysis_20251202_101524_68eb5373"
-2025-12-02T11:00:16.115124391Z [inf]      analysisId: "async_multi_analysis_20251202_101524_68eb5373"
-2025-12-02T11:00:16.115131740Z [inf]      status: 400
-2025-12-02T11:00:16.115137957Z [inf]      errorText: "{\n  \"error\": {\n    \"message\": \"The image data you provided does not represent a valid image. Please check your input and try again.\",\n    \"type\": \"invalid_request_error\",\n    \"param\": \"input\",\n    \"code\": \"invalid_value\"\n  }\n}"
-2025-12-02T11:00:16.115144067Z [inf]  [2025-12-02 11:00:05.523 +0000] [31mERROR[39m: [36mOpenAI analysis failed[39m
-2025-12-02T11:00:16.115149632Z [inf]      analysisId: "async_multi_analysis_20251202_101524_68eb5373"
-2025-12-02T11:00:16.115156645Z [inf]      processingTimeMs: 1192
-2025-12-02T11:00:16.115163240Z [inf]      error: "OpenAI API error (400): {\n  \"error\": {\n    \"message\": \"The image data you provided does not represent a valid image. Please check your input and try again.\",\n    \"type\": \"invalid_request_error\",\n    \"param\": \"input\",\n    \"code\": \"invalid_value\"\n  }\n}"
-2025-12-02T11:00:16.115169290Z [inf]  [2025-12-02 11:00:05.523 +0000] [32mINFO[39m: [36mAnalysis completed and result published[39m
-2025-12-02T11:00:16.115336069Z [inf]      processingTimeMs: 1125
-2025-12-02T11:00:16.115342258Z [inf]  [2025-12-02 11:00:05.523 +0000] [31mERROR[39m: [36mOpenAI API HTTP error[39m
-2025-12-02T11:00:16.133801954Z [inf]      processingTimeMs: 1197
-2025-12-02T11:00:36.582578884Z [inf]  [2025-12-02 11:00:31.206 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T11:00:36.582587559Z [inf]      workerId: "worker-staging-1"
-2025-12-02T11:00:36.582594471Z [inf]      provider: "healthy"
-2025-12-02T11:00:36.582609180Z [inf]      rabbitmq: "healthy"
-2025-12-02T11:00:36.582619383Z [inf]      redis: "healthy"
-2025-12-02T11:00:36.582627564Z [inf]      overall: "healthy"
-2025-12-02T11:00:36.582633859Z [inf]      processedCount: 2
-2025-12-02T11:00:36.582642358Z [inf]      errorCount: 0
-2025-12-02T11:00:36.582649648Z [inf]      errorRate: "0.00%"
-2025-12-02T11:00:57.015757502Z [inf]        "output",
-2025-12-02T11:00:57.015770602Z [inf]        "parallel_tool_calls",
-2025-12-02T11:00:57.015934975Z [inf]        "id",
-2025-12-02T11:00:57.015951142Z [inf]        "error",
-2025-12-02T11:00:57.015959864Z [inf]        "incomplete_details",
-2025-12-02T11:00:57.015967687Z [inf]        "instructions",
-2025-12-02T11:00:57.015973917Z [inf]        "object",
-2025-12-02T11:00:57.015982579Z [inf]        "created_at",
-2025-12-02T11:00:57.015990723Z [inf]        "status",
-2025-12-02T11:00:57.016001583Z [inf]        "background",
-2025-12-02T11:00:57.016007103Z [inf]        "max_output_tokens",
-2025-12-02T11:00:57.016019920Z [inf]        "max_tool_calls",
-2025-12-02T11:00:57.016028121Z [inf]        "model",
-2025-12-02T11:00:57.016043000Z [inf]  [2025-12-02 11:00:51.117 +0000] [32mINFO[39m: [36mOpenAI API response structure[39m
-2025-12-02T11:00:57.016050506Z [inf]      analysisId: "async_analysis_20251202_105659_ed646ac8"
-2025-12-02T11:00:57.016058189Z [inf]      responseKeys: [
-2025-12-02T11:00:57.016345789Z [inf]        "billing",
-2025-12-02T11:00:57.025531789Z [inf]        "previous_response_id",
-2025-12-02T11:00:57.025546659Z [inf]        "prompt_cache_key",
-2025-12-02T11:00:57.025554627Z [inf]        "prompt_cache_retention",
-2025-12-02T11:00:57.025567306Z [inf]        "reasoning",
-2025-12-02T11:00:57.025575511Z [inf]        "safety_identifier",
-2025-12-02T11:00:57.025585570Z [inf]        "service_tier",
-2025-12-02T11:00:57.025593322Z [inf]        "store",
-2025-12-02T11:00:57.025601518Z [inf]        "temperature",
-2025-12-02T11:00:57.025608872Z [inf]        "text",
-2025-12-02T11:00:57.025806249Z [inf]        "tool_choice",
-2025-12-02T11:00:57.025820205Z [inf]        "tools",
-2025-12-02T11:00:57.025827954Z [inf]        "top_logprobs",
-2025-12-02T11:00:57.025838560Z [inf]        "top_p",
-2025-12-02T11:00:57.025846599Z [inf]        "truncation",
-2025-12-02T11:00:58.782747827Z [inf]        "usage",
-2025-12-02T11:00:58.782755746Z [inf]        "user",
-2025-12-02T11:00:58.782763002Z [inf]        "metadata"
-2025-12-02T11:00:58.782770603Z [inf]      ]
-2025-12-02T11:00:58.782780135Z [inf]      hasOutput: true
-2025-12-02T11:00:58.782787099Z [inf]      outputLength: 2
-2025-12-02T11:00:58.782794474Z [inf]      firstOutputKeys: [
-2025-12-02T11:00:58.782801369Z [inf]        "id",
-2025-12-02T11:00:58.782808563Z [inf]        "type",
-2025-12-02T11:00:58.782816453Z [inf]        "summary"
-2025-12-02T11:00:58.782822832Z [inf]      ]
-2025-12-02T11:00:58.782827824Z [inf]      responsePreview: "{\"id\":\"resp_099543d696fbc06000692ec6b5e3c4819798a449fbfdfc2865\",\"object\":\"response\",\"created_at\":1764673206,\"status\":\"completed\",\"background\":false,\"billing\":{\"payer\":\"developer\"},\"error\":null,\"incomplete_details\":null,\"instructions\":null,\"max_output_tokens\":null,\"max_tool_calls\":null,\"model\":\"gpt-5-mini-2025-08-07\",\"output\":[{\"id\":\"rs_099543d696fbc06000692ec6b6eaec819794c744786133607c\",\"type\":\"reasoning\",\"summary\":[]},{\"id\":\"msg_099543d696fbc06000692ec6c67b0c8197b3bda087ddf7dd59\",\"type\":\"messag"
-2025-12-02T11:00:58.782835912Z [inf]  [2025-12-02 11:00:51.119 +0000] [32mINFO[39m: [36mOpenAI analysis completed successfully[39m
-2025-12-02T11:00:58.782843193Z [inf]      analysisId: "async_analysis_20251202_105659_ed646ac8"
-2025-12-02T11:00:58.782950227Z [inf]      processingTimeMs: 46734
-2025-12-02T11:00:58.782961594Z [inf]      totalTokens: 6195
-2025-12-02T11:00:58.782990257Z [inf]      costUsd: 0.007299
-2025-12-02T11:00:58.782998326Z [inf]  [2025-12-02 11:00:51.121 +0000] [32mINFO[39m: [36mAnalysis completed and result published[39m
-2025-12-02T11:00:58.783005368Z [inf]      analysisId: "async_analysis_20251202_105659_ed646ac8"
-2025-12-02T11:00:58.783015630Z [inf]      processingTimeMs: 46792
-2025-12-02T11:00:58.783024032Z [inf]      totalTokens: 6195
-2025-12-02T11:01:00.351126708Z [inf]      costUsd: 0.007299
-2025-12-02T11:01:02.522450153Z [inf]  [2025-12-02 11:01:01.312 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T11:01:02.522457069Z [inf]      workerId: "worker-staging-1"
-2025-12-02T11:01:02.522465241Z [inf]      provider: "healthy"
-2025-12-02T11:01:02.522473567Z [inf]      rabbitmq: "healthy"
-2025-12-02T11:01:02.522481000Z [inf]      redis: "healthy"
-2025-12-02T11:01:02.522488846Z [inf]      overall: "healthy"
-2025-12-02T11:01:02.522495753Z [inf]      processedCount: 3
-2025-12-02T11:01:02.522503815Z [inf]      errorCount: 0
-2025-12-02T11:01:02.522519664Z [inf]      errorRate: "0.00%"
-2025-12-02T11:01:04.631454514Z [inf]  [2025-12-02 11:01:02.619 +0000] [32mINFO[39m: [36mOpenAI API response structure[39m
-2025-12-02T11:01:04.631461253Z [inf]      analysisId: "async_analysis_20251202_105440_b2489ba5"
-2025-12-02T11:01:04.631488408Z [inf]      responseKeys: [
-2025-12-02T11:01:04.631495121Z [inf]        "id",
-2025-12-02T11:01:04.631501696Z [inf]        "object",
-2025-12-02T11:01:04.631508268Z [inf]        "created_at",
-2025-12-02T11:01:04.631514122Z [inf]        "status",
-2025-12-02T11:01:04.631520999Z [inf]        "background",
-2025-12-02T11:01:04.631527343Z [inf]        "billing",
-2025-12-02T11:01:04.631533902Z [inf]        "error",
-2025-12-02T11:01:04.631540172Z [inf]        "incomplete_details",
-2025-12-02T11:01:04.631546105Z [inf]        "instructions",
-2025-12-02T11:01:04.631552473Z [inf]        "max_output_tokens",
-2025-12-02T11:01:04.631558964Z [inf]        "max_tool_calls",
-2025-12-02T11:01:04.631566255Z [inf]        "model",
-2025-12-02T11:01:04.631572185Z [inf]        "output",
-2025-12-02T11:01:04.631577803Z [inf]        "parallel_tool_calls",
-2025-12-02T11:01:04.631583634Z [inf]        "previous_response_id",
-2025-12-02T11:01:04.631589440Z [inf]        "prompt_cache_key",
-2025-12-02T11:01:04.631595535Z [inf]        "prompt_cache_retention",
-2025-12-02T11:01:04.631601727Z [inf]        "reasoning",
-2025-12-02T11:01:04.631607812Z [inf]        "safety_identifier",
-2025-12-02T11:01:04.631614280Z [inf]        "service_tier",
-2025-12-02T11:01:04.631620663Z [inf]        "store",
-2025-12-02T11:01:04.631627599Z [inf]        "temperature",
-2025-12-02T11:01:04.631633780Z [inf]        "text",
-2025-12-02T11:01:04.631639576Z [inf]        "tool_choice",
-2025-12-02T11:01:04.631644982Z [inf]        "tools",
-2025-12-02T11:01:04.631656679Z [inf]        "top_logprobs",
-2025-12-02T11:01:04.631663295Z [inf]        "top_p",
-2025-12-02T11:01:04.631669048Z [inf]        "truncation",
-2025-12-02T11:01:05.980991433Z [inf]        "usage",
-2025-12-02T11:01:05.980998792Z [inf]        "user",
-2025-12-02T11:01:05.981005451Z [inf]        "metadata"
-2025-12-02T11:01:05.981011391Z [inf]      ]
-2025-12-02T11:01:05.981018951Z [inf]      hasOutput: true
-2025-12-02T11:01:05.981025888Z [inf]      outputLength: 2
-2025-12-02T11:01:05.981032679Z [inf]      firstOutputKeys: [
-2025-12-02T11:01:05.981039561Z [inf]        "id",
-2025-12-02T11:01:05.981045398Z [inf]        "type",
-2025-12-02T11:01:05.981051568Z [inf]        "summary"
-2025-12-02T11:01:05.981061185Z [inf]      ]
-2025-12-02T11:01:05.981067691Z [inf]      responsePreview: "{\"id\":\"resp_05275621be7cea1d00692ec6b4d4808194b699104817d011b1\",\"object\":\"response\",\"created_at\":1764673205,\"status\":\"completed\",\"background\":false,\"billing\":{\"payer\":\"developer\"},\"error\":null,\"incomplete_details\":null,\"instructions\":null,\"max_output_tokens\":null,\"max_tool_calls\":null,\"model\":\"gpt-5-mini-2025-08-07\",\"output\":[{\"id\":\"rs_05275621be7cea1d00692ec6b677ec8194a7bd56292ab0595a\",\"type\":\"reasoning\",\"summary\":[]},{\"id\":\"msg_05275621be7cea1d00692ec6c9ba04819499d4971e82081ddb\",\"type\":\"messag"
-2025-12-02T11:01:05.981074083Z [inf]  [2025-12-02 11:01:02.619 +0000] [32mINFO[39m: [36mOpenAI analysis completed successfully[39m
-2025-12-02T11:01:05.981082985Z [inf]      analysisId: "async_analysis_20251202_105440_b2489ba5"
-2025-12-02T11:01:05.981090200Z [inf]      processingTimeMs: 58235
-2025-12-02T11:01:05.981097458Z [inf]      totalTokens: 6086
-2025-12-02T11:01:05.981104614Z [inf]      costUsd: 0.007694
-2025-12-02T11:01:05.981116032Z [inf]  [2025-12-02 11:01:02.622 +0000] [32mINFO[39m: [36mAnalysis completed and result published[39m
-2025-12-02T11:01:05.981123947Z [inf]      analysisId: "async_analysis_20251202_105440_b2489ba5"
-2025-12-02T11:01:05.981131436Z [inf]      processingTimeMs: 58293
-2025-12-02T11:01:05.981139588Z [inf]      totalTokens: 6086
-2025-12-02T11:01:07.419294352Z [inf]      costUsd: 0.007694
-2025-12-02T11:01:37.056303525Z [inf]  [2025-12-02 11:01:31.121 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-02T11:01:37.056312319Z [inf]      workerId: "worker-staging-1"
-2025-12-02T11:01:37.056320597Z [inf]      provider: "healthy"
-2025-12-02T11:01:37.056329215Z [inf]      rabbitmq: "healthy"
-2025-12-02T11:01:37.056338001Z [inf]      redis: "healthy"
-2025-12-02T11:01:37.056347852Z [inf]      overall: "healthy"
-2025-12-02T11:01:37.056356415Z [inf]      processedCount: 4
-2025-12-02T11:01:37.056365539Z [inf]      errorCount: 0
-2025-12-02T11:01:37.056374869Z [inf]      errorRate: "0.00%"
+2025-12-03T12:54:47.000000000Z [inf]  Starting Container
+2025-12-03T12:54:49.326775183Z [inf]  [2025-12-03 12:54:47.624 +0000] [32mINFO[39m: [36mProvider selector initialized[39m
+2025-12-03T12:54:49.326785854Z [inf]      strategy: "FIXED"
+2025-12-03T12:54:49.326792733Z [inf]      availableProviders: [
+2025-12-03T12:54:49.326798621Z [inf]        "gemini"
+2025-12-03T12:54:49.326803267Z [inf]      ]
+2025-12-03T12:54:49.326940104Z [inf]      availableProviders: [
+2025-12-03T12:54:49.326946010Z [inf]        "gemini"
+2025-12-03T12:54:49.326952757Z [inf]      ]
+2025-12-03T12:54:49.326960107Z [inf]      selectionStrategy: "FIXED"
+2025-12-03T12:54:49.326964572Z [inf]      fixedProvider: "gemini"
+2025-12-03T12:54:49.326965962Z [inf]      concurrency: 60
+2025-12-03T12:54:49.326971429Z [inf]  [2025-12-03 12:54:47.622 +0000] [32mINFO[39m: [36mProvider API keys validated[39m
+2025-12-03T12:54:49.326973898Z [inf]  [2025-12-03 12:54:47.632 +0000] [32mINFO[39m: [36mConnecting to RabbitMQ[39m
+2025-12-03T12:54:49.326977784Z [inf]  [2025-12-03 12:54:47.631 +0000] [32mINFO[39m: [36mStarting multi-provider analysis worker[39m
+2025-12-03T12:54:49.326985146Z [inf]      url: "amqp://DIjL9Z7aGtLIG5z6:***@rabbitmq.railway.internal:5672"
+2025-12-03T12:54:49.326989449Z [inf]      workerId: "worker-staging-gemini"
+2025-12-03T12:54:49.326996351Z [inf]  [2025-12-03 12:54:47.802 +0000] [32mINFO[39m: [36mRedis connected successfully[39m
+2025-12-03T12:54:49.327009417Z [inf]      providers: [
+2025-12-03T12:54:49.327016992Z [inf]        "Gemini"
+2025-12-03T12:54:49.327022140Z [inf]      ]
+2025-12-03T12:54:49.327028073Z [inf]  [2025-12-03 12:54:47.624 +0000] [32mINFO[39m: [36mGemini provider initialized[39m
+2025-12-03T12:54:49.327034331Z [inf]      model: "gemini-2.5-flash"
+2025-12-03T12:54:49.327040706Z [inf]  [2025-12-03 12:54:47.624 +0000] [32mINFO[39m: [36mAI providers initialized[39m
+2025-12-03T12:54:49.327046878Z [inf]      providers: [
+2025-12-03T12:54:49.327052159Z [inf]        "gemini"
+2025-12-03T12:54:49.327058197Z [inf]      ]
+2025-12-03T12:54:50.471103813Z [inf]  [2025-12-03 12:54:47.900 +0000] [32mINFO[39m: [36mRabbitMQ connected successfully[39m
+2025-12-03T12:54:50.471111993Z [inf]  [2025-12-03 12:54:47.900 +0000] [32mINFO[39m: [36mUsing NEW queue system: Provider-specific queues[39m
+2025-12-03T12:54:50.471119839Z [inf]  [2025-12-03 12:54:47.902 +0000] [32mINFO[39m: [36mStarting consumer[39m
+2025-12-03T12:54:50.471127976Z [inf]      queueName: "gemini-analysis-queue"
+2025-12-03T12:54:50.471135657Z [inf]  [2025-12-03 12:54:47.906 +0000] [32mINFO[39m: [36mStarted consuming from provider-specific queue (FIXED strategy)[39m
+2025-12-03T12:54:50.471143433Z [inf]      strategy: "FIXED"
+2025-12-03T12:54:50.471151312Z [inf]      fixedProvider: "gemini"
+2025-12-03T12:54:50.471163524Z [inf]      queue: "gemini-analysis-queue"
+2025-12-03T12:54:50.471171738Z [inf]      availableProviders: [
+2025-12-03T12:54:50.471178460Z [inf]        "gemini"
+2025-12-03T12:54:50.471184708Z [inf]      ]
+2025-12-03T12:54:50.471191540Z [inf]  [2025-12-03 12:54:47.906 +0000] [32mINFO[39m: [36mWorker started successfully and consuming from queues[39m
+2025-12-03T12:54:50.471198290Z [inf]      workerId: "worker-staging-gemini"
+2025-12-03T12:54:50.471204960Z [inf]      system: "NEW (Provider Queues)"
+2025-12-03T12:54:50.471212129Z [inf]      queues: [
+2025-12-03T12:54:50.471218285Z [inf]        "openai-analysis-queue",
+2025-12-03T12:54:50.471225095Z [inf]        "gemini-analysis-queue",
+2025-12-03T12:54:50.471231295Z [inf]        "anthropic-analysis-queue"
+2025-12-03T12:54:50.471302144Z [inf]      ]
+2025-12-03T12:54:50.471312107Z [inf]      providerCount: 1
+2025-12-03T12:54:50.471321026Z [inf]      availableProviders: [
+2025-12-03T12:54:50.471327957Z [inf]        "gemini"
+2025-12-03T12:54:50.471334966Z [inf]      ]
+2025-12-03T12:54:54.846959907Z [inf]  [2025-12-03 12:54:53.592 +0000] [32mINFO[39m: [36mProcessing analysis message[39m
+2025-12-03T12:54:54.846973069Z [inf]      analysisId: "async_analysis_20251203_125448_b7fa9578"
+2025-12-03T12:54:54.846981856Z [inf]      farmerId: "F190"
+2025-12-03T12:54:54.846989970Z [inf]      imageUrl: "https://1lik.net/plant-images/20251203_125449_635_32d0f4b2e3e6445f9f95830df4e2d927_async_analysis_20251203_125448_b7fa9578.jpg"
+2025-12-03T12:54:54.847000085Z [inf]  [2025-12-03 12:54:53.599 +0000] [32mINFO[39m: [36mStarting Gemini analysis[39m
+2025-12-03T12:54:54.847007040Z [inf]      analysisId: "async_analysis_20251203_125448_b7fa9578"
+2025-12-03T12:54:54.847014108Z [inf]      farmerId: "F190"
+2025-12-03T12:54:54.847020992Z [inf]      imageUrl: "https://1lik.net/plant-images/20251203_125449_635_32d0f4b2e3e6445f9f95830df4e2d927_async_analysis_20251203_125448_b7fa9578.jpg"
+2025-12-03T12:54:54.847029467Z [inf]      cropType: "Domates"
+2025-12-03T12:55:14.759055209Z [inf]  [2025-12-03 12:55:11.208 +0000] [32mINFO[39m: [36mProcessing analysis message[39m
+2025-12-03T12:55:14.759062809Z [inf]      analysisId: "async_analysis_20251203_125510_170cd05d"
+2025-12-03T12:55:14.759069927Z [inf]      farmerId: "F190"
+2025-12-03T12:55:14.759080538Z [inf]      imageUrl: "https://1lik.net/plant-images/20251203_125511_073_01f44bf0e9434e949866963ee010d07b_async_analysis_20251203_125510_170cd05d.jpg"
+2025-12-03T12:55:14.759090437Z [inf]  [2025-12-03 12:55:11.212 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:55:14.759097806Z [inf]      provider: "gemini"
+2025-12-03T12:55:14.759104668Z [inf]      currentCount: 2
+2025-12-03T12:55:14.759111658Z [inf]      limit: 2
+2025-12-03T12:55:14.759118612Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:55:14.759127129Z [inf]  [2025-12-03 12:55:11.354 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:55:14.759133848Z [inf]      provider: "gemini"
+2025-12-03T12:55:14.759143647Z [inf]      currentCount: 3
+2025-12-03T12:55:14.759150674Z [inf]      limit: 2
+2025-12-03T12:55:14.759156797Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:55:14.759163865Z [inf]  [2025-12-03 12:55:11.585 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:55:14.759170578Z [inf]      provider: "gemini"
+2025-12-03T12:55:14.759176705Z [inf]      currentCount: 4
+2025-12-03T12:55:14.759183304Z [inf]      limit: 2
+2025-12-03T12:55:14.759190478Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:55:14.759197609Z [inf]  [2025-12-03 12:55:12.060 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:55:14.759205065Z [inf]      provider: "gemini"
+2025-12-03T12:55:14.759211250Z [inf]      currentCount: 5
+2025-12-03T12:55:14.759217015Z [inf]      limit: 2
+2025-12-03T12:55:14.759383715Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:55:16.237411861Z [inf]      totalTokens: 6816
+2025-12-03T12:55:16.237430995Z [inf]      costUsd: 0.000919
+2025-12-03T12:55:16.237445802Z [inf]  [2025-12-03 12:55:14.627 +0000] [32mINFO[39m: [36mResult published to PlantAnalysisWorkerService[39m
+2025-12-03T12:55:16.237459813Z [inf]      analysisId: "async_analysis_20251203_125448_b7fa9578"
+2025-12-03T12:55:16.237471776Z [inf]      queue: "plant-analysis-results"
+2025-12-03T12:55:16.237484054Z [inf]      responseQueue: "plant-analysis-results"
+2025-12-03T12:55:16.237496196Z [inf]      usedFallback: false
+2025-12-03T12:55:16.237507940Z [inf]  [2025-12-03 12:55:14.627 +0000] [32mINFO[39m: [36mAnalysis completed and result published[39m
+2025-12-03T12:55:16.237519099Z [inf]      analysisId: "async_analysis_20251203_125448_b7fa9578"
+2025-12-03T12:55:16.237532478Z [inf]      processingTimeMs: 21035
+2025-12-03T12:55:16.237544881Z [inf]      totalTokens: 6816
+2025-12-03T12:55:16.238128791Z [inf]  [2025-12-03 12:55:12.896 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:55:16.238135112Z [inf]      provider: "gemini"
+2025-12-03T12:55:16.238142039Z [inf]      currentCount: 6
+2025-12-03T12:55:16.238148707Z [inf]      limit: 2
+2025-12-03T12:55:16.238155051Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:55:16.238161593Z [inf]  [2025-12-03 12:55:13.989 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:55:16.238168629Z [inf]      provider: "gemini"
+2025-12-03T12:55:16.238174842Z [inf]      currentCount: 7
+2025-12-03T12:55:16.238180562Z [inf]      limit: 2
+2025-12-03T12:55:16.238187288Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:55:16.238195592Z [inf]  [2025-12-03 12:55:14.624 +0000] [32mINFO[39m: [36mGemini analysis completed successfully[39m
+2025-12-03T12:55:16.238203640Z [inf]      analysisId: "async_analysis_20251203_125448_b7fa9578"
+2025-12-03T12:55:16.238211138Z [inf]      processingTimeMs: 21024
+2025-12-03T12:55:17.655506744Z [inf]      costUsd: 0.000919
+2025-12-03T12:55:17.655513910Z [inf]  [2025-12-03 12:55:15.067 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:55:17.655520875Z [inf]      provider: "gemini"
+2025-12-03T12:55:17.655533057Z [inf]      currentCount: 8
+2025-12-03T12:55:17.655539891Z [inf]      limit: 2
+2025-12-03T12:55:17.655546510Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:55:17.655552633Z [inf]  [2025-12-03 12:55:16.140 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:55:17.655559879Z [inf]      provider: "gemini"
+2025-12-03T12:55:17.655567669Z [inf]      currentCount: 9
+2025-12-03T12:55:17.655574827Z [inf]      limit: 2
+2025-12-03T12:55:17.655582784Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:55:17.655589484Z [inf]  [2025-12-03 12:55:17.162 +0000] [33mWARN[39m: [36mRate limit wait timeout[39m
+2025-12-03T12:55:17.655595687Z [inf]      provider: "gemini"
+2025-12-03T12:55:17.655601970Z [inf]      maxWaitMs: 5000
+2025-12-03T12:55:17.655608624Z [inf]      elapsed: 5954
+2025-12-03T12:55:17.655614437Z [inf]  [2025-12-03 12:55:17.162 +0000] [33mWARN[39m: [36mRate limit exceeded, sending error response[39m
+2025-12-03T12:55:17.655621515Z [inf]      analysisId: "async_analysis_20251203_125510_170cd05d"
+2025-12-03T12:55:17.655629112Z [inf]      selectedProvider: "gemini"
+2025-12-03T12:55:17.655636319Z [inf]  [2025-12-03 12:55:17.164 +0000] [32mINFO[39m: [36mResult published to PlantAnalysisWorkerService[39m
+2025-12-03T12:55:17.655642808Z [inf]      analysisId: "async_analysis_20251203_125510_170cd05d"
+2025-12-03T12:55:17.655649081Z [inf]      queue: "plant-analysis-results"
+2025-12-03T12:55:17.655657702Z [inf]      usedFallback: true
+2025-12-03T12:55:19.797377955Z [inf]  [2025-12-03 12:55:18.276 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-03T12:55:19.797386209Z [inf]      workerId: "worker-staging-gemini"
+2025-12-03T12:55:19.797393458Z [inf]      provider: "healthy"
+2025-12-03T12:55:19.797399551Z [inf]      rabbitmq: "healthy"
+2025-12-03T12:55:19.797407930Z [inf]      redis: "healthy"
+2025-12-03T12:55:19.797415344Z [inf]      overall: "healthy"
+2025-12-03T12:55:19.797422925Z [inf]      processedCount: 1
+2025-12-03T12:55:19.797430500Z [inf]      errorCount: 1
+2025-12-03T12:55:19.797437473Z [inf]      errorRate: "100.00%"
+2025-12-03T12:55:50.837266441Z [inf]  [2025-12-03 12:55:48.246 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-03T12:55:50.837272088Z [inf]      workerId: "worker-staging-gemini"
+2025-12-03T12:55:50.837277688Z [inf]      provider: "healthy"
+2025-12-03T12:55:50.837284335Z [inf]      rabbitmq: "healthy"
+2025-12-03T12:55:50.837291615Z [inf]      redis: "healthy"
+2025-12-03T12:55:50.837298136Z [inf]      overall: "healthy"
+2025-12-03T12:55:50.837304145Z [inf]      processedCount: 1
+2025-12-03T12:55:50.837310539Z [inf]      errorCount: 1
+2025-12-03T12:55:50.837316093Z [inf]      errorRate: "100.00%"
+2025-12-03T12:55:55.189095337Z [inf]  [2025-12-03 12:55:54.008 +0000] [32mINFO[39m: [36mProcessing analysis message[39m
+2025-12-03T12:55:55.189103471Z [inf]      analysisId: "async_analysis_20251203_125552_0ec32f9b"
+2025-12-03T12:55:55.189112163Z [inf]      farmerId: "F190"
+2025-12-03T12:55:55.189120971Z [inf]      imageUrl: "https://1lik.net/plant-images/20251203_125553_849_15c43988a3524b0096346d0adf96b83d_async_analysis_20251203_125552_0ec32f9b.jpg"
+2025-12-03T12:55:55.189128953Z [inf]  [2025-12-03 12:55:54.009 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:55:55.189136324Z [inf]      provider: "gemini"
+2025-12-03T12:55:55.189143821Z [inf]      currentCount: 8
+2025-12-03T12:55:55.189151639Z [inf]      limit: 2
+2025-12-03T12:55:55.189159076Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:55:55.189167400Z [inf]  [2025-12-03 12:55:54.162 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:55:55.189174359Z [inf]      provider: "gemini"
+2025-12-03T12:55:55.189181402Z [inf]      currentCount: 9
+2025-12-03T12:55:55.189188115Z [inf]      limit: 2
+2025-12-03T12:55:55.189195505Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:55:55.189202519Z [inf]  [2025-12-03 12:55:54.417 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:55:55.189210002Z [inf]      provider: "gemini"
+2025-12-03T12:55:55.189227075Z [inf]      currentCount: 10
+2025-12-03T12:55:55.189234724Z [inf]      limit: 2
+2025-12-03T12:55:55.189243144Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:55:55.189251363Z [inf]  [2025-12-03 12:55:54.876 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:55:55.189258469Z [inf]      provider: "gemini"
+2025-12-03T12:55:55.189265597Z [inf]      currentCount: 11
+2025-12-03T12:55:55.189273193Z [inf]      limit: 2
+2025-12-03T12:55:55.189280538Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:55:56.480082469Z [inf]  [2025-12-03 12:55:55.724 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:55:56.480538410Z [inf]      provider: "gemini"
+2025-12-03T12:55:56.480556177Z [inf]      currentCount: 12
+2025-12-03T12:55:56.480563756Z [inf]      limit: 2
+2025-12-03T12:55:56.480572306Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:55:57.685262669Z [inf]      provider: "gemini"
+2025-12-03T12:55:57.685270492Z [inf]      currentCount: 13
+2025-12-03T12:55:57.685297645Z [inf]      limit: 2
+2025-12-03T12:55:57.685303479Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:55:57.685358375Z [inf]  [2025-12-03 12:55:56.754 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:55:59.233245839Z [inf]  [2025-12-03 12:55:57.779 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:55:59.233252852Z [inf]      provider: "gemini"
+2025-12-03T12:55:59.233260058Z [inf]      currentCount: 14
+2025-12-03T12:55:59.233266490Z [inf]      limit: 2
+2025-12-03T12:55:59.233283462Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:56:00.413607846Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:56:00.413619499Z [inf]  [2025-12-03 12:55:59.818 +0000] [33mWARN[39m: [36mRate limit wait timeout[39m
+2025-12-03T12:56:00.413623957Z [inf]      queue: "plant-analysis-results"
+2025-12-03T12:56:00.413632104Z [inf]      selectedProvider: "gemini"
+2025-12-03T12:56:00.413638438Z [inf]  [2025-12-03 12:55:59.818 +0000] [33mWARN[39m: [36mRate limit exceeded, sending error response[39m
+2025-12-03T12:56:00.413644266Z [inf]  [2025-12-03 12:55:59.819 +0000] [32mINFO[39m: [36mResult published to PlantAnalysisWorkerService[39m
+2025-12-03T12:56:00.413655168Z [inf]      analysisId: "async_analysis_20251203_125552_0ec32f9b"
+2025-12-03T12:56:00.413655668Z [inf]      provider: "gemini"
+2025-12-03T12:56:00.413658619Z [inf]  [2025-12-03 12:55:58.805 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:56:00.413661672Z [inf]      analysisId: "async_analysis_20251203_125552_0ec32f9b"
+2025-12-03T12:56:00.413669556Z [inf]      maxWaitMs: 5000
+2025-12-03T12:56:00.413669767Z [inf]      provider: "gemini"
+2025-12-03T12:56:00.413679481Z [inf]      currentCount: 15
+2025-12-03T12:56:00.413684690Z [inf]      usedFallback: true
+2025-12-03T12:56:00.413689859Z [inf]      limit: 2
+2025-12-03T12:56:00.413863507Z [inf]      elapsed: 5810
+2025-12-03T12:56:03.432205908Z [inf]  [2025-12-03 12:56:02.544 +0000] [32mINFO[39m: [36mProcessing analysis message[39m
+2025-12-03T12:56:03.432213229Z [inf]      analysisId: "async_analysis_20251203_125531_9014b4c6"
+2025-12-03T12:56:03.432220951Z [inf]      farmerId: "F190"
+2025-12-03T12:56:03.432228380Z [inf]      imageUrl: "https://1lik.net/plant-images/20251203_125532_368_87dfafb610514a07bcbb662f6f954143_async_analysis_20251203_125531_9014b4c6.jpg"
+2025-12-03T12:56:03.432235894Z [inf]  [2025-12-03 12:56:02.545 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:56:03.432243678Z [inf]      provider: "gemini"
+2025-12-03T12:56:03.432251075Z [inf]      currentCount: 16
+2025-12-03T12:56:03.432257656Z [inf]      limit: 2
+2025-12-03T12:56:03.432264024Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:56:03.432271916Z [inf]  [2025-12-03 12:56:02.658 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:56:03.432278972Z [inf]      provider: "gemini"
+2025-12-03T12:56:03.432286069Z [inf]      currentCount: 17
+2025-12-03T12:56:03.432293331Z [inf]      limit: 2
+2025-12-03T12:56:03.432300781Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:56:03.432308287Z [inf]  [2025-12-03 12:56:02.879 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:56:03.432315076Z [inf]      provider: "gemini"
+2025-12-03T12:56:03.432321443Z [inf]      currentCount: 18
+2025-12-03T12:56:03.432327038Z [inf]      limit: 2
+2025-12-03T12:56:03.432333449Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:56:03.432339799Z [inf]  [2025-12-03 12:56:03.335 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:56:03.432345522Z [inf]      provider: "gemini"
+2025-12-03T12:56:03.432351484Z [inf]      currentCount: 19
+2025-12-03T12:56:03.432357443Z [inf]      limit: 2
+2025-12-03T12:56:03.432364599Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:56:04.511699604Z [inf]  [2025-12-03 12:56:04.164 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:56:04.511706467Z [inf]      provider: "gemini"
+2025-12-03T12:56:04.511712691Z [inf]      currentCount: 20
+2025-12-03T12:56:04.511718282Z [inf]      limit: 2
+2025-12-03T12:56:04.511724240Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:56:05.539967250Z [inf]  [2025-12-03 12:56:05.211 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:56:05.539973448Z [inf]      provider: "gemini"
+2025-12-03T12:56:05.539980054Z [inf]      currentCount: 21
+2025-12-03T12:56:05.539986519Z [inf]      limit: 2
+2025-12-03T12:56:05.539995033Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:56:06.785060283Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:56:06.785107189Z [inf]      provider: "gemini"
+2025-12-03T12:56:06.785116705Z [inf]      currentCount: 22
+2025-12-03T12:56:06.785125979Z [inf]  [2025-12-03 12:56:06.247 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:56:06.785127762Z [inf]      limit: 2
+2025-12-03T12:56:07.923298393Z [inf]      limit: 2
+2025-12-03T12:56:07.923307079Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:56:07.923327496Z [inf]  [2025-12-03 12:56:07.341 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:56:07.923352993Z [inf]      provider: "gemini"
+2025-12-03T12:56:07.923365761Z [inf]      currentCount: 23
+2025-12-03T12:56:08.876664104Z [inf]  [2025-12-03 12:56:08.412 +0000] [33mWARN[39m: [36mRate limit wait timeout[39m
+2025-12-03T12:56:08.876677562Z [inf]      provider: "gemini"
+2025-12-03T12:56:08.876685346Z [inf]      maxWaitMs: 5000
+2025-12-03T12:56:08.876692965Z [inf]      elapsed: 5868
+2025-12-03T12:56:08.876711006Z [inf]  [2025-12-03 12:56:08.412 +0000] [33mWARN[39m: [36mRate limit exceeded, sending error response[39m
+2025-12-03T12:56:08.876721530Z [inf]      analysisId: "async_analysis_20251203_125531_9014b4c6"
+2025-12-03T12:56:08.876733479Z [inf]      selectedProvider: "gemini"
+2025-12-03T12:56:08.876740144Z [inf]  [2025-12-03 12:56:08.413 +0000] [32mINFO[39m: [36mResult published to PlantAnalysisWorkerService[39m
+2025-12-03T12:56:08.876746969Z [inf]      analysisId: "async_analysis_20251203_125531_9014b4c6"
+2025-12-03T12:56:08.876754673Z [inf]      queue: "plant-analysis-results"
+2025-12-03T12:56:08.876764890Z [inf]      usedFallback: true
+2025-12-03T12:56:18.857335785Z [inf]      processedCount: 1
+2025-12-03T12:56:18.857346676Z [inf]      errorCount: 3
+2025-12-03T12:56:18.857372286Z [inf]      workerId: "worker-staging-gemini"
+2025-12-03T12:56:18.857372442Z [inf]  [2025-12-03 12:56:18.337 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-03T12:56:18.857373522Z [inf]      errorRate: "300.00%"
+2025-12-03T12:56:18.857381589Z [inf]      provider: "healthy"
+2025-12-03T12:56:18.857397500Z [inf]      rabbitmq: "healthy"
+2025-12-03T12:56:18.857399706Z [inf]      overall: "healthy"
+2025-12-03T12:56:18.857404598Z [inf]      redis: "healthy"
+2025-12-03T12:56:28.037349954Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:56:28.037367205Z [inf]  [2025-12-03 12:56:26.739 +0000] [32mINFO[39m: [36mProcessing analysis message[39m
+2025-12-03T12:56:28.037368876Z [inf]  [2025-12-03 12:56:27.235 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:56:28.037381254Z [inf]      provider: "gemini"
+2025-12-03T12:56:28.037392298Z [inf]      analysisId: "async_analysis_20251203_125625_55f6d149"
+2025-12-03T12:56:28.037399542Z [inf]      currentCount: 18
+2025-12-03T12:56:28.037413760Z [inf]      limit: 2
+2025-12-03T12:56:28.037415562Z [inf]      farmerId: "F190"
+2025-12-03T12:56:28.037433885Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:56:28.037435528Z [inf]      imageUrl: "https://1lik.net/plant-images/20251203_125626_625_4347b5be569248f28f02980ab5ba108f_async_analysis_20251203_125625_55f6d149.jpg"
+2025-12-03T12:56:28.037448336Z [inf]  [2025-12-03 12:56:27.736 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:56:28.037454065Z [inf]  [2025-12-03 12:56:26.740 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:56:28.037463267Z [inf]      provider: "gemini"
+2025-12-03T12:56:28.037472156Z [inf]      provider: "gemini"
+2025-12-03T12:56:28.037476373Z [inf]      currentCount: 19
+2025-12-03T12:56:28.037491355Z [inf]      currentCount: 16
+2025-12-03T12:56:28.037495576Z [inf]      limit: 2
+2025-12-03T12:56:28.037510724Z [inf]      limit: 2
+2025-12-03T12:56:28.037513249Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:56:28.037523985Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:56:28.037535302Z [inf]  [2025-12-03 12:56:26.934 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:56:28.037545973Z [inf]      provider: "gemini"
+2025-12-03T12:56:28.037559660Z [inf]      currentCount: 17
+2025-12-03T12:56:28.037571102Z [inf]      limit: 2
+2025-12-03T12:56:29.072588042Z [inf]  [2025-12-03 12:56:28.619 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:56:29.072593863Z [inf]      provider: "gemini"
+2025-12-03T12:56:29.072599148Z [inf]      currentCount: 20
+2025-12-03T12:56:29.072604314Z [inf]      limit: 2
+2025-12-03T12:56:29.072610049Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:56:30.183050970Z [inf]  [2025-12-03 12:56:29.646 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:56:30.183057546Z [inf]      provider: "gemini"
+2025-12-03T12:56:30.183064313Z [inf]      currentCount: 21
+2025-12-03T12:56:30.183071459Z [inf]      limit: 2
+2025-12-03T12:56:30.183078034Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:56:31.264389491Z [inf]  [2025-12-03 12:56:30.715 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:56:31.264397033Z [inf]      provider: "gemini"
+2025-12-03T12:56:31.264403995Z [inf]      currentCount: 22
+2025-12-03T12:56:31.264411188Z [inf]      limit: 2
+2025-12-03T12:56:31.264416622Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:56:32.239992767Z [inf]  [2025-12-03 12:56:31.812 +0000] [33mWARN[39m: [36mRate limit wait timeout[39m
+2025-12-03T12:56:32.239999394Z [inf]      provider: "gemini"
+2025-12-03T12:56:32.240005297Z [inf]      maxWaitMs: 5000
+2025-12-03T12:56:32.240012620Z [inf]      elapsed: 5072
+2025-12-03T12:56:32.240018226Z [inf]  [2025-12-03 12:56:31.812 +0000] [33mWARN[39m: [36mRate limit exceeded, sending error response[39m
+2025-12-03T12:56:32.240033707Z [inf]      analysisId: "async_analysis_20251203_125625_55f6d149"
+2025-12-03T12:56:32.240040173Z [inf]      selectedProvider: "gemini"
+2025-12-03T12:56:32.240047838Z [inf]  [2025-12-03 12:56:31.812 +0000] [32mINFO[39m: [36mResult published to PlantAnalysisWorkerService[39m
+2025-12-03T12:56:32.240052921Z [inf]      analysisId: "async_analysis_20251203_125625_55f6d149"
+2025-12-03T12:56:32.244250272Z [inf]      queue: "plant-analysis-results"
+2025-12-03T12:56:32.244266260Z [inf]      usedFallback: true
+2025-12-03T12:56:51.900330956Z [inf]  [2025-12-03 12:56:48.243 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-03T12:56:51.900336693Z [inf]      workerId: "worker-staging-gemini"
+2025-12-03T12:56:51.900341536Z [inf]      provider: "healthy"
+2025-12-03T12:56:51.900346015Z [inf]      rabbitmq: "healthy"
+2025-12-03T12:56:51.900351242Z [inf]      redis: "healthy"
+2025-12-03T12:56:51.900356924Z [inf]      overall: "healthy"
+2025-12-03T12:56:51.900373099Z [inf]      processedCount: 1
+2025-12-03T12:56:51.900380295Z [inf]      errorCount: 4
+2025-12-03T12:56:51.900386570Z [inf]      errorRate: "400.00%"
+2025-12-03T12:57:11.601061734Z [inf]      currentCount: 7
+2025-12-03T12:57:11.601218476Z [inf]  [2025-12-03 12:57:08.392 +0000] [32mINFO[39m: [36mProcessing analysis message[39m
+2025-12-03T12:57:11.601224737Z [inf]      imageUrl: "https://1lik.net/plant-images/20251203_125708_206_d6be03bad22a4ad9b7fcf51308656299_async_analysis_20251203_125707_decd0144.jpg"
+2025-12-03T12:57:11.601234782Z [inf]      analysisId: "async_analysis_20251203_125707_decd0144"
+2025-12-03T12:57:11.601238716Z [inf]  [2025-12-03 12:57:08.394 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:57:11.601245423Z [inf]      farmerId: "F190"
+2025-12-03T12:57:11.601248843Z [inf]      provider: "gemini"
+2025-12-03T12:57:11.601304107Z [inf]      limit: 2
+2025-12-03T12:57:11.601312026Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:57:11.601315606Z [inf]  [2025-12-03 12:57:08.839 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:57:11.601320003Z [inf]  [2025-12-03 12:57:08.579 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:57:11.601327249Z [inf]      provider: "gemini"
+2025-12-03T12:57:11.601329369Z [inf]      provider: "gemini"
+2025-12-03T12:57:11.601336447Z [inf]      currentCount: 8
+2025-12-03T12:57:11.601339001Z [inf]      currentCount: 9
+2025-12-03T12:57:11.601346536Z [inf]      limit: 2
+2025-12-03T12:57:11.601347909Z [inf]      limit: 2
+2025-12-03T12:57:11.601355406Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:57:11.601357477Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:57:11.601365532Z [inf]  [2025-12-03 12:57:09.248 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:57:11.601373088Z [inf]      provider: "gemini"
+2025-12-03T12:57:11.601379992Z [inf]      currentCount: 10
+2025-12-03T12:57:11.601387803Z [inf]      limit: 2
+2025-12-03T12:57:11.601394417Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:57:11.610239720Z [inf]  [2025-12-03 12:57:10.145 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:57:11.610247633Z [inf]      provider: "gemini"
+2025-12-03T12:57:11.610254918Z [inf]      currentCount: 11
+2025-12-03T12:57:11.610261808Z [inf]      limit: 2
+2025-12-03T12:57:11.610268807Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:57:11.610404482Z [inf]  [2025-12-03 12:57:11.190 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:57:11.610413461Z [inf]      provider: "gemini"
+2025-12-03T12:57:11.610419968Z [inf]      currentCount: 12
+2025-12-03T12:57:11.610427225Z [inf]      limit: 2
+2025-12-03T12:57:11.610434425Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:57:12.583474487Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:57:12.583561947Z [inf]      provider: "gemini"
+2025-12-03T12:57:12.583570148Z [inf]      currentCount: 13
+2025-12-03T12:57:12.583596119Z [inf]  [2025-12-03 12:57:12.213 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:57:12.584196412Z [inf]      limit: 2
+2025-12-03T12:57:13.895047673Z [inf]  [2025-12-03 12:57:13.242 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:57:13.895053990Z [inf]      provider: "gemini"
+2025-12-03T12:57:13.895060372Z [inf]      currentCount: 14
+2025-12-03T12:57:13.895067073Z [inf]      limit: 2
+2025-12-03T12:57:13.895073946Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:57:14.687051155Z [inf]  [2025-12-03 12:57:14.255 +0000] [33mWARN[39m: [36mRate limit wait timeout[39m
+2025-12-03T12:57:14.687061223Z [inf]      provider: "gemini"
+2025-12-03T12:57:14.687070050Z [inf]      maxWaitMs: 5000
+2025-12-03T12:57:14.687078738Z [inf]      elapsed: 5862
+2025-12-03T12:57:14.687086939Z [inf]  [2025-12-03 12:57:14.255 +0000] [33mWARN[39m: [36mRate limit exceeded, sending error response[39m
+2025-12-03T12:57:14.687096702Z [inf]      analysisId: "async_analysis_20251203_125707_decd0144"
+2025-12-03T12:57:14.687105411Z [inf]      selectedProvider: "gemini"
+2025-12-03T12:57:14.687113054Z [inf]  [2025-12-03 12:57:14.255 +0000] [32mINFO[39m: [36mResult published to PlantAnalysisWorkerService[39m
+2025-12-03T12:57:14.687120717Z [inf]      analysisId: "async_analysis_20251203_125707_decd0144"
+2025-12-03T12:57:14.687127647Z [inf]      queue: "plant-analysis-results"
+2025-12-03T12:57:14.687136928Z [inf]      usedFallback: true
+2025-12-03T12:57:18.919413465Z [inf]      limit: 2
+2025-12-03T12:57:18.919491086Z [inf]  [2025-12-03 12:57:18.086 +0000] [32mINFO[39m: [36mProcessing analysis message[39m
+2025-12-03T12:57:18.919498453Z [inf]      analysisId: "async_analysis_20251203_125646_56697ecb"
+2025-12-03T12:57:18.919505510Z [inf]      farmerId: "F190"
+2025-12-03T12:57:18.919512591Z [inf]      imageUrl: "https://1lik.net/plant-images/20251203_125647_930_047bd3cdb79a4f8995183145302cfbc3_async_analysis_20251203_125646_56697ecb.jpg"
+2025-12-03T12:57:18.919525068Z [inf]  [2025-12-03 12:57:18.088 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:57:18.919535457Z [inf]      provider: "gemini"
+2025-12-03T12:57:18.919544585Z [inf]      currentCount: 15
+2025-12-03T12:57:18.919694264Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:57:18.919704870Z [inf]  [2025-12-03 12:57:18.256 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:57:18.919713653Z [inf]      provider: "gemini"
+2025-12-03T12:57:18.919720235Z [inf]      currentCount: 16
+2025-12-03T12:57:18.919726294Z [inf]      limit: 2
+2025-12-03T12:57:18.919732297Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:57:18.919738928Z [inf]  [2025-12-03 12:57:18.491 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-03T12:57:18.919745697Z [inf]      workerId: "worker-staging-gemini"
+2025-12-03T12:57:18.919751870Z [inf]      provider: "healthy"
+2025-12-03T12:57:18.919758003Z [inf]      rabbitmq: "healthy"
+2025-12-03T12:57:18.919764290Z [inf]      redis: "healthy"
+2025-12-03T12:57:18.919770226Z [inf]      overall: "healthy"
+2025-12-03T12:57:18.919777492Z [inf]      processedCount: 1
+2025-12-03T12:57:18.919785574Z [inf]      errorCount: 5
+2025-12-03T12:57:18.919794194Z [inf]      errorRate: "500.00%"
+2025-12-03T12:57:18.919800499Z [inf]  [2025-12-03 12:57:18.540 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:57:18.922192629Z [inf]      provider: "gemini"
+2025-12-03T12:57:18.922197159Z [inf]      currentCount: 17
+2025-12-03T12:57:18.922202123Z [inf]      limit: 2
+2025-12-03T12:57:18.922206176Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:57:19.085172383Z [inf]  [2025-12-03 12:57:18.975 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:57:19.085179438Z [inf]      provider: "gemini"
+2025-12-03T12:57:19.085185275Z [inf]      currentCount: 18
+2025-12-03T12:57:19.085192219Z [inf]      limit: 2
+2025-12-03T12:57:19.085198618Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:57:20.114339317Z [inf]  [2025-12-03 12:57:19.819 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:57:20.114346018Z [inf]      provider: "gemini"
+2025-12-03T12:57:20.114353766Z [inf]      currentCount: 19
+2025-12-03T12:57:20.114361758Z [inf]      limit: 2
+2025-12-03T12:57:20.114370665Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:57:21.205515689Z [inf]  [2025-12-03 12:57:20.898 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:57:21.205521661Z [inf]      provider: "gemini"
+2025-12-03T12:57:21.205528931Z [inf]      currentCount: 20
+2025-12-03T12:57:21.205535968Z [inf]      limit: 2
+2025-12-03T12:57:21.205545018Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:57:22.300573685Z [inf]  [2025-12-03 12:57:21.970 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:57:22.300589739Z [inf]      provider: "gemini"
+2025-12-03T12:57:22.300598851Z [inf]      currentCount: 21
+2025-12-03T12:57:22.300607492Z [inf]      limit: 2
+2025-12-03T12:57:22.300619666Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:57:23.241617809Z [inf]  [2025-12-03 12:57:23.039 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:57:23.241624993Z [inf]      provider: "gemini"
+2025-12-03T12:57:23.241630349Z [inf]      currentCount: 22
+2025-12-03T12:57:23.241635005Z [inf]      limit: 2
+2025-12-03T12:57:23.241639991Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:57:24.310888591Z [inf]      queue: "plant-analysis-results"
+2025-12-03T12:57:24.310899494Z [inf]      usedFallback: true
+2025-12-03T12:57:24.311010365Z [inf]  [2025-12-03 12:57:24.070 +0000] [33mWARN[39m: [36mRate limit wait timeout[39m
+2025-12-03T12:57:24.311022709Z [inf]      analysisId: "async_analysis_20251203_125646_56697ecb"
+2025-12-03T12:57:24.311029801Z [inf]      selectedProvider: "gemini"
+2025-12-03T12:57:24.311036187Z [inf]  [2025-12-03 12:57:24.071 +0000] [32mINFO[39m: [36mResult published to PlantAnalysisWorkerService[39m
+2025-12-03T12:57:24.311044861Z [inf]      analysisId: "async_analysis_20251203_125646_56697ecb"
+2025-12-03T12:57:24.311044900Z [inf]      provider: "gemini"
+2025-12-03T12:57:24.311053165Z [inf]      maxWaitMs: 5000
+2025-12-03T12:57:24.311061419Z [inf]      elapsed: 5984
+2025-12-03T12:57:24.311068196Z [inf]  [2025-12-03 12:57:24.070 +0000] [33mWARN[39m: [36mRate limit exceeded, sending error response[39m
+2025-12-03T12:57:43.794996540Z [inf]  [2025-12-03 12:57:42.317 +0000] [32mINFO[39m: [36mProcessing analysis message[39m
+2025-12-03T12:57:43.795002979Z [inf]      analysisId: "async_analysis_20251203_125741_40de195b"
+2025-12-03T12:57:43.795010935Z [inf]      farmerId: "F190"
+2025-12-03T12:57:43.795017345Z [inf]      imageUrl: "https://1lik.net/plant-images/20251203_125742_177_2cf9b93324a242fe84cf94b65672b8ae_async_analysis_20251203_125741_40de195b.jpg"
+2025-12-03T12:57:43.795023349Z [inf]  [2025-12-03 12:57:42.318 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:57:43.795029989Z [inf]      provider: "gemini"
+2025-12-03T12:57:43.795036657Z [inf]      currentCount: 16
+2025-12-03T12:57:43.795043994Z [inf]      limit: 2
+2025-12-03T12:57:43.795051167Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:57:43.795058045Z [inf]  [2025-12-03 12:57:42.518 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:57:43.795065279Z [inf]      provider: "gemini"
+2025-12-03T12:57:43.795072577Z [inf]      currentCount: 17
+2025-12-03T12:57:43.795080113Z [inf]      limit: 2
+2025-12-03T12:57:43.795087420Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:57:43.795094217Z [inf]  [2025-12-03 12:57:42.780 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:57:43.795100801Z [inf]      provider: "gemini"
+2025-12-03T12:57:43.795111981Z [inf]      currentCount: 18
+2025-12-03T12:57:43.795123456Z [inf]      limit: 2
+2025-12-03T12:57:43.795132212Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:57:43.795138876Z [inf]  [2025-12-03 12:57:43.279 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:57:43.795146857Z [inf]      provider: "gemini"
+2025-12-03T12:57:43.795153270Z [inf]      currentCount: 19
+2025-12-03T12:57:43.795160014Z [inf]      limit: 2
+2025-12-03T12:57:43.795166488Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:57:45.193888901Z [inf]  [2025-12-03 12:57:44.139 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:57:45.193903121Z [inf]      provider: "gemini"
+2025-12-03T12:57:45.193909717Z [inf]      currentCount: 20
+2025-12-03T12:57:45.193917148Z [inf]      limit: 2
+2025-12-03T12:57:45.193924418Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:57:46.194870956Z [inf]  [2025-12-03 12:57:45.202 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:57:46.194884793Z [inf]      provider: "gemini"
+2025-12-03T12:57:46.194891318Z [inf]      currentCount: 21
+2025-12-03T12:57:46.194897536Z [inf]      limit: 2
+2025-12-03T12:57:46.194903393Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:57:47.065140415Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:57:47.065264339Z [inf]  [2025-12-03 12:57:46.248 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:57:47.065268920Z [inf]      provider: "gemini"
+2025-12-03T12:57:47.065273282Z [inf]      currentCount: 22
+2025-12-03T12:57:47.065277499Z [inf]      limit: 2
+2025-12-03T12:57:48.083053357Z [inf]  [2025-12-03 12:57:47.311 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:57:48.083059440Z [inf]      provider: "gemini"
+2025-12-03T12:57:48.083064982Z [inf]      currentCount: 23
+2025-12-03T12:57:48.083071366Z [inf]      limit: 2
+2025-12-03T12:57:48.083077511Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:57:48.989871239Z [inf]      analysisId: "async_analysis_20251203_125741_40de195b"
+2025-12-03T12:57:48.989888623Z [inf]  [2025-12-03 12:57:48.405 +0000] [33mWARN[39m: [36mRate limit wait timeout[39m
+2025-12-03T12:57:48.989895222Z [inf]  [2025-12-03 12:57:48.405 +0000] [33mWARN[39m: [36mRate limit exceeded, sending error response[39m
+2025-12-03T12:57:48.989897381Z [inf]      provider: "gemini"
+2025-12-03T12:57:48.989904793Z [inf]      analysisId: "async_analysis_20251203_125741_40de195b"
+2025-12-03T12:57:48.989911008Z [inf]      maxWaitMs: 5000
+2025-12-03T12:57:48.989913970Z [inf]      selectedProvider: "gemini"
+2025-12-03T12:57:48.989920469Z [inf]      elapsed: 6088
+2025-12-03T12:57:48.989923357Z [inf]  [2025-12-03 12:57:48.406 +0000] [32mINFO[39m: [36mResult published to PlantAnalysisWorkerService[39m
+2025-12-03T12:57:48.989961199Z [inf]      queue: "plant-analysis-results"
+2025-12-03T12:57:48.989969073Z [inf]      usedFallback: true
+2025-12-03T12:57:48.989975875Z [inf]  [2025-12-03 12:57:48.492 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-03T12:57:48.989982234Z [inf]      workerId: "worker-staging-gemini"
+2025-12-03T12:57:48.989988885Z [inf]      provider: "healthy"
+2025-12-03T12:57:48.989995111Z [inf]      rabbitmq: "healthy"
+2025-12-03T12:57:48.990001032Z [inf]      redis: "healthy"
+2025-12-03T12:57:48.990007167Z [inf]      overall: "healthy"
+2025-12-03T12:57:48.990013743Z [inf]      processedCount: 1
+2025-12-03T12:57:48.990021584Z [inf]      errorCount: 7
+2025-12-03T12:57:48.990194912Z [inf]      errorRate: "700.00%"
+2025-12-03T12:57:52.005750017Z [inf]  [2025-12-03 12:57:50.985 +0000] [32mINFO[39m: [36mProcessing analysis message[39m
+2025-12-03T12:57:52.005756956Z [inf]      analysisId: "async_analysis_20251203_125719_3da7e7f0"
+2025-12-03T12:57:52.005763430Z [inf]      farmerId: "F190"
+2025-12-03T12:57:52.005771273Z [inf]      imageUrl: "https://1lik.net/plant-images/20251203_125720_830_de4b88e493a842cfb222fd764847c53c_async_analysis_20251203_125719_3da7e7f0.jpg"
+2025-12-03T12:57:52.005777774Z [inf]  [2025-12-03 12:57:50.994 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:57:52.005785167Z [inf]      provider: "gemini"
+2025-12-03T12:57:52.005791298Z [inf]      currentCount: 24
+2025-12-03T12:57:52.005799817Z [inf]      limit: 2
+2025-12-03T12:57:52.005807796Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:57:52.005815407Z [inf]  [2025-12-03 12:57:51.140 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:57:52.005822815Z [inf]      provider: "gemini"
+2025-12-03T12:57:52.005834568Z [inf]      currentCount: 25
+2025-12-03T12:57:52.005841157Z [inf]      limit: 2
+2025-12-03T12:57:52.005848903Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:57:52.005854918Z [inf]  [2025-12-03 12:57:51.405 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:57:52.005862201Z [inf]      provider: "gemini"
+2025-12-03T12:57:52.005868481Z [inf]      currentCount: 26
+2025-12-03T12:57:52.005876861Z [inf]      limit: 2
+2025-12-03T12:57:52.005882901Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:57:52.005889926Z [inf]  [2025-12-03 12:57:51.855 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:57:52.005896056Z [inf]      provider: "gemini"
+2025-12-03T12:57:52.005903439Z [inf]      currentCount: 27
+2025-12-03T12:57:52.005909285Z [inf]      limit: 2
+2025-12-03T12:57:52.005915234Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:57:53.000418795Z [inf]  [2025-12-03 12:57:52.679 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:57:53.000425821Z [inf]      provider: "gemini"
+2025-12-03T12:57:53.000434985Z [inf]      currentCount: 28
+2025-12-03T12:57:53.000449231Z [inf]      limit: 2
+2025-12-03T12:57:53.000456531Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:57:53.919973052Z [inf]  [2025-12-03 12:57:53.707 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:57:53.919977638Z [inf]      provider: "gemini"
+2025-12-03T12:57:53.919983458Z [inf]      currentCount: 29
+2025-12-03T12:57:53.919987977Z [inf]      limit: 2
+2025-12-03T12:57:53.919994459Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:57:55.000614371Z [inf]      limit: 2
+2025-12-03T12:57:55.000620777Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:57:55.000657028Z [inf]  [2025-12-03 12:57:54.762 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:57:55.000669068Z [inf]      provider: "gemini"
+2025-12-03T12:57:55.000676676Z [inf]      currentCount: 30
+2025-12-03T12:57:56.068235549Z [inf]  [2025-12-03 12:57:55.829 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:57:56.068240165Z [inf]      provider: "gemini"
+2025-12-03T12:57:56.068244587Z [inf]      currentCount: 31
+2025-12-03T12:57:56.068249792Z [inf]      limit: 2
+2025-12-03T12:57:56.068254046Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:57:57.073625990Z [inf]  [2025-12-03 12:57:56.899 +0000] [33mWARN[39m: [36mRate limit wait timeout[39m
+2025-12-03T12:57:57.073632769Z [inf]      provider: "gemini"
+2025-12-03T12:57:57.073644843Z [inf]      maxWaitMs: 5000
+2025-12-03T12:57:57.073650503Z [inf]      elapsed: 5914
+2025-12-03T12:57:57.073706201Z [inf]  [2025-12-03 12:57:56.899 +0000] [33mWARN[39m: [36mRate limit exceeded, sending error response[39m
+2025-12-03T12:57:57.073716203Z [inf]      analysisId: "async_analysis_20251203_125719_3da7e7f0"
+2025-12-03T12:57:57.073723970Z [inf]      selectedProvider: "gemini"
+2025-12-03T12:57:57.073730489Z [inf]  [2025-12-03 12:57:56.899 +0000] [32mINFO[39m: [36mResult published to PlantAnalysisWorkerService[39m
+2025-12-03T12:57:57.073736679Z [inf]      analysisId: "async_analysis_20251203_125719_3da7e7f0"
+2025-12-03T12:57:57.073742496Z [inf]      queue: "plant-analysis-results"
+2025-12-03T12:57:57.073748611Z [inf]      usedFallback: true
+2025-12-03T12:58:27.293508248Z [inf]      workerId: "worker-staging-gemini"
+2025-12-03T12:58:27.293508289Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:58:27.293520104Z [inf]  [2025-12-03 12:58:25.586 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:58:27.293520427Z [inf]      provider: "healthy"
+2025-12-03T12:58:27.293527811Z [inf]      provider: "gemini"
+2025-12-03T12:58:27.293528145Z [inf]      rabbitmq: "healthy"
+2025-12-03T12:58:27.293534696Z [inf]      currentCount: 17
+2025-12-03T12:58:27.293534811Z [inf]      redis: "healthy"
+2025-12-03T12:58:27.293541068Z [inf]      overall: "healthy"
+2025-12-03T12:58:27.293541169Z [inf]      limit: 2
+2025-12-03T12:58:27.293547633Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:58:27.293547720Z [inf]      processedCount: 1
+2025-12-03T12:58:27.293553699Z [inf]  [2025-12-03 12:58:25.843 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:58:27.293553807Z [inf]      errorCount: 8
+2025-12-03T12:58:27.293559729Z [inf]      errorRate: "800.00%"
+2025-12-03T12:58:27.293565777Z [inf]  [2025-12-03 12:58:25.409 +0000] [32mINFO[39m: [36mProcessing analysis message[39m
+2025-12-03T12:58:27.293572935Z [inf]      analysisId: "async_analysis_20251203_125824_25b2d423"
+2025-12-03T12:58:27.293579466Z [inf]      farmerId: "F190"
+2025-12-03T12:58:27.293585358Z [inf]      imageUrl: "https://1lik.net/plant-images/20251203_125825_272_dc64e47db27247029ef8fd038a72dd5f_async_analysis_20251203_125824_25b2d423.jpg"
+2025-12-03T12:58:27.293590667Z [inf]  [2025-12-03 12:58:25.411 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:58:27.293596830Z [inf]      provider: "gemini"
+2025-12-03T12:58:27.293602200Z [inf]      currentCount: 16
+2025-12-03T12:58:27.293611192Z [inf]  [2025-12-03 12:58:18.294 +0000] [32mINFO[39m: [36mHealth check[39m
+2025-12-03T12:58:27.293616802Z [inf]      limit: 2
+2025-12-03T12:58:27.296553859Z [inf]      provider: "gemini"
+2025-12-03T12:58:27.296557372Z [inf]      provider: "gemini"
+2025-12-03T12:58:27.296564642Z [inf]      currentCount: 18
+2025-12-03T12:58:27.296570025Z [inf]      currentCount: 19
+2025-12-03T12:58:27.296572428Z [inf]      limit: 2
+2025-12-03T12:58:27.296580137Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:58:27.296580699Z [inf]      limit: 2
+2025-12-03T12:58:27.296588366Z [inf]  [2025-12-03 12:58:26.290 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:58:27.296590866Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:58:28.616557584Z [inf]  [2025-12-03 12:58:27.169 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:58:28.622387295Z [inf]      provider: "gemini"
+2025-12-03T12:58:28.622403764Z [inf]      currentCount: 20
+2025-12-03T12:58:28.622412672Z [inf]      limit: 2
+2025-12-03T12:58:28.622422933Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:58:28.622431091Z [inf]  [2025-12-03 12:58:28.259 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:58:28.622441399Z [inf]      provider: "gemini"
+2025-12-03T12:58:28.622450596Z [inf]      currentCount: 21
+2025-12-03T12:58:28.622461274Z [inf]      limit: 2
+2025-12-03T12:58:28.622470421Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:58:29.963829488Z [inf]  [2025-12-03 12:58:29.276 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:58:29.963839223Z [inf]      provider: "gemini"
+2025-12-03T12:58:29.963846030Z [inf]      currentCount: 22
+2025-12-03T12:58:29.963854446Z [inf]      limit: 2
+2025-12-03T12:58:29.963870377Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:58:31.242969594Z [inf]  [2025-12-03 12:58:30.340 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:58:31.242974520Z [inf]      provider: "gemini"
+2025-12-03T12:58:31.242979589Z [inf]      currentCount: 23
+2025-12-03T12:58:31.242984999Z [inf]      limit: 2
+2025-12-03T12:58:31.242990709Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:58:32.531568424Z [inf]  [2025-12-03 12:58:31.410 +0000] [33mWARN[39m: [36mRate limit wait timeout[39m
+2025-12-03T12:58:32.531575356Z [inf]      provider: "gemini"
+2025-12-03T12:58:32.531583882Z [inf]      maxWaitMs: 5000
+2025-12-03T12:58:32.531590092Z [inf]      elapsed: 6001
+2025-12-03T12:58:32.531598943Z [inf]  [2025-12-03 12:58:31.410 +0000] [33mWARN[39m: [36mRate limit exceeded, sending error response[39m
+2025-12-03T12:58:32.531606219Z [inf]      analysisId: "async_analysis_20251203_125824_25b2d423"
+2025-12-03T12:58:32.531613922Z [inf]      selectedProvider: "gemini"
+2025-12-03T12:58:32.531621142Z [inf]  [2025-12-03 12:58:31.414 +0000] [32mINFO[39m: [36mResult published to PlantAnalysisWorkerService[39m
+2025-12-03T12:58:32.531628710Z [inf]      analysisId: "async_analysis_20251203_125824_25b2d423"
+2025-12-03T12:58:32.531635663Z [inf]      queue: "plant-analysis-results"
+2025-12-03T12:58:32.531642443Z [inf]      usedFallback: true
+2025-12-03T12:58:35.392325698Z [inf]  [2025-12-03 12:58:33.991 +0000] [32mINFO[39m: [36mProcessing analysis message[39m
+2025-12-03T12:58:35.392346901Z [inf]      analysisId: "async_analysis_20251203_125802_083ee9e7"
+2025-12-03T12:58:35.392354106Z [inf]      farmerId: "F190"
+2025-12-03T12:58:35.392361105Z [inf]      imageUrl: "https://1lik.net/plant-images/20251203_125803_849_95ec2ba9205541b89d821d75d3f13f03_async_analysis_20251203_125802_083ee9e7.jpg"
+2025-12-03T12:58:35.392367906Z [inf]  [2025-12-03 12:58:33.992 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:58:35.392374618Z [inf]      provider: "gemini"
+2025-12-03T12:58:35.392381360Z [inf]      currentCount: 24
+2025-12-03T12:58:35.392389054Z [inf]      limit: 2
+2025-12-03T12:58:35.392396055Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:58:35.392403660Z [inf]  [2025-12-03 12:58:34.189 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:58:35.392427004Z [inf]      provider: "gemini"
+2025-12-03T12:58:35.392434447Z [inf]      currentCount: 25
+2025-12-03T12:58:35.392441737Z [inf]      limit: 2
+2025-12-03T12:58:35.392447596Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:58:35.392456178Z [inf]  [2025-12-03 12:58:34.440 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:58:35.392463522Z [inf]      provider: "gemini"
+2025-12-03T12:58:35.392471877Z [inf]      currentCount: 26
+2025-12-03T12:58:35.392478457Z [inf]      limit: 2
+2025-12-03T12:58:35.392484151Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:58:35.392491324Z [inf]  [2025-12-03 12:58:34.885 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:58:35.392497892Z [inf]      provider: "gemini"
+2025-12-03T12:58:35.392505741Z [inf]      currentCount: 27
+2025-12-03T12:58:35.392513182Z [inf]      limit: 2
+2025-12-03T12:58:35.392519784Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:58:36.485584846Z [inf]  [2025-12-03 12:58:35.695 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:58:36.486595505Z [inf]      provider: "gemini"
+2025-12-03T12:58:36.486606124Z [inf]      currentCount: 28
+2025-12-03T12:58:36.492449674Z [inf]      limit: 2
+2025-12-03T12:58:36.492459927Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:58:37.402619520Z [inf]  [2025-12-03 12:58:36.704 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:58:37.402624559Z [inf]      limit: 2
+2025-12-03T12:58:37.402635577Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:58:37.402649923Z [inf]      provider: "gemini"
+2025-12-03T12:58:37.402656233Z [inf]      currentCount: 29
+2025-12-03T12:58:38.490845081Z [inf]  [2025-12-03 12:58:37.797 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:58:38.490850613Z [inf]      provider: "gemini"
+2025-12-03T12:58:38.490911706Z [inf]      currentCount: 30
+2025-12-03T12:58:38.490937257Z [inf]      limit: 2
+2025-12-03T12:58:38.490950561Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:58:39.348354296Z [inf]  [2025-12-03 12:58:38.823 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
+2025-12-03T12:58:39.348361253Z [inf]      provider: "gemini"
+2025-12-03T12:58:39.348365776Z [inf]      currentCount: 31
+2025-12-03T12:58:39.348370434Z [inf]      limit: 2
+2025-12-03T12:58:39.348375016Z [inf]      key: "ziraai:worker:ratelimit:gemini"
+2025-12-03T12:58:40.638675265Z [inf]      provider: "gemini"
+2025-12-03T12:58:40.638683124Z [inf]      maxWaitMs: 5000
+2025-12-03T12:58:40.638690183Z [inf]      elapsed: 5874
+2025-12-03T12:58:40.638698116Z [inf]  [2025-12-03 12:58:39.866 +0000] [33mWARN[39m: [36mRate limit exceeded, sending error response[39m
+2025-12-03T12:58:40.638705406Z [inf]      analysisId: "async_analysis_20251203_125802_083ee9e7"
+2025-12-03T12:58:40.638717393Z [inf]  [2025-12-03 12:58:39.866 +0000] [33mWARN[39m: [36mRate limit wait timeout[39m
+2025-12-03T12:58:40.638723193Z [inf]  [2025-12-03 12:58:39.866 +0000] [32mINFO[39m: [36mResult published to PlantAnalysisWorkerService[39m
+2025-12-03T12:58:40.638726788Z [inf]      selectedProvider: "gemini"
+2025-12-03T12:58:40.638749603Z [inf]      analysisId: "async_analysis_20251203_125802_083ee9e7"
+2025-12-03T12:58:40.638758550Z [inf]      queue: "plant-analysis-results"
+2025-12-03T12:58:40.638765445Z [inf]      usedFallback: true
+2025-12-03T12:58:50.079728744Z [inf]      workerId: "worker-staging-gemini"
+2025-12-03T12:58:50.079741302Z [inf]      provider: "healthy"
+2025-12-03T12:58:50.079749628Z [inf]      rabbitmq: "healthy"
+2025-12-03T12:58:50.079756820Z [inf]      redis: "healthy"
+2025-12-03T12:58:50.079763938Z [inf]      overall: "healthy"
+2025-12-03T12:58:50.079770729Z [inf]      processedCount: 1
+2025-12-03T12:58:50.079776936Z [inf]      errorCount: 10
+2025-12-03T12:58:50.079787270Z [inf]      errorRate: "1000.00%"
+2025-12-03T12:58:50.080556162Z [inf]  [2025-12-03 12:58:49.116 +0000] [32mINFO[39m: [36mHealth check[39m

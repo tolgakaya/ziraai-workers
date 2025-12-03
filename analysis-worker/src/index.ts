@@ -394,28 +394,26 @@ class AnalysisWorker {
       const provider = this.getProvider(undefined);
       const selectedProvider = this.providerSelector.selectProvider(undefined);
 
-      // Check rate limit before processing (use selected provider for rate limiting)
-      const rateLimitAllowed = await this.rateLimiter.waitForRateLimit(
+      // ============================================
+      // WORKER RATE LIMIT CHECK (Safety Net Layer)
+      // ============================================
+      // Instant check - no waiting. If exceeded, throw error to trigger NACK with requeue.
+      // RabbitMQ will automatically redeliver message after consumer processes next message.
+      const rateLimitAllowed = await this.rateLimiter.checkRateLimit(
         selectedProvider,
-        this.config.provider.rateLimit,
-        5000 // Wait up to 5 seconds
+        this.config.provider.rateLimit
       );
 
       if (!rateLimitAllowed) {
         this.logger.warn({
           analysisId: message.AnalysisId,
           selectedProvider,
-        }, 'Rate limit exceeded, sending error response');
+          rateLimit: this.config.provider.rateLimit,
+        }, 'Worker rate limit exceeded - will NACK for requeue');
 
-        // Send error response instead of DLQ (WebAPI expects response)
-        const errorResponse: PlantAnalysisAsyncResponseDto = this.buildErrorResponse(
-          message,
-          'Rate limit exceeded after waiting'
-        );
-        await this.rabbitmq.publishResult(errorResponse);
-
-        this.errorCount++;
-        return;
+        // Throw specific error to trigger NACK (consumer will handle requeue)
+        // This prevents rate limit errors from being sent as error responses
+        throw new Error('RATE_LIMIT_EXCEEDED_AT_WORKER');
       }
 
       // Process with AI provider
