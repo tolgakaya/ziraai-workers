@@ -32,13 +32,34 @@ function buildConfig(): DispatcherConfig {
     }
   }
 
+  // Parse provider metadata (JSON format: {"gemini":{"costPerMillion":1.5},"openai":{"costPerMillion":4.0}})
+  let providerMetadata = undefined;
+  if (process.env.PROVIDER_METADATA) {
+    try {
+      const metadataObj = JSON.parse(process.env.PROVIDER_METADATA);
+      // Convert object to Map with proper types
+      providerMetadata = new Map(Object.entries(metadataObj) as [any, any][]);
+      console.log('Provider metadata loaded from environment');
+    } catch (error) {
+      console.error('Failed to parse PROVIDER_METADATA:', error);
+      console.log('Expected format: {"gemini":{"costPerMillion":1.5},"openai":{"costPerMillion":4.0}}');
+    }
+  }
+
+  // Parse priority order for COST_OPTIMIZED strategy (comma-separated: "gemini,openai,anthropic")
+  const priorityOrder = process.env.PROVIDER_PRIORITY_ORDER
+    ? process.env.PROVIDER_PRIORITY_ORDER.split(',').map(p => p.trim() as any)
+    : undefined;
+
   return {
     dispatcher: {
       id: process.env.DISPATCHER_ID || 'dispatcher-001',
       strategy: (process.env.PROVIDER_SELECTION_STRATEGY as any) || 'FIXED',
       fixedProvider: (process.env.PROVIDER_FIXED as any) || 'openai',
       availableProviders,
-      weights
+      weights,
+      providerMetadata,
+      priorityOrder
     },
     rabbitmq: {
       url: process.env.RABBITMQ_URL || 'amqp://dev:devpass@localhost:5672/',
@@ -53,6 +74,124 @@ function buildConfig(): DispatcherConfig {
         maxRetryAttempts: parseInt(process.env.MAX_RETRY_ATTEMPTS || '3'),
         retryDelayMs: parseInt(process.env.RETRY_DELAY_MS || '1000')
       }
+    },
+    // ============================================
+    // REDIS CONFIGURATION (Rate Limiting)
+    // ============================================
+    redis: {
+      url: process.env.REDIS_URL || 'redis://localhost:6379',
+      keyPrefix: process.env.REDIS_KEY_PREFIX || 'ziraai:dispatcher:ratelimit:',
+      ttl: parseInt(process.env.REDIS_TTL || '120')
+    },
+    // ============================================
+    // RATE LIMIT CONFIGURATION
+    // ============================================
+    rateLimit: {
+      enabled: process.env.RATE_LIMIT_ENABLED !== 'false',  // Default: true
+      delayMs: parseInt(process.env.RATE_LIMIT_DELAY_MS || '30000')  // Default: 30 seconds
+    }
+  };
+}
+
+/**
+ * Debug: Log configuration on startup
+ */
+function logConfiguration(config: DispatcherConfig): void {
+  console.log('='.repeat(60));
+  console.log('DISPATCHER CONFIGURATION');
+  console.log('='.repeat(60));
+  console.log(`Dispatcher ID: ${config.dispatcher.id}`);
+  console.log(`Strategy: ${config.dispatcher.strategy}`);
+  console.log(`Available Providers: ${config.dispatcher.availableProviders?.join(', ')}`);
+  console.log(`\nRate Limiting:`);
+  console.log(`  Enabled: ${config.rateLimit.enabled}`);
+  console.log(`  Delay: ${config.rateLimit.delayMs}ms`);
+  console.log(`  GEMINI_RATE_LIMIT: ${process.env.GEMINI_RATE_LIMIT}`);
+  console.log(`  OPENAI_RATE_LIMIT: ${process.env.OPENAI_RATE_LIMIT}`);
+  console.log(`\nRedis:`);
+  console.log(`  URL: ${config.redis.url}`);
+  console.log(`  Key Prefix: ${config.redis.keyPrefix}`);
+  console.log(`  TTL: ${config.redis.ttl}s`);
+  console.log('='.repeat(60));
+}
+
+/**
+ * Create dispatcher configuration from environment variables
+ */
+function createConfigFromEnv(): DispatcherConfig {
+  // Parse available providers (comma-separated: "openai,gemini,anthropic")
+  const availableProviders = process.env.AVAILABLE_PROVIDERS
+    ? process.env.AVAILABLE_PROVIDERS.split(',').map(p => p.trim() as any)
+    : undefined;
+
+  // Parse weights (JSON array: [{"provider":"openai","weight":50}])
+  let weights = undefined;
+  if (process.env.PROVIDER_WEIGHTS) {
+    try {
+      weights = JSON.parse(process.env.PROVIDER_WEIGHTS);
+    } catch (error) {
+      console.error('Failed to parse PROVIDER_WEIGHTS:', error);
+      console.log('Expected format: [{"provider":"openai","weight":50},{"provider":"gemini","weight":30}]');
+    }
+  }
+
+  // Parse provider metadata (JSON format: {"gemini":{"costPerMillion":1.5},"openai":{"costPerMillion":4.0}})
+  let providerMetadata = undefined;
+  if (process.env.PROVIDER_METADATA) {
+    try {
+      const metadataObj = JSON.parse(process.env.PROVIDER_METADATA);
+      // Convert object to Map with proper types
+      providerMetadata = new Map(Object.entries(metadataObj) as [any, any][]);
+      console.log('Provider metadata loaded from environment');
+    } catch (error) {
+      console.error('Failed to parse PROVIDER_METADATA:', error);
+      console.log('Expected format: {"gemini":{"costPerMillion":1.5},"openai":{"costPerMillion":4.0}}');
+    }
+  }
+
+  // Parse priority order for COST_OPTIMIZED strategy (comma-separated: "gemini,openai,anthropic")
+  const priorityOrder = process.env.PROVIDER_PRIORITY_ORDER
+    ? process.env.PROVIDER_PRIORITY_ORDER.split(',').map(p => p.trim() as any)
+    : undefined;
+
+  return {
+    dispatcher: {
+      id: process.env.DISPATCHER_ID || 'dispatcher-001',
+      strategy: (process.env.PROVIDER_SELECTION_STRATEGY as any) || 'FIXED',
+      fixedProvider: (process.env.PROVIDER_FIXED as any) || 'openai',
+      availableProviders,
+      weights,
+      providerMetadata,
+      priorityOrder
+    },
+    rabbitmq: {
+      url: process.env.RABBITMQ_URL || 'amqp://dev:devpass@localhost:5672/',
+      queues: {
+        rawAnalysis: process.env.RAW_ANALYSIS_QUEUE || 'raw-analysis-queue',
+        openai: process.env.OPENAI_QUEUE || 'openai-analysis-queue',
+        gemini: process.env.GEMINI_QUEUE || 'gemini-analysis-queue',
+        anthropic: process.env.ANTHROPIC_QUEUE || 'anthropic-analysis-queue',
+        dlq: process.env.DLQ_QUEUE || 'analysis-dlq'
+      },
+      retrySettings: {
+        maxRetryAttempts: parseInt(process.env.MAX_RETRY_ATTEMPTS || '3'),
+        retryDelayMs: parseInt(process.env.RETRY_DELAY_MS || '1000')
+      }
+    },
+    // ============================================
+    // REDIS CONFIGURATION (Rate Limiting)
+    // ============================================
+    redis: {
+      url: process.env.REDIS_URL || 'redis://localhost:6379',
+      keyPrefix: process.env.REDIS_KEY_PREFIX || 'ziraai:dispatcher:ratelimit:',
+      ttl: parseInt(process.env.REDIS_TTL || '120')
+    },
+    // ============================================
+    // RATE LIMIT CONFIGURATION
+    // ============================================
+    rateLimit: {
+      enabled: process.env.RATE_LIMIT_ENABLED !== 'false',  // Default: true
+      delayMs: parseInt(process.env.RATE_LIMIT_DELAY_MS || '30000')  // Default: 30 seconds
     }
   };
 }
@@ -67,6 +206,9 @@ async function main() {
   console.log('='.repeat(80));
 
   const config = buildConfig();
+
+  // Log full configuration for debugging
+  logConfiguration(config);
 
   console.log('\nConfiguration:');
   console.log(`  Dispatcher ID: ${config.dispatcher.id}`);

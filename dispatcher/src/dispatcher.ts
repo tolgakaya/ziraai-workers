@@ -5,6 +5,7 @@
 
 import amqp, { Channel, Connection } from 'amqplib';
 import { DispatcherConfig, AnalysisRequest, ProviderType } from './types/config';
+import { RateLimiterService } from './services/rate-limiter.service';
 
 export class Dispatcher {
   private connection: Connection | null = null;
@@ -12,12 +13,21 @@ export class Dispatcher {
   private config: DispatcherConfig;
   private roundRobinIndex: number = 0;
   private availableProviders: ProviderType[];
+  private rateLimiter: RateLimiterService | null = null;
 
   constructor(config: DispatcherConfig) {
     this.config = config;
 
     // Initialize available providers list
     this.availableProviders = config.dispatcher.availableProviders || ['openai', 'gemini', 'anthropic'];
+
+    // Initialize rate limiter if enabled
+    if (config.rateLimit.enabled) {
+      this.rateLimiter = new RateLimiterService(config.redis, console);
+      console.log(`[Dispatcher ${this.config.dispatcher.id}] Rate limiting enabled (delay: ${config.rateLimit.delayMs}ms)`);
+    } else {
+      console.log(`[Dispatcher ${this.config.dispatcher.id}] Rate limiting disabled`);
+    }
 
     console.log(`[Dispatcher ${this.config.dispatcher.id}] Available providers:`, this.availableProviders);
   }
@@ -163,38 +173,46 @@ export class Dispatcher {
   }
 
   /**
-   * COST_OPTIMIZED Strategy: Always prefer cheapest provider
-   * Cost ranking: Gemini ($1,087/1M) > OpenAI ($5,125/1M) > Anthropic ($48,000/1M)
+   * COST_OPTIMIZED Strategy: Route to providers in priority order
+   * Priority determined by PROVIDER_PRIORITY_ORDER environment variable
+   * Default order: gemini → openai → anthropic (cheapest to most expensive)
    */
   private selectProviderQueue_CostOptimized(): string {
-    const costRanking: ProviderType[] = ['gemini', 'openai', 'anthropic'];
+    // Use configured priority order, or fallback to default cost-based ranking
+    const priorityOrder = this.config.dispatcher.priorityOrder || ['gemini', 'openai', 'anthropic'];
 
-    for (const provider of costRanking) {
+    // Select first available provider from priority order
+    for (const provider of priorityOrder) {
       if (this.availableProviders.includes(provider)) {
-        console.log(`[Dispatcher ${this.config.dispatcher.id}] COST_OPTIMIZED selected: ${provider}`);
+        console.log(`[Dispatcher ${this.config.dispatcher.id}] COST_OPTIMIZED selected: ${provider} (priority order)`);
         return this.getQueueForProvider(provider);
       }
     }
 
-    console.warn(`[Dispatcher ${this.config.dispatcher.id}] No available providers in cost ranking, defaulting to openai`);
+    // Fallback if no provider from priority order is available
+    console.warn(`[Dispatcher ${this.config.dispatcher.id}] No available providers in priority order, defaulting to openai`);
     return this.config.rabbitmq.queues.openai;
   }
 
   /**
-   * QUALITY_FIRST Strategy: Always prefer best quality provider
-   * Quality ranking: Anthropic > OpenAI > Gemini
+   * QUALITY_FIRST Strategy: Route to providers in priority order
+   * Priority determined by PROVIDER_PRIORITY_ORDER environment variable
+   * Default order: anthropic → openai → gemini (highest to lowest quality)
    */
   private selectProviderQueue_QualityFirst(): string {
-    const qualityRanking: ProviderType[] = ['anthropic', 'openai', 'gemini'];
+    // Use configured priority order, or fallback to default quality-based ranking
+    const priorityOrder = this.config.dispatcher.priorityOrder || ['anthropic', 'openai', 'gemini'];
 
-    for (const provider of qualityRanking) {
+    // Select first available provider from priority order
+    for (const provider of priorityOrder) {
       if (this.availableProviders.includes(provider)) {
-        console.log(`[Dispatcher ${this.config.dispatcher.id}] QUALITY_FIRST selected: ${provider}`);
+        console.log(`[Dispatcher ${this.config.dispatcher.id}] QUALITY_FIRST selected: ${provider} (priority order)`);
         return this.getQueueForProvider(provider);
       }
     }
 
-    console.warn(`[Dispatcher ${this.config.dispatcher.id}] No available providers in quality ranking, defaulting to openai`);
+    // Fallback if no provider from priority order is available
+    console.warn(`[Dispatcher ${this.config.dispatcher.id}] No available providers in priority order, defaulting to openai`);
     return this.config.rabbitmq.queues.openai;
   }
 
@@ -277,19 +295,112 @@ export class Dispatcher {
   }
 
   /**
-   * Route request to target provider queue
+   * Route request to target provider queue WITH rate limit check
    */
   private async routeToQueue(queueName: string, request: AnalysisRequest): Promise<void> {
     if (!this.channel) {
       throw new Error('Channel not initialized');
     }
 
+    // Extract provider from queue name
+    const provider = this.extractProviderFromQueue(queueName);
+
+    // ============================================
+    // DISPATCHER RATE LIMIT CHECK
+    // ============================================
+    if (this.rateLimiter && this.config.rateLimit.enabled) {
+      const rateLimit = this.getProviderRateLimit(provider);
+      const rateLimitAllowed = await this.rateLimiter.checkRateLimit(provider, rateLimit);
+
+      if (!rateLimitAllowed) {
+        // Rate limit exceeded - route to delayed queue
+        console.warn(
+          `[Dispatcher ${this.config.dispatcher.id}] Rate limit exceeded for ${provider}, ` +
+          `routing to delayed queue (${this.config.rateLimit.delayMs}ms)`
+        );
+
+        await this.routeToDelayedQueue(queueName, request, this.config.rateLimit.delayMs);
+        return;
+      }
+    }
+
+    // Rate limit OK - route to normal queue
     const message = Buffer.from(JSON.stringify(request));
 
     this.channel.sendToQueue(queueName, message, {
       persistent: true,
       contentType: 'application/json'
     });
+
+    console.log(
+      `[Dispatcher ${this.config.dispatcher.id}] Routed ${request.AnalysisId} to ${queueName} ` +
+      `(rate limit OK: ${provider})`
+    );
+  }
+
+  /**
+   * Route to delayed queue using TTL + DLX pattern
+   * RabbitMQ will automatically route message to target queue after delay
+   */
+  private async routeToDelayedQueue(
+    targetQueue: string,
+    request: AnalysisRequest,
+    delayMs: number
+  ): Promise<void> {
+    if (!this.channel) {
+      throw new Error('Channel not initialized');
+    }
+
+    // Delayed queue name pattern: "gemini-analysis-queue-delayed-30000ms"
+    const delayedQueueName = `${targetQueue}-delayed-${delayMs}ms`;
+
+    // Assert delayed queue with DLX configuration
+    await this.channel.assertQueue(delayedQueueName, {
+      durable: true,
+      arguments: {
+        'x-message-ttl': delayMs,  // Message expires after delayMs
+        'x-dead-letter-exchange': '',  // Use default exchange
+        'x-dead-letter-routing-key': targetQueue,  // Route to target queue on expiry
+      }
+    });
+
+    const message = Buffer.from(JSON.stringify(request));
+
+    this.channel.sendToQueue(delayedQueueName, message, {
+      persistent: true,
+      contentType: 'application/json'
+    });
+
+    console.log(
+      `[Dispatcher ${this.config.dispatcher.id}] Routed ${request.AnalysisId} to delayed queue ` +
+      `(${delayedQueueName} → ${targetQueue} after ${delayMs}ms)`
+    );
+  }
+
+  /**
+   * Extract provider name from queue name
+   */
+  private extractProviderFromQueue(queueName: string): ProviderType {
+    if (queueName.includes('gemini')) return 'gemini';
+    if (queueName.includes('openai')) return 'openai';
+    if (queueName.includes('anthropic')) return 'anthropic';
+
+    // Fallback
+    console.warn(`[Dispatcher ${this.config.dispatcher.id}] Unknown queue name: ${queueName}, defaulting to openai`);
+    return 'openai';
+  }
+
+  /**
+   * Get rate limit for provider from environment variables
+   */
+  private getProviderRateLimit(provider: ProviderType): number {
+    const limits: Record<ProviderType, number> = {
+      'gemini': parseInt(process.env.GEMINI_RATE_LIMIT || '500'),
+      'openai': parseInt(process.env.OPENAI_RATE_LIMIT || '5000'),
+      'anthropic': parseInt(process.env.ANTHROPIC_RATE_LIMIT || '400'),
+    };
+
+    return limits[provider] || 1000;
   }
 
   /**
@@ -297,6 +408,11 @@ export class Dispatcher {
    */
   async shutdown(): Promise<void> {
     console.log(`[Dispatcher ${this.config.dispatcher.id}] Shutting down...`);
+
+    // Close rate limiter
+    if (this.rateLimiter) {
+      await this.rateLimiter.close();
+    }
 
     if (this.channel) {
       await (this.channel as any).close();

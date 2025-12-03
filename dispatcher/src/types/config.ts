@@ -17,6 +17,25 @@ export interface WeightConfig {
   weight: number; // Percentage (0-100)
 }
 
+export interface ProviderMetadata {
+  name: ProviderType;
+  inputCostPerMillion?: number;
+  outputCostPerMillion?: number;
+  costPerMillion: number;  // Combined cost for typical analysis (~8.5K input + 1.5K output)
+  qualityScore: number;    // 1-10 scale
+}
+
+export interface RedisConfig {
+  url: string;
+  keyPrefix: string;
+  ttl: number;
+}
+
+export interface RateLimitConfig {
+  enabled: boolean;
+  delayMs: number;  // Delay for rate limited messages (default: 30000ms)
+}
+
 export interface DispatcherConfig {
   dispatcher: {
     id: string;
@@ -24,6 +43,8 @@ export interface DispatcherConfig {
     fixedProvider?: ProviderType;
     availableProviders?: ProviderType[];
     weights?: WeightConfig[];
+    providerMetadata?: Map<ProviderType, ProviderMetadata>;
+    priorityOrder?: ProviderType[];  // For COST_OPTIMIZED strategy
   };
   rabbitmq: {
     url: string;
@@ -39,6 +60,8 @@ export interface DispatcherConfig {
       retryDelayMs: number;
     };
   };
+  redis: RedisConfig;
+  rateLimit: RateLimitConfig;
 }
 
 export interface AnalysisRequest {
