@@ -65,6 +65,7 @@ export class RabbitMQService {
 
   /**
    * Assert that all required queues exist
+   * Strategy: Try passive check first, create only if needed
    */
   private async assertQueues(): Promise<void> {
     if (!this.channel) {
@@ -74,16 +75,44 @@ export class RabbitMQService {
     const queues = Object.values(this.config.queues);
 
     for (const queue of queues) {
-      // assertQueue is idempotent - if queue exists, it will be returned
-      // If queue doesn't exist, it will be created with these parameters
-      // IMPORTANT: Don't use checkQueue() as it closes the channel on NOT_FOUND error
-      await this.channel.assertQueue(queue, {
-        durable: true, // Persist queue to disk
-        arguments: {
-          'x-message-ttl': 86400000, // 24 hours message TTL
-        },
-      });
-      this.logger.debug({ queue }, 'Queue asserted successfully');
+      try {
+        // First, try passive check (doesn't modify existing queue)
+        if (!this.channel) {
+          throw new Error('Channel is null');
+        }
+        await this.channel.checkQueue(queue);
+        this.logger.debug({ queue }, 'Queue exists, using existing configuration');
+      } catch (error: any) {
+        // Queue doesn't exist - need to create it
+        if (error.message && error.message.includes('NOT_FOUND')) {
+          // Channel was closed by checkQueue NOT_FOUND error
+          // Need to recreate channel before assertQueue
+          this.logger.warn({ queue }, 'Queue not found, channel closed - reconnecting');
+
+          // Recreate channel
+          if (this.connection) {
+            this.channel = await (this.connection as any).createChannel();
+            if (!this.channel) {
+              throw new Error('Failed to recreate channel');
+            }
+            await this.channel.prefetch(this.config.prefetchCount);
+          } else {
+            throw new Error('Connection is null, cannot recreate channel');
+          }
+
+          // Now create the queue
+          await this.channel.assertQueue(queue, {
+            durable: true,
+            arguments: {
+              'x-message-ttl': 86400000, // 24 hours
+            },
+          });
+          this.logger.info({ queue }, 'Queue created successfully');
+        } else {
+          // Different error, rethrow
+          throw error;
+        }
+      }
     }
   }
 

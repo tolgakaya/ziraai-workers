@@ -1,0 +1,153 @@
+I/flutter (10186): 🌐 DIO: *** Response ***
+I/flutter (10186): 🌐 DIO: uri: https://ziraai-api-sit.up.railway.app/api/v1/sponsorship/messaging/features?plantAnalysisId=196
+I/flutter (10186): 🌐 DIO: statusCode: 200
+I/flutter (10186): 🌐 DIO: headers:
+I/flutter (10186): 🌐 DIO:  date: Thu, 04 Dec 2025 12:14:04 GMT
+I/flutter (10186): 🌐 DIO:  transfer-encoding: chunked
+I/flutter (10186): 🌐 DIO:  api-supported-versions: 1.0
+I/flutter (10186): 🌐 DIO:  content-type: application/json; charset=utf-8
+I/flutter (10186): 🌐 DIO:  server: railway-edge
+I/flutter (10186): 🌐 DIO:  x-railway-edge: railway/europe-west4-drams3a
+I/flutter (10186): 🌐 DIO:  x-railway-request-id: HCpKUyGxTkSDTGP-jUJq2g
+I/flutter (10186): 🌐 DIO: Response Text:
+I/flutter (10186): 🌐 DIO: {"data":{"voiceMessages":{"enabled":true,"available":true,"requiredTier":"L","maxFileSize":5242880,"maxDuration":60,"allowedTypes":["audio/m4a","audio/aac","audio/mp3","audio/mpeg"]},"imageAttachments":{"enabled":true,"available":true,"requiredTier":"None","maxFileSize":10485760,"allowedTypes":["image/jpeg","image/jpg","image/png","image/webp","image/heic"]},"videoAttachments":{"enabled":false,"available":false,"requiredTier":"XL","maxFileSize":52428800,"maxDuration":60,"allowedTypes":["video/mp4","video/mov","video/avi"],"unavailableReason":"Video Attachments feature is currently disabled"},"fileAttachments":{"enabled":true,"available":true,"requiredTier":"L","maxFileSize":5242880,"allowedTypes":["application/pdf","application/msword","application/vnd.openxmlformats-officedocument.wordprocessingml.document","text/plain"]},"messageEdit":{"enabled":false,"available":false,"requiredTier":"L","timeLimit":3600,"unavailableReason":"Edit Messages feature is currently disabled"},"messageDelete":{"enabled"
+I/flutter (10186): 🌐 DIO:
+I/flutter (10186): ✅ MessagingFeatures loaded for analysis 196: imageAttachments.available=true, fileAttachments.available=true, voiceMessages.available=true
+I/flutter (10186): 🌐 DIO: *** Response ***
+I/flutter (10186): 🌐 DIO: uri: https://ziraai-api-sit.up.railway.app/api/v1/sponsorship/messages/conversation?plantAnalysisId=196&otherUserId=159&page=1&pageSize=20
+I/flutter (10186): 🌐 DIO: statusCode: 200
+I/flutter (10186): 🌐 DIO: headers:
+I/flutter (10186): 🌐 DIO:  date: Thu, 04 Dec 2025 12:14:04 GMT
+I/flutter (10186): 🌐 DIO:  transfer-encoding: chunked
+I/flutter (10186): 🌐 DIO:  api-supported-versions: 1.0
+I/flutter (10186): 🌐 DIO:  content-type: application/json; charset=utf-8
+I/flutter (10186): 🌐 DIO:  server: railway-edge
+I/flutter (10186): 🌐 DIO:  x-railway-edge: railway/europe-west4-drams3a
+I/flutter (10186): 🌐 DIO:  x-railway-request-id: yaIPumiRT_aJ8Lm4YqdHTg
+I/flutter (10186): 🌐 DIO: Response Text:
+I/flutter (10186): 🌐 DIO: {"success":true,"message":"List was paginated successfully.","data":[{"id":128,"plantAnalysisId":196,"fromUserId":159,"toUserId":190,"message":"selam","messageType":"Information","messageStatus":"Read","isRead":true,"sentDate":"2025-12-04T11:59:06.110086","readDate":"2025-12-04T11:59:57.67015","senderRole":"Sponsor","senderName":"User 1114","senderCompany":"dort tarim","senderAvatarUrl":"https://iili.io/K84ne5B.jpg","senderAvatarThumbnailUrl":"https://iili.io/K84n4qJ.jpg","receiverRole":"","receiverName":"User 6386","receiverCompany":"","priority":"Normal","category":"General","hasAttachments":false,"attachmentCount":0,"isVoiceMessage":false,"isEdited":false,"isForwarded":false,"isActive":true}],"pageNumber":1,"pageSize":20,"totalPages":1,"totalRecords":1}   
+I/flutter (10186): 🌐 DIO:
+I/flutter (10186): 📝 _updateMessages called with 1 messages
+I/flutter (10186): 📝 Cleared all messages from controller
+I/flutter (10186): 📝 Inserting TextMessage: id=128, authorId=159, metadata={messageStatus: read, senderAvatarUrl: https://iili.io/K84ne5B.jpg, senderAvatarThumbnailUrl: https://iili.io/K84n4qJ.jpg, attachmentUrls: null, attachmentThumbnails: null, hasAttachments: false, isVoiceMessage: false, voiceMessageUrl: null, voiceMessageDuration: null, voiceMessageWaveform: null}
+I/flutter (10186): 📝 Total messages in controller: 1
+I/flutter (10186): ✅ FARMER CHAT: No unread messages to mark
+I/flutter (10186): 🔧 CREATING Chat WIDGET with custom builders
+I/flutter (10186): 🔧 Custom builders created: true
+I/flutter (10186): 📎 ATTACHMENT DEBUG:
+I/flutter (10186):    Current Tier: Extra Large
+I/flutter (10186):    Image Feature - enabled: true, requiredTier: None, canUse: true
+I/flutter (10186):    File Feature - enabled: true, requiredTier: L, canUse: false
+I/flutter (10186):    Video Feature - enabled: false, requiredTier: XL, canUse: false
+I/flutter (10186):    hasAnyAttachmentFeature: true
+I/flutter (10186): 🎨 BUILDING CUSTOM MESSAGE: isSentByMe=false
+I/flutter (10186): 🎨 Message metadata: {messageStatus: read, senderAvatarUrl: https://iili.io/K84ne5B.jpg, senderAvatarThumbnailUrl: https://iili.io/K84n4qJ.jpg, attachmentUrls: null, attachmentThumbnails: null, hasAttachments: false, isVoiceMessage: false, voiceMessageUrl: null, voiceMessageDuration: null, voiceMessageWaveform: null}
+I/flutter (10186): 🎯 _buildTextMessageWithAvatarStatus: avatarUrl=https://iili.io/K84n4qJ.jpg, status=read
+I/flutter (10186):    📎 Attachments: fullUrls=0, thumbnails=0
+I/flutter (10186):    🎤 Voice: isVoice=false, voiceUrl=null
+I/flutter (10186): [SponsorshipSMS] 🏥 Health Check: Stream subscription active = true
+I/flutter (10186): [SponsorshipSMS] ✅ Health Check: Listener is healthy and active
+I/ImeTracker(10186): com.ziraai.app.staging:768306cb: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false
+D/InsetsController(10186): show(ime(), fromIme=false)
+D/InsetsController(10186): Setting requestedVisibleTypes to -1 (was -9)
+D/InputConnectionAdaptor(10186): The input method toggled cursor monitoring on
+I/AssistStructure(10186): Flattened final assist data: 504 bytes, containing 1 windows, 3 views
+I/ImeTracker(10186): com.ziraai.app.staging:768306cb: onShown
+I/flutter (10186): 🚀 DEBUG: onMessageSend called with text="Aleykm selam"
+I/flutter (10186): 🔷 _sendWithAttachments called: text="Aleykm selam", images=0
+I/flutter (10186): 📤 No attachments, sending regular message
+I/flutter (10186): 📝 _updateMessages called with 1 messages
+I/flutter (10186): 📝 Cleared all messages from controller
+I/flutter (10186): 📝 Inserting TextMessage: id=128, authorId=159, metadata={messageStatus: read, senderAvatarUrl: https://iili.io/K84ne5B.jpg, senderAvatarThumbnailUrl: https://iili.io/K84n4qJ.jpg, attachmentUrls: null, attachmentThumbnails: null, hasAttachments: false, isVoiceMessage: false, voiceMessageUrl: null, voiceMessageDuration: null, voiceMessageWaveform: null}
+I/flutter (10186): 📝 Total messages in controller: 1
+I/flutter (10186): ✅ FARMER CHAT: No unread messages to mark
+I/flutter (10186): 🔧 CREATING Chat WIDGET with custom builders
+I/flutter (10186): 🔧 Custom builders created: true
+I/flutter (10186): 📎 ATTACHMENT DEBUG:
+I/flutter (10186):    Current Tier: Extra Large
+I/flutter (10186):    Image Feature - enabled: true, requiredTier: None, canUse: true
+I/flutter (10186):    File Feature - enabled: true, requiredTier: L, canUse: false
+I/flutter (10186):    Video Feature - enabled: false, requiredTier: XL, canUse: false
+I/flutter (10186):    hasAnyAttachmentFeature: true
+I/flutter (10186): 🎨 BUILDING CUSTOM MESSAGE: isSentByMe=false
+I/flutter (10186): 🎨 Message metadata: {messageStatus: read, senderAvatarUrl: https://iili.io/K84ne5B.jpg, senderAvatarThumbnailUrl: https://iili.io/K84n4qJ.jpg, attachmentUrls: null, attachmentThumbnails: null, hasAttachments: false, isVoiceMessage: false, voiceMessageUrl: null, voiceMessageDuration: null, voiceMessageWaveform: null}
+I/flutter (10186): 🎯 _buildTextMessageWithAvatarStatus: avatarUrl=https://iili.io/K84n4qJ.jpg, status=read
+I/flutter (10186):    📎 Attachments: fullUrls=0, thumbnails=0
+I/flutter (10186):    🎤 Voice: isVoice=false, voiceUrl=null
+I/flutter (10186): 🎨 BUILDING CUSTOM MESSAGE: isSentByMe=false
+I/flutter (10186): 🎨 Message metadata: {messageStatus: read, senderAvatarUrl: https://iili.io/K84ne5B.jpg, senderAvatarThumbnailUrl: https://iili.io/K84n4qJ.jpg, attachmentUrls: null, attachmentThumbnails: null, hasAttachments: false, isVoiceMessage: false, voiceMessageUrl: null, voiceMessageDuration: null, voiceMessageWaveform: null}
+I/flutter (10186): 🎯 _buildTextMessageWithAvatarStatus: avatarUrl=https://iili.io/K84n4qJ.jpg, status=read
+I/flutter (10186):    📎 Attachments: fullUrls=0, thumbnails=0
+I/flutter (10186):    🎤 Voice: isVoice=false, voiceUrl=null
+I/flutter (10186): 🔑 TokenInterceptor: Added valid token to /sponsorship/messages
+I/flutter (10186): 🌐 DIO: *** Request ***
+I/flutter (10186): 🌐 DIO: uri: https://ziraai-api-sit.up.railway.app/api/v1/sponsorship/messages
+I/flutter (10186): 🌐 DIO: method: POST
+I/flutter (10186): 🌐 DIO: responseType: ResponseType.json
+I/flutter (10186): 🌐 DIO: followRedirects: true
+I/flutter (10186): 🌐 DIO: persistentConnection: true
+I/flutter (10186): 🌐 DIO: connectTimeout: 0:00:30.000000
+I/flutter (10186): 🌐 DIO: sendTimeout: null
+I/flutter (10186): 🌐 DIO: receiveTimeout: 0:00:30.000000
+I/flutter (10186): 🌐 DIO: receiveDataWhenStatusError: true
+I/flutter (10186): 🌐 DIO: extra: {}
+I/flutter (10186): 🌐 DIO: headers:
+I/flutter (10186): 🌐 DIO:  Content-Type: application/json
+I/flutter (10186): 🌐 DIO:  Accept: application/json
+I/flutter (10186): 🌐 DIO:  Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjE5MCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJVc2VyIDYzODYiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJiaWxnaUBlZmVuZHlnbG9iYWwuY29tIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbW9iaWxlcGhvbmUiOiIwNTQyMTM5NjM4NiIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6WyJGYXJtZXIiLCJTcG9uc29yIl0sIm5iZiI6MTc2NDg1MDQwMiwiZXhwIjoxNzY0ODU0MDAyLCJpc3MiOiJaaXJhQUlfU3RhZ2luZyIsImF1ZCI6IlppcmFBSV9TdGFnaW5nX1VzZXJzIn0._6Z0duY2rS0gkJ7w7UYq0KjJIS3nhkJoDRKnTBKekzk
+I/flutter (10186): 🌐 DIO: data:
+I/flutter (10186): 🌐 DIO: {plantAnalysisId: 196, toUserId: 159, message: Aleykm selam}
+I/flutter (10186): 🌐 DIO:
+I/flutter (10186): 🎨 BUILDING CUSTOM MESSAGE: isSentByMe=false
+I/flutter (10186): 🎨 Message metadata: {messageStatus: read, senderAvatarUrl: https://iili.io/K84ne5B.jpg, senderAvatarThumbnailUrl: https://iili.io/K84n4qJ.jpg, attachmentUrls: null, attachmentThumbnails: null, hasAttachments: false, isVoiceMessage: false, voiceMessageUrl: null, voiceMessageDuration: null, voiceMessageWaveform: null}
+I/flutter (10186): 🎯 _buildTextMessageWithAvatarStatus: avatarUrl=https://iili.io/K84n4qJ.jpg, status=read
+I/flutter (10186):    📎 Attachments: fullUrls=0, thumbnails=0
+I/flutter (10186):    🎤 Voice: isVoice=false, voiceUrl=null
+I/flutter (10186): 🌐 DIO: *** DioException ***:
+I/flutter (10186): 🌐 DIO: uri: https://ziraai-api-sit.up.railway.app/api/v1/sponsorship/messages
+I/flutter (10186): 🌐 DIO: DioException [bad response]: This exception was thrown because the response has a status code of 400 and RequestOptions.validateStatus was configured to throw for this status code.
+I/flutter (10186): The status code of 400 has the following meaning: "Client error - the request contains bad syntax or cannot be fulfilled"
+I/flutter (10186): Read more about status codes at https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
+I/flutter (10186): In order to resolve this exception you typically have either to verify and fix your request code or you have to fix the server code.
+I/flutter (10186): 🌐 DIO: uri: https://ziraai-api-sit.up.railway.app/api/v1/sponsorship/messages
+I/flutter (10186): 🌐 DIO: statusCode: 400
+I/flutter (10186): 🌐 DIO: headers:
+I/flutter (10186): 🌐 DIO:  date: Thu, 04 Dec 2025 12:14:28 GMT
+I/flutter (10186): 🌐 DIO:  transfer-encoding: chunked
+I/flutter (10186): 🌐 DIO:  api-supported-versions: 1.0
+I/flutter (10186): 🌐 DIO:  content-type: application/json; charset=utf-8
+I/flutter (10186): 🌐 DIO:  server: railway-edge
+I/flutter (10186): 🌐 DIO:  x-railway-edge: railway/europe-west4-drams3a
+I/flutter (10186): 🌐 DIO:  x-railway-request-id: 9sV0szioQPmQTJhAss7a6g
+I/flutter (10186): 🌐 DIO: Response Text:
+I/flutter (10186): 🌐 DIO: {"success":false,"message":"You can only message farmers for analyses done using sponsorship codes you purchased or distributed"}
+I/flutter (10186): 🌐 DIO:
+I/flutter (10186): 🌐 DIO:
+I/flutter (10186): 📝 _updateMessages called with 1 messages
+I/flutter (10186): 📝 Cleared all messages from controller
+I/flutter (10186): 📝 Inserting TextMessage: id=128, authorId=159, metadata={messageStatus: read, senderAvatarUrl: https://iili.io/K84ne5B.jpg, senderAvatarThumbnailUrl: https://iili.io/K84n4qJ.jpg, attachmentUrls: null, attachmentThumbnails: null, hasAttachments: false, isVoiceMessage: false, voiceMessageUrl: null, voiceMessageDuration: null, voiceMessageWaveform: null}
+I/flutter (10186): 📝 Total messages in controller: 1
+I/flutter (10186): ✅ FARMER CHAT: No unread messages to mark
+I/flutter (10186): 🔧 CREATING Chat WIDGET with custom builders
+I/flutter (10186): 🔧 Custom builders created: true
+I/flutter (10186): 📎 ATTACHMENT DEBUG:
+I/flutter (10186):    Current Tier: Extra Large
+I/flutter (10186):    Image Feature - enabled: true, requiredTier: None, canUse: true
+I/flutter (10186):    File Feature - enabled: true, requiredTier: L, canUse: false
+I/flutter (10186):    Video Feature - enabled: false, requiredTier: XL, canUse: false
+I/flutter (10186):    hasAnyAttachmentFeature: true
+I/flutter (10186): 🎨 BUILDING CUSTOM MESSAGE: isSentByMe=false
+I/flutter (10186): 🎨 Message metadata: {messageStatus: read, senderAvatarUrl: https://iili.io/K84ne5B.jpg, senderAvatarThumbnailUrl: https://iili.io/K84n4qJ.jpg, attachmentUrls: null, attachmentThumbnails: null, hasAttachments: false, isVoiceMessage: false, voiceMessageUrl: null, voiceMessageDuration: null, voiceMessageWaveform: null}
+I/flutter (10186): 🎯 _buildTextMessageWithAvatarStatus: avatarUrl=https://iili.io/K84n4qJ.jpg, status=read
+I/flutter (10186):    📎 Attachments: fullUrls=0, thumbnails=0
+I/flutter (10186):    🎤 Voice: isVoice=false, voiceUrl=null
+I/flutter (10186): 🎨 BUILDING CUSTOM MESSAGE: isSentByMe=false
+I/flutter (10186): 🎨 Message metadata: {messageStatus: read, senderAvatarUrl: https://iili.io/K84ne5B.jpg, senderAvatarThumbnailUrl: https://iili.io/K84n4qJ.jpg, attachmentUrls: null, attachmentThumbnails: null, hasAttachments: false, isVoiceMessage: false, voiceMessageUrl: null, voiceMessageDuration: null, voiceMessageWaveform: null}
+I/flutter (10186): 🎯 _buildTextMessageWithAvatarStatus: avatarUrl=https://iili.io/K84n4qJ.jpg, status=read
+I/flutter (10186):    📎 Attachments: fullUrls=0, thumbnails=0
+I/flutter (10186):    🎤 Voice: isVoice=false, voiceUrl=null
+I/flutter (10186): 🎨 BUILDING CUSTOM MESSAGE: isSentByMe=false
+I/flutter (10186): 🎨 Message metadata: {messageStatus: read, senderAvatarUrl: https://iili.io/K84ne5B.jpg, senderAvatarThumbnailUrl: https://iili.io/K84n4qJ.jpg, attachmentUrls: null, attachmentThumbnails: null, hasAttachments: false, isVoiceMessage: false, voiceMessageUrl: null, voiceMessageDuration: null, voiceMessageWaveform: null}
+I/flutter (10186): 🎯 _buildTextMessageWithAvatarStatus: avatarUrl=https://iili.io/K84n4qJ.jpg, status=read
+I/flutter (10186):    📎 Attachments: fullUrls=0, thumbnails=0
+I/flutter (10186):    🎤 Voice: isVoice=false, voiceUrl=null
