@@ -94,8 +94,19 @@ export class RabbitMQService {
             { queue, error: error.message },
             'Queue exists with different configuration - using existing queue'
           );
-          // Queue exists, we can use it even with different params
-          // This makes deployment order irrelevant
+
+          // CRITICAL: RabbitMQ closes the channel after PRECONDITION_FAILED
+          // We need to recreate the channel to continue asserting other queues
+          if (this.connection) {
+            this.channel = await (this.connection as any).createChannel();
+            if (!this.channel) {
+              throw new Error('Failed to recreate channel after PRECONDITION_FAILED');
+            }
+            await this.channel.prefetch(this.config.prefetchCount);
+            this.logger.info('Channel recreated after PRECONDITION_FAILED');
+          } else {
+            throw new Error('Connection is null, cannot recreate channel');
+          }
         } else {
           // Different error, rethrow
           this.logger.error({ queue, error }, 'Failed to assert queue');
