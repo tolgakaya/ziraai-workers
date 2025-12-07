@@ -55,7 +55,6 @@ export class OpenAIProvider {
       // Different from old chat/completions API
       const requestBody = {
         model: this.model,
-        max_tokens: 32000, // CRITICAL: Prevent JSON truncation (gpt-5-mini has higher limits)
         input: [
           {
             role: 'user',
