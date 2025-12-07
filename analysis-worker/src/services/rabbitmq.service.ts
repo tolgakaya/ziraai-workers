@@ -65,7 +65,7 @@ export class RabbitMQService {
 
   /**
    * Assert that all required queues exist
-   * Strategy: Try passive check first, create only if needed
+   * Strategy: Simple and robust - try to create, gracefully handle if exists with different params
    */
   private async assertQueues(): Promise<void> {
     if (!this.channel) {
@@ -76,40 +76,29 @@ export class RabbitMQService {
 
     for (const queue of queues) {
       try {
-        // First, try passive check (doesn't modify existing queue)
-        if (!this.channel) {
-          throw new Error('Channel is null');
-        }
-        await this.channel.checkQueue(queue);
-        this.logger.debug({ queue }, 'Queue exists, using existing configuration');
+        // Simple approach: just assert the queue with our desired configuration
+        // If it exists with same params, this is idempotent (does nothing)
+        // If it doesn't exist, it creates it
+        await this.channel.assertQueue(queue, {
+          durable: true,
+          arguments: {
+            'x-message-ttl': 86400000, // 24 hours
+          },
+        });
+        this.logger.info({ queue }, 'Queue ready (created or already exists with matching config)');
       } catch (error: any) {
-        // Queue doesn't exist - need to create it
-        if (error.message && error.message.includes('NOT_FOUND')) {
-          // Channel was closed by checkQueue NOT_FOUND error
-          // Need to recreate channel before assertQueue
-          this.logger.warn({ queue }, 'Queue not found, channel closed - reconnecting');
-
-          // Recreate channel
-          if (this.connection) {
-            this.channel = await (this.connection as any).createChannel();
-            if (!this.channel) {
-              throw new Error('Failed to recreate channel');
-            }
-            await this.channel.prefetch(this.config.prefetchCount);
-          } else {
-            throw new Error('Connection is null, cannot recreate channel');
-          }
-
-          // Now create the queue
-          await this.channel.assertQueue(queue, {
-            durable: true,
-            arguments: {
-              'x-message-ttl': 86400000, // 24 hours
-            },
-          });
-          this.logger.info({ queue }, 'Queue created successfully');
+        // PRECONDITION_FAILED means queue exists with different parameters
+        // In this case, we'll use the existing queue (graceful degradation)
+        if (error.message && error.message.includes('PRECONDITION_FAILED')) {
+          this.logger.warn(
+            { queue, error: error.message },
+            'Queue exists with different configuration - using existing queue'
+          );
+          // Queue exists, we can use it even with different params
+          // This makes deployment order irrelevant
         } else {
           // Different error, rethrow
+          this.logger.error({ queue, error }, 'Failed to assert queue');
           throw error;
         }
       }
