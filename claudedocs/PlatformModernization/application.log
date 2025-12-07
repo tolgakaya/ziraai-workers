@@ -1,691 +1,224 @@
-2025-12-03T12:54:47.000000000Z [inf]  Starting Container
-2025-12-03T12:54:49.326775183Z [inf]  [2025-12-03 12:54:47.624 +0000] [32mINFO[39m: [36mProvider selector initialized[39m
-2025-12-03T12:54:49.326785854Z [inf]      strategy: "FIXED"
-2025-12-03T12:54:49.326792733Z [inf]      availableProviders: [
-2025-12-03T12:54:49.326798621Z [inf]        "gemini"
-2025-12-03T12:54:49.326803267Z [inf]      ]
-2025-12-03T12:54:49.326940104Z [inf]      availableProviders: [
-2025-12-03T12:54:49.326946010Z [inf]        "gemini"
-2025-12-03T12:54:49.326952757Z [inf]      ]
-2025-12-03T12:54:49.326960107Z [inf]      selectionStrategy: "FIXED"
-2025-12-03T12:54:49.326964572Z [inf]      fixedProvider: "gemini"
-2025-12-03T12:54:49.326965962Z [inf]      concurrency: 60
-2025-12-03T12:54:49.326971429Z [inf]  [2025-12-03 12:54:47.622 +0000] [32mINFO[39m: [36mProvider API keys validated[39m
-2025-12-03T12:54:49.326973898Z [inf]  [2025-12-03 12:54:47.632 +0000] [32mINFO[39m: [36mConnecting to RabbitMQ[39m
-2025-12-03T12:54:49.326977784Z [inf]  [2025-12-03 12:54:47.631 +0000] [32mINFO[39m: [36mStarting multi-provider analysis worker[39m
-2025-12-03T12:54:49.326985146Z [inf]      url: "amqp://DIjL9Z7aGtLIG5z6:***@rabbitmq.railway.internal:5672"
-2025-12-03T12:54:49.326989449Z [inf]      workerId: "worker-staging-gemini"
-2025-12-03T12:54:49.326996351Z [inf]  [2025-12-03 12:54:47.802 +0000] [32mINFO[39m: [36mRedis connected successfully[39m
-2025-12-03T12:54:49.327009417Z [inf]      providers: [
-2025-12-03T12:54:49.327016992Z [inf]        "Gemini"
-2025-12-03T12:54:49.327022140Z [inf]      ]
-2025-12-03T12:54:49.327028073Z [inf]  [2025-12-03 12:54:47.624 +0000] [32mINFO[39m: [36mGemini provider initialized[39m
-2025-12-03T12:54:49.327034331Z [inf]      model: "gemini-2.5-flash"
-2025-12-03T12:54:49.327040706Z [inf]  [2025-12-03 12:54:47.624 +0000] [32mINFO[39m: [36mAI providers initialized[39m
-2025-12-03T12:54:49.327046878Z [inf]      providers: [
-2025-12-03T12:54:49.327052159Z [inf]        "gemini"
-2025-12-03T12:54:49.327058197Z [inf]      ]
-2025-12-03T12:54:50.471103813Z [inf]  [2025-12-03 12:54:47.900 +0000] [32mINFO[39m: [36mRabbitMQ connected successfully[39m
-2025-12-03T12:54:50.471111993Z [inf]  [2025-12-03 12:54:47.900 +0000] [32mINFO[39m: [36mUsing NEW queue system: Provider-specific queues[39m
-2025-12-03T12:54:50.471119839Z [inf]  [2025-12-03 12:54:47.902 +0000] [32mINFO[39m: [36mStarting consumer[39m
-2025-12-03T12:54:50.471127976Z [inf]      queueName: "gemini-analysis-queue"
-2025-12-03T12:54:50.471135657Z [inf]  [2025-12-03 12:54:47.906 +0000] [32mINFO[39m: [36mStarted consuming from provider-specific queue (FIXED strategy)[39m
-2025-12-03T12:54:50.471143433Z [inf]      strategy: "FIXED"
-2025-12-03T12:54:50.471151312Z [inf]      fixedProvider: "gemini"
-2025-12-03T12:54:50.471163524Z [inf]      queue: "gemini-analysis-queue"
-2025-12-03T12:54:50.471171738Z [inf]      availableProviders: [
-2025-12-03T12:54:50.471178460Z [inf]        "gemini"
-2025-12-03T12:54:50.471184708Z [inf]      ]
-2025-12-03T12:54:50.471191540Z [inf]  [2025-12-03 12:54:47.906 +0000] [32mINFO[39m: [36mWorker started successfully and consuming from queues[39m
-2025-12-03T12:54:50.471198290Z [inf]      workerId: "worker-staging-gemini"
-2025-12-03T12:54:50.471204960Z [inf]      system: "NEW (Provider Queues)"
-2025-12-03T12:54:50.471212129Z [inf]      queues: [
-2025-12-03T12:54:50.471218285Z [inf]        "openai-analysis-queue",
-2025-12-03T12:54:50.471225095Z [inf]        "gemini-analysis-queue",
-2025-12-03T12:54:50.471231295Z [inf]        "anthropic-analysis-queue"
-2025-12-03T12:54:50.471302144Z [inf]      ]
-2025-12-03T12:54:50.471312107Z [inf]      providerCount: 1
-2025-12-03T12:54:50.471321026Z [inf]      availableProviders: [
-2025-12-03T12:54:50.471327957Z [inf]        "gemini"
-2025-12-03T12:54:50.471334966Z [inf]      ]
-2025-12-03T12:54:54.846959907Z [inf]  [2025-12-03 12:54:53.592 +0000] [32mINFO[39m: [36mProcessing analysis message[39m
-2025-12-03T12:54:54.846973069Z [inf]      analysisId: "async_analysis_20251203_125448_b7fa9578"
-2025-12-03T12:54:54.846981856Z [inf]      farmerId: "F190"
-2025-12-03T12:54:54.846989970Z [inf]      imageUrl: "https://1lik.net/plant-images/20251203_125449_635_32d0f4b2e3e6445f9f95830df4e2d927_async_analysis_20251203_125448_b7fa9578.jpg"
-2025-12-03T12:54:54.847000085Z [inf]  [2025-12-03 12:54:53.599 +0000] [32mINFO[39m: [36mStarting Gemini analysis[39m
-2025-12-03T12:54:54.847007040Z [inf]      analysisId: "async_analysis_20251203_125448_b7fa9578"
-2025-12-03T12:54:54.847014108Z [inf]      farmerId: "F190"
-2025-12-03T12:54:54.847020992Z [inf]      imageUrl: "https://1lik.net/plant-images/20251203_125449_635_32d0f4b2e3e6445f9f95830df4e2d927_async_analysis_20251203_125448_b7fa9578.jpg"
-2025-12-03T12:54:54.847029467Z [inf]      cropType: "Domates"
-2025-12-03T12:55:14.759055209Z [inf]  [2025-12-03 12:55:11.208 +0000] [32mINFO[39m: [36mProcessing analysis message[39m
-2025-12-03T12:55:14.759062809Z [inf]      analysisId: "async_analysis_20251203_125510_170cd05d"
-2025-12-03T12:55:14.759069927Z [inf]      farmerId: "F190"
-2025-12-03T12:55:14.759080538Z [inf]      imageUrl: "https://1lik.net/plant-images/20251203_125511_073_01f44bf0e9434e949866963ee010d07b_async_analysis_20251203_125510_170cd05d.jpg"
-2025-12-03T12:55:14.759090437Z [inf]  [2025-12-03 12:55:11.212 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:55:14.759097806Z [inf]      provider: "gemini"
-2025-12-03T12:55:14.759104668Z [inf]      currentCount: 2
-2025-12-03T12:55:14.759111658Z [inf]      limit: 2
-2025-12-03T12:55:14.759118612Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:55:14.759127129Z [inf]  [2025-12-03 12:55:11.354 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:55:14.759133848Z [inf]      provider: "gemini"
-2025-12-03T12:55:14.759143647Z [inf]      currentCount: 3
-2025-12-03T12:55:14.759150674Z [inf]      limit: 2
-2025-12-03T12:55:14.759156797Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:55:14.759163865Z [inf]  [2025-12-03 12:55:11.585 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:55:14.759170578Z [inf]      provider: "gemini"
-2025-12-03T12:55:14.759176705Z [inf]      currentCount: 4
-2025-12-03T12:55:14.759183304Z [inf]      limit: 2
-2025-12-03T12:55:14.759190478Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:55:14.759197609Z [inf]  [2025-12-03 12:55:12.060 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:55:14.759205065Z [inf]      provider: "gemini"
-2025-12-03T12:55:14.759211250Z [inf]      currentCount: 5
-2025-12-03T12:55:14.759217015Z [inf]      limit: 2
-2025-12-03T12:55:14.759383715Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:55:16.237411861Z [inf]      totalTokens: 6816
-2025-12-03T12:55:16.237430995Z [inf]      costUsd: 0.000919
-2025-12-03T12:55:16.237445802Z [inf]  [2025-12-03 12:55:14.627 +0000] [32mINFO[39m: [36mResult published to PlantAnalysisWorkerService[39m
-2025-12-03T12:55:16.237459813Z [inf]      analysisId: "async_analysis_20251203_125448_b7fa9578"
-2025-12-03T12:55:16.237471776Z [inf]      queue: "plant-analysis-results"
-2025-12-03T12:55:16.237484054Z [inf]      responseQueue: "plant-analysis-results"
-2025-12-03T12:55:16.237496196Z [inf]      usedFallback: false
-2025-12-03T12:55:16.237507940Z [inf]  [2025-12-03 12:55:14.627 +0000] [32mINFO[39m: [36mAnalysis completed and result published[39m
-2025-12-03T12:55:16.237519099Z [inf]      analysisId: "async_analysis_20251203_125448_b7fa9578"
-2025-12-03T12:55:16.237532478Z [inf]      processingTimeMs: 21035
-2025-12-03T12:55:16.237544881Z [inf]      totalTokens: 6816
-2025-12-03T12:55:16.238128791Z [inf]  [2025-12-03 12:55:12.896 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:55:16.238135112Z [inf]      provider: "gemini"
-2025-12-03T12:55:16.238142039Z [inf]      currentCount: 6
-2025-12-03T12:55:16.238148707Z [inf]      limit: 2
-2025-12-03T12:55:16.238155051Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:55:16.238161593Z [inf]  [2025-12-03 12:55:13.989 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:55:16.238168629Z [inf]      provider: "gemini"
-2025-12-03T12:55:16.238174842Z [inf]      currentCount: 7
-2025-12-03T12:55:16.238180562Z [inf]      limit: 2
-2025-12-03T12:55:16.238187288Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:55:16.238195592Z [inf]  [2025-12-03 12:55:14.624 +0000] [32mINFO[39m: [36mGemini analysis completed successfully[39m
-2025-12-03T12:55:16.238203640Z [inf]      analysisId: "async_analysis_20251203_125448_b7fa9578"
-2025-12-03T12:55:16.238211138Z [inf]      processingTimeMs: 21024
-2025-12-03T12:55:17.655506744Z [inf]      costUsd: 0.000919
-2025-12-03T12:55:17.655513910Z [inf]  [2025-12-03 12:55:15.067 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:55:17.655520875Z [inf]      provider: "gemini"
-2025-12-03T12:55:17.655533057Z [inf]      currentCount: 8
-2025-12-03T12:55:17.655539891Z [inf]      limit: 2
-2025-12-03T12:55:17.655546510Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:55:17.655552633Z [inf]  [2025-12-03 12:55:16.140 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:55:17.655559879Z [inf]      provider: "gemini"
-2025-12-03T12:55:17.655567669Z [inf]      currentCount: 9
-2025-12-03T12:55:17.655574827Z [inf]      limit: 2
-2025-12-03T12:55:17.655582784Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:55:17.655589484Z [inf]  [2025-12-03 12:55:17.162 +0000] [33mWARN[39m: [36mRate limit wait timeout[39m
-2025-12-03T12:55:17.655595687Z [inf]      provider: "gemini"
-2025-12-03T12:55:17.655601970Z [inf]      maxWaitMs: 5000
-2025-12-03T12:55:17.655608624Z [inf]      elapsed: 5954
-2025-12-03T12:55:17.655614437Z [inf]  [2025-12-03 12:55:17.162 +0000] [33mWARN[39m: [36mRate limit exceeded, sending error response[39m
-2025-12-03T12:55:17.655621515Z [inf]      analysisId: "async_analysis_20251203_125510_170cd05d"
-2025-12-03T12:55:17.655629112Z [inf]      selectedProvider: "gemini"
-2025-12-03T12:55:17.655636319Z [inf]  [2025-12-03 12:55:17.164 +0000] [32mINFO[39m: [36mResult published to PlantAnalysisWorkerService[39m
-2025-12-03T12:55:17.655642808Z [inf]      analysisId: "async_analysis_20251203_125510_170cd05d"
-2025-12-03T12:55:17.655649081Z [inf]      queue: "plant-analysis-results"
-2025-12-03T12:55:17.655657702Z [inf]      usedFallback: true
-2025-12-03T12:55:19.797377955Z [inf]  [2025-12-03 12:55:18.276 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-03T12:55:19.797386209Z [inf]      workerId: "worker-staging-gemini"
-2025-12-03T12:55:19.797393458Z [inf]      provider: "healthy"
-2025-12-03T12:55:19.797399551Z [inf]      rabbitmq: "healthy"
-2025-12-03T12:55:19.797407930Z [inf]      redis: "healthy"
-2025-12-03T12:55:19.797415344Z [inf]      overall: "healthy"
-2025-12-03T12:55:19.797422925Z [inf]      processedCount: 1
-2025-12-03T12:55:19.797430500Z [inf]      errorCount: 1
-2025-12-03T12:55:19.797437473Z [inf]      errorRate: "100.00%"
-2025-12-03T12:55:50.837266441Z [inf]  [2025-12-03 12:55:48.246 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-03T12:55:50.837272088Z [inf]      workerId: "worker-staging-gemini"
-2025-12-03T12:55:50.837277688Z [inf]      provider: "healthy"
-2025-12-03T12:55:50.837284335Z [inf]      rabbitmq: "healthy"
-2025-12-03T12:55:50.837291615Z [inf]      redis: "healthy"
-2025-12-03T12:55:50.837298136Z [inf]      overall: "healthy"
-2025-12-03T12:55:50.837304145Z [inf]      processedCount: 1
-2025-12-03T12:55:50.837310539Z [inf]      errorCount: 1
-2025-12-03T12:55:50.837316093Z [inf]      errorRate: "100.00%"
-2025-12-03T12:55:55.189095337Z [inf]  [2025-12-03 12:55:54.008 +0000] [32mINFO[39m: [36mProcessing analysis message[39m
-2025-12-03T12:55:55.189103471Z [inf]      analysisId: "async_analysis_20251203_125552_0ec32f9b"
-2025-12-03T12:55:55.189112163Z [inf]      farmerId: "F190"
-2025-12-03T12:55:55.189120971Z [inf]      imageUrl: "https://1lik.net/plant-images/20251203_125553_849_15c43988a3524b0096346d0adf96b83d_async_analysis_20251203_125552_0ec32f9b.jpg"
-2025-12-03T12:55:55.189128953Z [inf]  [2025-12-03 12:55:54.009 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:55:55.189136324Z [inf]      provider: "gemini"
-2025-12-03T12:55:55.189143821Z [inf]      currentCount: 8
-2025-12-03T12:55:55.189151639Z [inf]      limit: 2
-2025-12-03T12:55:55.189159076Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:55:55.189167400Z [inf]  [2025-12-03 12:55:54.162 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:55:55.189174359Z [inf]      provider: "gemini"
-2025-12-03T12:55:55.189181402Z [inf]      currentCount: 9
-2025-12-03T12:55:55.189188115Z [inf]      limit: 2
-2025-12-03T12:55:55.189195505Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:55:55.189202519Z [inf]  [2025-12-03 12:55:54.417 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:55:55.189210002Z [inf]      provider: "gemini"
-2025-12-03T12:55:55.189227075Z [inf]      currentCount: 10
-2025-12-03T12:55:55.189234724Z [inf]      limit: 2
-2025-12-03T12:55:55.189243144Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:55:55.189251363Z [inf]  [2025-12-03 12:55:54.876 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:55:55.189258469Z [inf]      provider: "gemini"
-2025-12-03T12:55:55.189265597Z [inf]      currentCount: 11
-2025-12-03T12:55:55.189273193Z [inf]      limit: 2
-2025-12-03T12:55:55.189280538Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:55:56.480082469Z [inf]  [2025-12-03 12:55:55.724 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:55:56.480538410Z [inf]      provider: "gemini"
-2025-12-03T12:55:56.480556177Z [inf]      currentCount: 12
-2025-12-03T12:55:56.480563756Z [inf]      limit: 2
-2025-12-03T12:55:56.480572306Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:55:57.685262669Z [inf]      provider: "gemini"
-2025-12-03T12:55:57.685270492Z [inf]      currentCount: 13
-2025-12-03T12:55:57.685297645Z [inf]      limit: 2
-2025-12-03T12:55:57.685303479Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:55:57.685358375Z [inf]  [2025-12-03 12:55:56.754 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:55:59.233245839Z [inf]  [2025-12-03 12:55:57.779 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:55:59.233252852Z [inf]      provider: "gemini"
-2025-12-03T12:55:59.233260058Z [inf]      currentCount: 14
-2025-12-03T12:55:59.233266490Z [inf]      limit: 2
-2025-12-03T12:55:59.233283462Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:56:00.413607846Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:56:00.413619499Z [inf]  [2025-12-03 12:55:59.818 +0000] [33mWARN[39m: [36mRate limit wait timeout[39m
-2025-12-03T12:56:00.413623957Z [inf]      queue: "plant-analysis-results"
-2025-12-03T12:56:00.413632104Z [inf]      selectedProvider: "gemini"
-2025-12-03T12:56:00.413638438Z [inf]  [2025-12-03 12:55:59.818 +0000] [33mWARN[39m: [36mRate limit exceeded, sending error response[39m
-2025-12-03T12:56:00.413644266Z [inf]  [2025-12-03 12:55:59.819 +0000] [32mINFO[39m: [36mResult published to PlantAnalysisWorkerService[39m
-2025-12-03T12:56:00.413655168Z [inf]      analysisId: "async_analysis_20251203_125552_0ec32f9b"
-2025-12-03T12:56:00.413655668Z [inf]      provider: "gemini"
-2025-12-03T12:56:00.413658619Z [inf]  [2025-12-03 12:55:58.805 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:56:00.413661672Z [inf]      analysisId: "async_analysis_20251203_125552_0ec32f9b"
-2025-12-03T12:56:00.413669556Z [inf]      maxWaitMs: 5000
-2025-12-03T12:56:00.413669767Z [inf]      provider: "gemini"
-2025-12-03T12:56:00.413679481Z [inf]      currentCount: 15
-2025-12-03T12:56:00.413684690Z [inf]      usedFallback: true
-2025-12-03T12:56:00.413689859Z [inf]      limit: 2
-2025-12-03T12:56:00.413863507Z [inf]      elapsed: 5810
-2025-12-03T12:56:03.432205908Z [inf]  [2025-12-03 12:56:02.544 +0000] [32mINFO[39m: [36mProcessing analysis message[39m
-2025-12-03T12:56:03.432213229Z [inf]      analysisId: "async_analysis_20251203_125531_9014b4c6"
-2025-12-03T12:56:03.432220951Z [inf]      farmerId: "F190"
-2025-12-03T12:56:03.432228380Z [inf]      imageUrl: "https://1lik.net/plant-images/20251203_125532_368_87dfafb610514a07bcbb662f6f954143_async_analysis_20251203_125531_9014b4c6.jpg"
-2025-12-03T12:56:03.432235894Z [inf]  [2025-12-03 12:56:02.545 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:56:03.432243678Z [inf]      provider: "gemini"
-2025-12-03T12:56:03.432251075Z [inf]      currentCount: 16
-2025-12-03T12:56:03.432257656Z [inf]      limit: 2
-2025-12-03T12:56:03.432264024Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:56:03.432271916Z [inf]  [2025-12-03 12:56:02.658 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:56:03.432278972Z [inf]      provider: "gemini"
-2025-12-03T12:56:03.432286069Z [inf]      currentCount: 17
-2025-12-03T12:56:03.432293331Z [inf]      limit: 2
-2025-12-03T12:56:03.432300781Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:56:03.432308287Z [inf]  [2025-12-03 12:56:02.879 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:56:03.432315076Z [inf]      provider: "gemini"
-2025-12-03T12:56:03.432321443Z [inf]      currentCount: 18
-2025-12-03T12:56:03.432327038Z [inf]      limit: 2
-2025-12-03T12:56:03.432333449Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:56:03.432339799Z [inf]  [2025-12-03 12:56:03.335 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:56:03.432345522Z [inf]      provider: "gemini"
-2025-12-03T12:56:03.432351484Z [inf]      currentCount: 19
-2025-12-03T12:56:03.432357443Z [inf]      limit: 2
-2025-12-03T12:56:03.432364599Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:56:04.511699604Z [inf]  [2025-12-03 12:56:04.164 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:56:04.511706467Z [inf]      provider: "gemini"
-2025-12-03T12:56:04.511712691Z [inf]      currentCount: 20
-2025-12-03T12:56:04.511718282Z [inf]      limit: 2
-2025-12-03T12:56:04.511724240Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:56:05.539967250Z [inf]  [2025-12-03 12:56:05.211 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:56:05.539973448Z [inf]      provider: "gemini"
-2025-12-03T12:56:05.539980054Z [inf]      currentCount: 21
-2025-12-03T12:56:05.539986519Z [inf]      limit: 2
-2025-12-03T12:56:05.539995033Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:56:06.785060283Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:56:06.785107189Z [inf]      provider: "gemini"
-2025-12-03T12:56:06.785116705Z [inf]      currentCount: 22
-2025-12-03T12:56:06.785125979Z [inf]  [2025-12-03 12:56:06.247 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:56:06.785127762Z [inf]      limit: 2
-2025-12-03T12:56:07.923298393Z [inf]      limit: 2
-2025-12-03T12:56:07.923307079Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:56:07.923327496Z [inf]  [2025-12-03 12:56:07.341 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:56:07.923352993Z [inf]      provider: "gemini"
-2025-12-03T12:56:07.923365761Z [inf]      currentCount: 23
-2025-12-03T12:56:08.876664104Z [inf]  [2025-12-03 12:56:08.412 +0000] [33mWARN[39m: [36mRate limit wait timeout[39m
-2025-12-03T12:56:08.876677562Z [inf]      provider: "gemini"
-2025-12-03T12:56:08.876685346Z [inf]      maxWaitMs: 5000
-2025-12-03T12:56:08.876692965Z [inf]      elapsed: 5868
-2025-12-03T12:56:08.876711006Z [inf]  [2025-12-03 12:56:08.412 +0000] [33mWARN[39m: [36mRate limit exceeded, sending error response[39m
-2025-12-03T12:56:08.876721530Z [inf]      analysisId: "async_analysis_20251203_125531_9014b4c6"
-2025-12-03T12:56:08.876733479Z [inf]      selectedProvider: "gemini"
-2025-12-03T12:56:08.876740144Z [inf]  [2025-12-03 12:56:08.413 +0000] [32mINFO[39m: [36mResult published to PlantAnalysisWorkerService[39m
-2025-12-03T12:56:08.876746969Z [inf]      analysisId: "async_analysis_20251203_125531_9014b4c6"
-2025-12-03T12:56:08.876754673Z [inf]      queue: "plant-analysis-results"
-2025-12-03T12:56:08.876764890Z [inf]      usedFallback: true
-2025-12-03T12:56:18.857335785Z [inf]      processedCount: 1
-2025-12-03T12:56:18.857346676Z [inf]      errorCount: 3
-2025-12-03T12:56:18.857372286Z [inf]      workerId: "worker-staging-gemini"
-2025-12-03T12:56:18.857372442Z [inf]  [2025-12-03 12:56:18.337 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-03T12:56:18.857373522Z [inf]      errorRate: "300.00%"
-2025-12-03T12:56:18.857381589Z [inf]      provider: "healthy"
-2025-12-03T12:56:18.857397500Z [inf]      rabbitmq: "healthy"
-2025-12-03T12:56:18.857399706Z [inf]      overall: "healthy"
-2025-12-03T12:56:18.857404598Z [inf]      redis: "healthy"
-2025-12-03T12:56:28.037349954Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:56:28.037367205Z [inf]  [2025-12-03 12:56:26.739 +0000] [32mINFO[39m: [36mProcessing analysis message[39m
-2025-12-03T12:56:28.037368876Z [inf]  [2025-12-03 12:56:27.235 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:56:28.037381254Z [inf]      provider: "gemini"
-2025-12-03T12:56:28.037392298Z [inf]      analysisId: "async_analysis_20251203_125625_55f6d149"
-2025-12-03T12:56:28.037399542Z [inf]      currentCount: 18
-2025-12-03T12:56:28.037413760Z [inf]      limit: 2
-2025-12-03T12:56:28.037415562Z [inf]      farmerId: "F190"
-2025-12-03T12:56:28.037433885Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:56:28.037435528Z [inf]      imageUrl: "https://1lik.net/plant-images/20251203_125626_625_4347b5be569248f28f02980ab5ba108f_async_analysis_20251203_125625_55f6d149.jpg"
-2025-12-03T12:56:28.037448336Z [inf]  [2025-12-03 12:56:27.736 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:56:28.037454065Z [inf]  [2025-12-03 12:56:26.740 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:56:28.037463267Z [inf]      provider: "gemini"
-2025-12-03T12:56:28.037472156Z [inf]      provider: "gemini"
-2025-12-03T12:56:28.037476373Z [inf]      currentCount: 19
-2025-12-03T12:56:28.037491355Z [inf]      currentCount: 16
-2025-12-03T12:56:28.037495576Z [inf]      limit: 2
-2025-12-03T12:56:28.037510724Z [inf]      limit: 2
-2025-12-03T12:56:28.037513249Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:56:28.037523985Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:56:28.037535302Z [inf]  [2025-12-03 12:56:26.934 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:56:28.037545973Z [inf]      provider: "gemini"
-2025-12-03T12:56:28.037559660Z [inf]      currentCount: 17
-2025-12-03T12:56:28.037571102Z [inf]      limit: 2
-2025-12-03T12:56:29.072588042Z [inf]  [2025-12-03 12:56:28.619 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:56:29.072593863Z [inf]      provider: "gemini"
-2025-12-03T12:56:29.072599148Z [inf]      currentCount: 20
-2025-12-03T12:56:29.072604314Z [inf]      limit: 2
-2025-12-03T12:56:29.072610049Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:56:30.183050970Z [inf]  [2025-12-03 12:56:29.646 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:56:30.183057546Z [inf]      provider: "gemini"
-2025-12-03T12:56:30.183064313Z [inf]      currentCount: 21
-2025-12-03T12:56:30.183071459Z [inf]      limit: 2
-2025-12-03T12:56:30.183078034Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:56:31.264389491Z [inf]  [2025-12-03 12:56:30.715 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:56:31.264397033Z [inf]      provider: "gemini"
-2025-12-03T12:56:31.264403995Z [inf]      currentCount: 22
-2025-12-03T12:56:31.264411188Z [inf]      limit: 2
-2025-12-03T12:56:31.264416622Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:56:32.239992767Z [inf]  [2025-12-03 12:56:31.812 +0000] [33mWARN[39m: [36mRate limit wait timeout[39m
-2025-12-03T12:56:32.239999394Z [inf]      provider: "gemini"
-2025-12-03T12:56:32.240005297Z [inf]      maxWaitMs: 5000
-2025-12-03T12:56:32.240012620Z [inf]      elapsed: 5072
-2025-12-03T12:56:32.240018226Z [inf]  [2025-12-03 12:56:31.812 +0000] [33mWARN[39m: [36mRate limit exceeded, sending error response[39m
-2025-12-03T12:56:32.240033707Z [inf]      analysisId: "async_analysis_20251203_125625_55f6d149"
-2025-12-03T12:56:32.240040173Z [inf]      selectedProvider: "gemini"
-2025-12-03T12:56:32.240047838Z [inf]  [2025-12-03 12:56:31.812 +0000] [32mINFO[39m: [36mResult published to PlantAnalysisWorkerService[39m
-2025-12-03T12:56:32.240052921Z [inf]      analysisId: "async_analysis_20251203_125625_55f6d149"
-2025-12-03T12:56:32.244250272Z [inf]      queue: "plant-analysis-results"
-2025-12-03T12:56:32.244266260Z [inf]      usedFallback: true
-2025-12-03T12:56:51.900330956Z [inf]  [2025-12-03 12:56:48.243 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-03T12:56:51.900336693Z [inf]      workerId: "worker-staging-gemini"
-2025-12-03T12:56:51.900341536Z [inf]      provider: "healthy"
-2025-12-03T12:56:51.900346015Z [inf]      rabbitmq: "healthy"
-2025-12-03T12:56:51.900351242Z [inf]      redis: "healthy"
-2025-12-03T12:56:51.900356924Z [inf]      overall: "healthy"
-2025-12-03T12:56:51.900373099Z [inf]      processedCount: 1
-2025-12-03T12:56:51.900380295Z [inf]      errorCount: 4
-2025-12-03T12:56:51.900386570Z [inf]      errorRate: "400.00%"
-2025-12-03T12:57:11.601061734Z [inf]      currentCount: 7
-2025-12-03T12:57:11.601218476Z [inf]  [2025-12-03 12:57:08.392 +0000] [32mINFO[39m: [36mProcessing analysis message[39m
-2025-12-03T12:57:11.601224737Z [inf]      imageUrl: "https://1lik.net/plant-images/20251203_125708_206_d6be03bad22a4ad9b7fcf51308656299_async_analysis_20251203_125707_decd0144.jpg"
-2025-12-03T12:57:11.601234782Z [inf]      analysisId: "async_analysis_20251203_125707_decd0144"
-2025-12-03T12:57:11.601238716Z [inf]  [2025-12-03 12:57:08.394 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:57:11.601245423Z [inf]      farmerId: "F190"
-2025-12-03T12:57:11.601248843Z [inf]      provider: "gemini"
-2025-12-03T12:57:11.601304107Z [inf]      limit: 2
-2025-12-03T12:57:11.601312026Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:57:11.601315606Z [inf]  [2025-12-03 12:57:08.839 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:57:11.601320003Z [inf]  [2025-12-03 12:57:08.579 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:57:11.601327249Z [inf]      provider: "gemini"
-2025-12-03T12:57:11.601329369Z [inf]      provider: "gemini"
-2025-12-03T12:57:11.601336447Z [inf]      currentCount: 8
-2025-12-03T12:57:11.601339001Z [inf]      currentCount: 9
-2025-12-03T12:57:11.601346536Z [inf]      limit: 2
-2025-12-03T12:57:11.601347909Z [inf]      limit: 2
-2025-12-03T12:57:11.601355406Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:57:11.601357477Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:57:11.601365532Z [inf]  [2025-12-03 12:57:09.248 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:57:11.601373088Z [inf]      provider: "gemini"
-2025-12-03T12:57:11.601379992Z [inf]      currentCount: 10
-2025-12-03T12:57:11.601387803Z [inf]      limit: 2
-2025-12-03T12:57:11.601394417Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:57:11.610239720Z [inf]  [2025-12-03 12:57:10.145 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:57:11.610247633Z [inf]      provider: "gemini"
-2025-12-03T12:57:11.610254918Z [inf]      currentCount: 11
-2025-12-03T12:57:11.610261808Z [inf]      limit: 2
-2025-12-03T12:57:11.610268807Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:57:11.610404482Z [inf]  [2025-12-03 12:57:11.190 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:57:11.610413461Z [inf]      provider: "gemini"
-2025-12-03T12:57:11.610419968Z [inf]      currentCount: 12
-2025-12-03T12:57:11.610427225Z [inf]      limit: 2
-2025-12-03T12:57:11.610434425Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:57:12.583474487Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:57:12.583561947Z [inf]      provider: "gemini"
-2025-12-03T12:57:12.583570148Z [inf]      currentCount: 13
-2025-12-03T12:57:12.583596119Z [inf]  [2025-12-03 12:57:12.213 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:57:12.584196412Z [inf]      limit: 2
-2025-12-03T12:57:13.895047673Z [inf]  [2025-12-03 12:57:13.242 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:57:13.895053990Z [inf]      provider: "gemini"
-2025-12-03T12:57:13.895060372Z [inf]      currentCount: 14
-2025-12-03T12:57:13.895067073Z [inf]      limit: 2
-2025-12-03T12:57:13.895073946Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:57:14.687051155Z [inf]  [2025-12-03 12:57:14.255 +0000] [33mWARN[39m: [36mRate limit wait timeout[39m
-2025-12-03T12:57:14.687061223Z [inf]      provider: "gemini"
-2025-12-03T12:57:14.687070050Z [inf]      maxWaitMs: 5000
-2025-12-03T12:57:14.687078738Z [inf]      elapsed: 5862
-2025-12-03T12:57:14.687086939Z [inf]  [2025-12-03 12:57:14.255 +0000] [33mWARN[39m: [36mRate limit exceeded, sending error response[39m
-2025-12-03T12:57:14.687096702Z [inf]      analysisId: "async_analysis_20251203_125707_decd0144"
-2025-12-03T12:57:14.687105411Z [inf]      selectedProvider: "gemini"
-2025-12-03T12:57:14.687113054Z [inf]  [2025-12-03 12:57:14.255 +0000] [32mINFO[39m: [36mResult published to PlantAnalysisWorkerService[39m
-2025-12-03T12:57:14.687120717Z [inf]      analysisId: "async_analysis_20251203_125707_decd0144"
-2025-12-03T12:57:14.687127647Z [inf]      queue: "plant-analysis-results"
-2025-12-03T12:57:14.687136928Z [inf]      usedFallback: true
-2025-12-03T12:57:18.919413465Z [inf]      limit: 2
-2025-12-03T12:57:18.919491086Z [inf]  [2025-12-03 12:57:18.086 +0000] [32mINFO[39m: [36mProcessing analysis message[39m
-2025-12-03T12:57:18.919498453Z [inf]      analysisId: "async_analysis_20251203_125646_56697ecb"
-2025-12-03T12:57:18.919505510Z [inf]      farmerId: "F190"
-2025-12-03T12:57:18.919512591Z [inf]      imageUrl: "https://1lik.net/plant-images/20251203_125647_930_047bd3cdb79a4f8995183145302cfbc3_async_analysis_20251203_125646_56697ecb.jpg"
-2025-12-03T12:57:18.919525068Z [inf]  [2025-12-03 12:57:18.088 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:57:18.919535457Z [inf]      provider: "gemini"
-2025-12-03T12:57:18.919544585Z [inf]      currentCount: 15
-2025-12-03T12:57:18.919694264Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:57:18.919704870Z [inf]  [2025-12-03 12:57:18.256 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:57:18.919713653Z [inf]      provider: "gemini"
-2025-12-03T12:57:18.919720235Z [inf]      currentCount: 16
-2025-12-03T12:57:18.919726294Z [inf]      limit: 2
-2025-12-03T12:57:18.919732297Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:57:18.919738928Z [inf]  [2025-12-03 12:57:18.491 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-03T12:57:18.919745697Z [inf]      workerId: "worker-staging-gemini"
-2025-12-03T12:57:18.919751870Z [inf]      provider: "healthy"
-2025-12-03T12:57:18.919758003Z [inf]      rabbitmq: "healthy"
-2025-12-03T12:57:18.919764290Z [inf]      redis: "healthy"
-2025-12-03T12:57:18.919770226Z [inf]      overall: "healthy"
-2025-12-03T12:57:18.919777492Z [inf]      processedCount: 1
-2025-12-03T12:57:18.919785574Z [inf]      errorCount: 5
-2025-12-03T12:57:18.919794194Z [inf]      errorRate: "500.00%"
-2025-12-03T12:57:18.919800499Z [inf]  [2025-12-03 12:57:18.540 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:57:18.922192629Z [inf]      provider: "gemini"
-2025-12-03T12:57:18.922197159Z [inf]      currentCount: 17
-2025-12-03T12:57:18.922202123Z [inf]      limit: 2
-2025-12-03T12:57:18.922206176Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:57:19.085172383Z [inf]  [2025-12-03 12:57:18.975 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:57:19.085179438Z [inf]      provider: "gemini"
-2025-12-03T12:57:19.085185275Z [inf]      currentCount: 18
-2025-12-03T12:57:19.085192219Z [inf]      limit: 2
-2025-12-03T12:57:19.085198618Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:57:20.114339317Z [inf]  [2025-12-03 12:57:19.819 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:57:20.114346018Z [inf]      provider: "gemini"
-2025-12-03T12:57:20.114353766Z [inf]      currentCount: 19
-2025-12-03T12:57:20.114361758Z [inf]      limit: 2
-2025-12-03T12:57:20.114370665Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:57:21.205515689Z [inf]  [2025-12-03 12:57:20.898 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:57:21.205521661Z [inf]      provider: "gemini"
-2025-12-03T12:57:21.205528931Z [inf]      currentCount: 20
-2025-12-03T12:57:21.205535968Z [inf]      limit: 2
-2025-12-03T12:57:21.205545018Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:57:22.300573685Z [inf]  [2025-12-03 12:57:21.970 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:57:22.300589739Z [inf]      provider: "gemini"
-2025-12-03T12:57:22.300598851Z [inf]      currentCount: 21
-2025-12-03T12:57:22.300607492Z [inf]      limit: 2
-2025-12-03T12:57:22.300619666Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:57:23.241617809Z [inf]  [2025-12-03 12:57:23.039 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:57:23.241624993Z [inf]      provider: "gemini"
-2025-12-03T12:57:23.241630349Z [inf]      currentCount: 22
-2025-12-03T12:57:23.241635005Z [inf]      limit: 2
-2025-12-03T12:57:23.241639991Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:57:24.310888591Z [inf]      queue: "plant-analysis-results"
-2025-12-03T12:57:24.310899494Z [inf]      usedFallback: true
-2025-12-03T12:57:24.311010365Z [inf]  [2025-12-03 12:57:24.070 +0000] [33mWARN[39m: [36mRate limit wait timeout[39m
-2025-12-03T12:57:24.311022709Z [inf]      analysisId: "async_analysis_20251203_125646_56697ecb"
-2025-12-03T12:57:24.311029801Z [inf]      selectedProvider: "gemini"
-2025-12-03T12:57:24.311036187Z [inf]  [2025-12-03 12:57:24.071 +0000] [32mINFO[39m: [36mResult published to PlantAnalysisWorkerService[39m
-2025-12-03T12:57:24.311044861Z [inf]      analysisId: "async_analysis_20251203_125646_56697ecb"
-2025-12-03T12:57:24.311044900Z [inf]      provider: "gemini"
-2025-12-03T12:57:24.311053165Z [inf]      maxWaitMs: 5000
-2025-12-03T12:57:24.311061419Z [inf]      elapsed: 5984
-2025-12-03T12:57:24.311068196Z [inf]  [2025-12-03 12:57:24.070 +0000] [33mWARN[39m: [36mRate limit exceeded, sending error response[39m
-2025-12-03T12:57:43.794996540Z [inf]  [2025-12-03 12:57:42.317 +0000] [32mINFO[39m: [36mProcessing analysis message[39m
-2025-12-03T12:57:43.795002979Z [inf]      analysisId: "async_analysis_20251203_125741_40de195b"
-2025-12-03T12:57:43.795010935Z [inf]      farmerId: "F190"
-2025-12-03T12:57:43.795017345Z [inf]      imageUrl: "https://1lik.net/plant-images/20251203_125742_177_2cf9b93324a242fe84cf94b65672b8ae_async_analysis_20251203_125741_40de195b.jpg"
-2025-12-03T12:57:43.795023349Z [inf]  [2025-12-03 12:57:42.318 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:57:43.795029989Z [inf]      provider: "gemini"
-2025-12-03T12:57:43.795036657Z [inf]      currentCount: 16
-2025-12-03T12:57:43.795043994Z [inf]      limit: 2
-2025-12-03T12:57:43.795051167Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:57:43.795058045Z [inf]  [2025-12-03 12:57:42.518 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:57:43.795065279Z [inf]      provider: "gemini"
-2025-12-03T12:57:43.795072577Z [inf]      currentCount: 17
-2025-12-03T12:57:43.795080113Z [inf]      limit: 2
-2025-12-03T12:57:43.795087420Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:57:43.795094217Z [inf]  [2025-12-03 12:57:42.780 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:57:43.795100801Z [inf]      provider: "gemini"
-2025-12-03T12:57:43.795111981Z [inf]      currentCount: 18
-2025-12-03T12:57:43.795123456Z [inf]      limit: 2
-2025-12-03T12:57:43.795132212Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:57:43.795138876Z [inf]  [2025-12-03 12:57:43.279 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:57:43.795146857Z [inf]      provider: "gemini"
-2025-12-03T12:57:43.795153270Z [inf]      currentCount: 19
-2025-12-03T12:57:43.795160014Z [inf]      limit: 2
-2025-12-03T12:57:43.795166488Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:57:45.193888901Z [inf]  [2025-12-03 12:57:44.139 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:57:45.193903121Z [inf]      provider: "gemini"
-2025-12-03T12:57:45.193909717Z [inf]      currentCount: 20
-2025-12-03T12:57:45.193917148Z [inf]      limit: 2
-2025-12-03T12:57:45.193924418Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:57:46.194870956Z [inf]  [2025-12-03 12:57:45.202 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:57:46.194884793Z [inf]      provider: "gemini"
-2025-12-03T12:57:46.194891318Z [inf]      currentCount: 21
-2025-12-03T12:57:46.194897536Z [inf]      limit: 2
-2025-12-03T12:57:46.194903393Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:57:47.065140415Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:57:47.065264339Z [inf]  [2025-12-03 12:57:46.248 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:57:47.065268920Z [inf]      provider: "gemini"
-2025-12-03T12:57:47.065273282Z [inf]      currentCount: 22
-2025-12-03T12:57:47.065277499Z [inf]      limit: 2
-2025-12-03T12:57:48.083053357Z [inf]  [2025-12-03 12:57:47.311 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:57:48.083059440Z [inf]      provider: "gemini"
-2025-12-03T12:57:48.083064982Z [inf]      currentCount: 23
-2025-12-03T12:57:48.083071366Z [inf]      limit: 2
-2025-12-03T12:57:48.083077511Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:57:48.989871239Z [inf]      analysisId: "async_analysis_20251203_125741_40de195b"
-2025-12-03T12:57:48.989888623Z [inf]  [2025-12-03 12:57:48.405 +0000] [33mWARN[39m: [36mRate limit wait timeout[39m
-2025-12-03T12:57:48.989895222Z [inf]  [2025-12-03 12:57:48.405 +0000] [33mWARN[39m: [36mRate limit exceeded, sending error response[39m
-2025-12-03T12:57:48.989897381Z [inf]      provider: "gemini"
-2025-12-03T12:57:48.989904793Z [inf]      analysisId: "async_analysis_20251203_125741_40de195b"
-2025-12-03T12:57:48.989911008Z [inf]      maxWaitMs: 5000
-2025-12-03T12:57:48.989913970Z [inf]      selectedProvider: "gemini"
-2025-12-03T12:57:48.989920469Z [inf]      elapsed: 6088
-2025-12-03T12:57:48.989923357Z [inf]  [2025-12-03 12:57:48.406 +0000] [32mINFO[39m: [36mResult published to PlantAnalysisWorkerService[39m
-2025-12-03T12:57:48.989961199Z [inf]      queue: "plant-analysis-results"
-2025-12-03T12:57:48.989969073Z [inf]      usedFallback: true
-2025-12-03T12:57:48.989975875Z [inf]  [2025-12-03 12:57:48.492 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-03T12:57:48.989982234Z [inf]      workerId: "worker-staging-gemini"
-2025-12-03T12:57:48.989988885Z [inf]      provider: "healthy"
-2025-12-03T12:57:48.989995111Z [inf]      rabbitmq: "healthy"
-2025-12-03T12:57:48.990001032Z [inf]      redis: "healthy"
-2025-12-03T12:57:48.990007167Z [inf]      overall: "healthy"
-2025-12-03T12:57:48.990013743Z [inf]      processedCount: 1
-2025-12-03T12:57:48.990021584Z [inf]      errorCount: 7
-2025-12-03T12:57:48.990194912Z [inf]      errorRate: "700.00%"
-2025-12-03T12:57:52.005750017Z [inf]  [2025-12-03 12:57:50.985 +0000] [32mINFO[39m: [36mProcessing analysis message[39m
-2025-12-03T12:57:52.005756956Z [inf]      analysisId: "async_analysis_20251203_125719_3da7e7f0"
-2025-12-03T12:57:52.005763430Z [inf]      farmerId: "F190"
-2025-12-03T12:57:52.005771273Z [inf]      imageUrl: "https://1lik.net/plant-images/20251203_125720_830_de4b88e493a842cfb222fd764847c53c_async_analysis_20251203_125719_3da7e7f0.jpg"
-2025-12-03T12:57:52.005777774Z [inf]  [2025-12-03 12:57:50.994 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:57:52.005785167Z [inf]      provider: "gemini"
-2025-12-03T12:57:52.005791298Z [inf]      currentCount: 24
-2025-12-03T12:57:52.005799817Z [inf]      limit: 2
-2025-12-03T12:57:52.005807796Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:57:52.005815407Z [inf]  [2025-12-03 12:57:51.140 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:57:52.005822815Z [inf]      provider: "gemini"
-2025-12-03T12:57:52.005834568Z [inf]      currentCount: 25
-2025-12-03T12:57:52.005841157Z [inf]      limit: 2
-2025-12-03T12:57:52.005848903Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:57:52.005854918Z [inf]  [2025-12-03 12:57:51.405 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:57:52.005862201Z [inf]      provider: "gemini"
-2025-12-03T12:57:52.005868481Z [inf]      currentCount: 26
-2025-12-03T12:57:52.005876861Z [inf]      limit: 2
-2025-12-03T12:57:52.005882901Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:57:52.005889926Z [inf]  [2025-12-03 12:57:51.855 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:57:52.005896056Z [inf]      provider: "gemini"
-2025-12-03T12:57:52.005903439Z [inf]      currentCount: 27
-2025-12-03T12:57:52.005909285Z [inf]      limit: 2
-2025-12-03T12:57:52.005915234Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:57:53.000418795Z [inf]  [2025-12-03 12:57:52.679 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:57:53.000425821Z [inf]      provider: "gemini"
-2025-12-03T12:57:53.000434985Z [inf]      currentCount: 28
-2025-12-03T12:57:53.000449231Z [inf]      limit: 2
-2025-12-03T12:57:53.000456531Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:57:53.919973052Z [inf]  [2025-12-03 12:57:53.707 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:57:53.919977638Z [inf]      provider: "gemini"
-2025-12-03T12:57:53.919983458Z [inf]      currentCount: 29
-2025-12-03T12:57:53.919987977Z [inf]      limit: 2
-2025-12-03T12:57:53.919994459Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:57:55.000614371Z [inf]      limit: 2
-2025-12-03T12:57:55.000620777Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:57:55.000657028Z [inf]  [2025-12-03 12:57:54.762 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:57:55.000669068Z [inf]      provider: "gemini"
-2025-12-03T12:57:55.000676676Z [inf]      currentCount: 30
-2025-12-03T12:57:56.068235549Z [inf]  [2025-12-03 12:57:55.829 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:57:56.068240165Z [inf]      provider: "gemini"
-2025-12-03T12:57:56.068244587Z [inf]      currentCount: 31
-2025-12-03T12:57:56.068249792Z [inf]      limit: 2
-2025-12-03T12:57:56.068254046Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:57:57.073625990Z [inf]  [2025-12-03 12:57:56.899 +0000] [33mWARN[39m: [36mRate limit wait timeout[39m
-2025-12-03T12:57:57.073632769Z [inf]      provider: "gemini"
-2025-12-03T12:57:57.073644843Z [inf]      maxWaitMs: 5000
-2025-12-03T12:57:57.073650503Z [inf]      elapsed: 5914
-2025-12-03T12:57:57.073706201Z [inf]  [2025-12-03 12:57:56.899 +0000] [33mWARN[39m: [36mRate limit exceeded, sending error response[39m
-2025-12-03T12:57:57.073716203Z [inf]      analysisId: "async_analysis_20251203_125719_3da7e7f0"
-2025-12-03T12:57:57.073723970Z [inf]      selectedProvider: "gemini"
-2025-12-03T12:57:57.073730489Z [inf]  [2025-12-03 12:57:56.899 +0000] [32mINFO[39m: [36mResult published to PlantAnalysisWorkerService[39m
-2025-12-03T12:57:57.073736679Z [inf]      analysisId: "async_analysis_20251203_125719_3da7e7f0"
-2025-12-03T12:57:57.073742496Z [inf]      queue: "plant-analysis-results"
-2025-12-03T12:57:57.073748611Z [inf]      usedFallback: true
-2025-12-03T12:58:27.293508248Z [inf]      workerId: "worker-staging-gemini"
-2025-12-03T12:58:27.293508289Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:58:27.293520104Z [inf]  [2025-12-03 12:58:25.586 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:58:27.293520427Z [inf]      provider: "healthy"
-2025-12-03T12:58:27.293527811Z [inf]      provider: "gemini"
-2025-12-03T12:58:27.293528145Z [inf]      rabbitmq: "healthy"
-2025-12-03T12:58:27.293534696Z [inf]      currentCount: 17
-2025-12-03T12:58:27.293534811Z [inf]      redis: "healthy"
-2025-12-03T12:58:27.293541068Z [inf]      overall: "healthy"
-2025-12-03T12:58:27.293541169Z [inf]      limit: 2
-2025-12-03T12:58:27.293547633Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:58:27.293547720Z [inf]      processedCount: 1
-2025-12-03T12:58:27.293553699Z [inf]  [2025-12-03 12:58:25.843 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:58:27.293553807Z [inf]      errorCount: 8
-2025-12-03T12:58:27.293559729Z [inf]      errorRate: "800.00%"
-2025-12-03T12:58:27.293565777Z [inf]  [2025-12-03 12:58:25.409 +0000] [32mINFO[39m: [36mProcessing analysis message[39m
-2025-12-03T12:58:27.293572935Z [inf]      analysisId: "async_analysis_20251203_125824_25b2d423"
-2025-12-03T12:58:27.293579466Z [inf]      farmerId: "F190"
-2025-12-03T12:58:27.293585358Z [inf]      imageUrl: "https://1lik.net/plant-images/20251203_125825_272_dc64e47db27247029ef8fd038a72dd5f_async_analysis_20251203_125824_25b2d423.jpg"
-2025-12-03T12:58:27.293590667Z [inf]  [2025-12-03 12:58:25.411 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:58:27.293596830Z [inf]      provider: "gemini"
-2025-12-03T12:58:27.293602200Z [inf]      currentCount: 16
-2025-12-03T12:58:27.293611192Z [inf]  [2025-12-03 12:58:18.294 +0000] [32mINFO[39m: [36mHealth check[39m
-2025-12-03T12:58:27.293616802Z [inf]      limit: 2
-2025-12-03T12:58:27.296553859Z [inf]      provider: "gemini"
-2025-12-03T12:58:27.296557372Z [inf]      provider: "gemini"
-2025-12-03T12:58:27.296564642Z [inf]      currentCount: 18
-2025-12-03T12:58:27.296570025Z [inf]      currentCount: 19
-2025-12-03T12:58:27.296572428Z [inf]      limit: 2
-2025-12-03T12:58:27.296580137Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:58:27.296580699Z [inf]      limit: 2
-2025-12-03T12:58:27.296588366Z [inf]  [2025-12-03 12:58:26.290 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:58:27.296590866Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:58:28.616557584Z [inf]  [2025-12-03 12:58:27.169 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:58:28.622387295Z [inf]      provider: "gemini"
-2025-12-03T12:58:28.622403764Z [inf]      currentCount: 20
-2025-12-03T12:58:28.622412672Z [inf]      limit: 2
-2025-12-03T12:58:28.622422933Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:58:28.622431091Z [inf]  [2025-12-03 12:58:28.259 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:58:28.622441399Z [inf]      provider: "gemini"
-2025-12-03T12:58:28.622450596Z [inf]      currentCount: 21
-2025-12-03T12:58:28.622461274Z [inf]      limit: 2
-2025-12-03T12:58:28.622470421Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:58:29.963829488Z [inf]  [2025-12-03 12:58:29.276 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:58:29.963839223Z [inf]      provider: "gemini"
-2025-12-03T12:58:29.963846030Z [inf]      currentCount: 22
-2025-12-03T12:58:29.963854446Z [inf]      limit: 2
-2025-12-03T12:58:29.963870377Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:58:31.242969594Z [inf]  [2025-12-03 12:58:30.340 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:58:31.242974520Z [inf]      provider: "gemini"
-2025-12-03T12:58:31.242979589Z [inf]      currentCount: 23
-2025-12-03T12:58:31.242984999Z [inf]      limit: 2
-2025-12-03T12:58:31.242990709Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:58:32.531568424Z [inf]  [2025-12-03 12:58:31.410 +0000] [33mWARN[39m: [36mRate limit wait timeout[39m
-2025-12-03T12:58:32.531575356Z [inf]      provider: "gemini"
-2025-12-03T12:58:32.531583882Z [inf]      maxWaitMs: 5000
-2025-12-03T12:58:32.531590092Z [inf]      elapsed: 6001
-2025-12-03T12:58:32.531598943Z [inf]  [2025-12-03 12:58:31.410 +0000] [33mWARN[39m: [36mRate limit exceeded, sending error response[39m
-2025-12-03T12:58:32.531606219Z [inf]      analysisId: "async_analysis_20251203_125824_25b2d423"
-2025-12-03T12:58:32.531613922Z [inf]      selectedProvider: "gemini"
-2025-12-03T12:58:32.531621142Z [inf]  [2025-12-03 12:58:31.414 +0000] [32mINFO[39m: [36mResult published to PlantAnalysisWorkerService[39m
-2025-12-03T12:58:32.531628710Z [inf]      analysisId: "async_analysis_20251203_125824_25b2d423"
-2025-12-03T12:58:32.531635663Z [inf]      queue: "plant-analysis-results"
-2025-12-03T12:58:32.531642443Z [inf]      usedFallback: true
-2025-12-03T12:58:35.392325698Z [inf]  [2025-12-03 12:58:33.991 +0000] [32mINFO[39m: [36mProcessing analysis message[39m
-2025-12-03T12:58:35.392346901Z [inf]      analysisId: "async_analysis_20251203_125802_083ee9e7"
-2025-12-03T12:58:35.392354106Z [inf]      farmerId: "F190"
-2025-12-03T12:58:35.392361105Z [inf]      imageUrl: "https://1lik.net/plant-images/20251203_125803_849_95ec2ba9205541b89d821d75d3f13f03_async_analysis_20251203_125802_083ee9e7.jpg"
-2025-12-03T12:58:35.392367906Z [inf]  [2025-12-03 12:58:33.992 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:58:35.392374618Z [inf]      provider: "gemini"
-2025-12-03T12:58:35.392381360Z [inf]      currentCount: 24
-2025-12-03T12:58:35.392389054Z [inf]      limit: 2
-2025-12-03T12:58:35.392396055Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:58:35.392403660Z [inf]  [2025-12-03 12:58:34.189 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:58:35.392427004Z [inf]      provider: "gemini"
-2025-12-03T12:58:35.392434447Z [inf]      currentCount: 25
-2025-12-03T12:58:35.392441737Z [inf]      limit: 2
-2025-12-03T12:58:35.392447596Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:58:35.392456178Z [inf]  [2025-12-03 12:58:34.440 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:58:35.392463522Z [inf]      provider: "gemini"
-2025-12-03T12:58:35.392471877Z [inf]      currentCount: 26
-2025-12-03T12:58:35.392478457Z [inf]      limit: 2
-2025-12-03T12:58:35.392484151Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:58:35.392491324Z [inf]  [2025-12-03 12:58:34.885 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:58:35.392497892Z [inf]      provider: "gemini"
-2025-12-03T12:58:35.392505741Z [inf]      currentCount: 27
-2025-12-03T12:58:35.392513182Z [inf]      limit: 2
-2025-12-03T12:58:35.392519784Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:58:36.485584846Z [inf]  [2025-12-03 12:58:35.695 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:58:36.486595505Z [inf]      provider: "gemini"
-2025-12-03T12:58:36.486606124Z [inf]      currentCount: 28
-2025-12-03T12:58:36.492449674Z [inf]      limit: 2
-2025-12-03T12:58:36.492459927Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:58:37.402619520Z [inf]  [2025-12-03 12:58:36.704 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:58:37.402624559Z [inf]      limit: 2
-2025-12-03T12:58:37.402635577Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:58:37.402649923Z [inf]      provider: "gemini"
-2025-12-03T12:58:37.402656233Z [inf]      currentCount: 29
-2025-12-03T12:58:38.490845081Z [inf]  [2025-12-03 12:58:37.797 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:58:38.490850613Z [inf]      provider: "gemini"
-2025-12-03T12:58:38.490911706Z [inf]      currentCount: 30
-2025-12-03T12:58:38.490937257Z [inf]      limit: 2
-2025-12-03T12:58:38.490950561Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:58:39.348354296Z [inf]  [2025-12-03 12:58:38.823 +0000] [33mWARN[39m: [36mRate limit exceeded[39m
-2025-12-03T12:58:39.348361253Z [inf]      provider: "gemini"
-2025-12-03T12:58:39.348365776Z [inf]      currentCount: 31
-2025-12-03T12:58:39.348370434Z [inf]      limit: 2
-2025-12-03T12:58:39.348375016Z [inf]      key: "ziraai:worker:ratelimit:gemini"
-2025-12-03T12:58:40.638675265Z [inf]      provider: "gemini"
-2025-12-03T12:58:40.638683124Z [inf]      maxWaitMs: 5000
-2025-12-03T12:58:40.638690183Z [inf]      elapsed: 5874
-2025-12-03T12:58:40.638698116Z [inf]  [2025-12-03 12:58:39.866 +0000] [33mWARN[39m: [36mRate limit exceeded, sending error response[39m
-2025-12-03T12:58:40.638705406Z [inf]      analysisId: "async_analysis_20251203_125802_083ee9e7"
-2025-12-03T12:58:40.638717393Z [inf]  [2025-12-03 12:58:39.866 +0000] [33mWARN[39m: [36mRate limit wait timeout[39m
-2025-12-03T12:58:40.638723193Z [inf]  [2025-12-03 12:58:39.866 +0000] [32mINFO[39m: [36mResult published to PlantAnalysisWorkerService[39m
-2025-12-03T12:58:40.638726788Z [inf]      selectedProvider: "gemini"
-2025-12-03T12:58:40.638749603Z [inf]      analysisId: "async_analysis_20251203_125802_083ee9e7"
-2025-12-03T12:58:40.638758550Z [inf]      queue: "plant-analysis-results"
-2025-12-03T12:58:40.638765445Z [inf]      usedFallback: true
-2025-12-03T12:58:50.079728744Z [inf]      workerId: "worker-staging-gemini"
-2025-12-03T12:58:50.079741302Z [inf]      provider: "healthy"
-2025-12-03T12:58:50.079749628Z [inf]      rabbitmq: "healthy"
-2025-12-03T12:58:50.079756820Z [inf]      redis: "healthy"
-2025-12-03T12:58:50.079763938Z [inf]      overall: "healthy"
-2025-12-03T12:58:50.079770729Z [inf]      processedCount: 1
-2025-12-03T12:58:50.079776936Z [inf]      errorCount: 10
-2025-12-03T12:58:50.079787270Z [inf]      errorRate: "1000.00%"
-2025-12-03T12:58:50.080556162Z [inf]  [2025-12-03 12:58:49.116 +0000] [32mINFO[39m: [36mHealth check[39m
+
+2025-12-06T14:11:43.857648479Z [inf]  [SMS DI] ========================================
+2025-12-06T14:11:43.857658861Z [inf]  2025-12-06 14:11:41.844 +00:00 [INF] [RegisterWithPhone] Registration OTP requested for phone: 05421396386
+2025-12-06T14:11:43.857665899Z [inf]  2025-12-06 14:11:42.094 +00:00 [INF] [RegisterWithPhone] Sending OTP 299972 to 05421396386 via SMS service
+2025-12-06T14:11:43.857671948Z [inf]  2025-12-06 14:11:42.096 +00:00 [INF] Sending OTP to 905421396386 via NetGSM OTP endpoint
+2025-12-06T14:11:43.857677889Z [inf]  2025-12-06 14:11:42.364 +00:00 [ERR] OTP sending failed to 905421396386. Error: <?xml - Bilinmeyen hata kodu: <?xml
+2025-12-06T14:11:43.857683517Z [inf]  2025-12-06 14:11:42.366 +00:00 [ERR] [RegisterWithPhone] SMS sending failed: OTP gönderilemedi: Bilinmeyen hata kodu: <?xml (Kod: <?xml)
+2025-12-06T14:11:43.857688256Z [inf]  2025-12-06 14:11:42.393 +00:00 [INF] [RegisterWithPhone] OTP saved to database for phone: 05421396386
+2025-12-06T14:11:43.857758588Z [inf]  [AUTOFAC] ConnectionString from config: Host=postgres.railway.internal;Port=5432;Database=...
+2025-12-06T14:11:43.857763309Z [inf]  [SMS DI] ========================================
+2025-12-06T14:11:43.857769776Z [inf]  [SMS DI] Environment: Production
+2025-12-06T14:11:43.857774838Z [inf]  [SMS DI] Direct env var (SmsService__Provider): Netgsm
+2025-12-06T14:11:43.857779985Z [inf]  [SMS DI] Config value (SmsService:Provider): Netgsm
+2025-12-06T14:11:43.857785138Z [inf]  [SMS DI] Selected provider (lowercase): netgsm
+2025-12-06T14:11:44.829921044Z [inf]     at MediatR.Wrappers.RequestHandlerWrapperImpl`2.<>c__DisplayClass1_0.<Handle>g__Handler|0(CancellationToken t)
+2025-12-06T14:11:44.829938868Z [inf]  [AUTOFAC] ConnectionString from config: Host=postgres.railway.internal;Port=5432;Database=...
+2025-12-06T14:11:44.829945474Z [inf]  2025-12-06 14:11:44.681 +00:00 [INF] [VerifyPhoneRegister] Verifying OTP for phone: 05421396386
+2025-12-06T14:11:44.829951814Z [inf]  2025-12-06 14:11:44.684 +00:00 [INF] [VerifyPhoneRegister] Looking for OTP - Phone: 05421396386, Code: 299972, Provider: Phone
+2025-12-06T14:11:44.829960303Z [inf]     at Core.Utilities.Interceptors.MethodInterception.Intercept(IInvocation invocation) in /src/Core/Utilities/Interceptors/MethodInterception.cs:line 15
+2025-12-06T14:11:44.829965241Z [inf]     at Castle.DynamicProxy.AbstractInvocation.Proceed()
+2025-12-06T14:11:44.829967212Z [inf]     at Castle.DynamicProxy.AbstractInvocation.Proceed()
+2025-12-06T14:11:44.829977371Z [inf]     at Core.Utilities.Interceptors.MethodInterception.Intercept(IInvocation invocation) in /src/Core/Utilities/Interceptors/MethodInterception.cs:line 15
+2025-12-06T14:11:44.829978337Z [inf]     at Castle.Proxies.IRequestHandler`2Proxy_19.Handle(VerifyPhoneRegisterCommand request, CancellationToken cancellationToken)
+2025-12-06T14:11:44.829986607Z [inf]     at Castle.DynamicProxy.AbstractInvocation.Proceed()
+2025-12-06T14:11:44.830002823Z [inf]  2025-12-06 14:11:44.734 +00:00 [ERR] Exception occurred: One or more errors occurred. (An error occurred while saving the entity changes. See the inner exception for details.) at /api/v1/auth/verify-phone-register POST. StackTrace:    at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+2025-12-06T14:11:44.830008559Z [inf]     at System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+2025-12-06T14:11:44.830014059Z [inf]     at Core.Utilities.Interceptors.MethodInterception.Intercept(IInvocation invocation) in /src/Core/Utilities/Interceptors/MethodInterception.cs:line 16
+2025-12-06T14:11:44.832726059Z [inf]     at MediatR.Wrappers.RequestHandlerWrapperImpl`2.Handle(IRequest`1 request, IServiceProvider serviceProvider, CancellationToken cancellationToken)
+2025-12-06T14:11:44.832729755Z [inf]     at MediatR.Mediator.Send[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+2025-12-06T14:11:44.832733483Z [inf]     at WebAPI.Controllers.AuthController.VerifyPhoneRegister(VerifyPhoneRegisterRequest request) in /src/WebAPI/Controllers/AuthController.cs:line 237
+2025-12-06T14:11:44.832737229Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+2025-12-06T14:11:44.832741286Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+2025-12-06T14:11:44.832745386Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2025-12-06T14:11:44.832749245Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+2025-12-06T14:11:44.832754937Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+2025-12-06T14:11:44.832758816Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+2025-12-06T14:11:44.832762508Z [inf]  --- End of stack trace from previous location ---
+2025-12-06T14:11:44.832766450Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2025-12-06T14:11:44.832881683Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+2025-12-06T14:11:44.832891823Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+2025-12-06T14:11:44.832896681Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+2025-12-06T14:11:44.832901388Z [inf]  --- End of stack trace from previous location ---
+2025-12-06T14:11:44.832906455Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+2025-12-06T14:11:44.832911533Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+2025-12-06T14:11:44.832916494Z [inf]     at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+2025-12-06T14:11:44.832921416Z [inf]     at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+2025-12-06T14:11:44.832928995Z [inf]     at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+2025-12-06T14:11:44.832934525Z [inf]     at Core.Extensions.ExceptionMiddleware.InvokeAsync(HttpContext httpContext) in /src/Core/Extensions/ExceptionMiddleware.cs:line 28
+2025-12-06T14:11:44.832939604Z [inf]  System.AggregateException: One or more errors occurred. (An error occurred while saving the entity changes. See the inner exception for details.)
+2025-12-06T14:11:44.832944931Z [inf]   ---> Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+2025-12-06T14:11:44.832949902Z [inf]   ---> Npgsql.PostgresException (0x80004005): 23505: duplicate key value violates unique constraint "PK_Users"
+2025-12-06T14:11:44.833695728Z [inf]  
+2025-12-06T14:11:44.833701110Z [inf]  DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+2025-12-06T14:11:44.833705423Z [inf]     at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+2025-12-06T14:11:44.833802280Z [inf]     at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+2025-12-06T14:11:44.833810228Z [inf]     at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+2025-12-06T14:11:44.833814480Z [inf]     at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+2025-12-06T14:11:44.833818279Z [inf]     at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+2025-12-06T14:11:44.833822108Z [inf]     at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+2025-12-06T14:11:44.833825825Z [inf]     at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+2025-12-06T14:11:44.833829626Z [inf]     at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+2025-12-06T14:11:44.833833495Z [inf]     at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+2025-12-06T14:11:44.833840007Z [inf]     at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+2025-12-06T14:11:44.836021433Z [inf]    Exception data:
+2025-12-06T14:11:44.836024294Z [inf]     at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+2025-12-06T14:11:44.836029444Z [inf]      Severity: ERROR
+2025-12-06T14:11:44.836035981Z [inf]      SqlState: 23505
+2025-12-06T14:11:44.836041010Z [inf]      MessageText: duplicate key value violates unique constraint "PK_Users"
+2025-12-06T14:11:44.836045807Z [inf]      Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+2025-12-06T14:11:44.836048033Z [inf]      File: nbtinsert.c
+2025-12-06T14:11:44.836052003Z [inf]      SchemaName: public
+2025-12-06T14:11:44.836057153Z [inf]      TableName: Users
+2025-12-06T14:11:44.836059217Z [inf]      Line: 666
+2025-12-06T14:11:44.836062086Z [inf]      ConstraintName: PK_Users
+2025-12-06T14:11:44.836068433Z [inf]      Routine: _bt_check_unique
+2025-12-06T14:11:44.836073707Z [inf]     --- End of inner exception stack trace ---
+2025-12-06T14:11:44.836079209Z [inf]     at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+2025-12-06T14:11:44.836085611Z [inf]     at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+2025-12-06T14:11:44.836092315Z [inf]     at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+2025-12-06T14:11:44.836099025Z [inf]     at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+2025-12-06T14:11:44.836106012Z [inf]     at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+2025-12-06T14:11:44.837275644Z [inf]     at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+2025-12-06T14:11:44.837283506Z [inf]     at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+2025-12-06T14:11:44.837290374Z [inf]     at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+2025-12-06T14:11:44.837295474Z [inf]     at Castle.DynamicProxy.AbstractInvocation.Proceed()
+2025-12-06T14:11:44.837296962Z [inf]     at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+2025-12-06T14:11:44.837303328Z [inf]     at Business.Handlers.Authorizations.Commands.VerifyPhoneRegisterCommand.VerifyPhoneRegisterCommandHandler.Handle(VerifyPhoneRegisterCommand request, CancellationToken cancellationToken) in /src/Business/Handlers/Authorizations/Commands/VerifyPhoneRegisterCommand.cs:line 145
+2025-12-06T14:11:44.837305723Z [inf]     at Core.Utilities.Interceptors.MethodInterception.Intercept(IInvocation invocation) in /src/Core/Utilities/Interceptors/MethodInterception.cs:line 15
+2025-12-06T14:11:44.837310407Z [inf]     --- End of inner exception stack trace ---
+2025-12-06T14:11:44.837315677Z [inf]     at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+2025-12-06T14:11:44.837320904Z [inf]     at System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+2025-12-06T14:11:44.837324894Z [inf]     at Core.Utilities.Interceptors.MethodInterception.Intercept(IInvocation invocation) in /src/Core/Utilities/Interceptors/MethodInterception.cs:line 16
+2025-12-06T14:11:44.839197633Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2025-12-06T14:11:44.839207191Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+2025-12-06T14:11:44.839228418Z [inf]     at Castle.DynamicProxy.AbstractInvocation.Proceed()
+2025-12-06T14:11:44.839237860Z [inf]     at Core.Utilities.Interceptors.MethodInterception.Intercept(IInvocation invocation) in /src/Core/Utilities/Interceptors/MethodInterception.cs:line 15
+2025-12-06T14:11:44.839243241Z [inf]     at Castle.DynamicProxy.AbstractInvocation.Proceed()
+2025-12-06T14:11:44.839270312Z [inf]     at Castle.Proxies.IRequestHandler`2Proxy_19.Handle(VerifyPhoneRegisterCommand request, CancellationToken cancellationToken)
+2025-12-06T14:11:44.839276100Z [inf]     at MediatR.Wrappers.RequestHandlerWrapperImpl`2.<>c__DisplayClass1_0.<Handle>g__Handler|0(CancellationToken t)
+2025-12-06T14:11:44.839280507Z [inf]     at MediatR.Wrappers.RequestHandlerWrapperImpl`2.Handle(IRequest`1 request, IServiceProvider serviceProvider, CancellationToken cancellationToken)
+2025-12-06T14:11:44.839285414Z [inf]     at MediatR.Mediator.Send[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+2025-12-06T14:11:44.839290984Z [inf]     at WebAPI.Controllers.AuthController.VerifyPhoneRegister(VerifyPhoneRegisterRequest request) in /src/WebAPI/Controllers/AuthController.cs:line 237
+2025-12-06T14:11:44.839296399Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+2025-12-06T14:11:44.839300805Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+2025-12-06T14:11:44.840724089Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+2025-12-06T14:11:44.840730777Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+2025-12-06T14:11:44.840736707Z [inf]  --- End of stack trace from previous location ---
+2025-12-06T14:11:44.840741644Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2025-12-06T14:11:44.840746547Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+2025-12-06T14:11:44.840751547Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+2025-12-06T14:11:44.840755515Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+2025-12-06T14:11:44.840759960Z [inf]  --- End of stack trace from previous location ---
+2025-12-06T14:11:44.840764276Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+2025-12-06T14:11:44.840768924Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+2025-12-06T14:11:44.840773486Z [inf]     at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+2025-12-06T14:11:44.840778190Z [inf]     at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+2025-12-06T14:11:44.840782227Z [inf]     at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+2025-12-06T14:11:44.840786689Z [inf]     at Core.Extensions.ExceptionMiddleware.InvokeAsync(HttpContext httpContext) in /src/Core/Extensions/ExceptionMiddleware.cs:line 28
+2025-12-06T14:11:44.842058851Z [inf]  2025-12-06 14:11:44.740 +00:00 [ERR] Unhandled exception: AggregateException - One or more errors occurred. (An error occurred while saving the entity changes. See the inner exception for details.)
+2025-12-06T14:11:52.880933398Z [inf]  2025-12-06 14:11:52.683 +00:00 [INF] [VerifyPhoneRegister] Looking for OTP - Phone: 05421396386, Code: 299972, Provider: Phone
+2025-12-06T14:11:52.880934274Z [inf]     at Core.Utilities.Interceptors.MethodInterception.Intercept(IInvocation invocation) in /src/Core/Utilities/Interceptors/MethodInterception.cs:line 15
+2025-12-06T14:11:52.880941208Z [inf]  2025-12-06 14:11:52.693 +00:00 [ERR] Exception occurred: One or more errors occurred. (An error occurred while saving the entity changes. See the inner exception for details.) at /api/v1/auth/verify-phone-register POST. StackTrace:    at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+2025-12-06T14:11:52.880943112Z [inf]     at Castle.DynamicProxy.AbstractInvocation.Proceed()
+2025-12-06T14:11:52.880947697Z [inf]     at System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+2025-12-06T14:11:52.880949980Z [inf]     at Castle.Proxies.IRequestHandler`2Proxy_19.Handle(VerifyPhoneRegisterCommand request, CancellationToken cancellationToken)
+2025-12-06T14:11:52.880955445Z [inf]     at MediatR.Wrappers.RequestHandlerWrapperImpl`2.<>c__DisplayClass1_0.<Handle>g__Handler|0(CancellationToken t)
+2025-12-06T14:11:52.880956247Z [inf]     at Core.Utilities.Interceptors.MethodInterception.Intercept(IInvocation invocation) in /src/Core/Utilities/Interceptors/MethodInterception.cs:line 16
+2025-12-06T14:11:52.880968916Z [inf]     at Castle.DynamicProxy.AbstractInvocation.Proceed()
+2025-12-06T14:11:52.880971005Z [inf]  [AUTOFAC] ConnectionString from config: Host=postgres.railway.internal;Port=5432;Database=...
+2025-12-06T14:11:52.880976495Z [inf]  2025-12-06 14:11:52.677 +00:00 [INF] [VerifyPhoneRegister] Verifying OTP for phone: 05421396386
+2025-12-06T14:11:52.880977930Z [inf]     at Core.Utilities.Interceptors.MethodInterception.Intercept(IInvocation invocation) in /src/Core/Utilities/Interceptors/MethodInterception.cs:line 15
+2025-12-06T14:11:52.880983655Z [inf]     at Castle.DynamicProxy.AbstractInvocation.Proceed()
+2025-12-06T14:11:52.881809671Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+2025-12-06T14:11:52.881814624Z [inf]  --- End of stack trace from previous location ---
+2025-12-06T14:11:52.881818955Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2025-12-06T14:11:52.881870337Z [inf]     at MediatR.Wrappers.RequestHandlerWrapperImpl`2.Handle(IRequest`1 request, IServiceProvider serviceProvider, CancellationToken cancellationToken)
+2025-12-06T14:11:52.881875789Z [inf]     at MediatR.Mediator.Send[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+2025-12-06T14:11:52.881881061Z [inf]     at WebAPI.Controllers.AuthController.VerifyPhoneRegister(VerifyPhoneRegisterRequest request) in /src/WebAPI/Controllers/AuthController.cs:line 237
+2025-12-06T14:11:52.881886362Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+2025-12-06T14:11:52.881891992Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+2025-12-06T14:11:52.881897742Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2025-12-06T14:11:52.881903090Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+2025-12-06T14:11:52.881908632Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+2025-12-06T14:11:52.884605071Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+2025-12-06T14:11:52.884606989Z [inf]     at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+2025-12-06T14:11:52.884612084Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+2025-12-06T14:11:52.884614466Z [inf]     at Core.Extensions.ExceptionMiddleware.InvokeAsync(HttpContext httpContext) in /src/Core/Extensions/ExceptionMiddleware.cs:line 28
+2025-12-06T14:11:52.884618302Z [inf]  --- End of stack trace from previous location ---
+2025-12-06T14:11:52.884621069Z [inf]  System.AggregateException: One or more errors occurred. (An error occurred while saving the entity changes. See the inner exception for details.)
+2025-12-06T14:11:52.884625701Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+2025-12-06T14:11:52.884627354Z [inf]   ---> Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+2025-12-06T14:11:52.884632954Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+2025-12-06T14:11:52.884634783Z [inf]   ---> Npgsql.PostgresException (0x80004005): 23505: duplicate key value violates unique constraint "PK_Users"
+2025-12-06T14:11:52.884638583Z [inf]     at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+2025-12-06T14:11:52.884644724Z [inf]     at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+2025-12-06T14:11:52.884647129Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+2025-12-06T14:11:52.888431587Z [inf]     at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+2025-12-06T14:11:52.888461320Z [inf]  
+2025-12-06T14:11:52.888468251Z [inf]  DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+2025-12-06T14:11:52.888474716Z [inf]     at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+2025-12-06T14:11:52.888482136Z [inf]     at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+2025-12-06T14:11:52.888488987Z [inf]     at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+2025-12-06T14:11:52.888495413Z [inf]     at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+2025-12-06T14:11:52.888501893Z [inf]     at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+2025-12-06T14:11:52.888508494Z [inf]     at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+2025-12-06T14:11:52.888514803Z [inf]     at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+2025-12-06T14:11:52.888521147Z [inf]     at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+2025-12-06T14:11:52.888528242Z [inf]     at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+2025-12-06T14:11:52.890780258Z [inf]     at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+2025-12-06T14:11:52.890788658Z [inf]     at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+2025-12-06T14:11:52.890791820Z [inf]    Exception data:
+2025-12-06T14:11:52.890797978Z [inf]     at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+2025-12-06T14:11:52.890798069Z [inf]      Severity: ERROR
+2025-12-06T14:11:52.890805691Z [inf]     at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+2025-12-06T14:11:52.890806971Z [inf]      SqlState: 23505
+2025-12-06T14:11:52.890811794Z [inf]      MessageText: duplicate key value violates unique constraint "PK_Users"
+2025-12-06T14:11:52.890815543Z [inf]      Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+2025-12-06T14:11:52.890819333Z [inf]      SchemaName: public
+2025-12-06T14:11:52.890824293Z [inf]      TableName: Users
+2025-12-06T14:11:52.890828602Z [inf]      ConstraintName: PK_Users
+2025-12-06T14:11:52.890832646Z [inf]      File: nbtinsert.c
+2025-12-06T14:11:52.890836288Z [inf]      Line: 666
+2025-12-06T14:11:52.890843616Z [inf]      Routine: _bt_check_unique
+2025-12-06T14:11:52.890847471Z [inf]     --- End of inner exception stack trace ---
+2025-12-06T14:11:52.890851972Z [inf]     at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+2025-12-06T14:11:52.890860342Z [inf]     at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+2025-12-06T14:11:52.892909233Z [inf]     at Core.Utilities.Interceptors.MethodInterception.Intercept(IInvocation invocation) in /src/Core/Utilities/Interceptors/MethodInterception.cs:line 15
+2025-12-06T14:11:52.892937371Z [inf]     at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+2025-12-06T14:11:52.892946004Z [inf]     at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+2025-12-06T14:11:52.892951917Z [inf]     at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+2025-12-06T14:11:52.892956086Z [inf]     at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+2025-12-06T14:11:52.892960257Z [inf]     at Business.Handlers.Authorizations.Commands.VerifyPhoneRegisterCommand.VerifyPhoneRegisterCommandHandler.Handle(VerifyPhoneRegisterCommand request, CancellationToken cancellationToken) in /src/Business/Handlers/Authorizations/Commands/VerifyPhoneRegisterCommand.cs:line 145
+2025-12-06T14:11:52.892965428Z [inf]     --- End of inner exception stack trace ---
+2025-12-06T14:11:52.892970147Z [inf]     at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+2025-12-06T14:11:52.892974629Z [inf]     at System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+2025-12-06T14:11:52.892979274Z [inf]     at Core.Utilities.Interceptors.MethodInterception.Intercept(IInvocation invocation) in /src/Core/Utilities/Interceptors/MethodInterception.cs:line 16
+2025-12-06T14:11:52.892983826Z [inf]     at Castle.DynamicProxy.AbstractInvocation.Proceed()
+2025-12-06T14:11:52.894419510Z [inf]     at Castle.DynamicProxy.AbstractInvocation.Proceed()
+2025-12-06T14:11:52.894425968Z [inf]     at Core.Utilities.Interceptors.MethodInterception.Intercept(IInvocation invocation) in /src/Core/Utilities/Interceptors/MethodInterception.cs:line 15
+2025-12-06T14:11:52.894430269Z [inf]     at Castle.DynamicProxy.AbstractInvocation.Proceed()
+2025-12-06T14:11:52.894435192Z [inf]     at Castle.Proxies.IRequestHandler`2Proxy_19.Handle(VerifyPhoneRegisterCommand request, CancellationToken cancellationToken)
+2025-12-06T14:11:52.894440097Z [inf]     at MediatR.Wrappers.RequestHandlerWrapperImpl`2.<>c__DisplayClass1_0.<Handle>g__Handler|0(CancellationToken t)
+2025-12-06T14:11:52.894445627Z [inf]     at MediatR.Wrappers.RequestHandlerWrapperImpl`2.Handle(IRequest`1 request, IServiceProvider serviceProvider, CancellationToken cancellationToken)
+2025-12-06T14:11:52.894450633Z [inf]     at MediatR.Mediator.Send[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+2025-12-06T14:11:52.894456236Z [inf]     at WebAPI.Controllers.AuthController.VerifyPhoneRegister(VerifyPhoneRegisterRequest request) in /src/WebAPI/Controllers/AuthController.cs:line 237
+2025-12-06T14:11:52.894461233Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+2025-12-06T14:11:52.894467067Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+2025-12-06T14:11:52.894472323Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2025-12-06T14:11:52.894477263Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+2025-12-06T14:11:52.896221066Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+2025-12-06T14:11:52.896226523Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+2025-12-06T14:11:52.896233571Z [inf]  --- End of stack trace from previous location ---
+2025-12-06T14:11:52.896239281Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2025-12-06T14:11:52.896244537Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+2025-12-06T14:11:52.896250508Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+2025-12-06T14:11:52.896256259Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+2025-12-06T14:11:52.896262033Z [inf]  --- End of stack trace from previous location ---
+2025-12-06T14:11:52.896266787Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+2025-12-06T14:11:52.896271896Z [inf]     at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+2025-12-06T14:11:52.896276821Z [inf]     at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+2025-12-06T14:11:52.896282286Z [inf]     at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+2025-12-06T14:11:52.896291099Z [inf]     at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+2025-12-06T14:11:52.896296029Z [inf]     at Core.Extensions.ExceptionMiddleware.InvokeAsync(HttpContext httpContext) in /src/Core/Extensions/ExceptionMiddleware.cs:line 28
+2025-12-06T14:11:52.897931998Z [inf]  2025-12-06 14:11:52.697 +00:00 [ERR] Unhandled exception: AggregateException - One or more errors occurred. (An error occurred while saving the entity changes. See the inner exception for details.)

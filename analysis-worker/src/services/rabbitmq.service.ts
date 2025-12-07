@@ -64,28 +64,33 @@ export class RabbitMQService {
   }
 
   /**
-   * Assert that all required queues exist
-   * Strategy: Simple and robust - try to create, gracefully handle if exists with different params
+   * Assert that required queues exist with correct TTL configuration
+   * IMPORTANT: Only assert queues that this worker OWNS (creates and publishes to)
+   * Do NOT assert WebAPI queues (plant-analysis-requests, plant-analysis-multi-image-requests)
+   * Those queues are managed by WebAPI/Dispatcher and have no TTL
    */
   private async assertQueues(): Promise<void> {
     if (!this.channel) {
       throw new Error('Channel not initialized');
     }
 
-    const queues = Object.values(this.config.queues);
+    // ONLY assert queues that this worker creates/owns
+    // These queues have 24h TTL for automatic cleanup
+    const ownedQueues = [
+      this.config.queues.results,           // plant-analysis-results (worker publishes here)
+      this.config.queues.dlq,              // analysis-dlq (worker may send failed messages here)
+    ];
 
-    for (const queue of queues) {
+    for (const queue of ownedQueues) {
       try {
-        // Simple approach: just assert the queue with our desired configuration
-        // If it exists with same params, this is idempotent (does nothing)
-        // If it doesn't exist, it creates it
+        // Worker-owned queues always have 24h TTL
         await this.channel.assertQueue(queue, {
           durable: true,
           arguments: {
             'x-message-ttl': 86400000, // 24 hours
           },
         });
-        this.logger.info({ queue }, 'Queue ready (created or already exists with matching config)');
+        this.logger.info({ queue }, 'Worker queue ready (created or already exists with TTL)');
       } catch (error: any) {
         // PRECONDITION_FAILED means queue exists with different parameters
         // In this case, we'll use the existing queue (graceful degradation)
@@ -96,7 +101,7 @@ export class RabbitMQService {
           );
 
           // CRITICAL: RabbitMQ closes the channel after PRECONDITION_FAILED
-          // We need to recreate the channel to continue asserting other queues
+          // We need to recreate the channel to continue operations
           if (this.connection) {
             this.channel = await (this.connection as any).createChannel();
             if (!this.channel) {
